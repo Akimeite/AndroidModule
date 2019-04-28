@@ -1,5 +1,7 @@
 language: android
 jdk: oraclejdk8
+notifications:
+  email: false
 android:
   components:
     - build-tools-28.0.3
