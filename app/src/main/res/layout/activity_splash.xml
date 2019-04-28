@@ -4,4 +4,4 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="@mipmap/splash_bg"
-	tools:context="com.djangoogle.banner.sample.com.djangoogle.sample.activity.splash.SplashActivity" />
+	tools:context=".activity.splash.SplashActivity" />
