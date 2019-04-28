@@ -1,0 +1,51 @@
+apply plugin: 'com.android.application'
+
+android {
+	compileSdkVersion rootProject.ext.compileSdkVersion
+	defaultConfig {
+		applicationId "com.agesun.banner.sample"
+		minSdkVersion rootProject.ext.minSdkVersion
+		targetSdkVersion rootProject.ext.targetSdkVersion
+		versionCode 1
+		versionName "1.0"
+		ndk {
+			abiFilters "armeabi-v7a"
+		}
+		multiDexEnabled true
+	}
+	compileOptions {
+		sourceCompatibility rootProject.ext.javaVersion
+		targetCompatibility rootProject.ext.javaVersion
+	}
+	signingConfigs {
+		debugConfig {
+			storeFile file('agesun_debug.jks')
+			storePassword 'agesun_debug'
+			keyAlias 'agesun_debug'
+			keyPassword 'agesun_debug'
+		}
+	}
+	buildTypes {
+		debug {
+			buildConfigField "boolean", "LOG_DEBUG", "true"
+			debuggable true
+			minifyEnabled false
+			zipAlignEnabled true
+			shrinkResources false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+			signingConfig signingConfigs.debugConfig
+		}
+	}
+}
+
+dependencies {
+	//https://maven.google.com
+	implementation project(':banner')
+	implementation project(':framework')
+	implementation project(':player')
+	implementation 'com.android.support:multidex:1.0.3'
+	//https://github.com/JakeWharton/butterknife
+	//noinspection GradleDependency
+	implementation "com.jakewharton:butterknife:$butterknifeVersion"
+	annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
+}

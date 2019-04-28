@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@android:color/black">
+
+	<RelativeLayout
+		android:id="@+id/thumb"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@android:color/black"
+		android:scaleType="fitXY" />
+
+	<FrameLayout
+		android:id="@+id/surface_container"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent" />
+
+	<ProgressBar
+		android:id="@+id/loding"
+		style="?android:attr/progressBarStyle"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:indeterminateTint="@android:color/white" />
+
+	<View
+		android:id="@+id/transparentView"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@android:color/transparent" />
+</FrameLayout>

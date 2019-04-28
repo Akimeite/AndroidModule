@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/ablCommonToolBar"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:theme="@style/AppTheme.AppBarOverlay">
+
+	<android.support.v7.widget.Toolbar
+		android:id="@+id/tbCommon"
+		android:layout_width="match_parent"
+		android:layout_height="?attr/actionBarSize"
+		android:background="?attr/colorPrimary"
+		android:gravity="center_vertical"
+		app:contentInsetStart="0dp"
+		app:popupTheme="@style/OverflowMenuStyle">
+
+		<android.support.v7.widget.AppCompatImageButton
+			android:id="@+id/acibToolBarBackBtn"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:backgroundTint="@color/transparent"
+			android:contentDescription="@null"
+			android:src="?attr/homeAsUpIndicator" />
+
+		<android.support.v7.widget.AppCompatImageView
+			android:id="@+id/acivToolBarAvatar"
+			android:layout_width="36dp"
+			android:layout_height="36dp"
+			android:layout_marginStart="16dp"
+			android:contentDescription="@null"
+			android:visibility="gone" />
+
+		<android.support.v7.widget.AppCompatTextView
+			android:id="@+id/actvToolBarTitle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:gravity="center"
+			android:includeFontPadding="false"
+			android:singleLine="true"
+			android:textColor="@color/white"
+			android:textSize="20sp"
+			android:visibility="gone" />
+
+		<android.support.v7.widget.AppCompatEditText
+			android:id="@+id/acetToolBarInput"
+			android:layout_width="230dp"
+			android:layout_height="35dp"
+			android:layout_gravity="center"
+			android:background="@drawable/circle_corners_white_solid_bg"
+			android:drawableEnd="@mipmap/toolbar_edittext_empty"
+			android:gravity="center"
+			android:imeOptions="actionSearch"
+			android:inputType="text"
+			android:maxLines="1"
+			android:paddingStart="10dp"
+			android:paddingEnd="10dp"
+			android:singleLine="true"
+			android:textColor="@color/text_dark"
+			android:textColorHint="@color/edittext_hint"
+			android:textCursorDrawable="@drawable/edittext_cursor"
+			android:textSize="13sp"
+			android:visibility="gone" />
+
+		<android.support.v7.widget.AppCompatTextView
+			android:id="@+id/actvToolBarRightTextBtn"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="end"
+			android:layout_marginEnd="16dp"
+			android:background="@drawable/toolbar_right_text_btn_bg"
+			android:gravity="center"
+			android:includeFontPadding="false"
+			android:paddingStart="13dp"
+			android:paddingTop="3dp"
+			android:paddingEnd="13dp"
+			android:paddingBottom="3dp"
+			android:singleLine="true"
+			android:textColor="@color/white"
+			android:textSize="15sp"
+			android:visibility="gone" />
+
+		<android.support.v7.widget.AppCompatImageButton
+			android:id="@+id/acibToolBarRightImgBtn"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="end"
+			android:backgroundTint="@color/transparent"
+			android:contentDescription="@null"
+			android:visibility="gone" />
+	</android.support.v7.widget.Toolbar>
+</android.support.design.widget.AppBarLayout>
