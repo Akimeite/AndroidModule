@@ -20,7 +20,6 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 /**
  * Rtsp播放器
  * Created by Djangoogle on 2018/10/22 15:40 with Android Studio.
- * © 2018 agesun® 安徽时旭智能科技有限公司™ All rights reserved.
  */
 public class RtspPlayer extends StandardGSYVideoPlayer {
 

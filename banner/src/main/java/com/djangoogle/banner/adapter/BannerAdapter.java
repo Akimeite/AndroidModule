@@ -14,9 +14,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.agesun.banner.R;
-import com.djangoogle.banner.event.PlayNextAdEvent;
-import com.djangoogle.banner.model.AdResourceModel;
-import com.djangoogle.banner.widget.BannerAdPlayer;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.bumptech.glide.Glide;
@@ -26,6 +23,9 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.djangoogle.banner.event.PlayNextAdEvent;
+import com.djangoogle.banner.model.AdResourceModel;
+import com.djangoogle.banner.widget.BannerAdPlayer;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 
 import org.greenrobot.eventbus.EventBus;
@@ -41,7 +41,6 @@ import io.reactivex.disposables.Disposable;
 
 /**
  * Created by Djangoogle on 2019/03/29 21:51 with Android Studio.
- * © 2019 agesun® 安徽时旭智能科技有限公司™ All rights reserved.
  */
 public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerViewHolder> {
 

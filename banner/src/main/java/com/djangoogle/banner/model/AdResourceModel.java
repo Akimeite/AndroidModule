@@ -5,8 +5,6 @@ import java.io.Serializable;
 /**
  * 广告资源实体类
  * Created by Djangoogle on 2019/03/28 10:19 with Android Studio.
- * Copyright (C) 2019 Agesun, Ltd. All Rights Reserved.
- * 注意：本内容仅限于安徽时旭智能科技有限公司内部传阅，禁止外泄以及用于其他的商业目的。
  */
 public class AdResourceModel implements Serializable {
 

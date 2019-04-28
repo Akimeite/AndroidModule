@@ -9,7 +9,6 @@ import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 /**
  * 广告播放器
  * Created by Djangoogle on 2018/10/22 15:40 with Android Studio.
- * © 2018 agesun® 安徽时旭智能科技有限公司™ All rights reserved.
  */
 public class AdPlayer extends StandardGSYVideoPlayer {
 
