@@ -1,5 +1,11 @@
 [![](https://travis-ci.org/Djangoogle/Djangoogle.svg?branch=master)](https://travis-ci.org/Djangoogle/Djangoogle)
 
+![](https://img.shields.io/badge/banner-v1.0.5-1.svg)
+
+![](https://img.shields.io/badge/framework-v2.0.0alpha2-1.svg)
+
+![](https://img.shields.io/badge/player-v1.0.7-1.svg)
+
 # Android基础框架
 
 ## 用法
