@@ -1,9 +1,7 @@
-[![](https://travis-ci.org/Djangoogle/Djangoogle.svg?branch=master)](https://travis-ci.org/Djangoogle/Djangoogle)
-
+[![Build Status](https://img.shields.io/travis/Djangoogle/Djangoogle/master.svg?style=flat-square)](https://travis-ci.org/Djangoogle/Djangoogle)
+[![Apache License 2.0](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/blob/master/LICENSE.md)
 ![](https://img.shields.io/badge/banner-v1.0.5-1.svg)
-
 ![](https://img.shields.io/badge/framework-v2.0.0alpha2-1.svg)
-
 ![](https://img.shields.io/badge/player-v1.0.7-1.svg)
 
 # Android基础框架
