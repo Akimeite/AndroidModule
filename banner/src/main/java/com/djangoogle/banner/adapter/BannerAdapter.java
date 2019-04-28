@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.agesun.banner.R;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.bumptech.glide.Glide;
@@ -23,6 +22,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.djangoogle.banner.R;
 import com.djangoogle.banner.event.PlayNextAdEvent;
 import com.djangoogle.banner.model.AdResourceModel;
 import com.djangoogle.banner.widget.BannerAdPlayer;

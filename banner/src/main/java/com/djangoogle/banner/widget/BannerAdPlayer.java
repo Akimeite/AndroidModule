@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.view.WindowManager;
 
 import com.djangoogle.banner.impl.OnVideoCompletionListener;
-import com.agesun.media.player.AdPlayer;
+import com.djangoogle.player.AdPlayer;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.model.VideoOptionModel;
 import com.shuyu.gsyvideoplayer.player.IjkPlayerManager;

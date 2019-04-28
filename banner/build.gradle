@@ -26,6 +26,7 @@ android {
 }
 
 dependencies {
+	api project(':player')
 	//https://maven.google.com
 	compileOnly "com.android.support:design:$androidSupportVersion"
 	compileOnly "com.android.support.constraint:constraint-layout:$constraintVersion"
@@ -39,8 +40,6 @@ dependencies {
 	compileOnly "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
 	//https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
 	compileOnly "com.blankj:utilcode:$utilcodeVersion"
-	//https://github.com/Djangoogle/AgesunPlayer
-	api 'com.agesun.media:player:1.0.6'
 }
 
 apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'

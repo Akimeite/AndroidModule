@@ -1,4 +1,4 @@
-package com.djangoogle.banner.sample.activity.base;
+package com.djangoogle.sample.activity.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

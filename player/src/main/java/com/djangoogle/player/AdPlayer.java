@@ -3,7 +3,6 @@ package com.djangoogle.player;
 import android.content.Context;
 import android.util.AttributeSet;
 
-import com.agesun.media.R;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
 /**

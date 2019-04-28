@@ -3,7 +3,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context="com.djangoogle.banner.sample.activity.banner.BannerActivity">
+	tools:context="com.djangoogle.banner.sample.com.djangoogle.sample.activity.banner.BannerActivity">
 
 	<android.support.v7.widget.RecyclerView
 		android:id="@+id/rvBanner"
