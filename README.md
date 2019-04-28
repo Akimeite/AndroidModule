@@ -1,3 +1,5 @@
+[![](https://travis-ci.org/Djangoogle/Djangoogle.svg?branch=master)](https://travis-ci.org/Djangoogle/Djangoogle)
+
 # Android基础框架
 
 ## 用法
