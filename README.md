@@ -1,7 +1,7 @@
 [![Build Status](https://img.shields.io/travis/Djangoogle/Djangoogle/master.svg?style=flat-square)](https://travis-ci.org/Djangoogle/Djangoogle)
 [![Platform support](https://img.shields.io/badge/platform-android-ff5722.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/blob/master/LICENSE)
 [![Language](https://img.shields.io/badge/language-java-ff9800.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/blob/master/LICENSE)
-[![License](https://img.shields.io/github/license/Djangoogle/Djangoogle.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/Djangoogle/Djangoogle.svg?color=607d8b&style=flat-square)](https://github.com/Djangoogle/Djangoogle/blob/master/LICENSE)
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Djangoogle/Djangoogle.svg?logo=%60&style=flat-square)](https://github.com/Djangoogle/Djangoogle/blob/master/LICENSE)
 
 [![Banner](https://img.shields.io/bintray/v/djangoogle/maven/banner.svg?label=banner&style=flat-square)](https://github.com/Djangoogle/Djangoogle/tree/master/banner)
