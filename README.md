@@ -7,6 +7,7 @@
 [![Banner](https://img.shields.io/bintray/v/djangoogle/maven/banner.svg?label=banner&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/banner)
 [![Framework](https://img.shields.io/bintray/v/djangoogle/maven/framework.svg?label=framework&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/framework)
 [![Player](https://img.shields.io/bintray/v/djangoogle/maven/player.svg?label=player&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/player)
+[![UVCCamera](https://img.shields.io/bintray/v/djangoogle/maven/uvccamera.svg?label=uvccamera&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/player)
 
 # Android基础框架
 
