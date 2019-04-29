@@ -4,12 +4,15 @@
 [![Apache License 2.0](https://img.shields.io/badge/license-Apache%202.0-607d8b.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/blob/master/LICENSE)
 
 Banner:
+
 [![Banner](https://img.shields.io/bintray/v/djangoogle/maven/banner.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/tree/master/banner)
 
 Framework:
+
 [![Framework](https://img.shields.io/bintray/v/djangoogle/maven/framework.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/tree/master/framework)
 
 Player:
+
 [![Player](https://img.shields.io/bintray/v/djangoogle/maven/player.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/tree/master/player)
 
 # Android基础框架
