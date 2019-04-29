@@ -1,4 +1,4 @@
-package com.djangoogle.sample.activity.banner;
+package com.djangoogle.module.activity.banner;
 
 import android.os.Environment;
 import android.support.v7.widget.RecyclerView;
@@ -6,8 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import com.blankj.utilcode.util.ToastUtils;
 import com.djangoogle.banner.manager.BannerManager;
 import com.djangoogle.banner.model.AdResourceModel;
-import com.djangoogle.sample.R;
-import com.djangoogle.sample.activity.base.BaseActivity;
+import com.djangoogle.module.R;
+import com.djangoogle.module.activity.base.BaseActivity;
 import com.yanzhenjie.album.Album;
 import com.yanzhenjie.album.AlbumFile;
 

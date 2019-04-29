@@ -1,4 +1,4 @@
-package com.djangoogle.sample.application;
+package com.djangoogle.module.application;
 
 import android.content.Context;
 import android.support.multidex.MultiDex;

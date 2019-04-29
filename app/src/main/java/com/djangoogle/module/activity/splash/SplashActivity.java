@@ -1,12 +1,12 @@
-package com.djangoogle.sample.activity.splash;
+package com.djangoogle.module.activity.splash;
 
 import android.content.Intent;
 import android.os.Handler;
 
 import com.blankj.utilcode.util.ToastUtils;
-import com.djangoogle.sample.R;
-import com.djangoogle.sample.activity.banner.BannerActivity;
-import com.djangoogle.sample.activity.base.BaseActivity;
+import com.djangoogle.module.R;
+import com.djangoogle.module.activity.banner.BannerActivity;
+import com.djangoogle.module.activity.base.BaseActivity;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
 

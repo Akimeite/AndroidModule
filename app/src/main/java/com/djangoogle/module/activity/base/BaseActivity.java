@@ -1,4 +1,4 @@
-package com.djangoogle.sample.activity.base;
+package com.djangoogle.module.activity.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
