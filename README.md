@@ -3,9 +3,9 @@
 ![Language](https://img.shields.io/badge/language-java-orange.svg?style=flat-square)
 [![Apache License 2.0](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/blob/master/LICENSE.md)
 
-![banner](https://img.shields.io/badge/banner-v1.0.5-0.svg?style=flat-square)
-![framework](https://img.shields.io/badge/framework-v2.0.0alpha2-0.svg?style=flat-square)
-![player](https://img.shields.io/badge/player-v1.0.7-519dd9.svg?style=flat-square)
+![banner](https://img.shields.io/badge/banner-v1.0.5-blueviolet.svg?style=flat-square)
+![framework](https://img.shields.io/badge/framework-v2.0.0alpha2-blueviolet.svg?style=flat-square)
+![player](https://img.shields.io/badge/player-v1.0.7-blueviolet.svg?style=flat-square)
 
 # Android基础框架
 
