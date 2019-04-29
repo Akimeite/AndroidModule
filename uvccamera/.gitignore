@@ -1,0 +1,7 @@
+build
+captures
+.externalNativeBuild
+*.iml
+*.DS_Store
+src/main/libs
+src/main/obj

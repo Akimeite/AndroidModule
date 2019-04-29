@@ -1,1 +1,1 @@
-include ':app', ':banner', ':framework', ':player'
+include ':app', ':banner', ':framework', ':player',':uvccamera'

@@ -1,0 +1,54 @@
+apply plugin: 'com.android.library'
+
+import org.apache.tools.ant.taskdefs.condition.Os
+
+android {
+	compileSdkVersion rootProject.ext.compileSdkVersion
+	defaultConfig {
+		minSdkVersion rootProject.ext.minSdkVersion
+		targetSdkVersion rootProject.ext.targetSdkVersion
+	}
+	compileOptions {
+		sourceCompatibility rootProject.ext.javaVersion
+		targetCompatibility rootProject.ext.javaVersion
+	}
+}
+
+tasks.withType(JavaCompile) {
+	compileTask -> compileTask.dependsOn ndkBuild
+}
+
+String getNdkBuildPath() {
+	Properties properties = new Properties()
+	properties.load(project.rootProject.file('local.properties').newDataInputStream())
+	def ndkBuildingDir = properties.getProperty("ndk.dir")
+	if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+		return ndkBuildingDir + '/ndk-build.cmd'
+	} else {
+		return ndkBuildingDir + '/ndk-build'
+	}
+}
+
+task ndkBuild(type: Exec, description: 'Compile JNI source via NDK') {
+	println('executing ndkBuild')
+	def ndkBuildPath = getNdkBuildPath()
+	commandLine ndkBuildPath, '-j8', '-C', file('src/main').absolutePath
+}
+
+task ndkClean(type: Exec, description: 'clean JNI libraries') {
+	println('executing ndkBuild clean')
+	def ndkBuildPath = getNdkBuildPath()
+	commandLine ndkBuildPath, 'clean', '-C', file('src/main').absolutePath
+}
+
+clean.dependsOn 'ndkClean'
+
+dependencies {
+	//https://maven.google.com
+	compileOnly "com.android.support:design:$androidSupportVersion"
+	compileOnly "com.android.support.constraint:constraint-layout:$constraintVersion"
+	//https://github.com/saki4510t/UVCCamera
+	api('com.serenegiant:common:2.12.4') {
+		exclude group: 'com.android.support'
+	}
+}

@@ -36,6 +36,7 @@ allprojects {
 		google()
 		jcenter()
 		maven { url "https://jitpack.io" }
+		maven { url 'https://raw.github.com/saki4510t/libcommon/master/repository' }
 	}
 }
 
