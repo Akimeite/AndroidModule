@@ -2,12 +2,11 @@
 [![Platform support](https://img.shields.io/badge/platform-android-ff5722.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/blob/master/LICENSE)
 [![Language](https://img.shields.io/badge/language-java-ff9800.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/blob/master/LICENSE)
 [![Apache License 2.0](https://img.shields.io/badge/license-Apache%202.0-607d8b.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/blob/master/LICENSE)
+[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Djangoogle/Djangoogle.svg?logo=%60&style=flat-square)](https://github.com/Djangoogle/Djangoogle/blob/master/LICENSE)
 
-Module | Version
----|---
-Banner | [![Banner](https://img.shields.io/bintray/v/djangoogle/maven/banner.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/tree/master/banner)
-Framework | [![Framework](https://img.shields.io/bintray/v/djangoogle/maven/framework.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/tree/master/framework)
-Player | [![Player](https://img.shields.io/bintray/v/djangoogle/maven/player.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/tree/master/player)
+[![Banner](https://img.shields.io/bintray/v/djangoogle/maven/banner.svg?label=banner&style=flat-square)](https://github.com/Djangoogle/Djangoogle/tree/master/banner)
+[![Framework](https://img.shields.io/bintray/v/djangoogle/maven/framework.svg?label=framework&style=flat-square)](https://github.com/Djangoogle/Djangoogle/tree/master/framework)
+[![Player](https://img.shields.io/bintray/v/djangoogle/maven/player.svg?label=player&style=flat-square)](https://github.com/Djangoogle/Djangoogle/tree/master/player)
 
 # Android基础框架
 
