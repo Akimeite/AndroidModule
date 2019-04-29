@@ -1,7 +1,7 @@
 [![Build Status](https://img.shields.io/travis/Djangoogle/Djangoogle/master.svg?style=flat-square)](https://travis-ci.org/Djangoogle/Djangoogle)
 [![Platform support](https://img.shields.io/badge/platform-android-f44336.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/blob/master/LICENSE)
-[![Language](https://img.shields.io/badge/language-java-orange.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/blob/master/LICENSE)
-[![Apache License 2.0](https://img.shields.io/badge/license-Apache%202.0-343434.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/blob/master/LICENSE)
+[![Language](https://img.shields.io/badge/language-java-ff9800.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/blob/master/LICENSE)
+[![Apache License 2.0](https://img.shields.io/badge/license-Apache%202.0-607d8b.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/blob/master/LICENSE)
 
 ![banner](https://img.shields.io/badge/banner-v1.0.5-blue.svg?style=flat-square)
 ![framework](https://img.shields.io/badge/framework-v2.0.0alpha2-blue.svg?style=flat-square)
