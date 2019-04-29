@@ -1,11 +1,11 @@
 [![Build Status](https://img.shields.io/travis/Djangoogle/Djangoogle/master.svg?style=flat-square)](https://travis-ci.org/Djangoogle/Djangoogle)
 [![Platform support](https://img.shields.io/badge/platform-android-lightgrey.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/blob/master/LICENSE.md)
-![Language](https://img.shields.io/badge/language-java-orange.svg)
+![Language](https://img.shields.io/badge/language-java-orange.svg?style=flat-square)
 [![Apache License 2.0](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat-square)](https://github.com/Djangoogle/Djangoogle/blob/master/LICENSE.md)
 
-![](https://img.shields.io/badge/banner-v1.0.5-0.svg)
-![](https://img.shields.io/badge/framework-v2.0.0alpha2-0.svg)
-![](https://img.shields.io/badge/player-v1.0.7-0.svg)
+![banner](https://img.shields.io/badge/banner-v1.0.5-0.svg?style=flat-square)
+![framework](https://img.shields.io/badge/framework-v2.0.0alpha2-0.svg?style=flat-square)
+![player](https://img.shields.io/badge/player-v1.0.7-519dd9.svg?style=flat-square)
 
 # Android基础框架
 
