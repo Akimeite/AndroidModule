@@ -4,15 +4,15 @@
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Djangoogle/Module.svg?color=9e9e9e&style=flat-square)](https://github.com/Djangoogle/Module/blob/master/LICENSE)
 [![License](https://img.shields.io/github/license/Djangoogle/Module.svg?color=607d8b&style=flat-square)](https://github.com/Djangoogle/Module/blob/master/LICENSE)
 
-[![Banner](https://img.shields.io/bintray/v/djangoogle/maven/banner.svg?label=banner&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/banner)
-[![Framework](https://img.shields.io/bintray/v/djangoogle/maven/framework.svg?label=framework&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/framework)
-[![Player](https://img.shields.io/bintray/v/djangoogle/maven/player.svg?label=player&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/player)
-[![UVCCamera](https://img.shields.io/bintray/v/djangoogle/maven/uvccamera.svg?label=uvccamera&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/player)
+[![Banner](https://img.shields.io/bintray/v/djangoogle/maven/Banner.svg?label=banner&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/banner)
+[![Framework](https://img.shields.io/bintray/v/djangoogle/maven/Framework.svg?label=framework&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/framework)
+[![Player](https://img.shields.io/bintray/v/djangoogle/maven/Player.svg?label=player&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/player)
+[![UVCCamera](https://img.shields.io/bintray/v/djangoogle/maven/UVCCamera.svg?label=uvccamera&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/uvccamera)
 
 # Android基础框架
 
 ## 用法
->implementation 'com.djangoogle.support:framework:2.0.0-alpha2'
+>implementation 'com.djangoogle.support:framework:1.0.0'
 
 ## AndroidManifest.xml
 >清单文件
