@@ -41,7 +41,6 @@ android {
 dependencies {
 	implementation project(':banner')
 	implementation project(':framework')
-	implementation project(':player')
 	implementation project(':uvccamera')
 	//https://maven.google.com
 	implementation 'com.android.support:multidex:1.0.3'
