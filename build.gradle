@@ -28,6 +28,15 @@ buildscript {
 		retrofit2Version = '2.5.0'
 		//https://github.com/CarGuo/GSYVideoPlayer
 		gsyVideoPlayerVersion = '6.0.3'
+		//version
+		bannerVersionCode = 1
+		bannerVersionName = '1.0.0'
+		frameworkVersionCode = 1
+		frameworkVersionName = '1.0.0'
+		playerVersionCode = 1
+		playerVersionName = '1.0.0'
+		uvccameraVersionCode = 1
+		uvccameraVersionName = '1.0.0'
 	}
 }
 
@@ -37,6 +46,7 @@ allprojects {
 		jcenter()
 		maven { url "https://jitpack.io" }
 		maven { url 'https://raw.github.com/saki4510t/libcommon/master/repository' }
+		maven { url 'https://dl.bintray.com/djangoogle/maven/' }
 	}
 }
 

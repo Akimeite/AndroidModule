@@ -39,11 +39,10 @@ android {
 }
 
 dependencies {
-	//https://maven.google.com
 	implementation project(':banner')
 	implementation project(':framework')
-	implementation project(':player')
 	implementation project(':uvccamera')
+	//https://maven.google.com
 	implementation 'com.android.support:multidex:1.0.3'
 	//https://github.com/JakeWharton/butterknife
 	//noinspection GradleDependency

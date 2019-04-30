@@ -3,7 +3,7 @@ apply plugin: 'com.android.library'
 ext {
 	PUBLISH_GROUP_ID = 'com.djangoogle.support'
 	PUBLISH_ARTIFACT_ID = 'banner'
-	PUBLISH_VERSION = '1.0.5'
+	PUBLISH_VERSION = rootProject.ext.bannerVersionName
 }
 
 android {
@@ -11,8 +11,8 @@ android {
 	defaultConfig {
 		minSdkVersion rootProject.ext.minSdkVersion
 		targetSdkVersion rootProject.ext.targetSdkVersion
-		versionCode 6
-		versionName PUBLISH_VERSION
+		versionCode rootProject.ext.bannerVersionCode
+		versionName rootProject.ext.bannerVersionName
 		javaCompileOptions {
 			annotationProcessorOptions {
 				arguments = [eventBusIndex: 'com.djangoogle.banner.BannerEventBusIndex']
@@ -26,7 +26,8 @@ android {
 }
 
 dependencies {
-	api project(':player')
+	//https://github.com/Djangoogle/Module
+	api "com.djangoogle.support:player:$playerVersionName"
 	//https://maven.google.com
 	compileOnly "com.android.support:design:$androidSupportVersion"
 	compileOnly "com.android.support.constraint:constraint-layout:$constraintVersion"

@@ -3,7 +3,7 @@ apply plugin: 'com.android.library'
 ext {
 	PUBLISH_GROUP_ID = 'com.djangoogle.support'
 	PUBLISH_ARTIFACT_ID = 'framework'
-	PUBLISH_VERSION = '2.0.0-alpha2'
+	PUBLISH_VERSION = rootProject.ext.frameworkVersionName
 }
 
 android {
@@ -11,8 +11,8 @@ android {
 	defaultConfig {
 		minSdkVersion rootProject.ext.minSdkVersion
 		targetSdkVersion rootProject.ext.targetSdkVersion
-		versionCode 43
-		versionName PUBLISH_VERSION
+		versionCode rootProject.ext.frameworkVersionCode
+		versionName rootProject.ext.frameworkVersionName
 		javaCompileOptions {
 			annotationProcessorOptions {
 				arguments = [eventBusIndex: 'com.djangoogle.framework.DjangoogleEventBusIndex']
