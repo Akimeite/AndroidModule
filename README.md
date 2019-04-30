@@ -92,7 +92,7 @@ protected abstract void initButterKnife();
 
 然后在主项目中依赖ButterKnife，并新建一个BaseActivity抽象类继承DjangoogleActivity，绑定ButterKnife，请注意，主项目的Activity都要继承此BaseActivity，不要继承DjangoogleActivity：
 ```java
-public abstract class BaseActivity extends AgesunBaseActivity {
+public abstract class BaseActivity extends DjangoogleBaseActivity {
 	@Override
 	protected void initButterKnife() {
 		ButterKnife.bind(this);
