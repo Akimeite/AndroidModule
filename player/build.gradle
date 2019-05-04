@@ -21,6 +21,7 @@ android {
 }
 
 dependencies {
+	api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 	//https://maven.google.com
 	compileOnly "com.android.support:design:$androidSupportVersion"
 	//https://github.com/CarGuo/GSYVideoPlayer

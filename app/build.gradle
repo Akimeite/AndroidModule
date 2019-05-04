@@ -13,6 +13,9 @@ android {
 		}
 		multiDexEnabled true
 	}
+	packagingOptions {
+		pickFirst 'lib/armeabi-v7a/libc++_shared.so'
+	}
 	compileOptions {
 		sourceCompatibility rootProject.ext.javaVersion
 		targetCompatibility rootProject.ext.javaVersion

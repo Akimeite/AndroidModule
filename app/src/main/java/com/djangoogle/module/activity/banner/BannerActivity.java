@@ -48,7 +48,10 @@ public class BannerActivity extends BaseActivity {
 	protected void initAction() {}
 
 	@Override
-	protected void initData() {}
+	protected void initData() {
+		System.loadLibrary("vlc");
+		System.loadLibrary("vlcjni");
+	}
 
 	@Override
 	protected void onResume() {

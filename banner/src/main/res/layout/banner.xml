@@ -11,8 +11,8 @@
 		android:layout_height="match_parent"
 		android:visibility="invisible" />
 
-	<com.djangoogle.banner.widget.BannerAdPlayer
-		android:id="@+id/bapBannerVideo"
+	<org.videolan.libvlc.media.VideoView
+		android:id="@+id/apBannerVideo"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:visibility="invisible" />

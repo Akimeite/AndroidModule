@@ -27,7 +27,8 @@ android {
 
 dependencies {
 	//https://github.com/Djangoogle/Module
-	api "com.djangoogle.support:player:$playerVersionName"
+//	api "com.djangoogle.support:player:$playerVersionName"
+	api project(':player')
 	//https://maven.google.com
 	compileOnly "com.android.support:design:$androidSupportVersion"
 	compileOnly "com.android.support.constraint:constraint-layout:$constraintVersion"
