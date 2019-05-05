@@ -9,6 +9,7 @@ import android.support.constraint.ConstraintSet;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -25,10 +26,10 @@ import com.bumptech.glide.request.target.Target;
 import com.djangoogle.banner.R;
 import com.djangoogle.banner.event.PlayNextAdEvent;
 import com.djangoogle.banner.model.AdResourceModel;
-import com.shuyu.gsyvideoplayer.GSYVideoManager;
+import com.djangoogle.player.impl.OnPlayListener;
+import com.djangoogle.player.manager.AdPlayerManager;
 
 import org.greenrobot.eventbus.EventBus;
-import org.videolan.libvlc.media.VideoView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,13 +80,13 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 				case AdResourceModel.TYPE_VIDEO:
 					currentType = AdResourceModel.TYPE_VIDEO;
 					//开始播放视频
-					holder.apBannerVideo.start();
+					AdPlayerManager.getInstance().play();
 					break;
 
 				case AdResourceModel.TYPE_MIX:
 					currentType = AdResourceModel.TYPE_MIX;
 					//开始播放视频
-					holder.apBannerVideo.start();
+					AdPlayerManager.getInstance().play();
 					break;
 
 				default:
@@ -107,28 +108,32 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 				bannerViewHolder.acivBannerImage.setLayoutParams(singleImageParams);
 				bannerViewHolder.acivBannerImage.setScaleType(ImageView.ScaleType.FIT_XY);
 				bannerViewHolder.acivBannerImage.setVisibility(View.VISIBLE);
-				bannerViewHolder.apBannerVideo.setVisibility(View.INVISIBLE);
+				bannerViewHolder.acivBannerVideo.setVisibility(View.INVISIBLE);
 				//加载广告图片
 				loadImageAd(bannerViewHolder.getAdapterPosition(), bannerViewHolder.acivBannerImage);
 				break;
 
 			//视频
 			case AdResourceModel.TYPE_VIDEO:
-				//设置视频属性
+				//设置缩略图和视频属性
 				ConstraintLayout.LayoutParams singleVideoParams =
 						new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,
 								ConstraintLayout.LayoutParams.MATCH_PARENT);
-				bannerViewHolder.apBannerVideo.setLayoutParams(singleVideoParams);
-				bannerViewHolder.apBannerVideo.setVisibility(View.VISIBLE);
+				bannerViewHolder.acivBannerVideo.setLayoutParams(singleVideoParams);
+				bannerViewHolder.acivBannerVideo.setScaleType(ImageView.ScaleType.FIT_XY);
+				bannerViewHolder.svBannerVideo.setLayoutParams(singleVideoParams);
+				bannerViewHolder.acivBannerVideo.setVisibility(View.VISIBLE);
 				bannerViewHolder.acivBannerImage.setVisibility(View.INVISIBLE);
 				//加载视频广告
-				loadVideoAd(bannerViewHolder.getAdapterPosition(), bannerViewHolder.apBannerVideo);
+				loadVideoAd(bannerViewHolder.getAdapterPosition(), bannerViewHolder, ScreenUtils.getScreenWidth(),
+						ScreenUtils.getScreenHeight());
 				break;
 
 			//图片视频混合（此处按照16:9来计算）
 			case AdResourceModel.TYPE_MIX:
 				int imageId = bannerViewHolder.acivBannerImage.getId();
-				int videoId = bannerViewHolder.apBannerVideo.getId();
+				int thumbnailId = bannerViewHolder.acivBannerVideo.getId();
+				int videoId = bannerViewHolder.svBannerVideo.getId();
 				int videoHeight = ScreenUtils.getScreenWidth() * 9 / 16;
 				int imageHeight = ScreenUtils.getScreenHeight() - videoHeight;
 				//设置图片宽高
@@ -136,10 +141,12 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 						new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, imageHeight);
 				bannerViewHolder.acivBannerImage.setLayoutParams(mixImageParams);
 				bannerViewHolder.acivBannerImage.setScaleType(ImageView.ScaleType.FIT_XY);
-				//设置视频宽高
+				//设置缩略图和视频宽高
 				ConstraintLayout.LayoutParams mixVideoParams =
 						new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, videoHeight);
-				bannerViewHolder.apBannerVideo.setLayoutParams(mixVideoParams);
+				bannerViewHolder.acivBannerVideo.setLayoutParams(mixVideoParams);
+				bannerViewHolder.acivBannerVideo.setScaleType(ImageView.ScaleType.FIT_XY);
+				bannerViewHolder.svBannerVideo.setLayoutParams(mixVideoParams);
 				switch (mAdResourceList.get(bannerViewHolder.getAdapterPosition()).mixType) {
 					//图片在上
 					case AdResourceModel.MIX_TYPE_IMAGE_UP:
@@ -147,9 +154,11 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 						ConstraintSet mixImageUpConstraintSet = new ConstraintSet();
 						mixImageUpConstraintSet.clone(bannerViewHolder.clBannerRoot);
 						mixImageUpConstraintSet.connect(imageId, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP);
-						//设置视频属性
+						//设置缩略图和视频属性
 						ConstraintSet mixVideoDownConstraintSet = new ConstraintSet();
 						mixVideoDownConstraintSet.clone(bannerViewHolder.clBannerRoot);
+						mixVideoDownConstraintSet.connect(thumbnailId, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID,
+								ConstraintSet.BOTTOM);
 						mixVideoDownConstraintSet.connect(videoId, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM);
 						//应用设置
 						mixImageUpConstraintSet.applyTo(bannerViewHolder.clBannerRoot);
@@ -157,9 +166,10 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 						break;
 					//视频在上
 					case AdResourceModel.MIX_TYPE_VIDEO_UP:
-						//设置视频属性
+						//设置缩略图和视频属性
 						ConstraintSet mixVideoUpConstraintSet = new ConstraintSet();
 						mixVideoUpConstraintSet.clone(bannerViewHolder.clBannerRoot);
+						mixVideoUpConstraintSet.connect(thumbnailId, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP);
 						mixVideoUpConstraintSet.connect(videoId, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP);
 						//设置图片属性
 						ConstraintSet mixImageDownConstraintSet = new ConstraintSet();
@@ -175,12 +185,13 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 						EventBus.getDefault().post(new PlayNextAdEvent(getNextIndex(bannerViewHolder.getAdapterPosition())));
 						return;
 				}
-				bannerViewHolder.acivBannerImage.setVisibility(View.VISIBLE);
-				bannerViewHolder.apBannerVideo.setVisibility(View.VISIBLE);
+				bannerViewHolder.acivBannerVideo.setVisibility(View.VISIBLE);
+				bannerViewHolder.acivBannerImage.setVisibility(View.INVISIBLE);
 				//加载图片广告
 				loadImageAd(bannerViewHolder.getAdapterPosition(), bannerViewHolder.acivBannerImage);
 				//加载视频广告
-				loadVideoAd(bannerViewHolder.getAdapterPosition(), bannerViewHolder.apBannerVideo);
+				loadVideoAd(bannerViewHolder.getAdapterPosition(), bannerViewHolder, ScreenUtils.getScreenWidth(),
+						videoHeight);
 				break;
 
 			default:
@@ -196,14 +207,15 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 	class BannerViewHolder extends RecyclerView.ViewHolder {
 
 		ConstraintLayout clBannerRoot;
-		AppCompatImageView acivBannerImage;
-		VideoView apBannerVideo;
+		AppCompatImageView acivBannerImage, acivBannerVideo;
+		SurfaceView svBannerVideo;
 
 		BannerViewHolder(@NonNull View itemView) {
 			super(itemView);
 			clBannerRoot = itemView.findViewById(R.id.clBannerRoot);
 			acivBannerImage = itemView.findViewById(R.id.acivBannerImage);
-			apBannerVideo = itemView.findViewById(R.id.apBannerVideo);
+			acivBannerVideo = itemView.findViewById(R.id.acivBannerVideo);
+			svBannerVideo = itemView.findViewById(R.id.svBannerVideo);
 		}
 	}
 
@@ -214,7 +226,7 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 	 */
 	public void replaceData(List<AdResourceModel> adResourceList) {
 		//释放视频
-		GSYVideoManager.releaseAllVideos();
+		AdPlayerManager.getInstance().destroy();
 		mAdResourceList.clear();
 		mAdResourceList.addAll(adResourceList);
 		notifyDataSetChanged();
@@ -317,12 +329,12 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 	/**
 	 * 加载视频广告
 	 *
-	 * @param position      索引
-	 * @param apBannerVideo 视频控件
+	 * @param position         索引
+	 * @param bannerViewHolder 轮播控件
+	 * @param width            宽
+	 * @param height           高
 	 */
-	private void loadVideoAd(int position, VideoView apBannerVideo) {
-		ImageView imageView = new ImageView(mContext);
-		imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+	private void loadVideoAd(int position, BannerViewHolder bannerViewHolder, int width, int height) {
 		Glide.with(mContext)
 		     .setDefaultRequestOptions(
 				     new RequestOptions()
@@ -332,15 +344,28 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 		     .load(mAdResourceList.get(position).videoPath)
 		     .diskCacheStrategy(DiskCacheStrategy.DATA)//使用原图缓存
 		     .dontAnimate()//取消动画
-		     .into(imageView);
-//		apBannerVideo.setThumbImageView(imageView);
+		     .into(bannerViewHolder.acivBannerVideo);
 		String videoPath = mAdResourceList.get(position).videoPath;
 		LogUtils.iTag("videoPath", "视频地址: " + videoPath);
-		apBannerVideo.setVideoPath(videoPath);
-//		apBannerVideo.setLooping(1 == mAdResourceList.size() && AdResourceModel.TYPE_VIDEO == mAdResourceList.get(0).type);
-		apBannerVideo.setOnCompletionListener(mp -> {
-			//播放下一条广告
-			EventBus.getDefault().post(new PlayNextAdEvent(getNextIndex(position)));
+		AdPlayerManager.getInstance().destroy();
+		AdPlayerManager.getInstance().initialize(mContext, bannerViewHolder.svBannerVideo);
+		AdPlayerManager.getInstance().setLocalPath(videoPath);
+		AdPlayerManager.getInstance().setSize(width, height);
+		AdPlayerManager.getInstance().addOnPlayListener(new OnPlayListener() {
+			@Override
+			public void onOpening() {
+				bannerViewHolder.acivBannerVideo.setVisibility(View.INVISIBLE);
+			}
+
+			@Override
+			public void onEnded() {
+				if (1 == mAdResourceList.size() && (AdResourceModel.TYPE_VIDEO | AdResourceModel.TYPE_MIX) == mAdResourceList.get(0).type) {
+					//仅一条广告且包含视频时循环播放
+					AdPlayerManager.getInstance().play();
+				} else {//播放下一条广告
+					EventBus.getDefault().post(new PlayNextAdEvent(getNextIndex(position)));
+				}
+			}
 		});
 	}
 
@@ -359,7 +384,7 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 
 			case AdResourceModel.TYPE_VIDEO:
 			case AdResourceModel.TYPE_MIX:
-				GSYVideoManager.onResume();
+				AdPlayerManager.getInstance().resume();
 				break;
 
 			default:
@@ -380,7 +405,7 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 
 			case AdResourceModel.TYPE_VIDEO:
 			case AdResourceModel.TYPE_MIX:
-				GSYVideoManager.onPause();
+				AdPlayerManager.getInstance().pause();
 				break;
 
 			default:
@@ -395,6 +420,6 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 		if (null != mAdPlayDisposable && !mAdPlayDisposable.isDisposed()) {
 			mAdPlayDisposable.dispose();
 		}
-		GSYVideoManager.releaseAllVideos();
+		AdPlayerManager.getInstance().destroy();
 	}
 }

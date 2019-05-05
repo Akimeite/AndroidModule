@@ -5,14 +5,19 @@
 	android:layout_height="match_parent"
 	android:background="@android:color/white">
 
+	<SurfaceView
+		android:id="@+id/svBannerVideo"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent" />
+
 	<android.support.v7.widget.AppCompatImageView
-		android:id="@+id/acivBannerImage"
+		android:id="@+id/acivBannerVideo"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:visibility="invisible" />
 
-	<org.videolan.libvlc.media.VideoView
-		android:id="@+id/apBannerVideo"
+	<android.support.v7.widget.AppCompatImageView
+		android:id="@+id/acivBannerImage"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:visibility="invisible" />

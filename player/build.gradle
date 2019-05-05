@@ -29,6 +29,8 @@ dependencies {
 		exclude group: 'com.android.support'
 	}
 	api "com.shuyu:gsyVideoPlayer-ex_so:$gsyVideoPlayerVersion"
+	//https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
+	compileOnly "com.blankj:utilcode:$utilcodeVersion"
 }
 
 apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'

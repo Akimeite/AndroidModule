@@ -82,12 +82,11 @@ public class BannerActivity extends BaseActivity {
 		List<AdResourceModel> adResourceList = new ArrayList<>();
 		AdResourceModel ad;
 
-//		ad = new AdResourceModel();
-//		ad.type = AdResourceModel.TYPE_MIX;
-//		ad.mixType = AdResourceModel.MIX_TYPE_IMAGE_UP;
-//		ad.imagePath = path + "7.jpg";
-//		ad.videoPath = path + "6.mp4";
-//		adResourceList.add(ad);
+		ad = new AdResourceModel();
+		ad.type = AdResourceModel.TYPE_IMAGE;
+		ad.imagePath = path + "1.png";
+		ad.imageSwitchInterval = 5000L;
+		adResourceList.add(ad);
 
 		ad = new AdResourceModel();
 		ad.type = AdResourceModel.TYPE_VIDEO;

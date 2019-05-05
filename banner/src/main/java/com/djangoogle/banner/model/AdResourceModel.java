@@ -24,7 +24,7 @@ public class AdResourceModel implements Serializable {
 	//图片广告地址
 	public String imagePath;
 	//图片切换间隔
-	public long imageSwitchInterval;
+	public long imageSwitchInterval = 5000L;
 	//视频广告地址
 	public String videoPath;
 }
