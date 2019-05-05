@@ -109,7 +109,6 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 				bannerViewHolder.acivBannerImage.setScaleType(ImageView.ScaleType.FIT_XY);
 				bannerViewHolder.acivBannerImage.setVisibility(View.VISIBLE);
 				bannerViewHolder.acivBannerVideo.setVisibility(View.INVISIBLE);
-				bannerViewHolder.svBannerVideo.setVisibility(View.INVISIBLE);
 				//加载广告图片
 				loadImageAd(bannerViewHolder.getAdapterPosition(), bannerViewHolder.acivBannerImage);
 				break;
@@ -124,7 +123,6 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 				bannerViewHolder.acivBannerVideo.setScaleType(ImageView.ScaleType.FIT_XY);
 				bannerViewHolder.svBannerVideo.setLayoutParams(singleVideoParams);
 				bannerViewHolder.acivBannerVideo.setVisibility(View.VISIBLE);
-				bannerViewHolder.svBannerVideo.setVisibility(View.VISIBLE);
 				bannerViewHolder.acivBannerImage.setVisibility(View.INVISIBLE);
 				//加载视频广告
 				loadVideoAd(bannerViewHolder.getAdapterPosition(), bannerViewHolder, ScreenUtils.getScreenWidth(),
@@ -188,7 +186,6 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 						return;
 				}
 				bannerViewHolder.acivBannerVideo.setVisibility(View.VISIBLE);
-				bannerViewHolder.svBannerVideo.setVisibility(View.VISIBLE);
 				bannerViewHolder.acivBannerImage.setVisibility(View.INVISIBLE);
 				//加载图片广告
 				loadImageAd(bannerViewHolder.getAdapterPosition(), bannerViewHolder.acivBannerImage);
@@ -350,7 +347,7 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 		     .into(bannerViewHolder.acivBannerVideo);
 		String videoPath = mAdResourceList.get(position).videoPath;
 		LogUtils.iTag("videoPath", "视频地址: " + videoPath);
-		AdPlayerManager.getInstance().destroy();
+//		AdPlayerManager.getInstance().destroy();
 		AdPlayerManager.getInstance().initialize(mContext, bannerViewHolder.svBannerVideo);
 		AdPlayerManager.getInstance().setLocalPath(videoPath);
 		AdPlayerManager.getInstance().setSize(width, height);

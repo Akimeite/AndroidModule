@@ -66,12 +66,12 @@ public class AdPlayerManager {
 					return;
 				}
 				//开始播放
-				if (Media.State.Playing == mMediaPlayer.getPlayerState()) {
+				if (Media.State.Playing == mMediaPlayer.getPlayerState() && null != mOnPlayListener) {
 					mOnPlayListener.onPlaying();
 				}
 				//播放结束
-				if (Media.State.Ended == mMediaPlayer.getPlayerState()) {
-					mMediaPlayer.stop();
+				if (Media.State.Ended == mMediaPlayer.getPlayerState() && null != mOnPlayListener) {
+					stop();
 					mOnPlayListener.onEnded();
 				}
 			} catch (Exception e) {
@@ -122,7 +122,18 @@ public class AdPlayerManager {
 	 * 开始播放
 	 */
 	public void play() {
-		mMediaPlayer.play();
+		if (null != mMediaPlayer) {
+			mMediaPlayer.play();
+		}
+	}
+
+	/**
+	 * 停止播放
+	 */
+	public void stop() {
+		if (null != mMediaPlayer) {
+			mMediaPlayer.stop();
+		}
 	}
 
 	/**
@@ -138,8 +149,10 @@ public class AdPlayerManager {
 	 * 暂停播放
 	 */
 	public void pause() {
-		if (null != mMediaPlayer && mMediaPlayer.isPlaying()) {
-			mMediaPlayer.pause();
+		if (null != mMediaPlayer) {
+			if (mMediaPlayer.isPlaying()) {
+				mMediaPlayer.pause();
+			}
 			mMediaPlayer.setEventListener(null);
 		}
 		if (null != mIVLCVout) {

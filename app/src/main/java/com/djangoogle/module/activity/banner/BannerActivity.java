@@ -85,7 +85,7 @@ public class BannerActivity extends BaseActivity {
 		ad = new AdResourceModel();
 		ad.type = AdResourceModel.TYPE_IMAGE;
 		ad.imagePath = path + "1.png";
-		ad.imageSwitchInterval = 5000L;
+		ad.imageSwitchInterval = 2000L;
 		adResourceList.add(ad);
 
 		ad = new AdResourceModel();
