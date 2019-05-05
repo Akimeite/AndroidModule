@@ -8,8 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import com.djangoogle.banner.adapter.BannerAdapter;
 import com.djangoogle.banner.event.PlayNextAdEvent;
 import com.djangoogle.banner.model.AdResourceModel;
-import com.shuyu.gsyvideoplayer.GSYVideoManager;
-import com.shuyu.gsyvideoplayer.utils.GSYVideoType;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -52,10 +50,6 @@ public class BannerManager {
 		if (!EventBus.getDefault().isRegistered(this)) {
 			EventBus.getDefault().register(this);
 		}
-		//设置视频渲染
-		GSYVideoType.setRenderType(GSYVideoType.SUFRACE);
-		//设置视频全屏拉伸显示
-		GSYVideoType.setShowType(GSYVideoType.SCREEN_MATCH_FULL);
 		//禁止滚动
 		mLinearLayoutManager = new LinearLayoutManager(activity) {
 			@Override
@@ -98,7 +92,6 @@ public class BannerManager {
 	 * @param isMute 是否静音
 	 */
 	public void setMute(boolean isMute) {
-		GSYVideoManager.instance().setNeedMute(isMute);
 	}
 
 	/**

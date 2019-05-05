@@ -51,6 +51,7 @@ public class AdPlayerManager {
 				mTotalTime = mMediaPlayer.getLength();
 				mVideoWidth = i;
 				mVideoHight = i1;
+				LogUtils.i("视频尺寸: " + mVideoWidth + ":" + mVideoHight, "播放时长: " + mTotalTime);
 			} catch (Exception e) {
 				LogUtils.e(e);
 			}
@@ -65,10 +66,8 @@ public class AdPlayerManager {
 					return;
 				}
 				//开始播放
-				//播放结束
-				if (Media.State.Opening == mMediaPlayer.getPlayerState()) {
-					mMediaPlayer.stop();
-					mOnPlayListener.onOpening();
+				if (Media.State.Playing == mMediaPlayer.getPlayerState()) {
+					mOnPlayListener.onPlaying();
 				}
 				//播放结束
 				if (Media.State.Ended == mMediaPlayer.getPlayerState()) {

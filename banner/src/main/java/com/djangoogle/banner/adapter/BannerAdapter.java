@@ -109,6 +109,7 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 				bannerViewHolder.acivBannerImage.setScaleType(ImageView.ScaleType.FIT_XY);
 				bannerViewHolder.acivBannerImage.setVisibility(View.VISIBLE);
 				bannerViewHolder.acivBannerVideo.setVisibility(View.INVISIBLE);
+				bannerViewHolder.svBannerVideo.setVisibility(View.INVISIBLE);
 				//加载广告图片
 				loadImageAd(bannerViewHolder.getAdapterPosition(), bannerViewHolder.acivBannerImage);
 				break;
@@ -123,6 +124,7 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 				bannerViewHolder.acivBannerVideo.setScaleType(ImageView.ScaleType.FIT_XY);
 				bannerViewHolder.svBannerVideo.setLayoutParams(singleVideoParams);
 				bannerViewHolder.acivBannerVideo.setVisibility(View.VISIBLE);
+				bannerViewHolder.svBannerVideo.setVisibility(View.VISIBLE);
 				bannerViewHolder.acivBannerImage.setVisibility(View.INVISIBLE);
 				//加载视频广告
 				loadVideoAd(bannerViewHolder.getAdapterPosition(), bannerViewHolder, ScreenUtils.getScreenWidth(),
@@ -186,6 +188,7 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 						return;
 				}
 				bannerViewHolder.acivBannerVideo.setVisibility(View.VISIBLE);
+				bannerViewHolder.svBannerVideo.setVisibility(View.VISIBLE);
 				bannerViewHolder.acivBannerImage.setVisibility(View.INVISIBLE);
 				//加载图片广告
 				loadImageAd(bannerViewHolder.getAdapterPosition(), bannerViewHolder.acivBannerImage);
@@ -213,9 +216,9 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 		BannerViewHolder(@NonNull View itemView) {
 			super(itemView);
 			clBannerRoot = itemView.findViewById(R.id.clBannerRoot);
+			svBannerVideo = itemView.findViewById(R.id.svBannerVideo);
 			acivBannerImage = itemView.findViewById(R.id.acivBannerImage);
 			acivBannerVideo = itemView.findViewById(R.id.acivBannerVideo);
-			svBannerVideo = itemView.findViewById(R.id.svBannerVideo);
 		}
 	}
 
@@ -353,8 +356,10 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
 		AdPlayerManager.getInstance().setSize(width, height);
 		AdPlayerManager.getInstance().addOnPlayListener(new OnPlayListener() {
 			@Override
-			public void onOpening() {
-				bannerViewHolder.acivBannerVideo.setVisibility(View.INVISIBLE);
+			public void onPlaying() {
+				if (View.VISIBLE == bannerViewHolder.acivBannerVideo.getVisibility()) {
+					bannerViewHolder.acivBannerVideo.setVisibility(View.INVISIBLE);
+				}
 			}
 
 			@Override
