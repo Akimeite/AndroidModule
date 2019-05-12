@@ -2,41 +2,45 @@ buildscript {
 	repositories {
 		google()
 		jcenter()
+		mavenCentral()
+	}
+	ext {
+		compile_sdk_version = 28
+		min_sdk_version = 19
+		target_sdk_version = 28
+		java_version = JavaVersion.VERSION_1_8
+		//https://www.kotlincn.net/docs/reference/using-gradle.html
+		kotlin_version = '1.3.31'
+		//https://maven.google.com
+		android_support_version = '28.0.0'
+		constraint_version = '1.1.3'
+		//https://github.com/JakeWharton/butterknife
+		butterknife_version = '9.0.0'
+		//https://github.com/bumptech/glide
+		glide_version = '4.9.0'
+		//https://github.com/greenrobot/EventBus
+		event_bus_version = '3.1.1'
+		//https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
+		util_code_version = '1.23.7'
+		//https://github.com/ReactiveX/RxAndroid
+		rx_android_version = '2.1.1'
+		//https://github.com/square/retrofit
+		retrofit2_version = '2.5.0'
+		//https://github.com/CarGuo/GSYVideoPlayer
+		gsy_video_player_version = '6.0.3'
+		//version
+		banner_version_code = 1
+		banner_version_name = '1.0.0'
+		framework_version_code = 1
+		framework_version_name = '1.0.0'
+		player_version_code = 1
+		player_version_name = '1.0.0'
+		uvccamera_version_code = 1
+		uvccamera_version_name = '1.0.0'
 	}
 	dependencies {
 		classpath 'com.android.tools.build:gradle:3.4.0'
-	}
-	ext {
-		compileSdkVersion = 28
-		minSdkVersion = 19
-		targetSdkVersion = 28
-		javaVersion = JavaVersion.VERSION_1_8
-		//https://maven.google.com
-		androidSupportVersion = '28.0.0'
-		constraintVersion = '1.1.3'
-		//https://github.com/JakeWharton/butterknife
-		butterknifeVersion = '9.0.0'
-		//https://github.com/bumptech/glide
-		glideVersion = '4.9.0'
-		//https://github.com/greenrobot/EventBus
-		eventBusVersion = '3.1.1'
-		//https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
-		utilcodeVersion = '1.23.7'
-		//https://github.com/ReactiveX/RxAndroid
-		rxAndroidVersion = '2.1.1'
-		//https://github.com/square/retrofit
-		retrofit2Version = '2.5.0'
-		//https://github.com/CarGuo/GSYVideoPlayer
-		gsyVideoPlayerVersion = '6.0.3'
-		//version
-		bannerVersionCode = 1
-		bannerVersionName = '1.0.0'
-		frameworkVersionCode = 1
-		frameworkVersionName = '1.0.0'
-		playerVersionCode = 1
-		playerVersionName = '1.0.0'
-		uvccameraVersionCode = 1
-		uvccameraVersionName = '1.0.0'
+		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 	}
 }
 
@@ -44,9 +48,9 @@ allprojects {
 	repositories {
 		google()
 		jcenter()
+		mavenCentral()
 		maven { url "https://jitpack.io" }
 		maven { url 'https://raw.github.com/saki4510t/libcommon/master/repository' }
-		maven { url 'https://dl.bintray.com/djangoogle/maven/' }
 	}
 }
 

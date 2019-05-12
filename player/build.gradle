@@ -1,36 +1,39 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 ext {
 	PUBLISH_GROUP_ID = 'com.djangoogle.support'
 	PUBLISH_ARTIFACT_ID = 'player'
-	PUBLISH_VERSION = rootProject.ext.playerVersionName
+	PUBLISH_VERSION = rootProject.ext.player_version_name
 }
 
 android {
-	compileSdkVersion rootProject.ext.compileSdkVersion
+	compileSdkVersion rootProject.ext.compile_sdk_version
 	defaultConfig {
-		minSdkVersion rootProject.ext.minSdkVersion
-		targetSdkVersion rootProject.ext.targetSdkVersion
-		versionCode rootProject.ext.playerVersionCode
-		versionName rootProject.ext.playerVersionName
+		minSdkVersion rootProject.ext.min_sdk_version
+		targetSdkVersion rootProject.ext.target_sdk_version
+		versionCode rootProject.ext.player_version_code
+		versionName rootProject.ext.player_version_name
 	}
 	compileOptions {
-		sourceCompatibility rootProject.ext.javaVersion
-		targetCompatibility rootProject.ext.javaVersion
+		sourceCompatibility rootProject.ext.java_version
+		targetCompatibility rootProject.ext.java_version
 	}
 }
 
 dependencies {
 	api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+	compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 	//https://maven.google.com
-	compileOnly "com.android.support:design:$androidSupportVersion"
+	compileOnly "com.android.support:design:$android_support_version"
 	//https://github.com/CarGuo/GSYVideoPlayer
-	api("com.shuyu:gsyVideoPlayer-java:$gsyVideoPlayerVersion") {
+	api("com.shuyu:gsyVideoPlayer-java:$gsy_video_player_version") {
 		exclude group: 'com.android.support'
 	}
-	api "com.shuyu:gsyVideoPlayer-ex_so:$gsyVideoPlayerVersion"
+	api "com.shuyu:gsyVideoPlayer-ex_so:$gsy_video_player_version"
 	//https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
-	compileOnly "com.blankj:utilcode:$utilcodeVersion"
+	compileOnly "com.blankj:utilcode:$util_code_version"
 }
 
 apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'

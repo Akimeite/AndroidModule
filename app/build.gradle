@@ -1,11 +1,13 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
-	compileSdkVersion rootProject.ext.compileSdkVersion
+	compileSdkVersion rootProject.ext.compile_sdk_version
 	defaultConfig {
 		applicationId "com.djangoogle.module"
-		minSdkVersion rootProject.ext.minSdkVersion
-		targetSdkVersion rootProject.ext.targetSdkVersion
+		minSdkVersion rootProject.ext.min_sdk_version
+		targetSdkVersion rootProject.ext.target_sdk_version
 		versionCode 1
 		versionName "1.0.0"
 		ndk {
@@ -14,8 +16,8 @@ android {
 		multiDexEnabled true
 	}
 	compileOptions {
-		sourceCompatibility rootProject.ext.javaVersion
-		targetCompatibility rootProject.ext.javaVersion
+		sourceCompatibility rootProject.ext.java_version
+		targetCompatibility rootProject.ext.java_version
 	}
 	signingConfigs {
 		debugConfig {
@@ -42,10 +44,11 @@ dependencies {
 	implementation project(':banner')
 	implementation project(':framework')
 	implementation project(':uvccamera')
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 	//https://maven.google.com
 	implementation 'com.android.support:multidex:1.0.3'
 	//https://github.com/JakeWharton/butterknife
 	//noinspection GradleDependency
-	implementation "com.jakewharton:butterknife:$butterknifeVersion"
-	annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
+	implementation "com.jakewharton:butterknife:$butterknife_version"
+	annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_version"
 }

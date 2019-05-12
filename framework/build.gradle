@@ -1,18 +1,20 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 ext {
 	PUBLISH_GROUP_ID = 'com.djangoogle.support'
 	PUBLISH_ARTIFACT_ID = 'framework'
-	PUBLISH_VERSION = rootProject.ext.frameworkVersionName
+	PUBLISH_VERSION = rootProject.ext.framework_version_name
 }
 
 android {
-	compileSdkVersion rootProject.ext.compileSdkVersion
+	compileSdkVersion rootProject.ext.compile_sdk_version
 	defaultConfig {
-		minSdkVersion rootProject.ext.minSdkVersion
-		targetSdkVersion rootProject.ext.targetSdkVersion
-		versionCode rootProject.ext.frameworkVersionCode
-		versionName rootProject.ext.frameworkVersionName
+		minSdkVersion rootProject.ext.min_sdk_version
+		targetSdkVersion rootProject.ext.target_sdk_version
+		versionCode rootProject.ext.framework_version_code
+		versionName rootProject.ext.framework_version_name
 		javaCompileOptions {
 			annotationProcessorOptions {
 				arguments = [eventBusIndex: 'com.djangoogle.framework.DjangoogleEventBusIndex']
@@ -20,32 +22,33 @@ android {
 		}
 	}
 	compileOptions {
-		sourceCompatibility rootProject.ext.javaVersion
-		targetCompatibility rootProject.ext.javaVersion
+		sourceCompatibility rootProject.ext.java_version
+		targetCompatibility rootProject.ext.java_version
 	}
 }
 
 dependencies {
+	compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 	//https://maven.google.com
-	api "com.android.support:design:$androidSupportVersion"
-	api "com.android.support.constraint:constraint-layout:$constraintVersion"
+	api "com.android.support:design:$android_support_version"
+	api "com.android.support.constraint:constraint-layout:$constraint_version"
 	//https://github.com/bumptech/glide
-	api "com.github.bumptech.glide:glide:$glideVersion"
-	annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
+	api "com.github.bumptech.glide:glide:$glide_version"
+	annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
 	//https://github.com/greenrobot/EventBus
-	api "org.greenrobot:eventbus:$eventBusVersion"
+	api "org.greenrobot:eventbus:$event_bus_version"
 	//http://greenrobot.org/eventbus/documentation/subscriber-index/
-	annotationProcessor "org.greenrobot:eventbus-annotation-processor:$eventBusVersion"
+	annotationProcessor "org.greenrobot:eventbus-annotation-processor:$event_bus_version"
 	//https://github.com/square/retrofit
-	api "com.squareup.retrofit2:retrofit:$retrofit2Version"
+	api "com.squareup.retrofit2:retrofit:$retrofit2_version"
 	//https://github.com/square/retrofit/tree/master/retrofit-converters/gson
-	api "com.squareup.retrofit2:converter-gson:$retrofit2Version"
+	api "com.squareup.retrofit2:converter-gson:$retrofit2_version"
 	//https://github.com/square/retrofit/tree/master/retrofit-adapters/rxjava2
-	api "com.squareup.retrofit2:adapter-rxjava2:$retrofit2Version"
+	api "com.squareup.retrofit2:adapter-rxjava2:$retrofit2_version"
 	//https://github.com/ReactiveX/RxAndroid
-	api "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+	api "io.reactivex.rxjava2:rxandroid:$rx_android_version"
 	//https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
-	api "com.blankj:utilcode:$utilcodeVersion"
+	api "com.blankj:utilcode:$util_code_version"
 	//https://github.com/trello/RxLifecycle
 	api 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.2'
 	//https://github.com/square/okhttp

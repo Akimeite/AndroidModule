@@ -1,22 +1,24 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 ext {
 	PUBLISH_GROUP_ID = 'com.djangoogle.support'
 	PUBLISH_ARTIFACT_ID = 'uvccamera'
-	PUBLISH_VERSION = rootProject.ext.uvccameraVersionName
+	PUBLISH_VERSION = rootProject.ext.uvccamera_version_name
 }
 
 android {
-	compileSdkVersion rootProject.ext.compileSdkVersion
+	compileSdkVersion rootProject.ext.compile_sdk_version
 	defaultConfig {
-		minSdkVersion rootProject.ext.minSdkVersion
-		targetSdkVersion rootProject.ext.targetSdkVersion
-		versionCode rootProject.ext.uvccameraVersionCode
-		versionName rootProject.ext.uvccameraVersionName
+		minSdkVersion rootProject.ext.min_sdk_version
+		targetSdkVersion rootProject.ext.target_sdk_version
+		versionCode rootProject.ext.uvccamera_version_code
+		versionName rootProject.ext.uvccamera_version_name
 	}
 	compileOptions {
-		sourceCompatibility rootProject.ext.javaVersion
-		targetCompatibility rootProject.ext.javaVersion
+		sourceCompatibility rootProject.ext.java_version
+		targetCompatibility rootProject.ext.java_version
 	}
 }
 
@@ -50,9 +52,10 @@ android {
 //clean.dependsOn 'ndkClean'
 
 dependencies {
+	compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 	//https://maven.google.com
-	compileOnly "com.android.support:design:$androidSupportVersion"
-	compileOnly "com.android.support.constraint:constraint-layout:$constraintVersion"
+	compileOnly "com.android.support:design:$android_support_version"
+	compileOnly "com.android.support.constraint:constraint-layout:$constraint_version"
 	//https://github.com/saki4510t/UVCCamera
 	api('com.serenegiant:common:2.12.4') {
 		exclude group: 'com.android.support'
