@@ -80,7 +80,7 @@ dependencies {
 	//https://github.com/getActivity/XXPermissions
 	api 'com.hjq:xxpermissions:5.5'
 	//https://github.com/Tencent/MMKV
-	api 'com.tencent:mmkv:1.0.19'
+	api 'com.tencent:mmkv-static:1.0.19'
 	//https://github.com/ybq/Android-SpinKit
 	api 'com.github.ybq:Android-SpinKit:1.2.0'
 }
