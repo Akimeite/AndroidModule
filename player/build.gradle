@@ -1,11 +1,17 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-android'
+plugins {
+	id 'com.android.library'
+	id 'kotlin-android'
+	id 'kotlin-android-extensions'
+	id 'com.novoda.bintray-release'
+}
 
-ext {
-	PUBLISH_GROUP_ID = 'com.djangoogle.support'
-	PUBLISH_ARTIFACT_ID = 'player'
-	PUBLISH_VERSION = rootProject.ext.player_version_name
+publish {
+	userOrg = 'Djangoogle'
+	groupId = 'com.djangoogle.support'
+	artifactId = 'player'
+	publishVersion = rootProject.ext.player_version_name
+	desc = 'player'
+	website = 'https://github.com/Djangoogle/Module/tree/master/player'
 }
 
 android {
@@ -23,8 +29,9 @@ android {
 }
 
 dependencies {
-	api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-	compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+	api fileTree(dir: 'libs', include: ['*.aar'])
+	//https://www.kotlincn.net/docs/reference/using-gradle.html
+	compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 	//https://maven.google.com
 	compileOnly "com.android.support:design:$android_support_version"
 	//https://github.com/CarGuo/GSYVideoPlayer
@@ -36,7 +43,5 @@ dependencies {
 	compileOnly "com.blankj:utilcode:$util_code_version"
 }
 
-apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
-
 //cd player
-//gradle clean build generateRelease
+//gradle clean build bintrayUpload -PbintrayUser=djangoogle -PbintrayKey= -PdryRun=false

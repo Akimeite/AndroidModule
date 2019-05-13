@@ -7,8 +7,12 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.djangoogle.module.R;
 import com.djangoogle.module.activity.banner.BannerActivity;
 import com.djangoogle.module.activity.base.BaseActivity;
-import com.yanzhenjie.permission.AndPermission;
-import com.yanzhenjie.permission.runtime.Permission;
+import com.hjq.permissions.OnPermission;
+import com.hjq.permissions.Permission;
+import com.hjq.permissions.XXPermissions;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * 启动页
@@ -37,15 +41,24 @@ public class SplashActivity extends BaseActivity {
 	 * 申请权限
 	 */
 	private void requestPermissions() {
-		AndPermission.with(this)
-		             .runtime()
+		XXPermissions.with(this)
+		             .constantRequest()
 		             .permission(Permission.Group.STORAGE)
-		             .onGranted(data -> new Handler().postDelayed(() -> {
-			             //延迟两秒打开轮播页
-			             startActivity(new Intent(mActivity, BannerActivity.class));
-			             finish();
-		             }, 2000L))
-		             .onDenied(data -> ToastUtils.showShort("申请权限被拒绝"))
-		             .start();
+		             .request(new OnPermission() {
+			             @Override
+			             public void hasPermission(List<String> granted, boolean isAll) {
+				             new Handler().postDelayed(() -> {
+					             //延迟两秒打开轮播页
+					             startActivity(new Intent(mActivity, BannerActivity.class));
+				             }, 2000L);
+				             finish();
+			             }
+
+			             @Override
+			             public void noPermission(List<String> denied, boolean quick) {
+				             String[] deniedArray = denied.toArray(new String[0]);
+				             ToastUtils.showShort("权限" + Arrays.toString(deniedArray) + "被拒绝");
+			             }
+		             });
 	}
 }

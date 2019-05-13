@@ -1,8 +1,8 @@
 buildscript {
 	repositories {
+		mavenCentral()
 		google()
 		jcenter()
-		mavenCentral()
 	}
 	ext {
 		compile_sdk_version = 28
@@ -24,31 +24,34 @@ buildscript {
 		util_code_version = '1.23.7'
 		//https://github.com/ReactiveX/RxAndroid
 		rx_android_version = '2.1.1'
+		//https://square.github.io/retrofit
 		//https://github.com/square/retrofit
 		retrofit2_version = '2.5.0'
 		//https://github.com/CarGuo/GSYVideoPlayer
 		gsy_video_player_version = '6.0.3'
 		//version
-		banner_version_code = 1
-		banner_version_name = '1.0.0'
-		framework_version_code = 1
-		framework_version_name = '1.0.0'
-		player_version_code = 1
-		player_version_name = '1.0.0'
-		uvccamera_version_code = 1
-		uvccamera_version_name = '1.0.0'
+		banner_version_code = 2
+		banner_version_name = '1.0.1'
+		framework_version_code = 2
+		framework_version_name = '1.0.1'
+		player_version_code = 2
+		player_version_name = '1.0.1'
+		uvccamera_version_code = 2
+		uvccamera_version_name = '1.0.1'
 	}
 	dependencies {
 		classpath 'com.android.tools.build:gradle:3.4.0'
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+		//https://github.com/novoda/bintray-release
+		classpath 'com.novoda:bintray-release:0.9'
 	}
 }
 
 allprojects {
 	repositories {
+		mavenCentral()
 		google()
 		jcenter()
-		mavenCentral()
 		maven { url "https://jitpack.io" }
 		maven { url 'https://raw.github.com/saki4510t/libcommon/master/repository' }
 	}

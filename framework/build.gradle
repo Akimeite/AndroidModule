@@ -1,11 +1,17 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-android'
+plugins {
+	id 'com.android.library'
+	id 'kotlin-android'
+	id 'kotlin-android-extensions'
+	id 'com.novoda.bintray-release'
+}
 
-ext {
-	PUBLISH_GROUP_ID = 'com.djangoogle.support'
-	PUBLISH_ARTIFACT_ID = 'framework'
-	PUBLISH_VERSION = rootProject.ext.framework_version_name
+publish {
+	userOrg = 'Djangoogle'
+	groupId = 'com.djangoogle.support'
+	artifactId = 'framework'
+	publishVersion = rootProject.ext.framework_version_name
+	desc = 'framework'
+	website = 'https://github.com/Djangoogle/Module/tree/master/framework'
 }
 
 android {
@@ -28,7 +34,8 @@ android {
 }
 
 dependencies {
-	compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+	//https://www.kotlincn.net/docs/reference/using-gradle.html
+	compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 	//https://maven.google.com
 	api "com.android.support:design:$android_support_version"
 	api "com.android.support.constraint:constraint-layout:$constraint_version"
@@ -70,15 +77,13 @@ dependencies {
 	api 'com.yqritc:recyclerview-flexibledivider:1.4.0'
 	//https://github.com/zyyoona7/EasyPopup
 	api 'com.github.zyyoona7:EasyPopup:1.1.2'
-	//https://github.com/yanzhenjie/AndPermission
-	api 'com.yanzhenjie.permission:support:2.0.1'
+	//https://github.com/getActivity/XXPermissions
+	api 'com.hjq:xxpermissions:5.5'
 	//https://github.com/Tencent/MMKV
 	api 'com.tencent:mmkv:1.0.19'
 	//https://github.com/ybq/Android-SpinKit
 	api 'com.github.ybq:Android-SpinKit:1.2.0'
 }
 
-apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
-
 //cd framework
-//gradle clean build generateRelease
+//gradle clean build bintrayUpload -PbintrayUser=djangoogle -PbintrayKey= -PdryRun=false

@@ -1,6 +1,8 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-android'
+plugins {
+	id 'com.android.application'
+	id 'kotlin-android'
+	id 'kotlin-android-extensions'
+}
 
 android {
 	compileSdkVersion rootProject.ext.compile_sdk_version
@@ -44,7 +46,8 @@ dependencies {
 	implementation project(':banner')
 	implementation project(':framework')
 	implementation project(':uvccamera')
-	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+	//https://www.kotlincn.net/docs/reference/using-gradle.html
+	implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
 	//https://maven.google.com
 	implementation 'com.android.support:multidex:1.0.3'
 	//https://github.com/JakeWharton/butterknife
