@@ -59,7 +59,7 @@ android {
 
 dependencies {
 	//https://www.kotlincn.net/docs/reference/using-gradle.html
-	compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+	compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 	//https://maven.google.com
 	compileOnly "com.android.support:design:$android_support_version"
 	compileOnly "com.android.support.constraint:constraint-layout:$constraint_version"

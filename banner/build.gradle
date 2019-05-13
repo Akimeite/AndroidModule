@@ -35,7 +35,7 @@ android {
 
 dependencies {
 	//https://www.kotlincn.net/docs/reference/using-gradle.html
-	compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+	compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 	//https://github.com/Djangoogle/Module
 //	api "com.djangoogle.support:player:$playerVersionName"
 	api project(':player')
