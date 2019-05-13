@@ -47,7 +47,7 @@ public abstract class DjangoogleGalleryActivity extends DjangoogleActivity {
 	 */
 	protected void popupGallery(ViewGroup viewGroup, int mimeType, int maxPickNumber) {
 		mTakePhotoPopup = EasyPopup.create()
-		                           .setContentView(mActivity, R.layout.popup_take_photo_base)
+		                           .setContentView(getMActivity(), R.layout.popup_take_photo_base)
 		                           .setWidth(ScreenUtils.getScreenWidth())
 		                           .setHeight(ConvertUtils.dp2px(120.5F))
 		                           .setAnimationStyle(R.style.bottomPopupAnim)
