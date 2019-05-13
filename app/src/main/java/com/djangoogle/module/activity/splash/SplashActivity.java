@@ -1,6 +1,7 @@
 package com.djangoogle.module.activity.splash;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 
 import com.blankj.utilcode.util.ToastUtils;
@@ -30,8 +31,13 @@ public class SplashActivity extends BaseActivity {
 
 	@Override
 	protected void initAction() {
-		//申请权限
-		requestPermissions();
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			//申请权限
+			requestPermissions();
+		} else {
+			//初始化
+			init();
+		}
 	}
 
 	@Override
@@ -47,11 +53,8 @@ public class SplashActivity extends BaseActivity {
 		             .request(new OnPermission() {
 			             @Override
 			             public void hasPermission(List<String> granted, boolean isAll) {
-				             new Handler().postDelayed(() -> {
-					             //延迟两秒打开轮播页
-					             startActivity(new Intent(mActivity, BannerActivity.class));
-				             }, 2000L);
-				             finish();
+				             //初始化
+				             init();
 			             }
 
 			             @Override
@@ -60,5 +63,16 @@ public class SplashActivity extends BaseActivity {
 				             ToastUtils.showShort("权限" + Arrays.toString(deniedArray) + "被拒绝");
 			             }
 		             });
+	}
+
+	/**
+	 * 初始化
+	 */
+	private void init() {
+		new Handler().postDelayed(() -> {
+			//延迟两秒打开轮播页
+			startActivity(new Intent(mActivity, BannerActivity.class));
+			finish();
+		}, 2000L);
 	}
 }
