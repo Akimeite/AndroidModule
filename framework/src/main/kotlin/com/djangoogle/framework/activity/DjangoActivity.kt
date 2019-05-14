@@ -85,13 +85,9 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 			}
 		}
 		Observable.interval(1L, TimeUnit.SECONDS)
-			.doOnDispose {
-				LogUtils.iTag(TAG, "Unsubscribing subscription from onDestory()")
-			}
-			.compose(bindUntilEvent(ActivityEvent.DESTROY))
-			.subscribe {
-				LogUtils.iTag(TAG, "Started in onCreate(), running until in onDestroy(): $it")
-			}
+			.doOnDispose { LogUtils.iTag(TAG, "Unsubscribing subscription from onCreate()") }
+			.compose(bindUntilEvent(ActivityEvent.PAUSE))
+			.subscribe { LogUtils.iTag(TAG, "Started in onCreate(), running until onPause(): $it") }
 		//修复修复安卓5497键盘bug
 		KeyboardUtils.fixAndroidBug5497(this)
 		//修复软键盘内存泄漏
@@ -110,18 +106,18 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 		if (!EventBus.getDefault().isRegistered(this)) {
 			EventBus.getDefault().register(this)
 		}
+		Observable.interval(1L, TimeUnit.SECONDS)
+			.doOnDispose { LogUtils.iTag(TAG, "Unsubscribing subscription from onStart()") }
+			.compose(bindToLifecycle())
+			.subscribe { LogUtils.iTag(TAG, "Started in onStart(), running until in onStop(): $it") }
 	}
 
 	override fun onResume() {
 		super.onResume()
-		Observable.interval(1L, TimeUnit.SECONDS)
-			.doOnDispose {
-				LogUtils.iTag(TAG, "Unsubscribing subscription from onPause()")
-			}
-			.compose(bindToLifecycle())
-			.subscribe {
-				LogUtils.iTag(TAG, "Started in onResume(), running until in onPause(): $it")
-			}
+		Observable.interval(1, TimeUnit.SECONDS)
+			.doOnDispose { LogUtils.iTag(TAG, "Unsubscribing subscription from onResume()") }
+			.compose(bindUntilEvent(ActivityEvent.DESTROY))
+			.subscribe { LogUtils.iTag(TAG, "Started in onResume(), running until in onDestroy(): $it") }
 	}
 
 	override fun onStop() {
