@@ -5,9 +5,8 @@ import android.content.Intent
 import com.djangoogle.module.R
 import com.djangoogle.module.activity.banner.BannerActivity
 import com.djangoogle.module.activity.base.BaseActivity
-import com.jakewharton.rxbinding3.view.clicks
+import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.concurrent.TimeUnit
 
 /**
  * 主页
@@ -23,7 +22,7 @@ class MainActivity : BaseActivity() {
 
 	@SuppressLint("CheckResult")
 	override fun initAction() {
-		acbMainBanner.clicks().throttleFirst(1L, TimeUnit.SECONDS).subscribe { startActivity(Intent(this, BannerActivity::class.java)) }
+		singleClicks(acbMainBanner, Consumer { startActivity(Intent(this, BannerActivity::class.java)) })
 	}
 
 	override fun initData() {}

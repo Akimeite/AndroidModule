@@ -7,12 +7,11 @@ import com.djangoogle.banner.manager.BannerManager
 import com.djangoogle.banner.model.AdResourceModel
 import com.djangoogle.module.R
 import com.djangoogle.module.activity.base.BaseActivity
-import com.jakewharton.rxbinding3.view.clicks
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
+import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_banner.*
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 /**
  * 轮播页
@@ -38,7 +37,7 @@ class BannerActivity : BaseActivity() {
 
 	@SuppressLint("CheckResult")
 	override fun initAction() {
-		rvBanner.clicks().throttleFirst(1L, TimeUnit.SECONDS).subscribe {
+		singleClicks(rvBanner, Consumer {
 			val path = Environment.getExternalStorageDirectory().absolutePath + "/ad/"
 			val adResourceList = ArrayList<AdResourceModel>()
 			var ad = AdResourceModel()
@@ -53,7 +52,7 @@ class BannerActivity : BaseActivity() {
 			adResourceList.add(ad)
 
 			BannerManager.getInstance().setUp(adResourceList)
-		}
+		})
 	}
 
 	override fun initData() {}

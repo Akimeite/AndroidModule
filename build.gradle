@@ -23,6 +23,8 @@ buildscript {
 		util_code_version = '1.23.7'
 		//https://github.com/ReactiveX/RxAndroid
 		rx_android_version = '2.1.1'
+		//https://github.com/trello/RxLifecycle
+		rx_lifecycle_version = '2.2.2'
 		//https://square.github.io/retrofit
 		//https://github.com/square/retrofit
 		retrofit2_version = '2.5.0'

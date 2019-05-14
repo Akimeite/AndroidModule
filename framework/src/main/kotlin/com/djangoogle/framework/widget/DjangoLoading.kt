@@ -17,6 +17,11 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatDialogFragment
  */
 class DjangoLoading : RxAppCompatDialogFragment() {
 
+	companion object {
+
+		private val TAG = DjangoLoading::class.simpleName
+	}
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setStyle(STYLE_NO_TITLE, R.style.django_loading)
@@ -31,22 +36,22 @@ class DjangoLoading : RxAppCompatDialogFragment() {
 		djangoLoading.setCancelable(false)
 		djangoLoading.setCanceledOnTouchOutside(false)
 		djangoLoading.setOnKeyListener { _, keyCode, _ -> KeyEvent.KEYCODE_BACK == keyCode }
-		LogUtils.dTag(DjangoLoading::class.java.simpleName, "创建")
+		LogUtils.dTag(TAG, "创建")
 		return djangoLoading
 	}
 
 	override fun show(manager: FragmentManager?, tag: String?) {
 		super.show(manager, tag)
-		LogUtils.dTag(DjangoLoading::class.java.simpleName, "显示")
+		LogUtils.dTag(TAG, "显示")
 	}
 
 	override fun dismiss() {
 		super.dismiss()
-		LogUtils.dTag(DjangoLoading::class.java.simpleName, "隐藏")
+		LogUtils.dTag(TAG, "隐藏")
 	}
 
 	override fun onDestroyView() {
 		super.onDestroyView()
-		LogUtils.dTag(DjangoLoading::class.java.simpleName, "销毁")
+		LogUtils.dTag(TAG, "销毁")
 	}
 }

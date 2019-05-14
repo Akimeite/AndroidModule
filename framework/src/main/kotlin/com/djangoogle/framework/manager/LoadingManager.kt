@@ -28,7 +28,7 @@ class LoadingManager private constructor() {
 			lodingView = DjangoLoading()
 		}
 		if (null != fragmentManager) {
-			lodingView?.show(fragmentManager, LoadingManager::class.java.simpleName)
+			lodingView?.show(fragmentManager, LoadingManager::class.simpleName)
 		}
 	}
 

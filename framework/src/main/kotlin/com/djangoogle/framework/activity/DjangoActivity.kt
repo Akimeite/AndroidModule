@@ -14,12 +14,19 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.FrameLayout
 import com.blankj.utilcode.util.KeyboardUtils
+import com.blankj.utilcode.util.LogUtils
 import com.djangoogle.framework.R
 import com.djangoogle.framework.manager.LoadingManager
+import com.jakewharton.rxbinding3.view.clicks
+import com.jakewharton.rxbinding3.view.longClicks
+import com.trello.rxlifecycle2.android.ActivityEvent
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
+import io.reactivex.Observable
+import io.reactivex.functions.Consumer
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import java.util.concurrent.TimeUnit
 
 /**
  * Activity基类
@@ -27,6 +34,11 @@ import org.greenrobot.eventbus.ThreadMode
  * Created by Djangoogle on 2018/10/11 10:21 with Android Studio.
  */
 abstract class DjangoActivity : RxAppCompatActivity() {
+
+	companion object {
+
+		private val TAG = DjangoActivity::class.simpleName
+	}
 
 	protected lateinit var clBaseRootView: CoordinatorLayout//根View
 	protected lateinit var ablCommonToolBar: AppBarLayout//通用ToolBar根布局
@@ -72,6 +84,14 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 				setContentView(initLayout())
 			}
 		}
+		Observable.interval(1L, TimeUnit.SECONDS)
+			.doOnDispose {
+				LogUtils.iTag(TAG, "Unsubscribing subscription from onDestory()")
+			}
+			.compose(bindUntilEvent(ActivityEvent.DESTROY))
+			.subscribe {
+				LogUtils.iTag(TAG, "Started in onCreate(), running until in onDestroy(): $it")
+			}
 		//修复修复安卓5497键盘bug
 		KeyboardUtils.fixAndroidBug5497(this)
 		//修复软键盘内存泄漏
@@ -90,6 +110,18 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 		if (!EventBus.getDefault().isRegistered(this)) {
 			EventBus.getDefault().register(this)
 		}
+	}
+
+	override fun onResume() {
+		super.onResume()
+		Observable.interval(1L, TimeUnit.SECONDS)
+			.doOnDispose {
+				LogUtils.iTag(TAG, "Unsubscribing subscription from onPause()")
+			}
+			.compose(bindToLifecycle())
+			.subscribe {
+				LogUtils.iTag(TAG, "Started in onResume(), running until in onPause(): $it")
+			}
 	}
 
 	override fun onStop() {
@@ -138,6 +170,27 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 	 * 设置数据
 	 */
 	protected abstract fun initData()
+
+	/**
+	 * 按钮防重复点击
+	 */
+	protected fun singleClicks(view: View?, onNext: Consumer<Unit>) {
+		view?.clicks()?.throttleFirst(2L, TimeUnit.SECONDS)?.subscribe(onNext)
+	}
+
+	/**
+	 * 按钮可重复点击
+	 */
+	protected fun repeatClicks(view: View?, onNext: Consumer<Unit>) {
+		view?.clicks()?.subscribe(onNext)
+	}
+
+	/**
+	 * 按钮长按事件
+	 */
+	protected fun onLongClicks(view: View?, onNext: Consumer<Unit>) {
+		view?.longClicks()?.subscribe(onNext)
+	}
 
 	/**
 	 * 隐藏返回键
