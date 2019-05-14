@@ -1,7 +1,9 @@
 package com.djangoogle.framework.application
 
 import android.app.Application
+import com.blankj.utilcode.util.DeviceUtils
 import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.TimeUtils
 import com.blankj.utilcode.util.Utils
 import com.djangoogle.framework.glide.DjangoMediaLoader
 import com.djangoogle.framework.manager.LruBitmapCacheManager
@@ -24,6 +26,8 @@ open class DjangoApp : Application() {
 		Utils.init(this)
 		//初始化日志管理器
 		initLogUtils()
+		//初始化设备信息
+		initDeviceInfo()
 		//初始化MMKV
 		MMKV.initialize(this)
 		//初始化数据库管理工具
@@ -54,5 +58,24 @@ open class DjangoApp : Application() {
 				.setAlbumLoader(DjangoMediaLoader())
 				.setLocale(Locale.getDefault())
 				.build())
+	}
+
+	/**
+	 * 初始化设备信息
+	 */
+	private fun initDeviceInfo() {
+		val sbDebugInfo = StringBuilder()
+		sbDebugInfo.append("设备是否root: ").append(if (DeviceUtils.isDeviceRooted()) "是" else "否").append("\n")
+		sbDebugInfo.append("设备ADB是否可用: ").append(if (DeviceUtils.isAdbEnabled()) "是" else "否").append("\n")
+		sbDebugInfo.append("设备系统版本号: ").append(DeviceUtils.getSDKVersionName()).append("\n")
+		sbDebugInfo.append("设备系统版本码: ").append(DeviceUtils.getSDKVersionCode()).append("\n")
+		sbDebugInfo.append("设备序列号: ").append(DeviceUtils.getAndroidID()).append("\n")
+		sbDebugInfo.append("设备MAC地址: ").append(DeviceUtils.getMacAddress()).append("\n")
+		sbDebugInfo.append("设备厂商: ").append(DeviceUtils.getManufacturer()).append("\n")
+		sbDebugInfo.append("设备型号: ").append(DeviceUtils.getModel()).append("\n")
+		sbDebugInfo.append("设备ABIs: ").append(DeviceUtils.getABIs()?.contentToString()).append("\n")
+		sbDebugInfo.append("时间: ").append(TimeUtils.getNowString()).append("\n")
+		LogUtils.iTag("deviceInfo", sbDebugInfo.toString())
+		sbDebugInfo.clear()
 	}
 }
