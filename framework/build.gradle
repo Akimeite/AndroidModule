@@ -60,9 +60,7 @@ dependencies {
 	//https://github.com/ReactiveX/RxAndroid
 	api "io.reactivex.rxjava2:rxandroid:$rx_android_version"
 	//https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
-	api("com.blankj:utilcode:$util_code_version") {
-		exclude group: 'com.google.code.gson', module: 'gson'
-	}
+	api "com.blankj:utilcode:$util_code_version"
 	//https://github.com/trello/RxLifecycle
 	api 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.2'
 	//https://github.com/JakeWharton/RxBinding
