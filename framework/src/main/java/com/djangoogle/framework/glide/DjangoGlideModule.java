@@ -8,4 +8,4 @@ import com.bumptech.glide.module.AppGlideModule;
  * Created by Djangoogle on 2018/10/11 15:05 with Android Studio.
  */
 @GlideModule
-public class DjangoogleGlideModule extends AppGlideModule {}
+public class DjangoGlideModule extends AppGlideModule {}

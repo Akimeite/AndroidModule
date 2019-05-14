@@ -24,7 +24,7 @@ import org.greenrobot.eventbus.ThreadMode
  * 所有Activity必须继承此类
  * Created by Djangoogle on 2018/10/11 10:21 with Android Studio.
  */
-abstract class DjangoogleActivity : RxAppCompatActivity() {
+abstract class DjangoActivity : RxAppCompatActivity() {
 
 	protected lateinit var clBaseRootView: CoordinatorLayout//根View
 	protected lateinit var ablCommonToolBar: AppBarLayout//通用ToolBar根布局
@@ -250,7 +250,7 @@ abstract class DjangoogleActivity : RxAppCompatActivity() {
 	 * 显示Loading
 	 */
 	protected fun showLoading() {
-		LoadingManager.getInstance().show(mActivity)
+		LoadingManager.getInstance().show(supportFragmentManager)
 	}
 
 	/**
@@ -278,7 +278,7 @@ abstract class DjangoogleActivity : RxAppCompatActivity() {
 	 *
 	 * @param noDoubleClickFlag
 	 */
-	fun setNoDoubleClickFlag(noDoubleClickFlag: Boolean) {
+	protected fun setNoDoubleClickFlag(noDoubleClickFlag: Boolean) {
 		mNoDoubleClickFlag = noDoubleClickFlag
 	}
 

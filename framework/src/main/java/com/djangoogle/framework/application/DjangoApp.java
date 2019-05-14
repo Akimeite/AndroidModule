@@ -4,14 +4,12 @@ import android.app.Application;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.Utils;
-import com.djangoogle.framework.DjangoogleEventBusIndex;
-import com.djangoogle.framework.glide.MediaLoader;
+import com.djangoogle.framework.glide.DjangoMediaLoader;
 import com.djangoogle.framework.util.LruBitmapCacheUtil;
 import com.tencent.mmkv.MMKV;
 import com.yanzhenjie.album.Album;
 import com.yanzhenjie.album.AlbumConfig;
 
-import org.greenrobot.eventbus.EventBus;
 import org.litepal.LitePal;
 
 import java.util.Locale;
@@ -20,7 +18,7 @@ import java.util.Locale;
  * 自定义基础Application
  * Created by Djangoogle on 2018/10/10 17:46 with Android Studio.
  */
-public class DjangoogleApplication extends Application {
+public class DjangoApp extends Application {
 
 	@Override
 	public void onCreate() {
@@ -34,7 +32,7 @@ public class DjangoogleApplication extends Application {
 		//初始化数据库管理工具
 		LitePal.initialize(this);
 		//初始化EventBus索引
-		EventBus.builder().addIndex(new DjangoogleEventBusIndex()).installDefaultEventBus();
+//		EventBus.builder().addIndex(new FrameworkEventBusIndex()).installDefaultEventBus();
 		//初始化相册
 		initAlbum();
 		//初始化Bitmap内存缓存管理器
@@ -56,7 +54,7 @@ public class DjangoogleApplication extends Application {
 	 */
 	private void initAlbum() {
 		Album.initialize(AlbumConfig.newBuilder(this)
-		                            .setAlbumLoader(new MediaLoader())
+		                            .setAlbumLoader(new DjangoMediaLoader())
 		                            .setLocale(Locale.getDefault())
 		                            .build());
 	}

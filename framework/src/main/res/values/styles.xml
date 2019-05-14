@@ -51,7 +51,7 @@
 		<item name="android:windowExitAnimation">@anim/popup_bottom_out</item>
 	</style>
 
-	<style name="loading_view" parent="@android:style/Theme.Dialog">
+	<style name="django_loading" parent="@android:style/Theme.Dialog">
 		<!--背景颜色及和透明程度-->
 		<item name="android:windowBackground">@color/transparent</item>
 		<!--是否去除标题 -->

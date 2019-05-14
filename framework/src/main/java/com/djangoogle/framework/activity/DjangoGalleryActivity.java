@@ -8,7 +8,7 @@ import com.blankj.utilcode.util.ConvertUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.djangoogle.framework.R;
-import com.djangoogle.framework.constants.DjangoogleConstants;
+import com.djangoogle.framework.constants.DjangoConst;
 import com.djangoogle.framework.util.DjangoogleUtils;
 import com.zyyoona7.popup.EasyPopup;
 import com.zyyoona7.popup.XGravity;
@@ -18,16 +18,15 @@ import com.zyyoona7.popup.YGravity;
  * 相册选取基类
  * Created by Djangoogle on 2018/10/17 13:13 with Android Studio.
  */
-public abstract class DjangoogleGalleryActivity extends DjangoogleActivity {
+public abstract class DjangoGalleryActivity extends DjangoActivity {
 
 	protected String mBaseMediaPath;
-
 	protected EasyPopup mTakePhotoPopup;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mBaseMediaPath = DjangoogleUtils.getExternalFilesDir(this, DjangoogleConstants.PATH_MEDIA);
+		mBaseMediaPath = DjangoogleUtils.getExternalFilesDir(this, DjangoConst.PATH_MEDIA);
 	}
 
 	@Override

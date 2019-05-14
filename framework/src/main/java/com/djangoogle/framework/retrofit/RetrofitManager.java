@@ -2,7 +2,7 @@ package com.djangoogle.framework.retrofit;
 
 import android.content.Context;
 
-import com.djangoogle.framework.constants.DjangoogleConstants;
+import com.djangoogle.framework.constants.DjangoConst;
 import com.tencent.mmkv.MMKV;
 
 import java.util.concurrent.TimeUnit;
@@ -82,7 +82,7 @@ public class RetrofitManager {
 	 * @param serverUrl 服务器地址
 	 */
 	private void initRetrofit(String serverUrl) {
-		MMKV.defaultMMKV().encode(DjangoogleConstants.SERVER_URL, serverUrl);
+		MMKV.defaultMMKV().encode(DjangoConst.SERVER_URL, serverUrl);
 		mRetrofit = new Retrofit.Builder()
 				.client(mOkHttpClient)
 				.baseUrl(serverUrl)

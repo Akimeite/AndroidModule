@@ -1,9 +1,9 @@
 package com.djangoogle.framework.util;
 
-import android.content.Context;
+import android.support.v4.app.FragmentManager;
 
 import com.blankj.utilcode.util.LogUtils;
-import com.djangoogle.framework.widget.LoadingView;
+import com.djangoogle.framework.widget.DjangoLoading;
 
 /**
  * 通用Loding
@@ -13,7 +13,7 @@ public class LoadingManager {
 
 	private static LoadingManager instance = null;
 
-	private LoadingView lodingView = null;
+	private DjangoLoading lodingView = null;
 
 	public static LoadingManager getInstance() {
 		if (null == instance) {
@@ -29,20 +29,18 @@ public class LoadingManager {
 	/**
 	 * 显示
 	 *
-	 * @param context 上下文
+	 * @param fragmentManager FragmentManager
 	 */
-	public void show(Context context) {
-		if (null != context) {
-			try {
+	public void show(FragmentManager fragmentManager) {
+		try {
+			if (null != fragmentManager) {
 				if (null == lodingView) {
-					lodingView = new LoadingView(context);
+					lodingView = new DjangoLoading();
 				}
-				lodingView.setCanceledOnTouchOutside(false);//点击屏幕不能关闭加载框
-				lodingView.setCancelable(false);//点击返回键不能关闭加载框
-				lodingView.show();
-			} catch (Exception e) {
-				LogUtils.e(e);
+				lodingView.show(fragmentManager, LoadingManager.class.getSimpleName());
 			}
+		} catch (Exception e) {
+			LogUtils.e(e);
 		}
 	}
 
@@ -50,12 +48,12 @@ public class LoadingManager {
 	 * 隐藏
 	 */
 	public void hide() {
-		if (null != lodingView) {
-			try {
+		try {
+			if (null != lodingView) {
 				lodingView.dismiss();
-			} catch (Exception e) {
-				LogUtils.e(e);
 			}
+		} catch (Exception e) {
+			LogUtils.e(e);
 		}
 	}
 }
