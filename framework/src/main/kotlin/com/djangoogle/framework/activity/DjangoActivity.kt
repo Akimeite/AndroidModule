@@ -1,14 +1,19 @@
 package com.djangoogle.framework.activity
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.widget.*
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.FrameLayout
+import com.blankj.utilcode.util.KeyboardUtils
 import com.djangoogle.framework.R
 import com.djangoogle.framework.manager.LoadingManager
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
@@ -59,18 +64,18 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 			//添加子布局
 			if (0 != initLayout()) {
 				LayoutInflater.from(this).inflate(initLayout(), flBaseBodyView, true)
-				//设置ButterKnife
-				initButterKnife()
 			}
 			//返回键点击事件
 			acibToolBarBackBtn.setOnClickListener { onBackPressed() }
 		} else {
 			if (0 != initLayout()) {//使用自定义布局
 				setContentView(initLayout())
-				//设置ButterKnife
-				initButterKnife()
 			}
 		}
+		//修复修复安卓5497键盘bug
+		KeyboardUtils.fixAndroidBug5497(this)
+		//修复软键盘内存泄漏
+		KeyboardUtils.fixSoftInputLeaks(this)
 		//设置界面
 		initGUI()
 		//设置事件
@@ -101,10 +106,16 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 		hideLoading()
 	}
 
-	/**
-	 * 设置ButterKnife
-	 */
-	protected abstract fun initButterKnife()
+	override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+		if (MotionEvent.ACTION_DOWN == ev?.action) {
+			//按下时隐藏键盘
+			if (isShouldHideKeyboard(currentFocus, ev)) {
+				val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+				imm.hideSoftInputFromWindow(currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+			}
+		}
+		return super.dispatchTouchEvent(ev)
+	}
 
 	/**
 	 * 设置布局
@@ -246,6 +257,22 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 	 */
 	protected fun hideLoading() {
 		LoadingManager.INSTANCE.hide()
+	}
+
+	/**
+	 * 是否隐藏键盘
+	 */
+	private fun isShouldHideKeyboard(view: View?, event: MotionEvent): Boolean {
+		if (view is EditText) {
+			val outLocation: IntArray = intArrayOf(0, 0)
+			view.getLocationInWindow(outLocation)
+			val left = outLocation[0]
+			val top = outLocation[1]
+			val bottom = top + view.height
+			val right = left + view.width
+			return !(event.x > left && event.x < right && event.y > top && event.y < bottom)
+		}
+		return false
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)

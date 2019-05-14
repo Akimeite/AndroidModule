@@ -52,8 +52,8 @@ dependencies {
 	implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 	//https://maven.google.com
 	implementation 'com.android.support:multidex:1.0.3'
-	//https://github.com/JakeWharton/butterknife
-	//noinspection GradleDependency
-	implementation "com.jakewharton:butterknife:$butterknife_version"
-	kapt "com.jakewharton:butterknife-compiler:$butterknife_version"
+	//https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+	implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
+	//https://github.com/yqritc/RecyclerView-FlexibleDivider
+	implementation 'com.yqritc:recyclerview-flexibledivider:1.4.0'
 }
