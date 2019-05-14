@@ -1,7 +1,5 @@
 package com.djangoogle.framework.util
 
-import android.content.Context
-import com.blankj.utilcode.util.FileUtils
 import java.util.*
 
 /**
@@ -34,19 +32,6 @@ class DjangoUtils {
 				result.add(subList)
 			}
 			return result
-		}
-
-		/**
-		 * 获取/sdcard/Android/data/包名/files/dir文件夹路径
-		 *
-		 * @param context 上下文
-		 * @param dir     文件夹名
-		 * @return /sdcard/Android/data/包名/files/dir
-		 */
-		fun getExternalFilesDir(context: Context, dir: String): String {
-			val path = context.applicationContext.getExternalFilesDir(dir)?.absolutePath
-			FileUtils.createOrExistsDir(path)
-			return path.toString()
 		}
 	}
 }

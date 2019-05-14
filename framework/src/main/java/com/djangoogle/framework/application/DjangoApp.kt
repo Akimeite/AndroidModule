@@ -5,6 +5,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.Utils
 import com.djangoogle.framework.glide.DjangoMediaLoader
 import com.djangoogle.framework.manager.LruBitmapCacheManager
+import com.djangoogle.framework.manager.RetrofitManager
 import com.tencent.mmkv.MMKV
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumConfig
@@ -27,6 +28,8 @@ open class DjangoApp : Application() {
 		MMKV.initialize(this)
 		//初始化数据库管理工具
 		LitePal.initialize(this)
+		//初始化Retrofit
+		RetrofitManager.INSTANCE.initialize(this)
 		//初始化相册
 		initAlbum()
 		//初始化Bitmap内存缓存管理器

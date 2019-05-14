@@ -8,9 +8,6 @@ class DjangoConst {
 
 	companion object {
 
-		//图片/视频保存路径
-		const val PATH_MEDIA = "media"
-
 		//服务器地址
 		const val SERVER_URL = "serverUrl"
 	}
