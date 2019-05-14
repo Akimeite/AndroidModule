@@ -1,4 +1,4 @@
-package com.djangoogle.framework.util
+package com.djangoogle.framework.manager
 
 import android.support.v4.app.FragmentManager
 import com.djangoogle.framework.widget.DjangoLoading
@@ -10,7 +10,7 @@ import com.djangoogle.framework.widget.DjangoLoading
 class LoadingManager private constructor() {
 
 	companion object {
-		val instance: LoadingManager by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
+		val INSTANCE: LoadingManager by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
 			LoadingManager()
 		}
 	}

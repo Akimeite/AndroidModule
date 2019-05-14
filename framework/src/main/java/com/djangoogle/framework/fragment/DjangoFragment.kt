@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.djangoogle.framework.util.LoadingManager
+import com.djangoogle.framework.manager.LoadingManager
 import com.trello.rxlifecycle2.components.support.RxFragment
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -174,14 +174,14 @@ abstract class DjangoFragment : RxFragment() {
 	 * 显示Loading
 	 */
 	protected fun showLoading() {
-		LoadingManager.instance.show(fragmentManager)
+		LoadingManager.INSTANCE.show(fragmentManager)
 	}
 
 	/**
 	 * 隐藏Loading
 	 */
 	protected fun hideLoading() {
-		LoadingManager.instance.hide()
+		LoadingManager.INSTANCE.hide()
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)

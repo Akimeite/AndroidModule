@@ -12,7 +12,7 @@ import android.view.View
 import android.widget.FrameLayout
 import com.blankj.utilcode.util.LogUtils
 import com.djangoogle.framework.R
-import com.djangoogle.framework.util.LoadingManager
+import com.djangoogle.framework.manager.LoadingManager
 import com.djangoogle.framework.util.NoDoubleClickUtils
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import org.greenrobot.eventbus.EventBus
@@ -242,14 +242,14 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 	 * 显示Loading
 	 */
 	protected fun showLoading() {
-		LoadingManager.instance.show(supportFragmentManager)
+		LoadingManager.INSTANCE.show(supportFragmentManager)
 	}
 
 	/**
 	 * 隐藏Loading
 	 */
 	protected fun hideLoading() {
-		LoadingManager.instance.hide()
+		LoadingManager.INSTANCE.hide()
 	}
 
 	/**
@@ -258,8 +258,8 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 	 * @param intent 意图
 	 */
 	override fun startActivity(intent: Intent) {
-		if (mNoDoubleClickFlag && NoDoubleClickUtils.isDoubleClick()) {
-			LogUtils.d("重复调用startActivity()，点击间隔时间不得小于" + NoDoubleClickUtils.INTERVAL + "ms")
+		if (mNoDoubleClickFlag && NoDoubleClickUtils.isDoubleClick(500L)) {
+			LogUtils.d("重复调用startActivity()，点击间隔时间不得小于" + 500 + "ms")
 			return
 		}
 		super.startActivity(intent)

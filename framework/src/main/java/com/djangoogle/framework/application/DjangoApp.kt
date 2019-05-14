@@ -4,7 +4,7 @@ import android.app.Application
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.Utils
 import com.djangoogle.framework.glide.DjangoMediaLoader
-import com.djangoogle.framework.util.LruBitmapCacheUtil
+import com.djangoogle.framework.manager.LruBitmapCacheManager
 import com.tencent.mmkv.MMKV
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumConfig
@@ -30,7 +30,7 @@ open class DjangoApp : Application() {
 		//初始化相册
 		initAlbum()
 		//初始化Bitmap内存缓存管理器
-		LruBitmapCacheUtil.getInstance().initialize()
+		LruBitmapCacheManager.INSTANCE.initialize()
 	}
 
 	/**

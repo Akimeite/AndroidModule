@@ -1,8 +1,11 @@
 package com.djangoogle.module.activity.splash
 
+import android.content.Intent
 import android.os.Build
+import android.os.Handler
 import com.blankj.utilcode.util.ToastUtils
 import com.djangoogle.module.R
+import com.djangoogle.module.activity.banner.BannerActivity
 import com.djangoogle.module.activity.base.BaseActivity
 import com.hjq.permissions.OnPermission
 import com.hjq.permissions.Permission
@@ -56,11 +59,10 @@ class SplashActivity : BaseActivity() {
 	 * 初始化
 	 */
 	private fun init() {
-		showLoading()
-//		Handler().postDelayed({
-//			//延迟两秒打开轮播页
-//			startActivity(Intent(mActivity, BannerActivity::class.java))
-//			finish()
-//		}, 2000L)
+		Handler().postDelayed({
+			//延迟打开轮播页
+			startActivity(Intent(mActivity, BannerActivity::class.java))
+			finish()
+		}, 1000L)
 	}
 }

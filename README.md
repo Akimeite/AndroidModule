@@ -204,13 +204,13 @@ protected void setBottomLeftFloatingBtn(int resId, View.OnClickListener listener
  * 显示Loading
  */
 protected void showLoading() {
-	LoadingManager.getInstance().show(mActivity);
+	LoadingManager.getINSTANCE().show(mActivity);
 }
 /**
  * 隐藏Loading
  */
 protected void hideLoading() {
-	LoadingManager.getInstance().hide();
+	LoadingManager.getINSTANCE().hide();
 }
 /**
  * 打开Activity，并防止重复连续点击
@@ -312,7 +312,7 @@ private void initOkGo() {
 	//使用数据库保持cookie，如果cookie不过期，则一直有效
 	builder.cookieJar(new CookieJarImpl(new DBCookieStore(this)));
 	//配置log
-	OkGo.getInstance().init(this)//必须调用初始化
+	OkGo.getINSTANCE().init(this)//必须调用初始化
 	    .setOkHttpClient(builder.build())//建议设置OkHttpClient，不设置将使用默认的
 	    .setRetryCount(0);//全局统一超时重连次数，默认为三次，那么最差的情况会请求4次(一次原始请求，三次重连请求)，不需要可以设置为0
 }

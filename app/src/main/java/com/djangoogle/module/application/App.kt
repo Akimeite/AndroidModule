@@ -18,6 +18,6 @@ class App : DjangoApp() {
 	override fun onCreate() {
 		super.onCreate()
 		//初始化EventBus索引
-		EventBusManager.instance.initialize()
+		EventBusManager.INSTANCE.initialize()
 	}
 }

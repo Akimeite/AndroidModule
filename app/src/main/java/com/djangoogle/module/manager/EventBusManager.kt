@@ -11,7 +11,7 @@ import org.greenrobot.eventbus.EventBus
 class EventBusManager private constructor() {
 
 	companion object {
-		val instance: EventBusManager by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
+		val INSTANCE: EventBusManager by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
 			EventBusManager()
 		}
 	}
