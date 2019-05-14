@@ -2,6 +2,7 @@ plugins {
 	id 'com.android.library'
 	id 'kotlin-android'
 	id 'kotlin-android-extensions'
+	id "kotlin-kapt"
 	id 'com.novoda.bintray-release'
 }
 
@@ -21,9 +22,9 @@ android {
 		targetSdkVersion rootProject.ext.target_sdk_version
 		versionCode rootProject.ext.banner_version_code
 		versionName rootProject.ext.banner_version_name
-		javaCompileOptions {
-			annotationProcessorOptions {
-				arguments = [eventBusIndex: 'com.djangoogle.banner.BannerEventBusIndex']
+		kapt {
+			arguments {
+				arg('eventBusIndex', 'com.djangoogle.banner.BannerEventBusIndex')
 			}
 		}
 	}
@@ -48,7 +49,7 @@ dependencies {
 	//https://github.com/greenrobot/EventBus
 	compileOnly "org.greenrobot:eventbus:$event_bus_version"
 	//http://greenrobot.org/eventbus/documentation/subscriber-index/
-	annotationProcessor "org.greenrobot:eventbus-annotation-processor:$event_bus_version"
+	kapt "org.greenrobot:eventbus-annotation-processor:$event_bus_version"
 	//https://github.com/ReactiveX/RxAndroid
 	compileOnly "io.reactivex.rxjava2:rxandroid:$rx_android_version"
 	//https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md

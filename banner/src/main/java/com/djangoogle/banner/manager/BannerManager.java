@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.djangoogle.banner.BannerEventBusIndex;
 import com.djangoogle.banner.adapter.BannerAdapter;
 import com.djangoogle.banner.event.PlayNextAdEvent;
 import com.djangoogle.banner.model.AdResourceModel;
@@ -51,8 +50,6 @@ public class BannerManager {
 		if (!EventBus.getDefault().isRegistered(this)) {
 			EventBus.getDefault().register(this);
 		}
-		//初始化EventBus索引
-		EventBus.builder().addIndex(new BannerEventBusIndex()).installDefaultEventBus();
 		//禁止滚动
 		mLinearLayoutManager = new LinearLayoutManager(activity) {
 			@Override

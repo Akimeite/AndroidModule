@@ -2,6 +2,7 @@ plugins {
 	id 'com.android.library'
 	id 'kotlin-android'
 	id 'kotlin-android-extensions'
+	id "kotlin-kapt"
 	id 'com.novoda.bintray-release'
 }
 
@@ -21,9 +22,9 @@ android {
 		targetSdkVersion rootProject.ext.target_sdk_version
 		versionCode rootProject.ext.framework_version_code
 		versionName rootProject.ext.framework_version_name
-		javaCompileOptions {
-			annotationProcessorOptions {
-				arguments = [eventBusIndex: 'com.djangoogle.framework.FrameworkEventBusIndex']
+		kapt {
+			arguments {
+				arg('eventBusIndex', 'com.djangoogle.framework.FrameworkEventBusIndex')
 			}
 		}
 	}
@@ -42,11 +43,11 @@ dependencies {
 	api "com.android.support.constraint:constraint-layout:$constraint_version"
 	//https://github.com/bumptech/glide
 	api "com.github.bumptech.glide:glide:$glide_version"
-	annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+	kapt "com.github.bumptech.glide:compiler:$glide_version"
 	//https://github.com/greenrobot/EventBus
 	api "org.greenrobot:eventbus:$event_bus_version"
 	//http://greenrobot.org/eventbus/documentation/subscriber-index/
-	annotationProcessor "org.greenrobot:eventbus-annotation-processor:$event_bus_version"
+	kapt "org.greenrobot:eventbus-annotation-processor:$event_bus_version"
 	//https://github.com/square/retrofit
 	api "com.squareup.retrofit2:retrofit:$retrofit2_version"
 	//https://github.com/square/retrofit/tree/master/retrofit-converters/gson

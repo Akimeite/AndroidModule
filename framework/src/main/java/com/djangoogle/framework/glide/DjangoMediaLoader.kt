@@ -1,7 +1,6 @@
 package com.djangoogle.framework.glide
 
 import android.widget.ImageView
-import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.AlbumLoader
@@ -16,6 +15,6 @@ class DjangoMediaLoader : AlbumLoader {
 	}
 
 	override fun load(imageView: ImageView, url: String) {
-		Glide.with(imageView.context).load(url).transition(DrawableTransitionOptions.withCrossFade()).into(imageView)
+		GlideApp.with(imageView.context).load(url).transition(DrawableTransitionOptions.withCrossFade()).into(imageView)
 	}
 }

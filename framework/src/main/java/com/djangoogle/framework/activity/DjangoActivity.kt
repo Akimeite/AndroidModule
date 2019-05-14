@@ -39,9 +39,8 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 	protected lateinit var fabBaseBottomRightBtn: FloatingActionButton//右下角浮动按钮
 	protected lateinit var fabBaseBottomLeftBtn: FloatingActionButton//左下角浮动按钮
 	protected lateinit var mActivity: Activity//通用Activity
-
-	private var mUseBaseLayoutFlag = true//是否使用基础布局
-	private var mNoDoubleClickFlag = true//是否使用防重复打开Activity
+	protected var mUseBaseLayoutFlag = true//是否使用基础布局
+	protected var mNoDoubleClickFlag = true//是否使用防重复打开Activity
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -104,13 +103,6 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 		super.onDestroy()
 		//隐藏Loading
 		hideLoading()
-	}
-
-	/**
-	 * 使用自定义布局
-	 */
-	protected fun useCustomLayout() {
-		mUseBaseLayoutFlag = false
 	}
 
 	/**
@@ -250,14 +242,14 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 	 * 显示Loading
 	 */
 	protected fun showLoading() {
-		LoadingManager.getInstance().show(supportFragmentManager)
+		LoadingManager.instance.show(supportFragmentManager)
 	}
 
 	/**
 	 * 隐藏Loading
 	 */
 	protected fun hideLoading() {
-		LoadingManager.getInstance().hide()
+		LoadingManager.instance.hide()
 	}
 
 	/**
@@ -271,15 +263,6 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 			return
 		}
 		super.startActivity(intent)
-	}
-
-	/**
-	 * 设置防重复打开Activity
-	 *
-	 * @param noDoubleClickFlag
-	 */
-	protected fun setNoDoubleClickFlag(noDoubleClickFlag: Boolean) {
-		mNoDoubleClickFlag = noDoubleClickFlag
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)

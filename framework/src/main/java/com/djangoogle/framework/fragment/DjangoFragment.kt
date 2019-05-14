@@ -174,14 +174,14 @@ abstract class DjangoFragment : RxFragment() {
 	 * 显示Loading
 	 */
 	protected fun showLoading() {
-		LoadingManager.getInstance().show(fragmentManager)
+		LoadingManager.instance.show(fragmentManager)
 	}
 
 	/**
 	 * 隐藏Loading
 	 */
 	protected fun hideLoading() {
-		LoadingManager.getInstance().hide()
+		LoadingManager.instance.hide()
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)
