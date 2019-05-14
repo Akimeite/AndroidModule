@@ -1,7 +1,6 @@
 package com.djangoogle.framework.activity
 
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.design.widget.CoordinatorLayout
@@ -10,10 +9,8 @@ import android.support.v7.widget.*
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
-import com.blankj.utilcode.util.LogUtils
 import com.djangoogle.framework.R
 import com.djangoogle.framework.manager.LoadingManager
-import com.djangoogle.framework.util.NoDoubleClickUtils
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -40,7 +37,6 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 	protected lateinit var fabBaseBottomLeftBtn: FloatingActionButton//左下角浮动按钮
 	protected lateinit var mActivity: Activity//通用Activity
 	protected var mUseBaseLayoutFlag = true//是否使用基础布局
-	protected var mNoDoubleClickFlag = true//是否使用防重复打开Activity
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -250,19 +246,6 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 	 */
 	protected fun hideLoading() {
 		LoadingManager.INSTANCE.hide()
-	}
-
-	/**
-	 * 打开Activity，并防止重复连续点击
-	 *
-	 * @param intent 意图
-	 */
-	override fun startActivity(intent: Intent) {
-		if (mNoDoubleClickFlag && NoDoubleClickUtils.isDoubleClick(500L)) {
-			LogUtils.d("重复调用startActivity()，点击间隔时间不得小于" + 500 + "ms")
-			return
-		}
-		super.startActivity(intent)
 	}
 
 	@Subscribe(threadMode = ThreadMode.MAIN)

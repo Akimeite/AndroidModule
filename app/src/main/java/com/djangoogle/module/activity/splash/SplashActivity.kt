@@ -5,8 +5,8 @@ import android.os.Build
 import android.os.Handler
 import com.blankj.utilcode.util.ToastUtils
 import com.djangoogle.module.R
-import com.djangoogle.module.activity.banner.BannerActivity
 import com.djangoogle.module.activity.base.BaseActivity
+import com.djangoogle.module.activity.main.MainActivity
 import com.hjq.permissions.OnPermission
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
@@ -40,19 +40,19 @@ class SplashActivity : BaseActivity() {
 	 */
 	private fun requestPermissions() {
 		XXPermissions.with(this)
-				.constantRequest()
-				.permission(*Permission.Group.STORAGE)
-				.request(object : OnPermission {
-					override fun hasPermission(granted: List<String>, isAll: Boolean) {
-						//初始化
-						init()
-					}
+			.constantRequest()
+			.permission(*Permission.Group.STORAGE)
+			.request(object : OnPermission {
+				override fun hasPermission(granted: List<String>, isAll: Boolean) {
+					//初始化
+					init()
+				}
 
-					override fun noPermission(denied: List<String>, quick: Boolean) {
-						val deniedArray = denied.toTypedArray()
-						ToastUtils.showShort("权限" + Arrays.toString(deniedArray) + "被拒绝")
-					}
-				})
+				override fun noPermission(denied: List<String>, quick: Boolean) {
+					val deniedArray = denied.toTypedArray()
+					ToastUtils.showShort("权限" + Arrays.toString(deniedArray) + "被拒绝")
+				}
+			})
 	}
 
 	/**
@@ -61,7 +61,7 @@ class SplashActivity : BaseActivity() {
 	private fun init() {
 		Handler().postDelayed({
 			//延迟打开轮播页
-			startActivity(Intent(mActivity, BannerActivity::class.java))
+			startActivity(Intent(mActivity, MainActivity::class.java))
 			finish()
 		}, 1000L)
 	}

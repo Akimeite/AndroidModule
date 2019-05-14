@@ -27,6 +27,11 @@
 			</intent-filter>
 		</activity>
 		<activity
+			android:name=".activity.main.MainActivity"
+			android:configChanges="orientation|keyboardHidden|screenSize"
+			android:launchMode="singleTask"
+			android:screenOrientation="portrait" />
+		<activity
 			android:name=".activity.banner.BannerActivity"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:screenOrientation="portrait" />
