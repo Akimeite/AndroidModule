@@ -54,10 +54,12 @@ open class DjangoApp : Application() {
 	 * 初始化相册
 	 */
 	private fun initAlbum() {
-		Album.initialize(AlbumConfig.newBuilder(this)
+		Album.initialize(
+			AlbumConfig.newBuilder(this)
 				.setAlbumLoader(DjangoMediaLoader())
 				.setLocale(Locale.getDefault())
-				.build())
+				.build()
+		)
 	}
 
 	/**

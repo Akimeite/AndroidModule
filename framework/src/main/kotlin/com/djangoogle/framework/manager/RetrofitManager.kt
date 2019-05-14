@@ -54,14 +54,16 @@ class RetrofitManager private constructor() {
 	private fun initOkHttpClient(context: Context) {
 		val okHttpClientBuilder = OkHttpClient.Builder()
 		//配置log
-		okHttpClientBuilder.addInterceptor(LoggingInterceptor.Builder().loggable(BuildConfig.DEBUG)
+		okHttpClientBuilder.addInterceptor(
+			LoggingInterceptor.Builder().loggable(BuildConfig.DEBUG)
 				.setLevel(Level.BASIC)
 				.log(Platform.INFO)
 				.request("Request")
 				.response("Response")
 				.addHeader("version", BuildConfig.VERSION_NAME)
 				.enableAndroidStudio_v3_LogsHack(true)
-				.executor(Executors.newSingleThreadExecutor()).build())
+				.executor(Executors.newSingleThreadExecutor()).build()
+		)
 		//全局的读取超时时间
 		okHttpClientBuilder.readTimeout(OK_HTTP_TIME_OUT, TimeUnit.SECONDS)
 		//全局的写入超时时间
@@ -81,9 +83,9 @@ class RetrofitManager private constructor() {
 	fun initRetrofit(serverUrl: String) {
 		MMKV.defaultMMKV().encode(DjangoConst.SERVER_URL, serverUrl)
 		mRetrofit = Retrofit.Builder().client(mOkHttpClient!!)
-				.baseUrl(serverUrl)
-				.addConverterFactory(GsonConverterFactory.create())
-				.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-				.build()
+			.baseUrl(serverUrl)
+			.addConverterFactory(GsonConverterFactory.create())
+			.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+			.build()
 	}
 }

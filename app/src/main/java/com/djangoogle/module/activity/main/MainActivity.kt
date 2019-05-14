@@ -23,7 +23,7 @@ class MainActivity : BaseActivity() {
 
 	@SuppressLint("CheckResult")
 	override fun initAction() {
-		acbMainBanner.clicks().throttleFirst(1, TimeUnit.SECONDS).subscribe { startActivity(Intent(this, BannerActivity::class.java)) }
+		acbMainBanner.clicks().throttleFirst(1L, TimeUnit.SECONDS).subscribe { startActivity(Intent(this, BannerActivity::class.java)) }
 	}
 
 	override fun initData() {}

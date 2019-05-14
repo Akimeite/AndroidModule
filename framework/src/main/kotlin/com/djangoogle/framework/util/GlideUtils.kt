@@ -58,11 +58,11 @@ class GlideUtils {
 		 */
 		fun loadCircle(context: Context, url: Any, placeholderId: Int, image: ImageView) {
 			GlideApp.with(context)
-					.load(url)
-					.placeholder(placeholderId)
-					.circleCrop()
-					.transition(DrawableTransitionOptions.withCrossFade())
-					.into(image)
+				.load(url)
+				.placeholder(placeholderId)
+				.circleCrop()
+				.transition(DrawableTransitionOptions.withCrossFade())
+				.into(image)
 		}
 
 		/**
