@@ -62,9 +62,8 @@ dependencies {
 	//https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
 	api "com.blankj:utilcode:$util_code_version"
 	//https://github.com/trello/RxLifecycle
-	api "com.trello.rxlifecycle2:rxlifecycle-android:$rx_lifecycle_version"
 	api "com.trello.rxlifecycle2:rxlifecycle-components:$rx_lifecycle_version"
-	api "com.trello.rxlifecycle2:rxlifecycle-android-lifecycle-kotlin:$rx_lifecycle_version"
+	api "com.trello.rxlifecycle2:rxlifecycle-kotlin:$rx_lifecycle_version"
 	//https://github.com/JakeWharton/RxBinding
 	api 'com.jakewharton.rxbinding3:rxbinding:3.0.0-alpha2'
 	//https://github.com/square/okhttp
