@@ -3,16 +3,12 @@ plugins {
 	id 'kotlin-android'
 	id 'kotlin-android-extensions'
 	id "kotlin-kapt"
-	id 'com.novoda.bintray-release'
 }
 
-publish {
-	userOrg = 'Djangoogle'
-	groupId = 'com.djangoogle.support'
-	artifactId = 'framework'
-	publishVersion = rootProject.ext.framework_version_name
-	desc = 'framework'
-	website = 'https://github.com/Djangoogle/Module/tree/master/framework'
+ext {
+	PUBLISH_GROUP_ID = 'com.djangoogle.support'
+	PUBLISH_ARTIFACT_ID = 'framework'
+	PUBLISH_VERSION = rootProject.ext.framework_version_name
 }
 
 android {
@@ -89,5 +85,7 @@ dependencies {
 	api 'com.github.ybq:Android-SpinKit:1.2.0'
 }
 
+apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
+
 //cd framework
-//gradle clean build bintrayUpload -PbintrayUser=djangoogle -PbintrayKey= -PdryRun=false
+//gradle clean build generateRelease
