@@ -88,8 +88,10 @@ open class DjangoApp : Application() {
 		sbDebugInfo.append("设备屏幕高度: ").append(ScreenUtils.getScreenHeight()).append("px").append("\n")
 		sbDebugInfo.append("设备状态栏高度: ").append(BarUtils.getStatusBarHeight()).append("px").append("\n")
 		if (BarUtils.isSupportNavBar()) sbDebugInfo.append("设备导航栏高度: ").append(BarUtils.getNavBarHeight()).append("px").append("\n")
+		sbDebugInfo.append("设备屏幕密度: ").append(ScreenUtils.getScreenDensity()).append("\n")
+		sbDebugInfo.append("设备屏幕密度DPI: ").append(ScreenUtils.getScreenDensityDpi()).append("\n")
 		sbDebugInfo.append("启动时间: ").append(TimeUtils.getNowString()).append("\n")
-		LogUtils.iTag("DeviceInfo", sbDebugInfo.toString())
+		LogUtils.iTag("BasicInfo", sbDebugInfo.toString())
 		sbDebugInfo.clear()
 	}
 }
