@@ -1,10 +1,7 @@
 package com.djangoogle.framework.application
 
 import android.app.Application
-import com.blankj.utilcode.util.DeviceUtils
-import com.blankj.utilcode.util.LogUtils
-import com.blankj.utilcode.util.TimeUtils
-import com.blankj.utilcode.util.Utils
+import com.blankj.utilcode.util.*
 import com.djangoogle.framework.glide.DjangoMediaLoader
 import com.djangoogle.framework.manager.LruBitmapCacheManager
 import com.djangoogle.framework.manager.RetrofitManager
@@ -76,6 +73,7 @@ open class DjangoApp : Application() {
 		sbDebugInfo.append("设备厂商: ").append(DeviceUtils.getManufacturer()).append("\n")
 		sbDebugInfo.append("设备型号: ").append(DeviceUtils.getModel()).append("\n")
 		sbDebugInfo.append("设备ABIs: ").append(DeviceUtils.getABIs()?.contentToString()).append("\n")
+		sbDebugInfo.append("分辨率: ").append(ScreenUtils.getScreenWidth()).append(" * ").append(ScreenUtils.getScreenHeight()).append("\n")
 		sbDebugInfo.append("时间: ").append(TimeUtils.getNowString()).append("\n")
 		LogUtils.iTag("deviceInfo", sbDebugInfo.toString())
 		sbDebugInfo.clear()
