@@ -84,12 +84,12 @@ open class DjangoApp : Application() {
 		sbDebugInfo.append("设备厂商: ").append(DeviceUtils.getManufacturer()).append("\n")
 		sbDebugInfo.append("设备型号: ").append(DeviceUtils.getModel()).append("\n")
 		sbDebugInfo.append("设备ABIs: ").append(DeviceUtils.getABIs()?.contentToString()).append("\n")
-		sbDebugInfo.append("屏幕宽度: ").append(ScreenUtils.getScreenWidth()).append("px").append("\n")
-		sbDebugInfo.append("屏幕高度: ").append(ScreenUtils.getScreenHeight()).append("px").append("\n")
-		sbDebugInfo.append("状态栏高度: ").append(BarUtils.getStatusBarHeight()).append("px").append("\n")
-		if (BarUtils.isSupportNavBar()) sbDebugInfo.append("导航栏高度: ").append(BarUtils.getNavBarHeight()).append("px").append("\n")
+		sbDebugInfo.append("设备屏幕宽度: ").append(ScreenUtils.getScreenWidth()).append("px").append("\n")
+		sbDebugInfo.append("设备屏幕高度: ").append(ScreenUtils.getScreenHeight()).append("px").append("\n")
+		sbDebugInfo.append("设备状态栏高度: ").append(BarUtils.getStatusBarHeight()).append("px").append("\n")
+		if (BarUtils.isSupportNavBar()) sbDebugInfo.append("设备导航栏高度: ").append(BarUtils.getNavBarHeight()).append("px").append("\n")
 		sbDebugInfo.append("启动时间: ").append(TimeUtils.getNowString()).append("\n")
-		LogUtils.iTag("deviceInfo", sbDebugInfo.toString())
+		LogUtils.iTag("DeviceInfo", sbDebugInfo.toString())
 		sbDebugInfo.clear()
 	}
 }
