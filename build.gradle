@@ -31,8 +31,8 @@ buildscript {
 		//version
 		banner_version_code = 2
 		banner_version_name = '1.0.1'
-		framework_version_code = 4
-		framework_version_name = '1.0.1-beta3'
+		framework_version_code = 5
+		framework_version_name = '1.0.1-beta4'
 		player_version_code = 2
 		player_version_name = '1.0.1'
 		uvccamera_version_code = 2
