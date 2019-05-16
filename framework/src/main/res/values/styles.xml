@@ -1,6 +1,6 @@
 <resources>
 
-	<style name="DjangoogleBaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+	<style name="DjangoBaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="colorPrimary">@color/colorPrimary</item>
 		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
 		<item name="colorAccent">@color/colorAccent</item>
@@ -15,7 +15,7 @@
 
 	<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-	<style name="activity_dialog" parent="DjangoogleBaseAppTheme">
+	<style name="activity_dialog" parent="DjangoBaseAppTheme">
 		<item name="android:windowFullscreen">true</item><!--全屏-->
 		<item name="android:windowIsFloating">true</item><!--浮动在activity之上，左右两边不会填充屏幕-->
 		<item name="android:windowIsTranslucent">true</item><!--半透明-->
