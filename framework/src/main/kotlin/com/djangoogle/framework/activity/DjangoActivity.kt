@@ -191,6 +191,13 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 	}
 
 	/**
+	 * 隐藏标题栏
+	 */
+	protected fun hideToolbar() {
+		ablCommonToolBar.visibility = View.GONE
+	}
+
+	/**
 	 * 隐藏返回键
 	 */
 	protected fun hideBackBtn() {
