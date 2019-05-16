@@ -31,8 +31,8 @@ android {
 dependencies {
 	api fileTree(dir: 'libs', include: ['*.aar'])
 	//https://www.kotlincn.net/docs/reference/using-gradle.html
-	compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-	compileOnly "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+	api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+	api "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 	//https://maven.google.com
 	compileOnly "com.android.support:design:$android_support_version"
 	//https://github.com/CarGuo/GSYVideoPlayer

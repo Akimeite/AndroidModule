@@ -59,11 +59,10 @@ android {
 
 dependencies {
 	//https://www.kotlincn.net/docs/reference/using-gradle.html
-	compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-	compileOnly "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+	api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+	api "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 	//https://maven.google.com
 	compileOnly "com.android.support:design:$android_support_version"
-	compileOnly "com.android.support.constraint:constraint-layout:$constraint_version"
 	//https://github.com/saki4510t/UVCCamera
 	api('com.serenegiant:common:2.12.4') {
 		exclude group: 'com.android.support'
