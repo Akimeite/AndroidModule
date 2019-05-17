@@ -7,12 +7,12 @@ import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
+import io.reactivex.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.internal.platform.Platform
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 /**
@@ -57,8 +57,9 @@ class RetrofitManager private constructor() {
 				.request("Request")
 				.response("Response")
 				.addHeader("version", BuildConfig.VERSION_NAME)
-				.enableAndroidStudio_v3_LogsHack(true)
-				.executor(Executors.newSingleThreadExecutor()).build()
+//				.enableAndroidStudio_v3_LogsHack(true)
+//				.executor(Executors.newSingleThreadExecutor())
+				.build()
 		)
 		//全局的读取超时时间
 		okHttpClientBuilder.readTimeout(OK_HTTP_TIME_OUT, TimeUnit.SECONDS)
@@ -78,7 +79,7 @@ class RetrofitManager private constructor() {
 		return Retrofit.Builder().client(mOkHttpClient!!)
 			.baseUrl(serverUrl)
 			.addConverterFactory(GsonConverterFactory.create())
-			.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+			.addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
 			.build()
 	}
 }
