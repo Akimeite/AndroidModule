@@ -4,5 +4,6 @@ build
 captures
 .externalNativeBuild
 local.properties
+gradle.properties
 *.iml
 *.DS_Store

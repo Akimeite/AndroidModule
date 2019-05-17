@@ -6,8 +6,9 @@ plugins {
 }
 
 publish {
-	uploadName = rootProject.ext.uvccamera_package_name
 	bintrayUser = rootProject.ext.publish_user_org
+	bintrayKey = BINTRAY_KEY
+	uploadName = rootProject.ext.uvccamera_package_name
 	userOrg = rootProject.ext.publish_user_org
 	groupId = rootProject.ext.publish_group_id
 	artifactId = rootProject.ext.uvccamera_artifact_id
@@ -73,4 +74,4 @@ dependencies {
 }
 
 //cd uvccamera
-//gradle clean build generatePomFileForReleasePublication publishReleasePublicationToMavenLocal bintrayUpload -PbintrayKey= --no-configure-on-demand --no-parallel
+//gradle clean build generatePomFileForReleasePublication publishReleasePublicationToMavenLocal bintrayUpload --no-configure-on-demand --no-parallel
