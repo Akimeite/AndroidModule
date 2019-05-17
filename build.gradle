@@ -39,8 +39,8 @@ buildscript {
 		banner_version_name = '1.0.1'
 		framework_package_name = 'Framework'
 		framework_artifact_id = 'framework'
-		framework_version_code = 6
-		framework_version_name = '1.0.1-beta5'
+		framework_version_code = 7
+		framework_version_name = '1.0.1-beta6'
 		player_package_name = 'Player'
 		player_artifact_id = 'player'
 		player_version_code = 2

@@ -2,13 +2,11 @@ package com.djangoogle.framework.manager
 
 import android.content.Context
 import com.djangoogle.framework.BuildConfig
-import com.djangoogle.framework.constants.DjangoConst
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
 import com.ihsanbal.logging.Level
 import com.ihsanbal.logging.LoggingInterceptor
-import com.tencent.mmkv.MMKV
 import okhttp3.OkHttpClient
 import okhttp3.internal.platform.Platform
 import retrofit2.Retrofit
@@ -31,10 +29,8 @@ class RetrofitManager private constructor() {
 		private const val OK_HTTP_TIME_OUT = 10L
 	}
 
-	var mRetrofit: Retrofit? = null
+	var mOkHttpClient: OkHttpClient? = null
 		private set
-
-	private var mOkHttpClient: OkHttpClient? = null
 
 	/**
 	 * 初始化
@@ -76,13 +72,10 @@ class RetrofitManager private constructor() {
 	}
 
 	/**
-	 * 初始化Retrofit
-	 *
-	 * @param serverUrl 服务器地址
+	 * 获取新的Retrofit实例
 	 */
-	fun initRetrofit(serverUrl: String) {
-		MMKV.defaultMMKV().encode(DjangoConst.SERVER_URL, serverUrl)
-		mRetrofit = Retrofit.Builder().client(mOkHttpClient!!)
+	fun getRetrofit(serverUrl: String): Retrofit? {
+		return Retrofit.Builder().client(mOkHttpClient!!)
 			.baseUrl(serverUrl)
 			.addConverterFactory(GsonConverterFactory.create())
 			.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
