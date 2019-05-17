@@ -6,12 +6,15 @@ plugins {
 }
 
 publish {
-	userOrg = 'Djangoogle'
-	groupId = 'com.djangoogle.support'
-	artifactId = 'player'
+	uploadName = rootProject.ext.player_package_name
+	bintrayUser = rootProject.ext.publish_user_org
+	userOrg = rootProject.ext.publish_user_org
+	groupId = rootProject.ext.publish_group_id
+	artifactId = rootProject.ext.player_artifact_id
 	publishVersion = rootProject.ext.player_version_name
-	desc = 'player'
-	website = 'https://github.com/Djangoogle/Module/tree/master/player'
+	desc = rootProject.ext.player_artifact_id
+	website = rootProject.ext.website + rootProject.ext.player_artifact_id
+	dryRun = false
 }
 
 android {
@@ -45,4 +48,4 @@ dependencies {
 }
 
 //cd player
-//gradle clean build bintrayUpload -PbintrayUser=djangoogle -PbintrayKey= -PdryRun=false
+//gradle clean build generatePomFileForReleasePublication publishReleasePublicationToMavenLocal bintrayUpload -PbintrayKey= --no-configure-on-demand --no-parallel

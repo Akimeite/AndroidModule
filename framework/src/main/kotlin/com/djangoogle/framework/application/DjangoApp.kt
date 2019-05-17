@@ -64,7 +64,6 @@ open class DjangoApp : Application() {
 	 */
 	private fun initDeviceInfo() {
 		val sbDebugInfo = StringBuilder()
-		sbDebugInfo.append("App是否有root权限: ").append(if (AppUtils.isAppRoot()) "是" else "否").append("\n")
 		sbDebugInfo.append("App是否是debug版本: ").append(if (AppUtils.isAppDebug()) "是" else "否").append("\n")
 		sbDebugInfo.append("App是否是系统应用: ").append(if (AppUtils.isAppSystem()) "是" else "否").append("\n")
 		sbDebugInfo.append("App包名: ").append(AppUtils.getAppPackageName()).append("\n")

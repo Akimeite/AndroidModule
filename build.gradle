@@ -28,18 +28,30 @@ buildscript {
 		retrofit2_version = '2.5.0'
 		//https://github.com/CarGuo/GSYVideoPlayer
 		gsy_video_player_version = '6.0.3'
+		//bintray
+		publish_user_org = 'djangoogle'
+		publish_group_id = 'com.djangoogle.support'
+		website = 'https://github.com/Djangoogle/Module/tree/master/'
 		//version
+		banner_package_name = 'Banner'
+		banner_artifact_id = 'banner'
 		banner_version_code = 2
 		banner_version_name = '1.0.1'
-		framework_version_code = 5
-		framework_version_name = '1.0.1-beta4'
+		framework_package_name = 'Framework'
+		framework_artifact_id = 'framework'
+		framework_version_code = 6
+		framework_version_name = '1.0.1-beta5'
+		player_package_name = 'Player'
+		player_artifact_id = 'player'
 		player_version_code = 2
 		player_version_name = '1.0.1'
+		uvccamera_package_name = 'UVCCamera'
+		uvccamera_artifact_id = 'uvccamera'
 		uvccamera_version_code = 2
 		uvccamera_version_name = '1.0.1'
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:3.4.0'
+		classpath 'com.android.tools.build:gradle:3.4.1'
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 		//https://github.com/novoda/bintray-release
 		classpath 'com.novoda:bintray-release:0.9.1'
@@ -52,6 +64,10 @@ allprojects {
 		jcenter()
 		maven { url "https://jitpack.io" }
 		maven { url 'https://raw.github.com/saki4510t/libcommon/master/repository' }
+	}
+	tasks.withType(Javadoc) {
+		options.addStringOption('Xdoclint:none', '-quiet')
+		options.addStringOption('encoding', 'UTF-8')
 	}
 }
 

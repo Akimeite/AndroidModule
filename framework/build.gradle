@@ -2,13 +2,20 @@ plugins {
 	id 'com.android.library'
 	id 'kotlin-android'
 	id 'kotlin-android-extensions'
-	id "kotlin-kapt"
+	id 'kotlin-kapt'
+	id 'com.novoda.bintray-release'
 }
 
-ext {
-	PUBLISH_GROUP_ID = 'com.djangoogle.support'
-	PUBLISH_ARTIFACT_ID = 'framework'
-	PUBLISH_VERSION = rootProject.ext.framework_version_name
+publish {
+	uploadName = rootProject.ext.framework_package_name
+	bintrayUser = rootProject.ext.publish_user_org
+	userOrg = rootProject.ext.publish_user_org
+	groupId = rootProject.ext.publish_group_id
+	artifactId = rootProject.ext.framework_artifact_id
+	publishVersion = rootProject.ext.framework_version_name
+	desc = rootProject.ext.framework_artifact_id
+	website = rootProject.ext.website + rootProject.ext.framework_artifact_id
+	dryRun = false
 }
 
 android {
@@ -85,7 +92,5 @@ dependencies {
 	api 'com.github.ybq:Android-SpinKit:1.2.0'
 }
 
-apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
-
 //cd framework
-//gradle clean build generateRelease
+//gradle clean build generatePomFileForReleasePublication publishReleasePublicationToMavenLocal bintrayUpload -PbintrayKey= --no-configure-on-demand --no-parallel

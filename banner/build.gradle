@@ -2,17 +2,20 @@ plugins {
 	id 'com.android.library'
 	id 'kotlin-android'
 	id 'kotlin-android-extensions'
-	id "kotlin-kapt"
+	id 'kotlin-kapt'
 	id 'com.novoda.bintray-release'
 }
 
 publish {
-	userOrg = 'Djangoogle'
-	groupId = 'com.djangoogle.support'
-	artifactId = 'banner'
+	uploadName = rootProject.ext.banner_package_name
+	bintrayUser = rootProject.ext.publish_user_org
+	userOrg = rootProject.ext.publish_user_org
+	groupId = rootProject.ext.publish_group_id
+	artifactId = rootProject.ext.banner_artifact_id
 	publishVersion = rootProject.ext.banner_version_name
-	desc = 'banner'
-	website = 'https://github.com/Djangoogle/Module/tree/master/banner'
+	desc = rootProject.ext.banner_artifact_id
+	website = rootProject.ext.website + rootProject.ext.banner_artifact_id
+	dryRun = false
 }
 
 android {
@@ -57,4 +60,4 @@ dependencies {
 }
 
 //cd banner
-//gradle clean build bintrayUpload -PbintrayUser=djangoogle -PbintrayKey= -PdryRun=false
+//gradle clean build generatePomFileForReleasePublication publishReleasePublicationToMavenLocal bintrayUpload -PbintrayKey= --no-configure-on-demand --no-parallel
