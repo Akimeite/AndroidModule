@@ -2,6 +2,7 @@ package com.djangoogle.module.activity.main
 
 import android.content.Intent
 import com.blankj.utilcode.util.ToastUtils
+import com.djangoogle.module.R
 import com.djangoogle.module.activity.banner.BannerActivity
 import com.djangoogle.module.activity.base.BaseActivity
 import com.djangoogle.module.network.Network
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : BaseActivity() {
 
 	override fun initLayout(): Int {
-		return com.djangoogle.module.R.layout.activity_main
+		return R.layout.activity_main
 	}
 
 	override fun initGUI() {}
