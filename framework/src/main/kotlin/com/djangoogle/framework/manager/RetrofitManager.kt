@@ -13,6 +13,7 @@ import okhttp3.internal.platform.Platform
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 /**
@@ -30,7 +31,6 @@ class RetrofitManager private constructor() {
 	}
 
 	var mOkHttpClient: OkHttpClient? = null
-		private set
 
 	/**
 	 * 初始化
@@ -51,14 +51,13 @@ class RetrofitManager private constructor() {
 		val okHttpClientBuilder = OkHttpClient.Builder()
 		//配置log
 		okHttpClientBuilder.addInterceptor(
-			LoggingInterceptor.Builder().loggable(BuildConfig.DEBUG)
+			LoggingInterceptor.Builder()
+				.loggable(BuildConfig.DEBUG)
 				.setLevel(Level.BASIC)
 				.log(Platform.INFO)
 				.request("Request")
 				.response("Response")
-				.addHeader("version", BuildConfig.VERSION_NAME)
-//				.enableAndroidStudio_v3_LogsHack(true)
-//				.executor(Executors.newSingleThreadExecutor())
+				.executor(Executors.newSingleThreadExecutor())
 				.build()
 		)
 		//全局的读取超时时间

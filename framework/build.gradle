@@ -73,12 +73,12 @@ dependencies {
 	//https://github.com/square/okhttp
 	//noinspection GradleDependency
 	api 'com.squareup.okhttp3:okhttp:3.12.2'
-	//https://github.com/franmontiel/PersistentCookieJar
-	api 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
 	//https://github.com/ihsanbal/LoggingInterceptor
 	api('com.github.ihsanbal:LoggingInterceptor:3.0.0') {
 		exclude group: 'org.json', module: 'json'
 	}
+	//https://github.com/franmontiel/PersistentCookieJar
+	api 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
 	//https://github.com/google/gson
 	api 'com.google.code.gson:gson:2.8.5'
 	//https://github.com/yanzhenjie/Album
