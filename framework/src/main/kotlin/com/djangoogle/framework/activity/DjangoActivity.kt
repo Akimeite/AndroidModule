@@ -1,5 +1,6 @@
 package com.djangoogle.framework.activity
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
@@ -20,7 +21,6 @@ import com.jakewharton.rxbinding3.view.clicks
 import com.jakewharton.rxbinding3.view.longClicks
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -53,7 +53,6 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 	protected lateinit var fabBaseBottomLeftBtn: FloatingActionButton//左下角浮动按钮
 	protected lateinit var mActivity: Activity//通用Activity
 	protected var mUseBaseLayoutFlag = true//是否使用基础布局
-	protected var mCompositeDisposable: CompositeDisposable = CompositeDisposable()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -114,7 +113,6 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 
 	override fun onDestroy() {
 		super.onDestroy()
-		mCompositeDisposable.clear()
 		//隐藏Loading
 		hideLoading()
 	}
@@ -155,22 +153,25 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 	/**
 	 * 按钮防重复点击
 	 */
+	@SuppressLint("CheckResult")
 	protected fun singleClicks(view: View?, onNext: Consumer<in Unit>?) {
-		view?.clicks()?.throttleFirst(2L, TimeUnit.SECONDS)?.bindToLifecycle(this)?.subscribe(onNext)?.let { mCompositeDisposable.add(it) }
+		view?.clicks()?.throttleFirst(2L, TimeUnit.SECONDS)?.bindToLifecycle(this)?.subscribe(onNext)
 	}
 
 	/**
 	 * 按钮可重复点击
 	 */
+	@SuppressLint("CheckResult")
 	protected fun repeatClicks(view: View?, onNext: Consumer<in Unit>?) {
-		view?.clicks()?.bindToLifecycle(this)?.subscribe(onNext)?.let { mCompositeDisposable.add(it) }
+		view?.clicks()?.bindToLifecycle(this)?.subscribe(onNext)
 	}
 
 	/**
 	 * 按钮长按事件
 	 */
+	@SuppressLint("CheckResult")
 	protected fun onLongClicks(view: View?, onNext: Consumer<in Unit>?) {
-		view?.longClicks()?.bindToLifecycle(this)?.subscribe(onNext)?.let { mCompositeDisposable.add(it) }
+		view?.longClicks()?.bindToLifecycle(this)?.subscribe(onNext)
 	}
 
 	/**
