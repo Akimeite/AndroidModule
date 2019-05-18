@@ -14,16 +14,13 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.FrameLayout
 import com.blankj.utilcode.util.KeyboardUtils
-import com.blankj.utilcode.util.LogUtils
 import com.djangoogle.framework.R
 import com.djangoogle.framework.manager.LoadingManager
 import com.jakewharton.rxbinding3.view.clicks
 import com.jakewharton.rxbinding3.view.longClicks
-import com.trello.rxlifecycle2.android.ActivityEvent
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
-import com.trello.rxlifecycle2.kotlin.bindUntilEvent
-import io.reactivex.Observable
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -56,6 +53,7 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 	protected lateinit var fabBaseBottomLeftBtn: FloatingActionButton//左下角浮动按钮
 	protected lateinit var mActivity: Activity//通用Activity
 	protected var mUseBaseLayoutFlag = true//是否使用基础布局
+	protected var mCompositeDisposable: CompositeDisposable = CompositeDisposable()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -86,10 +84,6 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 				setContentView(initLayout())
 			}
 		}
-		Observable.interval(1L, TimeUnit.SECONDS)
-			.doOnDispose { LogUtils.iTag(TAG, "Unsubscribing subscription from onCreate()") }
-			.bindUntilEvent(this, ActivityEvent.PAUSE)
-			.subscribe { LogUtils.iTag(TAG, "Started in onCreate(), running until onPause(): $it") }
 		//修复修复安卓5497键盘bug
 		KeyboardUtils.fixAndroidBug5497(this)
 		//修复软键盘内存泄漏
@@ -108,18 +102,6 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 		if (!EventBus.getDefault().isRegistered(this)) {
 			EventBus.getDefault().register(this)
 		}
-		Observable.interval(1L, TimeUnit.SECONDS)
-			.doOnDispose { LogUtils.iTag(TAG, "Unsubscribing subscription from onStart()") }
-			.bindToLifecycle(this)
-			.subscribe { LogUtils.iTag(TAG, "Started in onStart(), running until in onStop(): $it") }
-	}
-
-	override fun onResume() {
-		super.onResume()
-		Observable.interval(1L, TimeUnit.SECONDS)
-			.doOnDispose { LogUtils.iTag(TAG, "Unsubscribing subscription from onResume()") }
-			.bindUntilEvent(this, ActivityEvent.DESTROY)
-			.subscribe { LogUtils.iTag(TAG, "Started in onResume(), running until in onDestroy(): $it") }
 	}
 
 	override fun onStop() {
@@ -132,6 +114,7 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 
 	override fun onDestroy() {
 		super.onDestroy()
+		mCompositeDisposable.clear()
 		//隐藏Loading
 		hideLoading()
 	}
@@ -173,21 +156,21 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 	 * 按钮防重复点击
 	 */
 	protected fun singleClicks(view: View?, onNext: Consumer<in Unit>?) {
-		view?.clicks()?.throttleFirst(2L, TimeUnit.SECONDS)?.subscribe(onNext)
+		view?.clicks()?.throttleFirst(2L, TimeUnit.SECONDS)?.bindToLifecycle(this)?.subscribe(onNext)?.let { mCompositeDisposable.add(it) }
 	}
 
 	/**
 	 * 按钮可重复点击
 	 */
 	protected fun repeatClicks(view: View?, onNext: Consumer<in Unit>?) {
-		view?.clicks()?.subscribe(onNext)
+		view?.clicks()?.bindToLifecycle(this)?.subscribe(onNext)?.let { mCompositeDisposable.add(it) }
 	}
 
 	/**
 	 * 按钮长按事件
 	 */
 	protected fun onLongClicks(view: View?, onNext: Consumer<in Unit>?) {
-		view?.longClicks()?.subscribe(onNext)
+		view?.longClicks()?.bindToLifecycle(this)?.subscribe(onNext)?.let { mCompositeDisposable.add(it) }
 	}
 
 	/**
