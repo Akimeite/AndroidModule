@@ -1,4 +1,4 @@
-package com.djangoogle.framework.manager
+package com.djangoogle.framework.retrofit.manager
 
 import android.content.Context
 import com.djangoogle.framework.BuildConfig

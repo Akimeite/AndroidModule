@@ -4,7 +4,7 @@ import android.app.Application
 import com.blankj.utilcode.util.*
 import com.djangoogle.framework.glide.DjangoMediaLoader
 import com.djangoogle.framework.manager.LruBitmapCacheManager
-import com.djangoogle.framework.manager.RetrofitManager
+import com.djangoogle.framework.retrofit.manager.RetrofitManager
 import com.tencent.mmkv.MMKV
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumConfig

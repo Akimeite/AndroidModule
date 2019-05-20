@@ -1,6 +1,6 @@
 package com.djangoogle.module.network;
 
-import com.djangoogle.framework.manager.RetrofitManager;
+import com.djangoogle.framework.retrofit.manager.RetrofitManager;
 
 /**
  * Created by Djangoogle on 2019/05/18 15:37 with Android Studio.

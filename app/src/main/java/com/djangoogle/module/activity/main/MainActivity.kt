@@ -7,6 +7,7 @@ import com.djangoogle.module.activity.banner.BannerActivity
 import com.djangoogle.module.activity.base.BaseActivity
 import com.djangoogle.module.network.Network
 import com.djangoogle.module.network.ZhuangbiImage
+import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
@@ -37,6 +38,7 @@ class MainActivity : BaseActivity() {
 			.search("1")
 			.subscribeOn(Schedulers.io())
 			.observeOn(AndroidSchedulers.mainThread())
+			.bindToLifecycle(this)
 			.subscribe(Consumer<List<ZhuangbiImage>> { images ->
 				ToastUtils.showShort("请求到" + images.size)
 			}, Consumer<Throwable> {
