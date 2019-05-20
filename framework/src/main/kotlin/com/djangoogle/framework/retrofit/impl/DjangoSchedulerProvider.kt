@@ -15,5 +15,9 @@ interface DjangoSchedulerProvider {
 
 	fun ui(): Scheduler
 
-	fun <T, E> applySchedulers(provider: LifecycleProvider<E>): ObservableTransformer<T, T>
+	fun <T, E> applyLifecycle(provider: LifecycleProvider<E>): ObservableTransformer<T, T>
+
+	fun <T> applyUI(): ObservableTransformer<T, T>
+
+	fun <T> applyIO(): ObservableTransformer<T, T>
 }

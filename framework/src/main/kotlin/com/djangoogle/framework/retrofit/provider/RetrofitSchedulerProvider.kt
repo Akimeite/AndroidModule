@@ -32,9 +32,21 @@ class RetrofitSchedulerProvider private constructor() : DjangoSchedulerProvider 
 		return AndroidSchedulers.mainThread()
 	}
 
-	override fun <T, E> applySchedulers(provider: LifecycleProvider<E>): ObservableTransformer<T, T> {
+	override fun <T, E> applyLifecycle(provider: LifecycleProvider<E>): ObservableTransformer<T, T> {
 		return ObservableTransformer<T, T> { upstream: Observable<T> ->
 			upstream.subscribeOn(io()).observeOn(ui()).bindToLifecycle(provider)
+		}
+	}
+
+	override fun <T> applyUI(): ObservableTransformer<T, T> {
+		return ObservableTransformer<T, T> { upstream: Observable<T> ->
+			upstream.subscribeOn(io()).observeOn(ui())
+		}
+	}
+
+	override fun <T> applyIO(): ObservableTransformer<T, T> {
+		return ObservableTransformer<T, T> { upstream: Observable<T> ->
+			upstream.subscribeOn(io()).observeOn(io())
 		}
 	}
 }
