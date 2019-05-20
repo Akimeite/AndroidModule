@@ -1,4 +1,4 @@
-package com.djangoogle.framework.retrofit.impl
+package com.djangoogle.framework.rx.impl
 
 import com.trello.rxlifecycle2.LifecycleProvider
 import io.reactivex.ObservableTransformer

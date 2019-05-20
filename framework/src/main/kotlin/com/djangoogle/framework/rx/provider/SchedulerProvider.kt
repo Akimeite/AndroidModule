@@ -1,6 +1,6 @@
-package com.djangoogle.framework.retrofit.provider
+package com.djangoogle.framework.rx.provider
 
-import com.djangoogle.framework.retrofit.impl.DjangoSchedulerProvider
+import com.djangoogle.framework.rx.impl.DjangoSchedulerProvider
 import com.trello.rxlifecycle2.LifecycleProvider
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
 import io.reactivex.Observable
@@ -12,11 +12,11 @@ import io.reactivex.schedulers.Schedulers
 /**
  * Created by Djangoogle on 2019/05/17 19:23 with Android Studio.
  */
-class RetrofitSchedulerProvider private constructor() : DjangoSchedulerProvider {
+class SchedulerProvider private constructor() : DjangoSchedulerProvider {
 
 	companion object {
-		val INSTANCE: RetrofitSchedulerProvider by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
-			RetrofitSchedulerProvider()
+		val INSTANCE: SchedulerProvider by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
+			SchedulerProvider()
 		}
 	}
 
