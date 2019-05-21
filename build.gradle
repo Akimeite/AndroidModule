@@ -23,6 +23,8 @@ buildscript {
 		rx_android_version = '2.1.1'
 		//https://github.com/trello/RxLifecycle
 		rx_lifecycle_version = '2.2.2'
+		//https://github.com/square/okhttp
+		okhttp_version = '3.12.3'
 		//https://square.github.io/retrofit
 		//https://github.com/square/retrofit
 		retrofit2_version = '2.5.0'
@@ -39,8 +41,8 @@ buildscript {
 		banner_version_name = '1.0.1'
 		framework_package_name = 'Framework'
 		framework_artifact_id = 'framework'
-		framework_version_code = 16
-		framework_version_name = '1.0.1-beta15'
+		framework_version_code = 18
+		framework_version_name = '1.0.1-beta17'
 		player_package_name = 'Player'
 		player_artifact_id = 'player'
 		player_version_code = 2

@@ -1,7 +1,7 @@
 package com.djangoogle.framework.retrofit.manager
 
 import android.content.Context
-import com.djangoogle.framework.BuildConfig
+import com.blankj.utilcode.util.AppUtils
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
@@ -52,8 +52,8 @@ class RetrofitManager private constructor() {
 		//配置log
 		okHttpClientBuilder.addInterceptor(
 			LoggingInterceptor.Builder()
-				.loggable(BuildConfig.DEBUG)
-				.setLevel(Level.BASIC)
+				.loggable(true)
+				.setLevel(if (AppUtils.isAppDebug()) Level.BODY else Level.BASIC)
 				.log(Platform.INFO)
 				.request("Request")
 				.response("Response")
