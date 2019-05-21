@@ -75,12 +75,16 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 			//添加子布局
 			if (0 != initLayout()) {
 				LayoutInflater.from(this).inflate(initLayout(), flBaseBodyView, true)
+				//设置ButterKnife
+				initButterKnife()
 			}
 			//返回键点击事件
 			acibToolBarBackBtn.setOnClickListener { onBackPressed() }
 		} else {
 			if (0 != initLayout()) {//使用自定义布局
 				setContentView(initLayout())
+				//设置ButterKnife
+				initButterKnife()
 			}
 		}
 		//修复修复安卓5497键盘bug
@@ -127,6 +131,11 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 		}
 		return super.dispatchTouchEvent(ev)
 	}
+
+	/**
+	 * 设置ButterKnife
+	 */
+	protected abstract fun initButterKnife()
 
 	/**
 	 * 设置布局
