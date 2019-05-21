@@ -53,7 +53,7 @@ dependencies {
 	kapt "com.github.bumptech.glide:compiler:$glide_version"
 	//https://github.com/greenrobot/EventBus
 	api "org.greenrobot:eventbus:$event_bus_version"
-	//http://greenrobot.org/eventbus/documentation/subscriber-index/
+	//http://greenrobot.org/eventbus/documentation/subscriber-index
 	kapt "org.greenrobot:eventbus-annotation-processor:$event_bus_version"
 	//https://github.com/square/okhttp
 	api "com.squareup.okhttp3:okhttp:$okhttp_version"

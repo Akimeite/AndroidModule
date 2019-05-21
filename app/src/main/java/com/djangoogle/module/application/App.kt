@@ -2,8 +2,10 @@ package com.djangoogle.module.application
 
 import android.content.Context
 import android.support.multidex.MultiDex
+import com.djangoogle.banner.BannerEventBusIndex
+import com.djangoogle.framework.FrameworkEventBusIndex
 import com.djangoogle.framework.application.DjangoApp
-import com.djangoogle.module.manager.EventBusManager
+import org.greenrobot.eventbus.EventBus
 
 /**
  * Created by Djangoogle on 2019/03/27 10:53 with Android Studio.
@@ -18,6 +20,6 @@ class App : DjangoApp() {
 	override fun onCreate() {
 		super.onCreate()
 		//初始化EventBus索引
-		EventBusManager.INSTANCE.initialize()
+		EventBus.builder().addIndex(BannerEventBusIndex()).addIndex(FrameworkEventBusIndex()).installDefaultEventBus()
 	}
 }
