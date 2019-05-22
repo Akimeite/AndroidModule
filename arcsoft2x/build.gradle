@@ -49,3 +49,6 @@ dependencies {
 	//https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
 	compileOnly "com.blankj:utilcode:$util_code_version"
 }
+
+//cd arcsoft2x
+//gradle clean build generatePomFileForReleasePublication publishReleasePublicationToMavenLocal bintrayUpload --no-configure-on-demand --no-parallel

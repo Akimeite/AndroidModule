@@ -14,6 +14,8 @@ abstract class BaseActivity : DjangoActivity() {
 		ablCommonToolBar.visibility = View.GONE
 	}
 
+	override fun initButterKnife() {}
+
 	override fun onWindowFocusChanged(hasFocus: Boolean) {
 		super.onWindowFocusChanged(hasFocus)
 		//始终全屏显示页面

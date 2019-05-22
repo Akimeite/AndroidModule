@@ -34,11 +34,6 @@ import java.util.concurrent.TimeUnit
  */
 abstract class DjangoActivity : RxAppCompatActivity() {
 
-	companion object {
-
-		private val TAG = DjangoActivity::class.simpleName
-	}
-
 	protected lateinit var clBaseRootView: CoordinatorLayout//根View
 	protected lateinit var ablCommonToolBar: AppBarLayout//通用ToolBar根布局
 	protected lateinit var tbCommon: Toolbar//通用ToolBar
