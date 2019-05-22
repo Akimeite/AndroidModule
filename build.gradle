@@ -35,6 +35,10 @@ buildscript {
 		publish_group_id = 'com.djangoogle.support'
 		website = 'https://github.com/Djangoogle/Module/tree/master/'
 		//version
+		arcsoft2x_package_name = 'ArcSoft2X'
+		arcsoft2x_artifact_id = 'arcsoft2x'
+		arcsoft2x_version_code = 1
+		arcsoft2x_version_name = '1.0.0-beta1'
 		banner_package_name = 'Banner'
 		banner_artifact_id = 'banner'
 		banner_version_code = 2
