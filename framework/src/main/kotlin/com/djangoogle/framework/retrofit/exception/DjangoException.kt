@@ -1,6 +1,12 @@
 package com.djangoogle.framework.retrofit.exception
 
 import android.net.ParseException
+import com.djangoogle.framework.retrofit.exception.DjangoThrowable.Companion.CONNECT_ERROR
+import com.djangoogle.framework.retrofit.exception.DjangoThrowable.Companion.HTTP_ERROR
+import com.djangoogle.framework.retrofit.exception.DjangoThrowable.Companion.PARSE_ERROR
+import com.djangoogle.framework.retrofit.exception.DjangoThrowable.Companion.TIME_OUT
+import com.djangoogle.framework.retrofit.exception.DjangoThrowable.Companion.UNKNOWN
+import com.djangoogle.framework.retrofit.exception.DjangoThrowable.Companion.UNKNOWN_HOST
 import com.google.gson.JsonParseException
 import org.json.JSONException
 import retrofit2.HttpException
@@ -16,45 +22,38 @@ class DjangoException {
 
 	companion object {
 
-		//未知错误
-		private const val UNKNOWN = 0x1000
-
-		//解析错误
-		private const val PARSE_ERROR = 0x1001
-
-		//网络错误
-		private const val NETWORK_ERROR = 0x1002
-
-		//协议错误
-		private const val HTTP_ERROR = 0x1003
-
-		fun handleException(e: Throwable): ApiException {
-			val ex: ApiException
-			when (e) {
+		fun handleException(throwable: Throwable): Throwable {
+			val djangoThrowable: DjangoThrowable
+			when (throwable) {
+				//解析错误
 				is JsonParseException, is JSONException, is ParseException -> {
-					//解析错误
-					ex = ApiException(PARSE_ERROR, e.message)
-					return ex
+					djangoThrowable = DjangoThrowable(PARSE_ERROR, "解析错误", throwable)
+					return djangoThrowable
 				}
+				//网络异常
 				is ConnectException -> {
-					//网络错误
-					ex = ApiException(NETWORK_ERROR, e.message)
-					return ex
+					djangoThrowable = DjangoThrowable(CONNECT_ERROR, "网络异常", throwable)
+					return djangoThrowable
 				}
-				is UnknownHostException, is SocketTimeoutException -> {
-					//连接错误
-					ex = ApiException(NETWORK_ERROR, e.message)
-					return ex
+				//连接超时
+				is SocketTimeoutException -> {
+					djangoThrowable = DjangoThrowable(TIME_OUT, "连接超时", throwable)
+					return djangoThrowable
 				}
+				//服务地址异常
+				is UnknownHostException -> {
+					djangoThrowable = DjangoThrowable(UNKNOWN_HOST, "服务地址异常", throwable)
+					return djangoThrowable
+				}
+				//协议错误
 				is UnsupportedEncodingException, is HttpException -> {
-					//协议错误
-					ex = ApiException(HTTP_ERROR, e.message)
-					return ex
+					djangoThrowable = DjangoThrowable(HTTP_ERROR, "协议错误", throwable)
+					return djangoThrowable
 				}
+				//未知错误
 				else -> {
-					//未知错误
-					ex = ApiException(UNKNOWN, e.message)
-					return ex
+					djangoThrowable = DjangoThrowable(UNKNOWN, "未知错误", throwable)
+					return djangoThrowable
 				}
 			}
 		}
