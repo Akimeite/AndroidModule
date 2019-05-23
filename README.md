@@ -4,6 +4,7 @@
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/Djangoogle/Module.svg?color=9e9e9e&style=flat-square)](https://github.com/Djangoogle/Module/blob/master/LICENSE)
 [![License](https://img.shields.io/github/license/Djangoogle/Module.svg?color=607d8b&style=flat-square)](https://github.com/Djangoogle/Module/blob/master/LICENSE)
 
+[![ArcSoft2X](https://img.shields.io/bintray/v/djangoogle/maven/ArcSoft2X.svg?label=arcsoft2x&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/arcsoft2x)
 [![Banner](https://img.shields.io/bintray/v/djangoogle/maven/Banner.svg?label=banner&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/banner)
 [![Framework](https://img.shields.io/bintray/v/djangoogle/maven/Framework.svg?label=framework&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/framework)
 [![Player](https://img.shields.io/bintray/v/djangoogle/maven/Player.svg?label=player&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/player)
