@@ -3,6 +3,7 @@ package com.djangoogle.arcsoft2x.engine
 import android.content.Context
 import com.arcsoft.face.*
 import com.blankj.utilcode.util.LogUtils
+import com.djangoogle.arcsoft2x.model.FaceInfoResult
 import java.util.*
 
 /**
@@ -24,8 +25,11 @@ object ArcSoft2XEngine {
 	//人脸检测最大数量
 	private const val DETECT_FACE_MAX_NUM = 1
 
-	//引擎初始化属性
-	private const val ENGINE_MASK = FaceEngine.ASF_FACE_DETECT or FaceEngine.ASF_FACE_RECOGNITION or FaceEngine.ASF_LIVENESS
+	//图片引擎初始化属性
+	private const val IMAGE_ENGINE_MASK = FaceEngine.ASF_FACE_DETECT or FaceEngine.ASF_FACE_RECOGNITION
+
+	//视频引擎初始化属性
+	private const val VIDEO_ENGINE_MASK = FaceEngine.ASF_FACE_DETECT or FaceEngine.ASF_FACE_RECOGNITION or FaceEngine.ASF_LIVENESS
 
 	/**
 	 * 激活虹软2.1算法引擎
@@ -65,7 +69,7 @@ object ArcSoft2XEngine {
 			detectFaceOrientPriority,
 			DETECT_FACE_SCALE_VAL,
 			DETECT_FACE_MAX_NUM,
-			ENGINE_MASK
+			IMAGE_ENGINE_MASK
 		)
 		return if (ErrorInfo.MOK == faceEngineCode) {
 			val versionInfo = VersionInfo()
@@ -93,7 +97,7 @@ object ArcSoft2XEngine {
 			detectFaceOrientPriority,
 			DETECT_FACE_SCALE_VAL,
 			DETECT_FACE_MAX_NUM,
-			ENGINE_MASK
+			VIDEO_ENGINE_MASK
 		)
 		return if (ErrorInfo.MOK == faceEngineCode) {
 			val versionInfo = VersionInfo()
@@ -123,55 +127,113 @@ object ArcSoft2XEngine {
 	}
 
 	/**
-	 * 根据条件处理人脸数据
+	 * 处理图片数据
 	 *
 	 * @param faceEngine 算法引擎
 	 * @param data       流数据
 	 * @param width      宽度
 	 * @param height     高度
-	 * @param format     处理格式
 	 * @return 人脸信息
 	 */
-	fun processData(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int, format: Int): FaceInfo? {
+	fun processImage(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int): FaceInfoResult {
 		val faceInfoList = ArrayList<FaceInfo>()
-		var code = faceEngine.detectFaces(data, width, height, format, faceInfoList)
+		var code = faceEngine.detectFaces(data, width, height, FaceEngine.CP_PAF_BGR24, faceInfoList)
 		//检测人脸
-		if (ErrorInfo.MOK != code || faceInfoList.isEmpty()) {
-			LogUtils.eTag(TAG, "未检测到人脸", code)
-			return null
-		} else {
-			LogUtils.eTag(TAG, "检测到人脸", code)
+		if (ErrorInfo.MOK != code) {
+			return FaceInfoResult(code, "检测人脸失败", null)
+		}
+		if (faceInfoList.isEmpty()) {
+			return FaceInfoResult(code, "未检测到人脸", null)
 		}
 		//检测人脸属性
-		code = faceEngine.process(data, width, height, format, faceInfoList, FaceEngine.ASF_LIVENESS)
-		return if (ErrorInfo.MOK == code) {
-			if (faceInfoList.isNotEmpty()) {
-				LogUtils.iTag(TAG, "检测人脸属性成功", code)
-				faceInfoList[0]
-			} else {
-				LogUtils.eTag(TAG, "未检测到人脸属性", code)
-				null
-			}
+		code = faceEngine.process(data, width, height, FaceEngine.CP_PAF_BGR24, faceInfoList, FaceEngine.ASF_NONE)
+		return if (ErrorInfo.MOK != code) {
+			FaceInfoResult(code, "检测人脸属性失败", null)
 		} else {
-			LogUtils.eTag(TAG, "检测人脸属性失败", code)
-			null
+			if (faceInfoList.isEmpty()) {
+				FaceInfoResult(code, "未检测到人脸属性", null)
+			} else {
+				FaceInfoResult(code, "检测人脸属性成功", faceInfoList[0])
+			}
 		}
 	}
 
 	/**
-	 * 抽取特征数组
+	 * 处理视频数据
+	 *
+	 * @param faceEngine 算法引擎
+	 * @param data       流数据
+	 * @param width      宽度
+	 * @param height     高度
+	 * @param liveness   是否检测活体
+	 * @return 人脸信息
+	 */
+	fun processVideo(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int, liveness: Boolean): FaceInfoResult {
+		val faceInfoList = ArrayList<FaceInfo>()
+		var code = faceEngine.detectFaces(data, width, height, FaceEngine.CP_PAF_NV21, faceInfoList)
+		//检测人脸
+		if (ErrorInfo.MOK != code) {
+			return FaceInfoResult(code, "检测人脸失败", null)
+		}
+		if (faceInfoList.isEmpty()) {
+			return FaceInfoResult(code, "未检测到人脸", null)
+		}
+		//检测人脸属性
+		code = faceEngine.process(
+			data,
+			width,
+			height,
+			FaceEngine.CP_PAF_NV21,
+			faceInfoList,
+			if (liveness) FaceEngine.ASF_LIVENESS else FaceEngine.ASF_NONE
+		)
+		if (ErrorInfo.MOK != code) {
+			return FaceInfoResult(code, "检测人脸属性失败", null)
+		}
+		//活体检测
+		if (liveness) {
+			val livenessInfoList = ArrayList<LivenessInfo>()
+			val livenessCode = faceEngine.getLiveness(livenessInfoList)
+			if (ErrorInfo.MOK != livenessCode) {
+				return FaceInfoResult(livenessCode, "检测人脸属性失败", null)
+			}
+		}
+		return if (faceInfoList.isEmpty()) {
+			FaceInfoResult(code, "未检测到人脸属性", null)
+		} else {
+			FaceInfoResult(code, "检测人脸属性成功", faceInfoList[0])
+		}
+	}
+
+	/**
+	 * 抽取图片特征数组
 	 *
 	 * @param faceEngine 算法引擎
 	 * @param data       帧数据
 	 * @param width      宽度
 	 * @param height     高度
-	 * @param format     处理格式
 	 * @param faceInfo   人脸信息
 	 * @return 特征数组
 	 */
-	fun extractFaceFeature(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int, format: Int, faceInfo: FaceInfo): ByteArray? {
+	fun extractImageFeature(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int, faceInfo: FaceInfo): ByteArray? {
 		val faceFeature = FaceFeature()
-		val extractFaceFeatureCode = faceEngine.extractFaceFeature(data, width, height, format, faceInfo, faceFeature)
+		val extractFaceFeatureCode = faceEngine.extractFaceFeature(data, width, height, FaceEngine.CP_PAF_BGR24, faceInfo, faceFeature)
+		return if (ErrorInfo.MOK != extractFaceFeatureCode) null else faceFeature.featureData
+	}
+
+	/**
+	 * 抽取视频特征数组
+	 *
+	 * @param faceEngine 算法引擎
+	 * @param data       帧数据
+	 * @param width      宽度
+	 * @param height     高度
+	 * @param faceInfo   人脸信息
+	 * @return 特征数组
+	 */
+	fun extractVideoFeature(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int, faceInfo: FaceInfo): ByteArray? {
+		val faceFeature = FaceFeature()
+		val extractFaceFeatureCode = faceEngine.extractFaceFeature(data, width, height, FaceEngine.CP_PAF_NV21, faceInfo, faceFeature)
 		return if (ErrorInfo.MOK != extractFaceFeatureCode) null else faceFeature.featureData
 	}
 
