@@ -1,12 +1,12 @@
-package com.djangoogle.framework.retrofit.exception
+package com.djangoogle.framework.exception
 
 import android.net.ParseException
-import com.djangoogle.framework.retrofit.exception.DjangoThrowable.Companion.CONNECT_ERROR
-import com.djangoogle.framework.retrofit.exception.DjangoThrowable.Companion.HTTP_ERROR
-import com.djangoogle.framework.retrofit.exception.DjangoThrowable.Companion.PARSE_ERROR
-import com.djangoogle.framework.retrofit.exception.DjangoThrowable.Companion.TIME_OUT
-import com.djangoogle.framework.retrofit.exception.DjangoThrowable.Companion.UNKNOWN
-import com.djangoogle.framework.retrofit.exception.DjangoThrowable.Companion.UNKNOWN_HOST
+import com.djangoogle.framework.exception.DjangoThrowable.Companion.CONNECT_ERROR
+import com.djangoogle.framework.exception.DjangoThrowable.Companion.HTTP_ERROR
+import com.djangoogle.framework.exception.DjangoThrowable.Companion.PARSE_ERROR
+import com.djangoogle.framework.exception.DjangoThrowable.Companion.TIME_OUT
+import com.djangoogle.framework.exception.DjangoThrowable.Companion.UNKNOWN
+import com.djangoogle.framework.exception.DjangoThrowable.Companion.UNKNOWN_HOST
 import com.google.gson.JsonParseException
 import org.json.JSONException
 import retrofit2.HttpException

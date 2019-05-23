@@ -38,7 +38,7 @@ dependencies {
 	api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 	api "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 	//https://maven.google.com
-	compileOnly "com.android.support:design:$android_support_version"
+	compileOnly "com.google.android.material:material:$androidx_material_version"
 	//https://github.com/CarGuo/GSYVideoPlayer
 	api("com.shuyu:gsyVideoPlayer-java:$gsy_video_player_version") {
 		exclude group: 'com.android.support'

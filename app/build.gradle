@@ -49,7 +49,7 @@ dependencies {
 	implementation project(':framework')
 	implementation project(':uvccamera')
 	//https://maven.google.com
-	implementation 'com.android.support:multidex:1.0.3'
+	implementation 'androidx.multidex:multidex:2.0.1'
 	//https://github.com/CymChad/BaseRecyclerViewAdapterHelper
 	implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
 	//https://github.com/yqritc/RecyclerView-FlexibleDivider

@@ -1,8 +1,8 @@
 package com.djangoogle.framework.rx.provider
 
 import com.djangoogle.framework.rx.impl.DjangoSchedulerProvider
-import com.trello.rxlifecycle2.LifecycleProvider
-import com.trello.rxlifecycle2.kotlin.bindToLifecycle
+import com.trello.rxlifecycle3.LifecycleProvider
+import com.trello.rxlifecycle3.kotlin.bindToLifecycle
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import io.reactivex.Scheduler

@@ -1,4 +1,4 @@
-package com.djangoogle.framework.retrofit.exception
+package com.djangoogle.framework.exception
 
 /**
  * Created by Djangoogle on 2019/05/17 18:58 with Android Studio.

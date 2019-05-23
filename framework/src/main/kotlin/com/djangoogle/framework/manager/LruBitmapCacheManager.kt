@@ -1,7 +1,6 @@
 package com.djangoogle.framework.manager
 
 import android.graphics.Bitmap
-import android.support.v4.util.LruCache
 import com.blankj.utilcode.util.LogUtils
 
 /**
@@ -16,7 +15,7 @@ class LruBitmapCacheManager private constructor() {
 		}
 	}
 
-	private var mMemoryCache: LruCache<String, Bitmap>? = null
+	private var mMemoryCache: androidx.collection.LruCache<String, Bitmap>? = null
 
 	/**
 	 * 初始化
@@ -24,7 +23,7 @@ class LruBitmapCacheManager private constructor() {
 	fun initialize() {
 		val maxMemonry = (Runtime.getRuntime().maxMemory() / 1024L).toInt()
 		if (null == mMemoryCache) {
-			mMemoryCache = object : LruCache<String, Bitmap>(maxMemonry / 8) {
+			mMemoryCache = object : androidx.collection.LruCache<String, Bitmap>(maxMemonry / 8) {
 				override fun sizeOf(key: String, bitmap: Bitmap): Int {
 					//重写此方法来衡量每张图片的大小，默认返回图片数量。
 					return bitmap.rowBytes * bitmap.height / 1024

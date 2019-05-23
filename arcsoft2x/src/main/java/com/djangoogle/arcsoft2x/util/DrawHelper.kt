@@ -5,11 +5,11 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.hardware.Camera
 
-import com.djangoogle.arcsoft2x.model.FaceInfoModel
 import com.djangoogle.arcsoft2x.widget.FaceRectView
 
 /**
  * 绘制人脸框帮助类，用于在[FaceRectView]上绘制矩形
+ * Created by Djangoogle on 2019/04/08 17:42 with Android Studio.
  */
 class DrawHelper(
 	private var previewWidth: Int,
@@ -21,17 +21,40 @@ class DrawHelper(
 	private var isMirror: Boolean
 ) {
 
-	fun draw(faceRectView: FaceRectView?, drawInfoList: List<FaceInfoModel>?) {
+	companion object {
+
+		/**
+		 * 绘制数据信息到view上
+		 *
+		 * @param canvas            需要被绘制的view的canvas
+		 * @param rect              人脸框
+		 * @param color             绘制的颜色
+		 * @param faceRectThickness 人脸框厚度
+		 */
+		fun drawFaceRect(canvas: Canvas?, rect: Rect?, color: Int, faceRectThickness: Int) {
+			if (null == canvas || null == rect) {
+				return
+			}
+			val paint = Paint()
+			paint.style = Paint.Style.STROKE
+			paint.strokeWidth = faceRectThickness.toFloat()
+			paint.color = color
+			canvas.drawRect(rect, paint)
+		}
+	}
+
+	fun draw(faceRectView: FaceRectView?, rectList: List<Rect>?) {
 		if (null == faceRectView) {
 			return
 		}
 		faceRectView.clearFaceInfo()
-		if (null == drawInfoList || drawInfoList.isEmpty()) {
+		if (null == rectList || rectList.isEmpty()) {
 			return
 		}
-		for (drawInfo in drawInfoList) {
-			drawInfo.rect = adjustRect(
-				drawInfo.rect,
+		val newRectList = ArrayList<Rect>()
+		for (rect in rectList) {
+			adjustRect(
+				rect,
 				previewWidth,
 				previewHeight,
 				canvasWidth,
@@ -41,9 +64,9 @@ class DrawHelper(
 				isMirror,
 				mirrorHorizontal = false,
 				mirrorVertical = false
-			)
+			)?.let { newRectList.add(it) }
 		}
-		faceRectView.addFaceInfo(drawInfoList)
+		faceRectView.addFaceInfo(newRectList)
 	}
 
 	/**
@@ -189,34 +212,5 @@ class DrawHelper(
 
 	fun setMirror(mirror: Boolean) {
 		isMirror = mirror
-	}
-
-	companion object {
-
-		/**
-		 * 绘制数据信息到view上，若 [FaceInfoModel.name] 不为null则绘制 [FaceInfoModel.name]
-		 *
-		 * @param canvas            需要被绘制的view的canvas
-		 * @param drawInfo          绘制信息
-		 * @param color             绘制的颜色
-		 * @param faceRectThickness 人脸框厚度
-		 */
-		fun drawFaceRect(canvas: Canvas?, drawInfo: FaceInfoModel?, color: Int, faceRectThickness: Int) {
-			if (canvas == null || drawInfo == null) {
-				return
-			}
-			val paint = Paint()
-			paint.style = Paint.Style.STROKE
-			paint.strokeWidth = faceRectThickness.toFloat()
-			paint.color = color
-			val rect = drawInfo.rect
-			canvas.drawRect(rect!!, paint)
-
-			if (null != drawInfo.name) {
-				paint.style = Paint.Style.FILL_AND_STROKE
-				paint.textSize = (rect.width() / 8).toFloat()
-				canvas.drawText(drawInfo.name!!, rect.left.toFloat(), (rect.top - 10).toFloat(), paint)
-			}
-		}
 	}
 }

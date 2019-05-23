@@ -1,9 +1,6 @@
 package com.djangoogle.banner.manager;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import com.djangoogle.banner.adapter.BannerAdapter;
 import com.djangoogle.banner.event.PlayNextAdEvent;
@@ -14,6 +11,10 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * 轮播管理器

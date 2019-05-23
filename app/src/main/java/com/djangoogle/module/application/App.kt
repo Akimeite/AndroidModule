@@ -1,8 +1,7 @@
 package com.djangoogle.module.application
 
 import android.content.Context
-import android.support.multidex.MultiDex
-import com.djangoogle.arcsoft2x.ArcSoft2XEventBusIndex
+import androidx.multidex.MultiDex
 import com.djangoogle.banner.BannerEventBusIndex
 import com.djangoogle.framework.FrameworkEventBusIndex
 import com.djangoogle.framework.application.DjangoApp
@@ -22,7 +21,7 @@ class App : DjangoApp() {
 		super.onCreate()
 		//初始化EventBus索引
 		EventBus.builder()
-			.addIndex(ArcSoft2XEventBusIndex())
+//			.addIndex(ArcSoft2XEventBusIndex())
 			.addIndex(BannerEventBusIndex())
 			.addIndex(FrameworkEventBusIndex())
 			.installDefaultEventBus()

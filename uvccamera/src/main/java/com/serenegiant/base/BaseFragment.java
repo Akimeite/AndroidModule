@@ -30,8 +30,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -39,6 +37,9 @@ import com.serenegiant.dialog.MessageDialogFragment;
 import com.serenegiant.utils.BuildCheck;
 import com.serenegiant.utils.HandlerThreadHandler;
 import com.serenegiant.utils.PermissionCheck;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 
 /**
  * Created by saki on 2016/11/19.

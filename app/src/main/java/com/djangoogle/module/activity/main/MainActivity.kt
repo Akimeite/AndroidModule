@@ -7,7 +7,7 @@ import com.djangoogle.module.activity.banner.BannerActivity
 import com.djangoogle.module.activity.base.BaseActivity
 import com.djangoogle.module.network.Network
 import com.djangoogle.module.network.ZhuangbiImage
-import com.trello.rxlifecycle2.kotlin.bindToLifecycle
+import com.trello.rxlifecycle3.kotlin.bindToLifecycle
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers

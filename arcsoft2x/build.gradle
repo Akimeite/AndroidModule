@@ -40,8 +40,6 @@ android {
 
 dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
-	//https://maven.google.com
-	compileOnly "com.android.support:design:$android_support_version"
 	//https://github.com/greenrobot/EventBus
 	compileOnly "org.greenrobot:eventbus:$event_bus_version"
 	//http://greenrobot.org/eventbus/documentation/subscriber-index

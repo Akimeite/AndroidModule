@@ -4,23 +4,22 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
-import android.support.design.widget.CoordinatorLayout
-import android.support.design.widget.FloatingActionButton
-import android.support.v7.widget.*
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.FrameLayout
+import androidx.appcompat.widget.*
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.blankj.utilcode.util.KeyboardUtils
 import com.djangoogle.framework.R
 import com.djangoogle.framework.manager.LoadingManager
+import com.google.android.material.appbar.AppBarLayout
 import com.jakewharton.rxbinding3.view.clicks
 import com.jakewharton.rxbinding3.view.longClicks
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
-import com.trello.rxlifecycle2.kotlin.bindToLifecycle
+import com.trello.rxlifecycle3.components.support.RxAppCompatActivity
+import com.trello.rxlifecycle3.kotlin.bindToLifecycle
 import io.reactivex.functions.Consumer
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -44,8 +43,6 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 	protected lateinit var actvToolBarRightTextBtn: AppCompatTextView//右侧文字按钮
 	protected lateinit var acibToolBarRightImgBtn: AppCompatImageButton//右侧图标按钮
 	protected lateinit var flBaseBodyView: FrameLayout//bodyview
-	protected lateinit var fabBaseBottomRightBtn: FloatingActionButton//右下角浮动按钮
-	protected lateinit var fabBaseBottomLeftBtn: FloatingActionButton//左下角浮动按钮
 	protected lateinit var mActivity: Activity//通用Activity
 	protected var mUseBaseLayoutFlag = true//是否使用基础布局
 
@@ -53,7 +50,7 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 		super.onCreate(savedInstanceState)
 		mActivity = this
 		if (mUseBaseLayoutFlag) {//使用基础布局
-			setContentView(R.layout.activity_base)
+			setContentView(R.layout.activity_django)
 			//设置布局
 			clBaseRootView = findViewById(R.id.clBaseRootView)
 			ablCommonToolBar = findViewById(R.id.ablCommonToolBar)
@@ -65,8 +62,6 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 			actvToolBarRightTextBtn = findViewById(R.id.actvToolBarRightTextBtn)
 			acibToolBarRightImgBtn = findViewById(R.id.acibToolBarRightImgBtn)
 			flBaseBodyView = findViewById(R.id.flBaseBodyView)
-			fabBaseBottomRightBtn = findViewById(R.id.fabBaseBottomRightBtn)
-			fabBaseBottomLeftBtn = findViewById(R.id.fabBaseBottomLeftBtn)
 			//添加子布局
 			if (0 != initLayout()) {
 				LayoutInflater.from(this).inflate(initLayout(), flBaseBodyView, true)
@@ -256,37 +251,6 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 			acibToolBarRightImgBtn.setImageResource(resId)
 			if (null != listener) {
 				acibToolBarRightImgBtn.setOnClickListener(listener)
-			}
-		}
-	}
-
-	/**
-	 * 设置右下角浮动按钮
-	 *
-	 * @param resId    图标资源文件
-	 * @param listener 点击事件
-	 */
-	protected fun setBottomRightFloatingBtn(resId: Int, listener: View.OnClickListener?) {
-		if (mUseBaseLayoutFlag) {
-			fabBaseBottomRightBtn.show()
-			fabBaseBottomRightBtn.setImageResource(resId)
-			if (null != listener) {
-				fabBaseBottomRightBtn.setOnClickListener(listener)
-			}
-		}
-	}
-
-	/**
-	 * 设置左下角浮动按钮
-	 *
-	 * @param resId    图标资源文件
-	 * @param listener 点击事件
-	 */
-	protected fun setBottomLeftFloatingBtn(resId: Int, listener: View.OnClickListener?) {
-		if (mUseBaseLayoutFlag) {
-			fabBaseBottomLeftBtn.setImageResource(resId)
-			if (null != listener) {
-				fabBaseBottomLeftBtn.setOnClickListener(listener)
 			}
 		}
 	}

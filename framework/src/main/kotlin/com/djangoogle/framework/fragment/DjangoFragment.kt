@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.djangoogle.framework.manager.LoadingManager
-import com.trello.rxlifecycle2.components.support.RxFragment
+import com.trello.rxlifecycle3.components.support.RxFragment
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode

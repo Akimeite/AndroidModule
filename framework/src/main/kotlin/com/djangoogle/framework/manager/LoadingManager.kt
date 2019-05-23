@@ -1,6 +1,5 @@
 package com.djangoogle.framework.manager
 
-import android.support.v4.app.FragmentManager
 import com.djangoogle.framework.widget.DjangoLoading
 
 /**
@@ -22,7 +21,7 @@ class LoadingManager private constructor() {
 	 *
 	 * @param fragmentManager FragmentManager
 	 */
-	fun show(fragmentManager: FragmentManager?) {
+	fun show(fragmentManager: androidx.fragment.app.FragmentManager?) {
 		hide()
 		if (null == lodingView) {
 			lodingView = DjangoLoading()

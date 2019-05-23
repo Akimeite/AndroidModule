@@ -46,8 +46,8 @@ dependencies {
 //	api "com.djangoogle.support:player:$playerVersionName"
 	api project(':player')
 	//https://maven.google.com
-	compileOnly "com.android.support:design:$android_support_version"
-	compileOnly "com.android.support.constraint:constraint-layout:$constraint_version"
+	compileOnly "com.google.android.material:material:$androidx_material_version"
+	compileOnly "androidx.constraintlayout:constraintlayout:$androidx_constraintlayout_version"
 	//https://github.com/bumptech/glide
 	compileOnly "com.github.bumptech.glide:glide:$glide_version"
 	//https://github.com/greenrobot/EventBus

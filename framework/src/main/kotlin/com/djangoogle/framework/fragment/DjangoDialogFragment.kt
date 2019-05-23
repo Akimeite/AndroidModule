@@ -4,9 +4,9 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.FragmentManager
 import com.blankj.utilcode.util.LogUtils
-import com.trello.rxlifecycle2.components.support.RxDialogFragment
+import com.trello.rxlifecycle3.components.support.RxDialogFragment
 
 /**
  * Created by Djangoogle on 2019/05/20 10:24 with Android Studio.
