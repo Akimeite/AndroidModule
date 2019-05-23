@@ -37,8 +37,8 @@ buildscript {
 		//version
 		arcsoft2x_package_name = 'ArcSoft2X'
 		arcsoft2x_artifact_id = 'arcsoft2x'
-		arcsoft2x_version_code = 4
-		arcsoft2x_version_name = '1.0.0-alpha4'
+		arcsoft2x_version_code = 5
+		arcsoft2x_version_name = '1.0.0-alpha5'
 		banner_package_name = 'Banner'
 		banner_artifact_id = 'banner'
 		banner_version_code = 2
