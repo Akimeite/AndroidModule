@@ -24,11 +24,8 @@ object ArcSoft2XEngine {
 	//人脸检测最大数量
 	private const val DETECT_FACE_MAX_NUM = 1
 
-	//图片引擎属性
-	private const val IMAGE_ENGINE_MASK = FaceEngine.ASF_FACE_DETECT or FaceEngine.ASF_FACE_RECOGNITION
-
-	//视频引擎属性
-	private const val VIDEO_ENGINE_MASK = FaceEngine.ASF_FACE_DETECT or FaceEngine.ASF_FACE_RECOGNITION or FaceEngine.ASF_LIVENESS
+	//引擎初始化属性
+	private const val ENGINE_MASK = FaceEngine.ASF_FACE_DETECT or FaceEngine.ASF_FACE_RECOGNITION or FaceEngine.ASF_LIVENESS
 
 	/**
 	 * 激活虹软2.1算法引擎
@@ -68,7 +65,7 @@ object ArcSoft2XEngine {
 			detectFaceOrientPriority,
 			DETECT_FACE_SCALE_VAL,
 			DETECT_FACE_MAX_NUM,
-			IMAGE_ENGINE_MASK
+			ENGINE_MASK
 		)
 		return if (ErrorInfo.MOK == faceEngineCode) {
 			val versionInfo = VersionInfo()
@@ -96,7 +93,7 @@ object ArcSoft2XEngine {
 			detectFaceOrientPriority,
 			DETECT_FACE_SCALE_VAL,
 			DETECT_FACE_MAX_NUM,
-			VIDEO_ENGINE_MASK
+			ENGINE_MASK
 		)
 		return if (ErrorInfo.MOK == faceEngineCode) {
 			val versionInfo = VersionInfo()

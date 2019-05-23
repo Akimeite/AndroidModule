@@ -39,13 +39,13 @@ android {
 }
 
 dependencies {
-	implementation fileTree(dir: 'libs', include: ['*.jar'])
+	api fileTree(dir: 'libs', include: ['*.jar'])
 	//https://github.com/greenrobot/EventBus
 	compileOnly "org.greenrobot:eventbus:$event_bus_version"
 	//http://greenrobot.org/eventbus/documentation/subscriber-index
 	kapt "org.greenrobot:eventbus-annotation-processor:$event_bus_version"
 	//https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
-	compileOnly "com.blankj:utilcode:$util_code_version"
+	compileOnly "com.blankj:utilcodex:$util_codex_version"
 }
 
 //cd arcsoft2x

@@ -45,7 +45,7 @@ dependencies {
 	}
 	api "com.shuyu:gsyVideoPlayer-ex_so:$gsy_video_player_version"
 	//https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
-	compileOnly "com.blankj:utilcode:$util_code_version"
+	compileOnly "com.blankj:utilcodex:$util_codex_version"
 }
 
 //cd player

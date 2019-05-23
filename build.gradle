@@ -18,7 +18,7 @@ buildscript {
 		//https://github.com/greenrobot/EventBus
 		event_bus_version = '3.1.1'
 		//https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
-		util_code_version = '1.23.7'
+		util_codex_version = '1.23.7'
 		//https://github.com/ReactiveX/RxAndroid
 		rx_android_version = '2.1.1'
 		//https://github.com/trello/RxLifecycle
@@ -37,16 +37,16 @@ buildscript {
 		//version
 		arcsoft2x_package_name = 'ArcSoft2X'
 		arcsoft2x_artifact_id = 'arcsoft2x'
-		arcsoft2x_version_code = 1
-		arcsoft2x_version_name = '1.0.0-alpha1'
+		arcsoft2x_version_code = 2
+		arcsoft2x_version_name = '1.0.0-alpha2'
 		banner_package_name = 'Banner'
 		banner_artifact_id = 'banner'
 		banner_version_code = 2
 		banner_version_name = '1.0.1'
 		framework_package_name = 'Framework'
 		framework_artifact_id = 'framework'
-		framework_version_code = 22
-		framework_version_name = '1.0.1-beta21'
+		framework_version_code = 24
+		framework_version_name = '1.0.1-beta23'
 		player_package_name = 'Player'
 		player_artifact_id = 'player'
 		player_version_code = 2
