@@ -12,7 +12,7 @@ import java.util.*
  */
 object ArcSoft2XEngine {
 
-	const val COMPARE_SCORE = 0.8f
+	const val COMPARE_SCORE = 0.8F
 
 	private val TAG = ArcSoft2XEngine::class.java.simpleName
 
@@ -32,7 +32,7 @@ object ArcSoft2XEngine {
 	private const val VIDEO_ENGINE_MASK = FaceEngine.ASF_FACE_DETECT or FaceEngine.ASF_FACE_RECOGNITION or FaceEngine.ASF_LIVENESS
 
 	/**
-	 * 激活虹软2.1算法引擎
+	 * 激活虹软2.X算法引擎
 	 *
 	 * @param context 上下文
 	 * @param appId   APP_ID
@@ -40,15 +40,15 @@ object ArcSoft2XEngine {
 	 * @return 成功/失败
 	 */
 	fun active(context: Context, appId: String, sdkKey: String): Boolean {
-		LogUtils.iTag(TAG, "激活虹软2.1算法引擎")
+		LogUtils.iTag(TAG, "开始激活虹软2.X算法引擎")
 		val faceEngine = FaceEngine()
 		return when (val activeCode = faceEngine.active(context, appId, sdkKey)) {
 			ErrorInfo.MOK, ErrorInfo.MERR_ASF_ALREADY_ACTIVATED -> {
-				LogUtils.iTag(TAG, "虹软2.1算法引擎激活成功", activeCode)
+				LogUtils.iTag(TAG, "虹软2.X算法引擎激活成功, 返回码: $activeCode")
 				true
 			}
 			else -> {
-				LogUtils.eTag(TAG, "虹软2.1算法引擎激活失败", activeCode)
+				LogUtils.eTag(TAG, "虹软2.X算法引擎激活失败, 返回码: $activeCode")
 				false
 			}
 		}
@@ -74,10 +74,10 @@ object ArcSoft2XEngine {
 		return if (ErrorInfo.MOK == faceEngineCode) {
 			val versionInfo = VersionInfo()
 			faceEngine.getVersion(versionInfo)
-			LogUtils.iTag(TAG, "虹软2.1算法引擎初始化成功, 版本号: $versionInfo")
+			LogUtils.iTag(TAG, "虹软2.X算法引擎初始化成功, 版本号: $versionInfo")
 			faceEngine
 		} else {
-			LogUtils.eTag(TAG, "虹软2.1算法引擎初始化失败, 错误码: ", faceEngineCode)
+			LogUtils.eTag(TAG, "虹软2.X算法引擎初始化失败, 返回码: $faceEngineCode")
 			null
 		}
 	}
@@ -102,10 +102,10 @@ object ArcSoft2XEngine {
 		return if (ErrorInfo.MOK == faceEngineCode) {
 			val versionInfo = VersionInfo()
 			faceEngine.getVersion(versionInfo)
-			LogUtils.iTag(TAG, "虹软2.1算法引擎初始化成功, 版本号: $versionInfo")
+			LogUtils.iTag(TAG, "虹软2.X算法引擎初始化成功, 版本号: $versionInfo")
 			faceEngine
 		} else {
-			LogUtils.eTag(TAG, "虹软2.1算法引擎初始化失败, 错误码: ", faceEngineCode)
+			LogUtils.eTag(TAG, "虹软2.X算法引擎初始化失败, 返回码: $faceEngineCode")
 			null
 		}
 	}
@@ -119,7 +119,7 @@ object ArcSoft2XEngine {
 		try {
 			if (null != faceEngine) {
 				val faceEngineCode = faceEngine.unInit()
-				LogUtils.iTag(TAG, "释放虹软2.1算法引擎", faceEngineCode)
+				LogUtils.iTag(TAG, "释放虹软2.X算法引擎, 返回码: $faceEngineCode")
 			}
 		} catch (e: Exception) {
 			LogUtils.eTag(TAG, e.message)
@@ -137,24 +137,12 @@ object ArcSoft2XEngine {
 	 */
 	fun processImage(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int): FaceInfoResult {
 		val faceInfoList = ArrayList<FaceInfo>()
-		var code = faceEngine.detectFaces(data, width, height, FaceEngine.CP_PAF_BGR24, faceInfoList)
+		val code = faceEngine.detectFaces(data, width, height, FaceEngine.CP_PAF_BGR24, faceInfoList)
 		//检测人脸
-		if (ErrorInfo.MOK != code) {
-			return FaceInfoResult(code, "检测人脸失败", false, null)
-		}
-		if (faceInfoList.isEmpty()) {
-			return FaceInfoResult(code, "未检测到人脸", false, null)
-		}
-		//检测人脸属性
-		code = faceEngine.process(data, width, height, FaceEngine.CP_PAF_BGR24, faceInfoList, FaceEngine.ASF_NONE)
-		return if (ErrorInfo.MOK != code) {
-			FaceInfoResult(code, "检测人脸属性失败", false, null)
-		} else {
-			if (faceInfoList.isEmpty()) {
-				FaceInfoResult(code, "未检测到人脸属性", false, null)
-			} else {
-				FaceInfoResult(code, "检测人脸属性成功", false, faceInfoList[0])
-			}
+		return when {
+			ErrorInfo.MOK != code -> FaceInfoResult(code, "检测人脸失败", false, null)
+			faceInfoList.isEmpty() -> FaceInfoResult(code, "未检测到人脸", false, null)
+			else -> FaceInfoResult(code, "检测到人脸", false, faceInfoList[0])
 		}
 	}
 
@@ -172,42 +160,29 @@ object ArcSoft2XEngine {
 		val faceInfoList = ArrayList<FaceInfo>()
 		var code = faceEngine.detectFaces(data, width, height, FaceEngine.CP_PAF_NV21, faceInfoList)
 		//检测人脸
-		if (ErrorInfo.MOK != code) {
-			return FaceInfoResult(code, "检测人脸失败", false, null)
-		}
-		if (faceInfoList.isEmpty()) {
-			return FaceInfoResult(code, "未检测到人脸", false, null)
-		}
-		//检测人脸属性
-		code = faceEngine.process(
-			data,
-			width,
-			height,
-			FaceEngine.CP_PAF_NV21,
-			faceInfoList,
-			if (liveness) FaceEngine.ASF_LIVENESS else FaceEngine.ASF_NONE
-		)
-		if (ErrorInfo.MOK != code) {
-			return FaceInfoResult(code, "检测人脸属性失败", false, null)
-		}
-		return if (faceInfoList.isEmpty()) {
-			FaceInfoResult(code, "未检测到人脸属性", false, null)
-		} else {
-			if (liveness) {
-				//活体检测
-				val livenessInfoList = ArrayList<LivenessInfo>()
-				val livenessCode = faceEngine.getLiveness(livenessInfoList)
-				if (ErrorInfo.MOK != livenessCode) {
-					FaceInfoResult(livenessCode, "检测人脸属性失败", false, null)
-				} else {
-					if (livenessInfoList.isEmpty()) {
-						FaceInfoResult(code, "未检测到活体信息", false, null)
-					} else {
-						FaceInfoResult(code, "检测人脸属性成功", LivenessInfo.ALIVE == livenessInfoList[0].liveness, faceInfoList[0])
+		return when {
+			ErrorInfo.MOK != code -> FaceInfoResult(code, "检测人脸失败", false, null)
+			faceInfoList.isEmpty() -> FaceInfoResult(code, "未检测到人脸", false, null)
+			//不检测活体
+			!liveness -> FaceInfoResult(code, "检测到人脸", false, faceInfoList[0])
+			//活体检测
+			else -> {
+				code = faceEngine.process(
+					data, width, height, FaceEngine.CP_PAF_NV21, faceInfoList, FaceEngine.ASF_LIVENESS
+				)
+				when {
+					ErrorInfo.MOK != code -> FaceInfoResult(code, "人脸属性检测失败", false, null)
+					faceInfoList.isEmpty() -> FaceInfoResult(code, "未检测到人脸", false, null)
+					else -> {
+						val livenessInfoList = ArrayList<LivenessInfo>()
+						code = faceEngine.getLiveness(livenessInfoList)
+						when {
+							ErrorInfo.MOK != code -> FaceInfoResult(code, "活体检测失败", false, null)
+							livenessInfoList.isEmpty() -> FaceInfoResult(code, "未检测到活体信息", false, null)
+							else -> FaceInfoResult(code, "检测人脸属性成功", LivenessInfo.ALIVE == livenessInfoList[0].liveness, faceInfoList[0])
+						}
 					}
 				}
-			} else {
-				FaceInfoResult(code, "检测人脸属性成功", false, faceInfoList[0])
 			}
 		}
 	}
