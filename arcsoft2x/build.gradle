@@ -22,7 +22,6 @@ android {
 	compileSdkVersion rootProject.ext.compile_sdk_version
 	defaultConfig {
 		minSdkVersion rootProject.ext.min_sdk_version
-		targetSdkVersion rootProject.ext.target_sdk_version
 		versionCode rootProject.ext.arcsoft2x_version_code
 		versionName rootProject.ext.arcsoft2x_version_name
 	}

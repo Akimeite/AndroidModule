@@ -6,7 +6,6 @@ buildscript {
 	ext {
 		compile_sdk_version = 28
 		min_sdk_version = 19
-		target_sdk_version = 28
 		java_version = JavaVersion.VERSION_1_8
 		//https://www.kotlincn.net/docs/reference/using-gradle.html
 		kotlin_version = '1.3.31'
