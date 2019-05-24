@@ -1,8 +1,6 @@
 package com.djangoogle.framework.service
 
 import android.app.Service
-import android.content.Intent
-
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -18,10 +16,6 @@ abstract class DjangoService : Service() {
 		if (!EventBus.getDefault().isRegistered(this)) {
 			EventBus.getDefault().register(this)
 		}
-	}
-
-	override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-		return START_STICKY
 	}
 
 	override fun onDestroy() {
