@@ -2,7 +2,6 @@ plugins {
 	id 'com.android.library'
 	id 'kotlin-android'
 	id 'kotlin-android-extensions'
-	id 'kotlin-kapt'
 	id 'com.novoda.bintray-release'
 }
 
@@ -26,11 +25,6 @@ android {
 		targetSdkVersion rootProject.ext.target_sdk_version
 		versionCode rootProject.ext.arcsoft2x_version_code
 		versionName rootProject.ext.arcsoft2x_version_name
-		kapt {
-			arguments {
-				arg('eventBusIndex', 'com.djangoogle.arcsoft2x.ArcSoft2XEventBusIndex')
-			}
-		}
 	}
 	compileOptions {
 		sourceCompatibility rootProject.ext.java_version
@@ -40,10 +34,9 @@ android {
 
 dependencies {
 	api fileTree(dir: 'libs', include: ['*.jar'])
-	//https://github.com/greenrobot/EventBus
-	compileOnly "org.greenrobot:eventbus:$event_bus_version"
-	//http://greenrobot.org/eventbus/documentation/subscriber-index
-	kapt "org.greenrobot:eventbus-annotation-processor:$event_bus_version"
+	//https://www.kotlincn.net/docs/reference/using-gradle.html
+	compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+	compileOnly "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 	//https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
 	compileOnly "com.blankj:utilcodex:$util_codex_version"
 }

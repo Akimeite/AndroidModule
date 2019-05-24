@@ -21,7 +21,6 @@ class App : DjangoApp() {
 		super.onCreate()
 		//初始化EventBus索引
 		EventBus.builder()
-//			.addIndex(ArcSoft2XEventBusIndex())
 			.addIndex(BannerEventBusIndex())
 			.addIndex(FrameworkEventBusIndex())
 			.installDefaultEventBus()

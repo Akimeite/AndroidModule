@@ -40,10 +40,10 @@ android {
 
 dependencies {
 	//https://www.kotlincn.net/docs/reference/using-gradle.html
-	api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-	api "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+	compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+	compileOnly "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 	//https://github.com/Djangoogle/Module
-//	api "com.djangoogle.support:player:$playerVersionName"
+//	api "com.djangoogle.support:player:player_version_name"
 	api project(':player')
 	//https://maven.google.com
 	compileOnly "com.google.android.material:material:$androidx_material_version"
