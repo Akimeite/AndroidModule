@@ -36,8 +36,6 @@ dependencies {
 	//https://www.kotlincn.net/docs/reference/using-gradle.html
 	compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 	compileOnly "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-	//https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
-	compileOnly "com.blankj:utilcodex:$util_codex_version"
 }
 
 //cd arcsoft2x

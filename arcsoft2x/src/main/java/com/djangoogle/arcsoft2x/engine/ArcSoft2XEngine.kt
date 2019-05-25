@@ -1,8 +1,8 @@
 package com.djangoogle.arcsoft2x.engine
 
 import android.content.Context
+import android.util.Log
 import com.arcsoft.face.*
-import com.blankj.utilcode.util.LogUtils
 import com.djangoogle.arcsoft2x.model.FaceInfoResult
 import java.util.*
 
@@ -40,15 +40,15 @@ object ArcSoft2XEngine {
 	 * @return 成功/失败
 	 */
 	fun active(context: Context, appId: String, sdkKey: String): Boolean {
-		LogUtils.iTag(TAG, "开始激活虹软2.X算法引擎")
+		Log.i(TAG, "开始激活虹软2.X算法引擎")
 		val faceEngine = FaceEngine()
 		return when (val activeCode = faceEngine.active(context, appId, sdkKey)) {
 			ErrorInfo.MOK, ErrorInfo.MERR_ASF_ALREADY_ACTIVATED -> {
-				LogUtils.iTag(TAG, "虹软2.X算法引擎激活成功, 返回码: $activeCode")
+				Log.i(TAG, "虹软2.X算法引擎激活成功, 返回码: $activeCode")
 				true
 			}
 			else -> {
-				LogUtils.eTag(TAG, "虹软2.X算法引擎激活失败, 返回码: $activeCode")
+				Log.i(TAG, "虹软2.X算法引擎激活失败, 返回码: $activeCode")
 				false
 			}
 		}
@@ -74,10 +74,10 @@ object ArcSoft2XEngine {
 		return if (ErrorInfo.MOK == faceEngineCode) {
 			val versionInfo = VersionInfo()
 			faceEngine.getVersion(versionInfo)
-			LogUtils.iTag(TAG, "虹软2.X算法引擎初始化成功, 版本号: $versionInfo")
+			Log.i(TAG, "虹软2.X算法引擎初始化成功, 版本号: $versionInfo")
 			faceEngine
 		} else {
-			LogUtils.eTag(TAG, "虹软2.X算法引擎初始化失败, 返回码: $faceEngineCode")
+			Log.i(TAG, "虹软2.X算法引擎初始化失败, 返回码: $faceEngineCode")
 			null
 		}
 	}
@@ -102,10 +102,10 @@ object ArcSoft2XEngine {
 		return if (ErrorInfo.MOK == faceEngineCode) {
 			val versionInfo = VersionInfo()
 			faceEngine.getVersion(versionInfo)
-			LogUtils.iTag(TAG, "虹软2.X算法引擎初始化成功, 版本号: $versionInfo")
+			Log.i(TAG, "虹软2.X算法引擎初始化成功, 版本号: $versionInfo")
 			faceEngine
 		} else {
-			LogUtils.eTag(TAG, "虹软2.X算法引擎初始化失败, 返回码: $faceEngineCode")
+			Log.i(TAG, "虹软2.X算法引擎初始化失败, 返回码: $faceEngineCode")
 			null
 		}
 	}
@@ -119,10 +119,10 @@ object ArcSoft2XEngine {
 		try {
 			if (null != faceEngine) {
 				val faceEngineCode = faceEngine.unInit()
-				LogUtils.iTag(TAG, "释放虹软2.X算法引擎, 返回码: $faceEngineCode")
+				Log.i(TAG, "释放虹软2.X算法引擎, 返回码: $faceEngineCode")
 			}
 		} catch (e: Exception) {
-			LogUtils.eTag(TAG, e.message)
+			Log.i(TAG, e.message)
 		}
 	}
 
