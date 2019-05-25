@@ -1,8 +1,5 @@
-.gradle
-.idea
 build
 captures
 .externalNativeBuild
-local.properties
 *.iml
 *.DS_Store
