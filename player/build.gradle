@@ -43,8 +43,6 @@ dependencies {
 		exclude group: 'com.android.support'
 	}
 	api "com.shuyu:gsyVideoPlayer-ex_so:$gsy_video_player_version"
-	//https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
-	compileOnly "com.blankj:utilcodex:$util_codex_version"
 }
 
 //cd player

@@ -1,9 +1,9 @@
 package com.djangoogle.player.manager;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.SurfaceView;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.djangoogle.player.impl.OnPlayListener;
 
 import org.videolan.libvlc.IVLCVout;
@@ -17,13 +17,7 @@ import org.videolan.libvlc.MediaPlayer;
  */
 public class AdPlayerManager {
 
-	private LibVLC mLibVLC;
-	private IVLCVout mIVLCVout;
-	private MediaPlayer mMediaPlayer;
-	private SurfaceView mSurfaceView;
-	private OnPlayListener mOnPlayListener;
-	private long mTotalTime = 0;
-	private int mVideoWidth, mVideoHight;
+	private static final String TAG = AdPlayerManager.class.getSimpleName();
 
 	private static volatile AdPlayerManager instance = null;
 
@@ -43,6 +37,14 @@ public class AdPlayerManager {
 		System.loadLibrary("vlcjni");
 	}
 
+	private LibVLC mLibVLC;
+	private IVLCVout mIVLCVout;
+	private MediaPlayer mMediaPlayer;
+	private SurfaceView mSurfaceView;
+	private OnPlayListener mOnPlayListener;
+	private long mTotalTime = 0;
+	private int mVideoWidth, mVideoHight;
+
 	private IVLCVout.OnNewVideoLayoutListener mOnNewVideoLayoutListener = new IVLCVout.OnNewVideoLayoutListener() {
 		@Override
 		public void onNewVideoLayout(IVLCVout ivlcVout, int i, int i1, int i2, int i3, int i4, int i5) {
@@ -51,9 +53,9 @@ public class AdPlayerManager {
 				mTotalTime = mMediaPlayer.getLength();
 				mVideoWidth = i;
 				mVideoHight = i1;
-				LogUtils.i("视频尺寸: " + mVideoWidth + ":" + mVideoHight, "播放时长: " + mTotalTime);
+				Log.i(TAG, "视频尺寸: " + mVideoWidth + "*" + mVideoHight + ", 播放时长: " + mTotalTime);
 			} catch (Exception e) {
-				LogUtils.e(e);
+				Log.e(TAG, e.getMessage(), e.getCause());
 			}
 		}
 	};
@@ -75,7 +77,7 @@ public class AdPlayerManager {
 					mOnPlayListener.onEnded();
 				}
 			} catch (Exception e) {
-				LogUtils.e(e);
+				Log.e(TAG, e.getMessage(), e.getCause());
 			}
 		}
 	};
@@ -181,7 +183,7 @@ public class AdPlayerManager {
 				mMediaPlayer.release();
 			}
 		} catch (Exception e) {
-			LogUtils.e(e);
+			Log.e(TAG, e.getMessage(), e.getCause());
 		}
 	}
 }
