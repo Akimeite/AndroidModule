@@ -11,12 +11,13 @@
 [![UVCCamera](https://img.shields.io/bintray/v/djangoogle/maven/UVCCamera.svg?label=uvccamera&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/uvccamera)
 
 # implementation
->'com.djangoogle.support:arcsoft2x:{last.version}'
 
-'com.djangoogle.support:banner:{last.version}'
+'com.djangoogle.support:arcsoft2x:{*last.version*}'
 
->'com.djangoogle.support:framework:{last.version}'
+'com.djangoogle.support:banner:{*last.version*}'
 
->'com.djangoogle.support:player:{last.version}'
+'com.djangoogle.support:framework:{*last.version*}'
 
->'com.djangoogle.support:uvccamera:{last.version}'
+'com.djangoogle.support:player:{*last.version*}'
+
+'com.djangoogle.support:uvccamera:{*last.version*}'
