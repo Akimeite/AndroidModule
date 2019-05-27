@@ -12,12 +12,12 @@
 
 # implementation
 
-'com.djangoogle.support:**arcsoft2x**:*{$latest_version}*'
+'com.djangoogle.support:**arcsoft2x**:*latest.integration*'
 
-'com.djangoogle.support:**banner**:*{$latest_version}*'
+'com.djangoogle.support:**banner**:*latest.integration*'
 
-'com.djangoogle.support:**framework**:*{$latest_version}*'
+'com.djangoogle.support:**framework**:*latest.integration*'
 
-'com.djangoogle.support:**player**:*{$latest_version}*'
+'com.djangoogle.support:**player**:*latest.integration*'
 
-'com.djangoogle.support:**uvccamera**:*{$latest_version}*'
+'com.djangoogle.support:**uvccamera**:*latest.integration*'

@@ -28,7 +28,7 @@ buildscript {
 		//https://github.com/square/retrofit
 		retrofit2_version = '2.5.0'
 		//https://github.com/CarGuo/GSYVideoPlayer
-		gsy_video_player_version = '6.0.3'
+		gsy_video_player_version = '7.0.1'
 		//bintray
 		publish_user_org = 'djangoogle'
 		publish_group_id = 'com.djangoogle.support'

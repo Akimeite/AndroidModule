@@ -40,7 +40,7 @@ dependencies {
 	compileOnly "com.google.android.material:material:$androidx_material_version"
 	//https://github.com/CarGuo/GSYVideoPlayer
 	api("com.shuyu:gsyVideoPlayer-java:$gsy_video_player_version") {
-		exclude group: 'com.android.support'
+		exclude group: 'androidx.appcompat'
 	}
 	api "com.shuyu:gsyVideoPlayer-ex_so:$gsy_video_player_version"
 }
