@@ -127,15 +127,15 @@ object FaceUtil {
 	}
 
 	/**
-	 * 获取人脸Bitmap
+	 * 获取人脸bitmap
 	 *
 	 * @param bitmap 人脸图片
 	 * @param rect   人脸矩形框
-	 * @return 人脸Bitmap
+	 * @return 人脸bitmap
 	 */
 	fun getFaceBitmap(bitmap: Bitmap, rect: Rect): Bitmap? {
 		//抠人脸图
-		val faceBitmap = BitmapUtil.imageClip(bitmap, rect)
+		val faceBitmap = BitmapUtil.cropBitmap(bitmap, rect)
 		if (!bitmap.isRecycled) {
 			bitmap.recycle()
 		}
