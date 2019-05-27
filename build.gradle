@@ -44,8 +44,8 @@ buildscript {
 		banner_version_name = '1.0.1'
 		framework_package_name = 'Framework'
 		framework_artifact_id = 'framework'
-		framework_version_code = 27
-		framework_version_name = '1.0.1-beta26'
+		framework_version_code = 31
+		framework_version_name = '1.0.1-beta30'
 		player_package_name = 'Player'
 		player_artifact_id = 'player'
 		player_version_code = 3
@@ -57,6 +57,7 @@ buildscript {
 	}
 	dependencies {
 		classpath 'com.android.tools.build:gradle:3.4.1'
+		//https://www.kotlincn.net/docs/reference/using-gradle.html
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 		//https://github.com/novoda/bintray-release
 		classpath 'com.novoda:bintray-release:0.9.1'

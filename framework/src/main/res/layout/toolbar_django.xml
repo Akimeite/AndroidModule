@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:id="@+id/ablCommonToolBar"
+	android:id="@+id/ablDjangoToolBar"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:theme="@style/AppTheme.AppBarOverlay">
+	android:theme="@style/AppTheme.AppBarOverlay"
+	android:visibility="gone">
 
 	<androidx.appcompat.widget.Toolbar
-		android:id="@+id/tbCommon"
+		android:id="@+id/tbDjangoToolbar"
 		android:layout_width="match_parent"
 		android:layout_height="?attr/actionBarSize"
 		android:background="?attr/colorPrimary"
@@ -16,7 +17,7 @@
 		app:popupTheme="@style/OverflowMenuStyle">
 
 		<androidx.appcompat.widget.AppCompatImageButton
-			android:id="@+id/acibToolBarBackBtn"
+			android:id="@+id/acibDjangoToolBarBackBtn"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:backgroundTint="@color/transparent"
@@ -24,7 +25,7 @@
 			android:src="?attr/homeAsUpIndicator" />
 
 		<androidx.appcompat.widget.AppCompatImageView
-			android:id="@+id/acivToolBarAvatar"
+			android:id="@+id/acivDjangoToolBarAvatar"
 			android:layout_width="36dp"
 			android:layout_height="36dp"
 			android:layout_marginStart="16dp"
@@ -32,7 +33,7 @@
 			android:visibility="gone" />
 
 		<androidx.appcompat.widget.AppCompatTextView
-			android:id="@+id/actvToolBarTitle"
+			android:id="@+id/actvDjangoToolBarTitle"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center"
@@ -44,7 +45,7 @@
 			android:visibility="gone" />
 
 		<androidx.appcompat.widget.AppCompatEditText
-			android:id="@+id/acetToolBarInput"
+			android:id="@+id/acetDjangoToolBarInput"
 			android:layout_width="230dp"
 			android:layout_height="35dp"
 			android:layout_gravity="center"
@@ -64,7 +65,7 @@
 			android:visibility="gone" />
 
 		<androidx.appcompat.widget.AppCompatTextView
-			android:id="@+id/actvToolBarRightTextBtn"
+			android:id="@+id/actvDjangoToolBarRightTextBtn"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="end"
@@ -82,7 +83,7 @@
 			android:visibility="gone" />
 
 		<androidx.appcompat.widget.AppCompatImageButton
-			android:id="@+id/acibToolBarRightImgBtn"
+			android:id="@+id/acibDjangoToolBarRightImgBtn"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="end"

@@ -1,18 +1,11 @@
 package com.djangoogle.module.activity.main
 
 import android.content.Intent
-import com.blankj.utilcode.util.ToastUtils
 import com.djangoogle.module.R
 import com.djangoogle.module.activity.banner.BannerActivity
 import com.djangoogle.module.activity.base.BaseActivity
-import com.djangoogle.module.network.Network
-import com.djangoogle.module.network.ZhuangbiImage
-import com.trello.rxlifecycle3.kotlin.bindToLifecycle
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
-
 
 /**
  * 主页
@@ -28,21 +21,8 @@ class MainActivity : BaseActivity() {
 
 	override fun initAction() {
 		singleClicks(acbMainBanner, Consumer { startActivity(Intent(this, BannerActivity::class.java)) })
-		singleClicks(acbMainRetrofit, Consumer { testRetrofit() })
+		singleClicks(acbMainRetrofit, Consumer { })
 	}
 
 	override fun initData() {}
-
-	private fun testRetrofit() {
-		Network.getZhuangbiApi()
-			.search("1")
-			.subscribeOn(Schedulers.io())
-			.observeOn(AndroidSchedulers.mainThread())
-			.bindToLifecycle(this)
-			.subscribe(Consumer<List<ZhuangbiImage>> { images ->
-				ToastUtils.showShort("请求到" + images.size)
-			}, Consumer<Throwable> {
-				ToastUtils.showShort(it.message)
-			})
-	}
 }

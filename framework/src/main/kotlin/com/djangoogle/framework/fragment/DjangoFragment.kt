@@ -1,6 +1,7 @@
 package com.djangoogle.framework.fragment
 
 import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,17 +29,15 @@ abstract class DjangoFragment : RxFragment() {
 	//Fragment是否首次不可见
 	private var isFirstInvisible = true
 
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
+	override fun onAttach(context: Context?) {
+		super.onAttach(context)
 		mActivity = activity
 	}
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-		//初始化布局
-		if (0 != initLayout()) {
-			return LayoutInflater.from(mActivity).inflate(initLayout(), null)
-		}
-		return super.onCreateView(inflater, container, savedInstanceState)
+		//初始化ButterKnife
+		initButterKnife()
+		return LayoutInflater.from(mActivity).inflate(initLayout(), null)
 	}
 
 	override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -105,6 +104,11 @@ abstract class DjangoFragment : RxFragment() {
 			}
 		}
 	}
+
+	/**
+	 * 初始化ButterKnife
+	 */
+	protected abstract fun initButterKnife()
 
 	/**
 	 * 设置布局
