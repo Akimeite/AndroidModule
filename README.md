@@ -12,7 +12,11 @@
 
 # implementation
 >'com.djangoogle.support:arcsoft2x:{last.version}'
->'com.djangoogle.support:banner:{last.version}'
+
+'com.djangoogle.support:banner:{last.version}'
+
 >'com.djangoogle.support:framework:{last.version}'
+
 >'com.djangoogle.support:player:{last.version}'
+
 >'com.djangoogle.support:uvccamera:{last.version}'
