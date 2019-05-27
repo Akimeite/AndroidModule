@@ -35,9 +35,10 @@ abstract class DjangoFragment : RxFragment() {
 	}
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+		val view: View = LayoutInflater.from(mActivity).inflate(initLayout(), null)
 		//初始化ButterKnife
-		initButterKnife()
-		return LayoutInflater.from(mActivity).inflate(initLayout(), null)
+		initButterKnife(view)
+		return view
 	}
 
 	override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -108,7 +109,7 @@ abstract class DjangoFragment : RxFragment() {
 	/**
 	 * 初始化ButterKnife
 	 */
-	protected abstract fun initButterKnife()
+	protected abstract fun initButterKnife(view: View)
 
 	/**
 	 * 设置布局
