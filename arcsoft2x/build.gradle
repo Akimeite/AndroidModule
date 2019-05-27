@@ -29,6 +29,9 @@ android {
 		sourceCompatibility rootProject.ext.java_version
 		targetCompatibility rootProject.ext.java_version
 	}
+	sourceSets {
+		main.java.srcDirs += 'src/main/kotlin'
+	}
 }
 
 dependencies {
