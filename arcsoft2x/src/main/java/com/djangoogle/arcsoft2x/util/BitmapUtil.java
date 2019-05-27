@@ -6,6 +6,7 @@ import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -22,18 +23,18 @@ public class BitmapUtil {
 	/**
 	 * Bitmap转化为ARGB数据，再转化为NV21数据
 	 *
-	 * @param src    传入的Bitmap，格式为{@link Bitmap.Config#ARGB_8888}
+	 * @param bitmap 传入的Bitmap，格式为{@link Bitmap.Config#ARGB_8888}
 	 * @param width  NV21图像的宽度
 	 * @param height NV21图像的高度
 	 * @return nv21数据
 	 */
-	public static byte[] bitmapToNv21(Bitmap src, int width, int height) {
-		if (src != null && src.getWidth() >= width && src.getHeight() >= height) {
-			int[] argb = new int[width * height];
-			src.getPixels(argb, 0, width, 0, 0, width, height);
-			return argbToNv21(argb, width, height);
-		} else {
+	public static byte[] bitmapToNv21(Bitmap bitmap, int width, int height) {
+		if (null == bitmap || bitmap.getWidth() < width && bitmap.getHeight() < height) {
 			return null;
+		} else {
+			int[] argb = new int[width * height];
+			bitmap.getPixels(argb, 0, width, 0, 0, width, height);
+			return argbToNv21(argb, width, height);
 		}
 	}
 
@@ -53,18 +54,17 @@ public class BitmapUtil {
 		byte[] nv21 = new byte[width * height * 3 / 2];
 		for (int j = 0; j < height; ++j) {
 			for (int i = 0; i < width; ++i) {
-				int R = (argb[index] & 0xFF0000) >> 16;
-				int G = (argb[index] & 0x00FF00) >> 8;
-				int B = argb[index] & 0x0000FF;
-				int Y = (66 * R + 129 * G + 25 * B + 128 >> 8) + 16;
-				int U = (-38 * R - 74 * G + 112 * B + 128 >> 8) + 128;
-				int V = (112 * R - 94 * G - 18 * B + 128 >> 8) + 128;
-				nv21[yIndex++] = (byte) (Y < 0 ? 0 : (Y > 255 ? 255 : Y));
+				int r = (argb[index] & 0xFF0000) >> 16;
+				int g = (argb[index] & 0x00FF00) >> 8;
+				int b = argb[index] & 0x0000FF;
+				int y = (66 * r + 129 * g + 25 * b + 128 >> 8) + 16;
+				int u = (-38 * r - 74 * g + 112 * b + 128 >> 8) + 128;
+				int v = (112 * r - 94 * g - 18 * b + 128 >> 8) + 128;
+				nv21[yIndex++] = (byte) (y < 0 ? 0 : (y > 255 ? 255 : y));
 				if (j % 2 == 0 && index % 2 == 0 && uvIndex < nv21.length - 2) {
-					nv21[uvIndex++] = (byte) (V < 0 ? 0 : (V > 255 ? 255 : V));
-					nv21[uvIndex++] = (byte) (U < 0 ? 0 : (U > 255 ? 255 : U));
+					nv21[uvIndex++] = (byte) (v < 0 ? 0 : (v > 255 ? 255 : v));
+					nv21[uvIndex++] = (byte) (u < 0 ? 0 : (u > 255 ? 255 : u));
 				}
-
 				++index;
 			}
 		}
@@ -74,17 +74,16 @@ public class BitmapUtil {
 	/**
 	 * bitmap转化为bgr数据，格式为{@link Bitmap.Config#ARGB_8888}
 	 *
-	 * @param image 传入的bitmap
+	 * @param bitmap 传入的bitmap
 	 * @return bgr数据
 	 */
-	public static byte[] bitmapToBgr(Bitmap image) {
-		if (image == null) {
+	public static byte[] bitmapToBgr(Bitmap bitmap) {
+		if (null == bitmap) {
 			return null;
 		}
-		int bytes = image.getByteCount();
-
+		int bytes = bitmap.getByteCount();
 		ByteBuffer buffer = ByteBuffer.allocate(bytes);
-		image.copyPixelsToBuffer(buffer);
+		bitmap.copyPixelsToBuffer(buffer);
 		byte[] temp = buffer.array();
 		byte[] pixels = new byte[(temp.length / 4) * 3];
 		for (int i = 0; i < temp.length / 4; i++) {
@@ -95,14 +94,74 @@ public class BitmapUtil {
 		return pixels;
 	}
 
+	/**
+	 * 确保传给引擎的BGR24数据宽度为4的倍数
+	 *
+	 * @param bitmap 传入的bitmap
+	 * @return 调整后的bitmap
+	 */
+	public static Bitmap alignBitmapForBgr24(Bitmap bitmap) {
+		if (null == bitmap || bitmap.getWidth() < 4) {
+			return null;
+		}
+		int width = bitmap.getWidth();
+		int height = bitmap.getHeight();
+		boolean needAdjust = false;
+		//保证宽度是4的倍数
+		if ((width & VALUE_FOR_4_ALIGN) != 0) {
+			width &= ~VALUE_FOR_4_ALIGN;
+			needAdjust = true;
+		}
+		if (needAdjust) {
+			bitmap = cropBitmap(bitmap, new Rect(0, 0, width, height));
+		}
+		return bitmap;
+	}
+
+	/**
+	 * 确保传给引擎的NV21数据宽度为4的倍数，高为2的倍数
+	 *
+	 * @param bitmap 传入的bitmap
+	 * @return 调整后的bitmap
+	 */
+	public static Bitmap alignBitmapForNv21(Bitmap bitmap) {
+		if (null == bitmap || bitmap.getWidth() < 4 || bitmap.getHeight() < 2) {
+			return null;
+		}
+		int width = bitmap.getWidth();
+		int height = bitmap.getHeight();
+		boolean needAdjust = false;
+		//保证宽度是4的倍数
+		if ((width & VALUE_FOR_4_ALIGN) != 0) {
+			width &= ~VALUE_FOR_4_ALIGN;
+			needAdjust = true;
+		}
+		//保证高度是2的倍数
+		if ((height & VALUE_FOR_2_ALIGN) != 0) {
+			height--;
+			needAdjust = true;
+		}
+		if (needAdjust) {
+			bitmap = cropBitmap(bitmap, new Rect(0, 0, width, height));
+		}
+		return bitmap;
+	}
+
+	/**
+	 * 从URI获取bitmap
+	 *
+	 * @param uri     Uri
+	 * @param context 上下文
+	 * @return bitmap
+	 */
 	public static Bitmap getBitmapFromUri(Uri uri, Context context) {
-		if (uri == null || context == null) {
+		if (null == uri || null == context) {
 			return null;
 		}
 		try {
 			return MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);
 		} catch (IOException e) {
-			e.printStackTrace();
+			Log.e("getBitmapFromUri", e.getMessage(), e.getCause());
 			return null;
 		}
 	}
@@ -110,11 +169,11 @@ public class BitmapUtil {
 	/**
 	 * 裁剪bitmap
 	 *
-	 * @param bitmap Bitmap
+	 * @param bitmap bitmap
 	 * @param rect   需要被裁剪的区域
 	 * @return 裁剪后的bitmap
 	 */
-	public static Bitmap imageClip(Bitmap bitmap, Rect rect) {
+	public static Bitmap cropBitmap(Bitmap bitmap, Rect rect) {
 		if (null == bitmap || null == rect || rect.isEmpty() || bitmap.getWidth() < rect.right || bitmap.getHeight() < rect.bottom || rect.top < 0 || rect.bottom < 0 || rect.left < 0 || rect.right < 0) {
 			return null;
 		}
@@ -140,7 +199,7 @@ public class BitmapUtil {
 	/**
 	 * 水平翻转bitmap
 	 *
-	 * @param bitmap Bitmap
+	 * @param bitmap bitmap
 	 * @return 水平翻转后的bitmap
 	 */
 	public static Bitmap reverseBitmap(Bitmap bitmap) {
@@ -158,7 +217,7 @@ public class BitmapUtil {
 	/**
 	 * 缩放bitmap
 	 *
-	 * @param bitmap    Bitmap
+	 * @param bitmap    bitmap
 	 * @param newWidth  新宽度
 	 * @param newHeight 新高度
 	 * @return 缩放后的bitmap
@@ -174,64 +233,5 @@ public class BitmapUtil {
 		Matrix matrix = new Matrix();
 		matrix.postScale(scaleWidth, scaleHeight);// 使用后乘
 		return Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, false);
-	}
-
-	/**
-	 * 确保传给引擎的BGR24数据宽度为4的倍数
-	 *
-	 * @param bitmap 传入的bitmap
-	 * @return 调整后的bitmap
-	 */
-	public static Bitmap alignBitmapForBgr24(Bitmap bitmap) {
-		if (null == bitmap || bitmap.getWidth() < 4) {
-			return null;
-		}
-		int width = bitmap.getWidth();
-		int height = bitmap.getHeight();
-
-		boolean needAdjust = false;
-
-		//保证宽度是4的倍数
-		if ((width & VALUE_FOR_4_ALIGN) != 0) {
-			width &= ~VALUE_FOR_4_ALIGN;
-			needAdjust = true;
-		}
-
-		if (needAdjust) {
-			bitmap = imageClip(bitmap, new Rect(0, 0, width, height));
-		}
-		return bitmap;
-	}
-
-	/**
-	 * 确保传给引擎的NV21数据宽度为4的倍数，高为2的倍数
-	 *
-	 * @param bitmap 传入的bitmap
-	 * @return 调整后的bitmap
-	 */
-	public static Bitmap alignBitmapForNv21(Bitmap bitmap) {
-		if (null == bitmap || bitmap.getWidth() < 4 || bitmap.getHeight() < 2) {
-			return null;
-		}
-		int width = bitmap.getWidth();
-		int height = bitmap.getHeight();
-
-		boolean needAdjust = false;
-		//保证宽度是4的倍数
-		if ((width & VALUE_FOR_4_ALIGN) != 0) {
-			width &= ~VALUE_FOR_4_ALIGN;
-			needAdjust = true;
-		}
-
-		//保证高度是2的倍数
-		if ((height & VALUE_FOR_2_ALIGN) != 0) {
-			height--;
-			needAdjust = true;
-		}
-
-		if (needAdjust) {
-			bitmap = imageClip(bitmap, new Rect(0, 0, width, height));
-		}
-		return bitmap;
 	}
 }
