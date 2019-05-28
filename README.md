@@ -19,13 +19,17 @@
 implementation 'com.djangoogle.support:**arcsoft2x**:*latest.integration*'
 
 * 图片/视频混合轮播:
+
 'com.djangoogle.support:**banner**:*latest.integration*'
 
 * 基础开发框架:
+
 'com.djangoogle.support:**framework**:*latest.integration*'
 
 * 网络/本地视频播放器:
+
 'com.djangoogle.support:**player**:*latest.integration*'
 
 * UVC摄像头:
+
 'com.djangoogle.support:**uvccamera**:*latest.integration*'
