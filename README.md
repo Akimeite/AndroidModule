@@ -14,7 +14,7 @@
 
 ## Installation
 
-* **虹软2.X单目活体算法**: implementation 'com.djangoogle.support:**arcsoft2x**:*latest.integration*'
+* **虹软2.X单目活体算法:** implementation 'com.djangoogle.support:**arcsoft2x**:*latest.integration*'
 
 * **图片/视频混合轮播**: implementation 'com.djangoogle.support:**banner**:*latest.integration*'
 
