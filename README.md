@@ -14,22 +14,12 @@
 
 ## Installation
 
-* 虹软2.X单目活体算法:
+* **虹软2.X单目活体算法**: implementation 'com.djangoogle.support:**arcsoft2x**:*latest.integration*'
 
-implementation 'com.djangoogle.support:**arcsoft2x**:*latest.integration*'
+* **图片/视频混合轮播**: 'com.djangoogle.support:**banner**:*latest.integration*'
 
-* 图片/视频混合轮播:
+* **基础开发框架**: 'com.djangoogle.support:**framework**:*latest.integration*'
 
-'com.djangoogle.support:**banner**:*latest.integration*'
+* **网络/本地视频播放器**: 'com.djangoogle.support:**player**:*latest.integration*'
 
-* 基础开发框架:
-
-'com.djangoogle.support:**framework**:*latest.integration*'
-
-* 网络/本地视频播放器:
-
-'com.djangoogle.support:**player**:*latest.integration*'
-
-* UVC摄像头:
-
-'com.djangoogle.support:**uvccamera**:*latest.integration*'
+* **UVC摄像头**: 'com.djangoogle.support:**uvccamera**:*latest.integration*'
