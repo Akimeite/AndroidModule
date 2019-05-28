@@ -12,7 +12,7 @@
 [![Player](https://img.shields.io/bintray/v/djangoogle/maven/Player.svg?label=player&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/player)
 [![UVCCamera](https://img.shields.io/bintray/v/djangoogle/maven/UVCCamera.svg?label=uvccamera&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/uvccamera)
 
-## implementation
+## Installation
 
 * 虹软2.X单目活体算法: implementation 'com.djangoogle.support:**arcsoft2x**:*latest.integration*'
 
