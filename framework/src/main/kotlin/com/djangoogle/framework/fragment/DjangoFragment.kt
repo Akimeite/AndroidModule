@@ -1,5 +1,6 @@
 package com.djangoogle.framework.fragment
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
@@ -7,15 +8,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.djangoogle.framework.manager.LoadingManager
+import com.jakewharton.rxbinding3.view.clicks
+import com.jakewharton.rxbinding3.view.longClicks
 import com.trello.rxlifecycle3.components.support.RxFragment
+import com.trello.rxlifecycle3.kotlin.bindToLifecycle
+import io.reactivex.functions.Consumer
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import java.util.concurrent.TimeUnit
 
 /**
  * Fragment基类
  * Created by Djangoogle on 2018/11/12 18:10 with Android Studio.
  */
+@SuppressLint("CheckResult")
 abstract class DjangoFragment : RxFragment() {
 
 	//通用Activity
@@ -132,6 +139,27 @@ abstract class DjangoFragment : RxFragment() {
 	 * 设置数据
 	 */
 	protected abstract fun initData()
+
+	/**
+	 * 按钮防重复点击
+	 */
+	protected fun singleClicks(view: View, onNext: Consumer<in Unit>) {
+		view.clicks().throttleFirst(2L, TimeUnit.SECONDS).bindToLifecycle(this).subscribe(onNext)
+	}
+
+	/**
+	 * 按钮可重复点击
+	 */
+	protected fun repeatClicks(view: View, onNext: Consumer<in Unit>) {
+		view.clicks().bindToLifecycle(this).subscribe(onNext)
+	}
+
+	/**
+	 * 按钮长按事件
+	 */
+	protected fun onLongClicks(view: View, onNext: Consumer<in Unit>) {
+		view.longClicks().bindToLifecycle(this).subscribe(onNext)
+	}
 
 	/**
 	 * 初始化准备状态

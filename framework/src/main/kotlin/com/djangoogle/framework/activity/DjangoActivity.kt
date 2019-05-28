@@ -144,22 +144,22 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 	/**
 	 * 按钮防重复点击
 	 */
-	protected fun singleClicks(view: View?, onNext: Consumer<in Unit>?) {
-		view?.clicks()?.throttleFirst(2L, TimeUnit.SECONDS)?.bindToLifecycle(this)?.subscribe(onNext)
+	protected fun singleClicks(view: View, onNext: Consumer<in Unit>) {
+		view.clicks().throttleFirst(2L, TimeUnit.SECONDS).bindToLifecycle(this).subscribe(onNext)
 	}
 
 	/**
 	 * 按钮可重复点击
 	 */
-	protected fun repeatClicks(view: View?, onNext: Consumer<in Unit>?) {
-		view?.clicks()?.bindToLifecycle(this)?.subscribe(onNext)
+	protected fun repeatClicks(view: View, onNext: Consumer<in Unit>) {
+		view.clicks().bindToLifecycle(this).subscribe(onNext)
 	}
 
 	/**
 	 * 按钮长按事件
 	 */
-	protected fun onLongClicks(view: View?, onNext: Consumer<in Unit>?) {
-		view?.longClicks()?.bindToLifecycle(this)?.subscribe(onNext)
+	protected fun onLongClicks(view: View, onNext: Consumer<in Unit>) {
+		view.longClicks().bindToLifecycle(this).subscribe(onNext)
 	}
 
 	/**

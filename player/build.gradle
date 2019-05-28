@@ -44,6 +44,3 @@ dependencies {
 	}
 	api "com.shuyu:gsyVideoPlayer-ex_so:$gsy_video_player_version"
 }
-
-//cd player
-//gradle clean build generatePomFileForReleasePublication publishReleasePublicationToMavenLocal bintrayUpload --no-configure-on-demand --no-parallel
