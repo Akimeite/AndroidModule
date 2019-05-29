@@ -12,8 +12,6 @@ import java.util.*
  */
 object ArcSoft2XEngine {
 
-	const val COMPARE_SCORE = 0.8F
-
 	private val TAG = ArcSoft2XEngine::class.java.simpleName
 
 	//人脸检测尺寸
