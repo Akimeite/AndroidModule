@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
 import com.djangoogle.framework.manager.LoadingManager
 import com.jakewharton.rxbinding3.view.clicks
 import com.jakewharton.rxbinding3.view.longClicks
@@ -26,7 +27,7 @@ import java.util.concurrent.TimeUnit
 abstract class DjangoFragment : RxFragment() {
 
 	//通用Activity
-	protected var mActivity: Activity? = null
+	protected lateinit var mActivity: Activity
 	//界面是否初始化完毕
 	private var isPrepared: Boolean = false
 	//第一次onResume中的调用onUserVisible避免操作与onFirstUserVisible操作重复
@@ -38,7 +39,7 @@ abstract class DjangoFragment : RxFragment() {
 
 	override fun onAttach(context: Context?) {
 		super.onAttach(context)
-		mActivity = activity
+		mActivity = activity as FragmentActivity
 	}
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
