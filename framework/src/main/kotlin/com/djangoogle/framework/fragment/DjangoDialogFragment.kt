@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.blankj.utilcode.util.LogUtils
 import com.trello.rxlifecycle3.components.support.RxDialogFragment
@@ -18,12 +19,13 @@ open class DjangoDialogFragment : RxDialogFragment() {
 		private val TAG = DjangoDialogFragment::class.simpleName
 	}
 
-	protected var mActivity: Activity? = null
+	//通用Activity
+	protected lateinit var mActivity: Activity
 
 	override fun onAttach(context: Context?) {
 		super.onAttach(context)
 		LogUtils.dTag(TAG, "onAttach")
-		mActivity = activity
+		mActivity = activity as FragmentActivity
 	}
 
 	override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
