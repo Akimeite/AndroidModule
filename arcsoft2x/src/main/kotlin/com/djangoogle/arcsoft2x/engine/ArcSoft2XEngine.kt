@@ -125,7 +125,7 @@ object ArcSoft2XEngine {
 	}
 
 	/**
-	 * 处理图片数据
+	 * 处理NV21图片数据
 	 *
 	 * @param faceEngine 算法引擎
 	 * @param data       流数据
@@ -133,7 +133,27 @@ object ArcSoft2XEngine {
 	 * @param height     高度
 	 * @return 人脸信息
 	 */
-	fun processImage(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int): FaceInfoResult {
+	fun processNV21Image(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int): FaceInfoResult {
+		val faceInfoList = ArrayList<FaceInfo>()
+		val code = faceEngine.detectFaces(data, width, height, FaceEngine.CP_PAF_NV21, faceInfoList)
+		//检测人脸
+		return if (ErrorInfo.MOK != code || faceInfoList.isEmpty()) {
+			FaceInfoResult(code, "未检测到人脸", false, null)
+		} else {
+			FaceInfoResult(code, "检测到人脸", false, faceInfoList[0])
+		}
+	}
+
+	/**
+	 * 处理BGR24图片数据
+	 *
+	 * @param faceEngine 算法引擎
+	 * @param data       流数据
+	 * @param width      宽度
+	 * @param height     高度
+	 * @return 人脸信息
+	 */
+	fun processBGR24Image(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int): FaceInfoResult {
 		val faceInfoList = ArrayList<FaceInfo>()
 		val code = faceEngine.detectFaces(data, width, height, FaceEngine.CP_PAF_BGR24, faceInfoList)
 		//检测人脸
@@ -181,7 +201,7 @@ object ArcSoft2XEngine {
 	}
 
 	/**
-	 * 抽取图片特征数组
+	 * 抽取BGR24特征数组
 	 *
 	 * @param faceEngine 算法引擎
 	 * @param data       帧数据
@@ -190,14 +210,14 @@ object ArcSoft2XEngine {
 	 * @param faceInfo   人脸信息
 	 * @return 特征数组
 	 */
-	fun extractImageFeature(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int, faceInfo: FaceInfo): ByteArray? {
+	fun extractBGR24Feature(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int, faceInfo: FaceInfo): ByteArray? {
 		val faceFeature = FaceFeature()
 		val extractFaceFeatureCode = faceEngine.extractFaceFeature(data, width, height, FaceEngine.CP_PAF_BGR24, faceInfo, faceFeature)
 		return if (ErrorInfo.MOK != extractFaceFeatureCode) null else faceFeature.featureData
 	}
 
 	/**
-	 * 抽取视频特征数组
+	 * 抽取NV21特征数组
 	 *
 	 * @param faceEngine 算法引擎
 	 * @param data       帧数据
@@ -206,7 +226,7 @@ object ArcSoft2XEngine {
 	 * @param faceInfo   人脸信息
 	 * @return 特征数组
 	 */
-	fun extractVideoFeature(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int, faceInfo: FaceInfo): ByteArray? {
+	fun extractNV21Feature(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int, faceInfo: FaceInfo): ByteArray? {
 		val faceFeature = FaceFeature()
 		val extractFaceFeatureCode = faceEngine.extractFaceFeature(data, width, height, FaceEngine.CP_PAF_NV21, faceInfo, faceFeature)
 		return if (ErrorInfo.MOK != extractFaceFeatureCode) null else faceFeature.featureData
