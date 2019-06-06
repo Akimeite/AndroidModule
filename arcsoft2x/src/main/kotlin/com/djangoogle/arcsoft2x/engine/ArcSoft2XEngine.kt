@@ -24,7 +24,7 @@ object ArcSoft2XEngine {
 	private const val DETECT_FACE_MAX_NUM = 1
 
 	//图片引擎初始化属性
-	private const val IMAGE_ENGINE_MASK = FaceEngine.ASF_FACE_DETECT or FaceEngine.ASF_FACE_RECOGNITION
+	private const val IMAGE_ENGINE_MASK = FaceEngine.ASF_FACE_DETECT or FaceEngine.ASF_FACE_RECOGNITION or FaceEngine.ASF_NONE
 
 	//视频引擎初始化属性
 	private const val VIDEO_ENGINE_MASK = FaceEngine.ASF_FACE_DETECT or FaceEngine.ASF_FACE_RECOGNITION or FaceEngine.ASF_LIVENESS
@@ -137,10 +137,10 @@ object ArcSoft2XEngine {
 		val faceInfoList = ArrayList<FaceInfo>()
 		val code = faceEngine.detectFaces(data, width, height, FaceEngine.CP_PAF_BGR24, faceInfoList)
 		//检测人脸
-		return when {
-			ErrorInfo.MOK != code -> FaceInfoResult(code, "检测人脸失败", false, null)
-			faceInfoList.isEmpty() -> FaceInfoResult(code, "未检测到人脸", false, null)
-			else -> FaceInfoResult(code, "检测到人脸", false, faceInfoList[0])
+		return if (ErrorInfo.MOK != code || faceInfoList.isEmpty()) {
+			FaceInfoResult(code, "未检测到人脸", false, null)
+		} else {
+			FaceInfoResult(code, "检测到人脸", false, faceInfoList[0])
 		}
 	}
 
@@ -159,25 +159,20 @@ object ArcSoft2XEngine {
 		var code = faceEngine.detectFaces(data, width, height, FaceEngine.CP_PAF_NV21, faceInfoList)
 		//检测人脸
 		return when {
-			ErrorInfo.MOK != code -> FaceInfoResult(code, "检测人脸失败", false, null)
-			faceInfoList.isEmpty() -> FaceInfoResult(code, "未检测到人脸", false, null)
+			ErrorInfo.MOK != code || faceInfoList.isEmpty() -> FaceInfoResult(code, "未检测到人脸", false, null)
 			//不检测活体
 			!liveness -> FaceInfoResult(code, "检测到人脸", false, faceInfoList[0])
 			//活体检测
 			else -> {
-				code = faceEngine.process(
-					data, width, height, FaceEngine.CP_PAF_NV21, faceInfoList, FaceEngine.ASF_LIVENESS
-				)
+				code = faceEngine.process(data, width, height, FaceEngine.CP_PAF_NV21, faceInfoList, FaceEngine.ASF_LIVENESS)
 				when {
-					ErrorInfo.MOK != code -> FaceInfoResult(code, "人脸属性检测失败", false, null)
-					faceInfoList.isEmpty() -> FaceInfoResult(code, "未检测到人脸", false, null)
+					ErrorInfo.MOK != code || faceInfoList.isEmpty() -> FaceInfoResult(code, "未检测到活体人脸", false, null)
 					else -> {
 						val livenessInfoList = ArrayList<LivenessInfo>()
 						code = faceEngine.getLiveness(livenessInfoList)
 						when {
-							ErrorInfo.MOK != code -> FaceInfoResult(code, "活体检测失败", false, null)
-							livenessInfoList.isEmpty() -> FaceInfoResult(code, "未检测到活体信息", false, null)
-							else -> FaceInfoResult(code, "检测人脸属性成功", LivenessInfo.ALIVE == livenessInfoList[0].liveness, faceInfoList[0])
+							ErrorInfo.MOK != code || livenessInfoList.isEmpty() -> FaceInfoResult(code, "未检测到活体信息", false, null)
+							else -> FaceInfoResult(code, "活体检测成功", LivenessInfo.ALIVE == livenessInfoList[0].liveness, faceInfoList[0])
 						}
 					}
 				}
