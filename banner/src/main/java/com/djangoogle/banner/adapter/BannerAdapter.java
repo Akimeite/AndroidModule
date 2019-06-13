@@ -337,11 +337,14 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 
 			@Override
 			public void onEnded() {
-				if (1 == mData.size() && (AdResourceModel.TYPE_VIDEO | AdResourceModel.TYPE_MIX) == mData.get(0).type) {
-					//仅一条广告且包含视频时循环播放
-					VLCManager.getInstance().play();
-				} else {//播放下一条广告
+				if (mData.size() > 1) {
+					//播放下一条广告
 					EventBus.getDefault().post(new PlayNextAdEvent(getNextIndex(position)));
+					return;
+				}
+				if (AdResourceModel.TYPE_VIDEO == mData.get(0).type || AdResourceModel.TYPE_MIX == mData.get(0).type) {
+					//仅一条广告且包含视频时循环播放
+					loadVideoAd(position, baseViewHolder, width, height);
 				}
 			}
 		});

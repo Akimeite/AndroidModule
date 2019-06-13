@@ -93,12 +93,12 @@ class BannerActivity : BaseActivity() {
 		ad.type = AdResourceModel.TYPE_VIDEO
 		ad.videoPath = path + "1.mp4"
 		adResourceList.add(ad)
-
-		ad = AdResourceModel()
-		ad.type = AdResourceModel.TYPE_IMAGE
-		ad.imagePath = path + "2.png"
-		ad.imageSwitchInterval = 2000L
-		adResourceList.add(ad)
+//
+//		ad = AdResourceModel()
+//		ad.type = AdResourceModel.TYPE_IMAGE
+//		ad.imagePath = path + "2.png"
+//		ad.imageSwitchInterval = 2000L
+//		adResourceList.add(ad)
 
 		ad = AdResourceModel()
 		ad.type = AdResourceModel.TYPE_VIDEO
