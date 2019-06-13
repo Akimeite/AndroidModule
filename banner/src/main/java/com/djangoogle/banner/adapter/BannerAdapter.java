@@ -299,13 +299,15 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 	 * @param appCompatImageView 缩略图控件
 	 */
 	private void loadVideoAdThumbnail(int position, AppCompatImageView appCompatImageView) {
+		String videoPath = mData.get(position).videoPath;
+		LogUtils.iTag("videoPath", "视频地址: " + videoPath);
 		Glide.with(mContext)
 		     .setDefaultRequestOptions(
 				     new RequestOptions()
 						     .frame(1000000)
 						     .error(android.R.color.black)
 						     .placeholder(android.R.color.black))
-		     .load(mData.get(position).videoPath)
+		     .load(videoPath)
 		     .diskCacheStrategy(DiskCacheStrategy.DATA)//使用原图缓存
 		     .dontAnimate()//取消动画
 		     .into(appCompatImageView);
@@ -321,7 +323,6 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 	 */
 	private void loadVideoAd(int position, BaseViewHolder baseViewHolder, int width, int height) {
 		String videoPath = mData.get(position).videoPath;
-		LogUtils.iTag("videoPath", "视频地址: " + videoPath);
 		VLCManager.getInstance().stop();
 		VLCManager.getInstance().setView(baseViewHolder.getView(R.id.svBannerVideo));
 		VLCManager.getInstance().setLocalPath(videoPath);

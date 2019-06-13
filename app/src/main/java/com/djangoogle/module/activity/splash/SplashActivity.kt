@@ -43,7 +43,7 @@ class SplashActivity : BaseActivity() {
 	 * 申请权限
 	 */
 	private fun requestPermissions() {
-		PermissionUtils.permission(PermissionConstants.STORAGE).callback(object : PermissionUtils.FullCallback {
+		PermissionUtils.permission(PermissionConstants.STORAGE, PermissionConstants.CAMERA).callback(object : PermissionUtils.FullCallback {
 			override fun onGranted(permissionsGranted: MutableList<String>?) {
 				//初始化
 				init()

@@ -89,33 +89,21 @@ class BannerActivity : BaseActivity() {
 		val path = PathUtils.getExternalStoragePath() + "/ad/"
 		val adResourceList = ArrayList<AdResourceModel>()
 		var ad = AdResourceModel()
+
+		ad.type = AdResourceModel.TYPE_VIDEO
+		ad.videoPath = path + "1.mp4"
+		adResourceList.add(ad)
+
+		ad = AdResourceModel()
 		ad.type = AdResourceModel.TYPE_IMAGE
-		ad.imagePath = path + "1.png"
+		ad.imagePath = path + "2.png"
 		ad.imageSwitchInterval = 2000L
 		adResourceList.add(ad)
 
 		ad = AdResourceModel()
 		ad.type = AdResourceModel.TYPE_VIDEO
-		ad.videoPath = path + "2.mp4"
+		ad.videoPath = path + "3.mp4"
 		adResourceList.add(ad)
-
-		//		ad = new AdResourceModel();
-		//		ad.type = AdResourceModel.TYPE_VIDEO;
-		//		ad.videoPath = path + "5.mp4";
-		//		adResourceList.add(ad);
-		//
-		//		ad = new AdResourceModel();
-		//		ad.type = AdResourceModel.TYPE_IMAGE;
-		//		ad.imagePath = path + "3.jpg";
-		//		ad.imageSwitchInterval = 6000L;
-		//		adResourceList.add(ad);
-		//
-		//		ad = new AdResourceModel();
-		//		ad.type = AdResourceModel.TYPE_MIX;
-		//		ad.mixType = AdResourceModel.MIX_TYPE_VIDEO_UP;
-		//		ad.imagePath = path + "0.png";
-		//		ad.videoPath = path + "8.mp4";
-		//		adResourceList.add(ad);
 
 		//设置广告
 		BannerManager.getInstance().setUp(adResourceList)
