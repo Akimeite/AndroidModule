@@ -346,6 +346,7 @@ static int send_mass_storage_command(libusb_device_handle *handle, uint8_t endpo
 		// The transfer length must always be exactly 31 bytes.
 		r = libusb_bulk_transfer(handle, endpoint, (unsigned char *) &cbw, 31, &size, 1000);
 		if (r == LIBUSB_ERROR_PIPE) {
+			LOGW("**k602_debug**====fun=%s====line=%d==file=%s=",__FUNCTION__,__LINE__,__FILE__);
 			libusb_clear_halt(handle, endpoint);
 		}
 		i++;
@@ -369,6 +370,7 @@ static int get_mass_storage_status(libusb_device_handle *handle, uint8_t endpoin
 	do {
 		r = libusb_bulk_transfer(handle, endpoint, (unsigned char *) &csw, 13, &size, 1000);
 		if (r == LIBUSB_ERROR_PIPE) {
+			LOGW("**k602_debug**====fun=%s====line=%d==file=%s=",__FUNCTION__,__LINE__,__FILE__);
 			libusb_clear_halt(handle, endpoint);
 		}
 		i++;
@@ -633,6 +635,7 @@ static int test_hid(libusb_device_handle *handle, uint8_t endpoint_in) {
 					break;
 				case LIBUSB_ERROR_PIPE:
 					printf("   Detected stall - resetting pipe...\n");
+					LOGW("**k602_debug**====fun=%s====line=%d==file=%s=",__FUNCTION__,__LINE__,__FILE__);
 					libusb_clear_halt(handle, 0);
 					break;
 				default:
@@ -664,6 +667,7 @@ static int test_hid(libusb_device_handle *handle, uint8_t endpoint_in) {
 					break;
 				case LIBUSB_ERROR_PIPE:
 					printf("   Detected stall - resetting pipe...\n");
+					LOGW("**k602_debug**====fun=%s====line=%d==file=%s=",__FUNCTION__,__LINE__,__FILE__);
 					libusb_clear_halt(handle, 0);
 					break;
 				default:

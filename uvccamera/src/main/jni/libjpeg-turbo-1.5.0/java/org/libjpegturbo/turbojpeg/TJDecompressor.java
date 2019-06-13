@@ -679,9 +679,8 @@ public class TJDecompressor implements Closeable {
 			scaledWidth = getScaledWidth(desiredWidth, desiredHeight);
 			scaledHeight = getScaledHeight(desiredWidth, desiredHeight);
 			if (scaledWidth != desiredWidth || scaledHeight != desiredHeight) {
-				throw new IllegalArgumentException("BufferedImage dimensions do not match one of the scaled image sizes that TurboJPEG is" +
-						" " +
-						"capable of generating.");
+				throw new IllegalArgumentException("BufferedImage dimensions do not match one of the scaled image sizes that TurboJPEG " +
+						"is capable of generating.");
 			}
 		}
 		int pixelFormat;

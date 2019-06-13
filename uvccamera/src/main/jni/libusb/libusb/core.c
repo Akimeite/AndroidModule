@@ -1767,12 +1767,15 @@ int API_EXPORTED libusb_set_interface_alt_setting(libusb_device_handle *dev,
  */
 int API_EXPORTED libusb_clear_halt(libusb_device_handle *dev,
                                    unsigned char endpoint) {
-
+	LOGW("**k602_debug**===1=fun=%s====line=%d==file=%s=",__FUNCTION__,__LINE__,__FILE__);
+	return 0;
+	/*
 	usbi_dbg("endpoint %x", endpoint);
 	if (UNLIKELY(!dev->dev->attached))
 		return LIBUSB_ERROR_NO_DEVICE;
 
 	return usbi_backend->clear_halt(dev, endpoint);
+	*/
 }
 
 /** \ingroup dev
