@@ -2,6 +2,7 @@ package com.djangoogle.module.activity.banner
 
 import android.annotation.SuppressLint
 import android.os.Environment
+import com.blankj.utilcode.util.PathUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.djangoogle.banner.manager.BannerManager
 import com.djangoogle.banner.model.AdResourceModel
@@ -69,6 +70,12 @@ class BannerActivity : BaseActivity() {
 		BannerManager.getInstance().pause()
 	}
 
+	override fun onStop() {
+		super.onStop()
+		//暂停轮播
+		BannerManager.getInstance().pause()
+	}
+
 	override fun onDestroy() {
 		//销毁轮播
 		BannerManager.getInstance().destroy()
@@ -79,7 +86,7 @@ class BannerActivity : BaseActivity() {
 	 * 设置广告
 	 */
 	private fun setUpAd() {
-		val path = Environment.getExternalStorageDirectory().absolutePath + "/ad/"
+		val path = PathUtils.getExternalStoragePath() + "/ad/"
 		val adResourceList = ArrayList<AdResourceModel>()
 		var ad = AdResourceModel()
 		ad.type = AdResourceModel.TYPE_IMAGE
@@ -112,6 +119,8 @@ class BannerActivity : BaseActivity() {
 
 		//设置广告
 		BannerManager.getInstance().setUp(adResourceList)
+		//设置音量
+		BannerManager.getInstance().setVolume(3)
 	}
 
 	/**

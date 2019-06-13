@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * Created by Djangoogle on 2019/05/05 10:14 with Android Studio.
  */
 public class LibVLCManager {
+
 	private static volatile LibVLC instance = null;
 
 	public static LibVLC getInstance(Context context, ArrayList<String> options) throws IllegalStateException {

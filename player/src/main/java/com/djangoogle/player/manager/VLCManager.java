@@ -11,21 +11,23 @@ import org.videolan.libvlc.LibVLC;
 import org.videolan.libvlc.Media;
 import org.videolan.libvlc.MediaPlayer;
 
+import androidx.annotation.IntRange;
+
 /**
- * 广告播放器
+ * VLC播放器
  * Created by Djangoogle on 2018/10/22 15:40 with Android Studio.
  */
-public class AdPlayerManager {
+public class VLCManager {
 
-	private static final String TAG = AdPlayerManager.class.getSimpleName();
+	private static final String TAG = VLCManager.class.getSimpleName();
 
-	private static volatile AdPlayerManager instance = null;
+	private static volatile VLCManager instance = null;
 
-	public static AdPlayerManager getInstance() {
+	public static VLCManager getInstance() {
 		if (null == instance) {
-			synchronized (AdPlayerManager.class) {
+			synchronized (VLCManager.class) {
 				if (null == instance) {
-					instance = new AdPlayerManager();
+					instance = new VLCManager();
 				}
 			}
 		}
@@ -33,17 +35,18 @@ public class AdPlayerManager {
 	}
 
 	static {
+		System.loadLibrary("c++_shared");
 		System.loadLibrary("vlc");
 		System.loadLibrary("vlcjni");
 	}
 
 	private LibVLC mLibVLC;
 	private IVLCVout mIVLCVout;
+	private Media mMedia;
 	private MediaPlayer mMediaPlayer;
 	private SurfaceView mSurfaceView;
 	private OnPlayListener mOnPlayListener;
 	private long mTotalTime = 0;
-	private int mVideoWidth, mVideoHight;
 
 	private IVLCVout.OnNewVideoLayoutListener mOnNewVideoLayoutListener = new IVLCVout.OnNewVideoLayoutListener() {
 		@Override
@@ -51,9 +54,7 @@ public class AdPlayerManager {
 			try {
 				//获取播放时长，长宽
 				mTotalTime = mMediaPlayer.getLength();
-				mVideoWidth = i;
-				mVideoHight = i1;
-				Log.i(TAG, "视频尺寸: " + mVideoWidth + "*" + mVideoHight + ", 播放时长: " + mTotalTime);
+				Log.i(TAG, "视频尺寸: " + i + "×" + i1 + ", 播放时长: " + mTotalTime);
 			} catch (Exception e) {
 				Log.e(TAG, e.getMessage(), e.getCause());
 			}
@@ -64,16 +65,16 @@ public class AdPlayerManager {
 		@Override
 		public void onEvent(MediaPlayer.Event event) {
 			try {
-				if (event.getTimeChanged() == 0 || mTotalTime == 0 || event.getTimeChanged() > mTotalTime) {
+				if (0 == event.getTimeChanged() || 0 == mTotalTime || event.getTimeChanged() > mTotalTime) {
 					return;
 				}
 				//开始播放
 				if (Media.State.Playing == mMediaPlayer.getPlayerState() && null != mOnPlayListener) {
 					mOnPlayListener.onPlaying();
+					return;
 				}
 				//播放结束
 				if (Media.State.Ended == mMediaPlayer.getPlayerState() && null != mOnPlayListener) {
-					stop();
 					mOnPlayListener.onEnded();
 				}
 			} catch (Exception e) {
@@ -85,14 +86,21 @@ public class AdPlayerManager {
 	/**
 	 * 初始化
 	 *
-	 * @param context     上下文
-	 * @param surfaceView 播放器画布
+	 * @param context 上下文
 	 */
-	public void initialize(Context context, SurfaceView surfaceView) {
-		mSurfaceView = surfaceView;
+	public void initialize(Context context) {
 		mLibVLC = LibVLCManager.getInstance(context, null);
 		mMediaPlayer = new MediaPlayer(mLibVLC);
 		mIVLCVout = mMediaPlayer.getVLCVout();
+	}
+
+	/**
+	 * 设置画布
+	 *
+	 * @param surfaceView 播放器画布
+	 */
+	public void setView(SurfaceView surfaceView) {
+		mSurfaceView = surfaceView;
 		mIVLCVout.setVideoView(surfaceView);
 		mIVLCVout.attachViews(mOnNewVideoLayoutListener);
 	}
@@ -103,8 +111,8 @@ public class AdPlayerManager {
 	 * @param path 本地视频路径
 	 */
 	public void setLocalPath(String path) {
-		Media media = new Media(mLibVLC, path);
-		mMediaPlayer.setMedia(media);
+		mMedia = new Media(mLibVLC, path);
+		mMediaPlayer.setMedia(mMedia);
 		mMediaPlayer.setEventListener(mEventListener);
 	}
 
@@ -121,24 +129,6 @@ public class AdPlayerManager {
 	}
 
 	/**
-	 * 开始播放
-	 */
-	public void play() {
-		if (null != mMediaPlayer) {
-			mMediaPlayer.play();
-		}
-	}
-
-	/**
-	 * 停止播放
-	 */
-	public void stop() {
-		if (null != mMediaPlayer) {
-			mMediaPlayer.stop();
-		}
-	}
-
-	/**
 	 * 添加播放完毕监听
 	 *
 	 * @param onPlayListener 播放完毕监听
@@ -148,13 +138,31 @@ public class AdPlayerManager {
 	}
 
 	/**
+	 * 设置音量
+	 *
+	 * @param volume 音量
+	 */
+	public void setVolume(@IntRange(from = 0, to = 15) int volume) {
+		if (null != mMediaPlayer && mMediaPlayer.isPlaying()) {
+			mMediaPlayer.setVolume(volume);
+		}
+	}
+
+	/**
+	 * 开始播放
+	 */
+	public void play() {
+		if (null != mMediaPlayer) {
+			mMediaPlayer.play();
+		}
+	}
+
+	/**
 	 * 暂停播放
 	 */
 	public void pause() {
 		if (null != mMediaPlayer) {
-			if (mMediaPlayer.isPlaying()) {
-				mMediaPlayer.pause();
-			}
+			mMediaPlayer.pause();
 			mMediaPlayer.setEventListener(null);
 		}
 		if (null != mIVLCVout) {
@@ -166,10 +174,25 @@ public class AdPlayerManager {
 	 * 恢复播放
 	 */
 	public void resume() {
-		mIVLCVout.setVideoView(mSurfaceView);
-		mIVLCVout.attachViews(mOnNewVideoLayoutListener);
+		if (null != mIVLCVout) {
+			mIVLCVout.setVideoView(mSurfaceView);
+			mIVLCVout.attachViews(mOnNewVideoLayoutListener);
+		}
 		if (null != mMediaPlayer) {
 			mMediaPlayer.setEventListener(mEventListener);
+		}
+	}
+
+	/**
+	 * 停止播放
+	 */
+	public void stop() {
+		if (null != mMediaPlayer) {
+			mMediaPlayer.stop();
+			mMediaPlayer.setEventListener(null);
+		}
+		if (null != mIVLCVout) {
+			mIVLCVout.detachViews();
 		}
 	}
 
@@ -178,9 +201,19 @@ public class AdPlayerManager {
 	 */
 	public void destroy() {
 		try {
-			pause();
+			//停止播放
+			stop();
 			if (null != mMediaPlayer) {
 				mMediaPlayer.release();
+				mMediaPlayer = null;
+			}
+			if (null != mMedia) {
+				mMedia.release();
+				mMedia = null;
+			}
+			if (null != mLibVLC) {
+				mLibVLC.release();
+				mLibVLC = null;
 			}
 		} catch (Exception e) {
 			Log.e(TAG, e.getMessage(), e.getCause());

@@ -29,6 +29,8 @@ buildscript {
 		retrofit2_version = '2.5.0'
 		//https://github.com/CarGuo/GSYVideoPlayer
 		gsy_video_player_version = '7.0.1'
+		//https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+		base_recyclerview_adapter_helper_version = '2.9.46'
 		//bintray
 		publish_user_org = 'djangoogle'
 		publish_group_id = 'com.djangoogle.support'

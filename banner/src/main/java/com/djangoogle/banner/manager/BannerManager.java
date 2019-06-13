@@ -1,10 +1,11 @@
 package com.djangoogle.banner.manager;
 
-import android.app.Activity;
+import android.content.Context;
 
 import com.djangoogle.banner.adapter.BannerAdapter;
 import com.djangoogle.banner.event.PlayNextAdEvent;
 import com.djangoogle.banner.model.AdResourceModel;
+import com.djangoogle.player.manager.VLCManager;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -12,6 +13,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
+import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,7 +37,6 @@ public class BannerManager {
 		return instance;
 	}
 
-	private Activity mActivity = null;
 	private RecyclerView mBannerRecyclerView = null;
 	private BannerAdapter mBannerAdapter = null;
 	private LinearLayoutManager mLinearLayoutManager = null;
@@ -43,16 +44,18 @@ public class BannerManager {
 	/**
 	 * 初始化
 	 *
-	 * @param activity     Activity对象
+	 * @param context      上下文
 	 * @param recyclerView RecyclerView对象
 	 */
-	public void initialize(Activity activity, RecyclerView recyclerView) {
+	public void initialize(Context context, RecyclerView recyclerView) {
 		//注册EventBus
 		if (!EventBus.getDefault().isRegistered(this)) {
 			EventBus.getDefault().register(this);
 		}
+		//初始化VLC播放器
+		VLCManager.getInstance().initialize(context);
 		//禁止滚动
-		mLinearLayoutManager = new LinearLayoutManager(activity) {
+		mLinearLayoutManager = new LinearLayoutManager(context) {
 			@Override
 			public boolean canScrollVertically() {
 				return false;
@@ -63,7 +66,6 @@ public class BannerManager {
 				return false;
 			}
 		};
-		mActivity = activity;
 		mBannerRecyclerView = recyclerView;
 		mBannerRecyclerView.setLayoutManager(mLinearLayoutManager);
 		mBannerRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -74,6 +76,8 @@ public class BannerManager {
 				mBannerRecyclerView.post(() -> mBannerAdapter.setLastVisibleItemPosition(lastVisibleItemPosition));
 			}
 		});
+		mBannerAdapter = new BannerAdapter();
+		mBannerRecyclerView.setAdapter(mBannerAdapter);
 	}
 
 	/**
@@ -82,17 +86,16 @@ public class BannerManager {
 	 * @param adResourceList 广告资源
 	 */
 	public void setUp(List<AdResourceModel> adResourceList) {
-		mBannerAdapter = new BannerAdapter(mActivity);
-		mBannerRecyclerView.setAdapter(mBannerAdapter);
-		mBannerAdapter.replaceData(adResourceList);
+		mBannerAdapter.setNewData(adResourceList);
 	}
 
 	/**
-	 * 设置静音
+	 * 设置音量
 	 *
-	 * @param isMute 是否静音
+	 * @param volume 音量
 	 */
-	public void setMute(boolean isMute) {
+	public void setVolume(@IntRange(from = 0, to = 15) int volume) {
+		VLCManager.getInstance().setVolume(volume);
 	}
 
 	/**
@@ -124,7 +127,6 @@ public class BannerManager {
 		if (EventBus.getDefault().isRegistered(this)) {
 			EventBus.getDefault().unregister(this);
 		}
-		mActivity = null;
 	}
 
 	/**

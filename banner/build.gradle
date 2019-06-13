@@ -57,4 +57,6 @@ dependencies {
 	compileOnly "io.reactivex.rxjava2:rxandroid:$rx_android_version"
 	//https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
 	compileOnly "com.blankj:utilcodex:$util_codex_version"
+	//https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+	compileOnly "com.github.CymChad:BaseRecyclerViewAdapterHelper:$base_recyclerview_adapter_helper_version"
 }
