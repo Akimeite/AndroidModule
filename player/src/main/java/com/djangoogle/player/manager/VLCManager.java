@@ -111,6 +111,7 @@ public class VLCManager {
 	 */
 	public void setLocalPath(String path) {
 		mMedia = new Media(mLibVLC, path);
+		mMedia.setHWDecoderEnabled(true, true);
 		mMediaPlayer.setMedia(mMedia);
 		mMediaPlayer.setEventListener(mEventListener);
 	}
