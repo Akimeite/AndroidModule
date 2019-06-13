@@ -35,7 +35,6 @@ public class VLCManager {
 	}
 
 	static {
-		System.loadLibrary("c++_shared");
 		System.loadLibrary("vlc");
 		System.loadLibrary("vlcjni");
 	}
