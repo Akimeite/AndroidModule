@@ -68,16 +68,23 @@ public class VLCManager {
 					return;
 				}
 				//开始播放
-				if (Media.State.Playing == mMediaPlayer.getPlayerState() && null != mOnPlayListener) {
-					mOnPlayListener.onPlaying();
+				if (Media.State.Playing == mMediaPlayer.getPlayerState()) {
+					if (null != mOnPlayListener) {
+						mOnPlayListener.onPlaying();
+					}
 					return;
 				}
 				//播放结束
-				if (Media.State.Ended == mMediaPlayer.getPlayerState() && null != mOnPlayListener) {
-					mOnPlayListener.onEnded();
+				if (Media.State.Ended == mMediaPlayer.getPlayerState()) {
+					if (null != mOnPlayListener) {
+						mOnPlayListener.onEnded();
+					}
 				}
 			} catch (Exception e) {
 				Log.e(TAG, e.getMessage(), e.getCause());
+				if (null != mOnPlayListener) {
+					mOnPlayListener.onEnded();
+				}
 			}
 		}
 	};

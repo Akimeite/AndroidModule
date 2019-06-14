@@ -90,10 +90,10 @@ class BannerActivity : BaseActivity() {
 		val adResourceList = ArrayList<AdResourceModel>()
 		var ad = AdResourceModel()
 
-		ad.type = AdResourceModel.TYPE_VIDEO
-		ad.videoPath = path + "1.mp4"
-		adResourceList.add(ad)
-//
+//		ad.type = AdResourceModel.TYPE_VIDEO
+//		ad.videoPath = path + "1.mp4"
+//		adResourceList.add(ad)
+
 //		ad = AdResourceModel()
 //		ad.type = AdResourceModel.TYPE_IMAGE
 //		ad.imagePath = path + "2.png"
