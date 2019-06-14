@@ -187,6 +187,7 @@ public class VLCManager {
 		}
 		if (null != mMediaPlayer) {
 			mMediaPlayer.setEventListener(mEventListener);
+			mMediaPlayer.play();
 		}
 	}
 

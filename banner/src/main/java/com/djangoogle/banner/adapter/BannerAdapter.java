@@ -1,6 +1,8 @@
 package com.djangoogle.banner.adapter;
 
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.media.MediaMetadataRetriever;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,7 +14,6 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -33,9 +34,11 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import io.reactivex.Observable;
+import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by Djangoogle on 2019/03/29 21:51 with Android Studio.
@@ -301,16 +304,36 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 	private void loadVideoAdThumbnail(int position, AppCompatImageView appCompatImageView) {
 		String videoPath = mData.get(position).videoPath;
 		LogUtils.iTag("videoPath", "视频地址: " + videoPath);
-		Glide.with(mContext)
-		     .setDefaultRequestOptions(
-				     new RequestOptions()
-						     .frame(1000000)
-						     .error(android.R.color.black)
-						     .placeholder(android.R.color.black))
-		     .load(videoPath)
-		     .diskCacheStrategy(DiskCacheStrategy.DATA)//使用原图缓存
-		     .dontAnimate()//取消动画
-		     .into(appCompatImageView);
+		Observable.create((ObservableOnSubscribe<Bitmap>) emitter -> {
+			try {
+				MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+				mmr.setDataSource(videoPath);
+				emitter.onNext(mmr.getFrameAtTime(0L));
+			} catch (Exception e) {
+				emitter.onError(e);
+			}
+		}).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<Bitmap>() {
+			@Override
+			public void onSubscribe(Disposable d) {}
+
+			@Override
+			public void onNext(Bitmap bitmap) {
+				Glide.with(mContext)
+				     .load(bitmap)
+				     .placeholder(android.R.color.black)
+				     .diskCacheStrategy(DiskCacheStrategy.DATA)//使用原图缓存
+				     .dontAnimate()//取消动画
+				     .into(appCompatImageView);
+			}
+
+			@Override
+			public void onError(Throwable e) {
+				LogUtils.e(e);
+			}
+
+			@Override
+			public void onComplete() {}
+		});
 	}
 
 	/**

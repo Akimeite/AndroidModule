@@ -90,6 +90,10 @@ class BannerActivity : BaseActivity() {
 		val adResourceList = ArrayList<AdResourceModel>()
 		var ad = AdResourceModel()
 
+		ad.type = AdResourceModel.TYPE_VIDEO
+		ad.videoPath = path + "yoking.avi"
+		adResourceList.add(ad)
+
 //		ad.type = AdResourceModel.TYPE_VIDEO
 //		ad.videoPath = path + "1.mp4"
 //		adResourceList.add(ad)
@@ -100,10 +104,10 @@ class BannerActivity : BaseActivity() {
 //		ad.imageSwitchInterval = 2000L
 //		adResourceList.add(ad)
 
-		ad = AdResourceModel()
-		ad.type = AdResourceModel.TYPE_VIDEO
-		ad.videoPath = path + "3.mp4"
-		adResourceList.add(ad)
+//		ad = AdResourceModel()
+//		ad.type = AdResourceModel.TYPE_VIDEO
+//		ad.videoPath = path + "3.mp4"
+//		adResourceList.add(ad)
 
 		//设置广告
 		BannerManager.getInstance().setUp(adResourceList)
