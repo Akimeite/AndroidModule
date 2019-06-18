@@ -18,7 +18,8 @@ object ArcSoft2XEngine {
 	//用于数值化表示的最小人脸尺寸，该尺寸代表人脸尺寸相对于图片长边的占比
 	//video 模式有效值范围[2,16], Image 模式有效值范围[2,32]，多数情况下推荐值为 16
 	//特殊情况下可根据具体场景下进行设置
-	private const val DETECT_FACE_SCALE_VAL = 16
+	private const val IMAGE_DETECT_FACE_SCALE_VAL = 16
+	private const val VIDEO_DETECT_FACE_SCALE_VAL = 32
 
 	//人脸检测最大数量
 	private const val DETECT_FACE_MAX_NUM = 1
@@ -65,7 +66,7 @@ object ArcSoft2XEngine {
 			context,
 			FaceEngine.ASF_DETECT_MODE_IMAGE,
 			detectFaceOrientPriority,
-			DETECT_FACE_SCALE_VAL,
+			IMAGE_DETECT_FACE_SCALE_VAL,
 			DETECT_FACE_MAX_NUM,
 			IMAGE_ENGINE_MASK
 		)
@@ -93,7 +94,7 @@ object ArcSoft2XEngine {
 			context,
 			FaceEngine.ASF_DETECT_MODE_VIDEO,
 			detectFaceOrientPriority,
-			DETECT_FACE_SCALE_VAL,
+			VIDEO_DETECT_FACE_SCALE_VAL,
 			DETECT_FACE_MAX_NUM,
 			VIDEO_ENGINE_MASK
 		)
@@ -120,27 +121,7 @@ object ArcSoft2XEngine {
 				Log.i(TAG, "释放虹软2.X算法引擎, 返回码: $faceEngineCode")
 			}
 		} catch (e: Exception) {
-			Log.i(TAG, e.message)
-		}
-	}
-
-	/**
-	 * 处理NV21图片数据
-	 *
-	 * @param faceEngine 算法引擎
-	 * @param data       流数据
-	 * @param width      宽度
-	 * @param height     高度
-	 * @return 人脸信息
-	 */
-	fun processNV21Image(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int): FaceInfoResult {
-		val faceInfoList = ArrayList<FaceInfo>()
-		val code = faceEngine.detectFaces(data, width, height, FaceEngine.CP_PAF_NV21, faceInfoList)
-		//检测人脸
-		return if (ErrorInfo.MOK != code || faceInfoList.isEmpty()) {
-			FaceInfoResult(code, "未检测到人脸", false, null)
-		} else {
-			FaceInfoResult(code, "检测到人脸", false, faceInfoList[0])
+			Log.e(TAG, e.message.toString())
 		}
 	}
 
@@ -156,6 +137,26 @@ object ArcSoft2XEngine {
 	fun processBGR24Image(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int): FaceInfoResult {
 		val faceInfoList = ArrayList<FaceInfo>()
 		val code = faceEngine.detectFaces(data, width, height, FaceEngine.CP_PAF_BGR24, faceInfoList)
+		//检测人脸
+		return if (ErrorInfo.MOK != code || faceInfoList.isEmpty()) {
+			FaceInfoResult(code, "未检测到人脸", false, null)
+		} else {
+			FaceInfoResult(code, "检测到人脸", false, faceInfoList[0])
+		}
+	}
+
+	/**
+	 * 处理NV21图片数据
+	 *
+	 * @param faceEngine 算法引擎
+	 * @param data       流数据
+	 * @param width      宽度
+	 * @param height     高度
+	 * @return 人脸信息
+	 */
+	fun processNV21Image(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int): FaceInfoResult {
+		val faceInfoList = ArrayList<FaceInfo>()
+		val code = faceEngine.detectFaces(data, width, height, FaceEngine.CP_PAF_NV21, faceInfoList)
 		//检测人脸
 		return if (ErrorInfo.MOK != code || faceInfoList.isEmpty()) {
 			FaceInfoResult(code, "未检测到人脸", false, null)
