@@ -14,7 +14,7 @@ import java.util.concurrent.CopyOnWriteArrayList
  */
 class FaceRectView : View {
 
-	var mRectList = CopyOnWriteArrayList<Rect>()
+	private var mRectList = CopyOnWriteArrayList<Rect>()
 	var faceRectThickness = 5
 
 	constructor(context: Context?) : super(context, null)
