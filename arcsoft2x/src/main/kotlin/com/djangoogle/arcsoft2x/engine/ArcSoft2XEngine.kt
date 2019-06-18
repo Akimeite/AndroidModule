@@ -18,8 +18,8 @@ object ArcSoft2XEngine {
 	//用于数值化表示的最小人脸尺寸，该尺寸代表人脸尺寸相对于图片长边的占比
 	//video 模式有效值范围[2,16], Image 模式有效值范围[2,32]，多数情况下推荐值为 16
 	//特殊情况下可根据具体场景下进行设置
-	private const val IMAGE_DETECT_FACE_SCALE_VAL = 16
-	private const val VIDEO_DETECT_FACE_SCALE_VAL = 32
+	private const val IMAGE_DETECT_FACE_SCALE_VAL = 32
+	private const val VIDEO_DETECT_FACE_SCALE_VAL = 16
 
 	//人脸检测最大数量
 	private const val DETECT_FACE_MAX_NUM = 1
