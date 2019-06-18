@@ -54,10 +54,11 @@ public class DrawHelper {
 		if (null == rectList || rectList.isEmpty()) {
 			return;
 		}
-		for (Rect rect : rectList) {
-			faceRectView.addFaceInfo(RectUtil.adjustRect(rect, previewWidth, previewHeight, canvasWidth, canvasHeight,
+		for (int i = 0; i < rectList.size(); i++) {
+			rectList.set(i, RectUtil.adjustRect(rectList.get(i), previewWidth, previewHeight, canvasWidth, canvasHeight,
 					cameraDisplayOrientation, cameraId, isMirror, false, false));
 		}
+		faceRectView.addFaceInfo(rectList);
 	}
 
 	public void setPreviewWidth(int previewWidth) {
