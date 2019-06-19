@@ -17,6 +17,8 @@
 
 * **虹软2.X单目活体算法:** implementation 'com.djangoogle.support:**arcsoft2x**:*latest.integration*'
 
+* **百度TTS语音合成:** implementation 'com.djangoogle.support:**baidu-tts**:*latest.integration*'
+
 * **图片/视频混合轮播:** implementation 'com.djangoogle.support:**banner**:*latest.integration*'
 
 * **基础开发框架:** implementation 'com.djangoogle.support:**framework**:*latest.integration*'
