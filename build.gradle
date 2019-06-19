@@ -42,8 +42,8 @@ buildscript {
 		arcsoft2x_version_name = '1.0.0-beta06'
 		baidu_tts_package_name = 'BaiduTTS'
 		baidu_tts_artifact_id = 'baidu-tts'
-		baidu_tts_version_code = 2
-		baidu_tts_version_name = '1.0.1'
+		baidu_tts_version_code = 3
+		baidu_tts_version_name = '1.0.2'
 		banner_package_name = 'Banner'
 		banner_artifact_id = 'banner'
 		banner_version_code = 10
