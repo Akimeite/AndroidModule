@@ -7,6 +7,7 @@
 [![License](https://img.shields.io/github/license/Djangoogle/Module.svg?color=607d8b&style=flat-square)](https://github.com/Djangoogle/Module/blob/master/LICENSE)
 
 [![ArcSoft2X](https://img.shields.io/bintray/v/djangoogle/maven/ArcSoft2X.svg?label=arcsoft2x&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/arcsoft2x)
+[![BaiduTTS](https://img.shields.io/bintray/v/djangoogle/maven/BaiduTTS.svg?label=baidu-tts&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/baidu-tts)
 [![Banner](https://img.shields.io/bintray/v/djangoogle/maven/Banner.svg?label=banner&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/banner)
 [![Framework](https://img.shields.io/bintray/v/djangoogle/maven/Framework.svg?label=framework&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/framework)
 [![Player](https://img.shields.io/bintray/v/djangoogle/maven/Player.svg?label=player&style=flat-square)](https://github.com/Djangoogle/Module/tree/master/player)
