@@ -5,11 +5,10 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Message;
-import androidx.core.content.ContextCompat;
 
-import com.djangoogle.baidu.tts.config.BaiduInitConfig;
 import com.baidu.tts.client.SpeechSynthesizer;
 import com.baidu.tts.client.TtsMode;
+import com.djangoogle.baidu.tts.config.BaiduInitConfig;
 
 import org.json.JSONObject;
 
@@ -25,6 +24,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeSet;
+
+import androidx.core.content.ContextCompat;
 
 /**
  * Created by fujiayi on 2017/12/28.

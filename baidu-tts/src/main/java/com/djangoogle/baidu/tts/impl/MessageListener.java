@@ -2,9 +2,9 @@ package com.djangoogle.baidu.tts.impl;
 
 import android.util.Log;
 
-import com.djangoogle.baidu.tts.constants.MainHandlerConstant;
 import com.baidu.tts.client.SpeechError;
 import com.baidu.tts.client.SpeechSynthesizerListener;
+import com.djangoogle.baidu.tts.constants.MainHandlerConstant;
 
 /**
  * SpeechSynthesizerListener 简单地实现，仅仅记录日志

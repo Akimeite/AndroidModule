@@ -6,10 +6,6 @@ import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Message;
 
-import com.djangoogle.baidu.tts.config.BaiduInitConfig;
-import com.djangoogle.baidu.tts.constants.Constants;
-import com.djangoogle.baidu.tts.impl.MessageListener;
-import com.djangoogle.baidu.tts.util.AutoCheck;
 import com.baidu.tts.auth.AuthInfo;
 import com.baidu.tts.chainofresponsibility.logger.LoggerProxy;
 import com.baidu.tts.client.SpeechSynthesizer;
@@ -17,6 +13,10 @@ import com.baidu.tts.client.SpeechSynthesizerListener;
 import com.baidu.tts.client.TtsMode;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ResourceUtils;
+import com.djangoogle.baidu.tts.config.BaiduInitConfig;
+import com.djangoogle.baidu.tts.constants.Constants;
+import com.djangoogle.baidu.tts.impl.MessageListener;
+import com.djangoogle.baidu.tts.util.AutoCheck;
 
 import java.io.File;
 import java.util.HashMap;
