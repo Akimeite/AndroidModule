@@ -26,7 +26,7 @@ buildscript {
 		okhttp_version = '3.12.3'
 		//https://square.github.io/retrofit
 		//https://github.com/square/retrofit
-		retrofit2_version = '2.5.0'
+		retrofit2_version = '2.6.0'
 		//https://github.com/CarGuo/GSYVideoPlayer
 		gsy_video_player_version = '7.0.1'
 		//https://github.com/CymChad/BaseRecyclerViewAdapterHelper
@@ -50,8 +50,8 @@ buildscript {
 		banner_version_name = '1.1.1'
 		framework_package_name = 'Framework'
 		framework_artifact_id = 'framework'
-		framework_version_code = 37
-		framework_version_name = '1.0.1-beta36'
+		framework_version_code = 38
+		framework_version_name = '1.0.1'
 		player_package_name = 'Player'
 		player_artifact_id = 'player'
 		player_version_code = 10
