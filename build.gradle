@@ -46,8 +46,8 @@ buildscript {
 		baidu_tts_version_name = '1.0.3'
 		banner_package_name = 'Banner'
 		banner_artifact_id = 'banner'
-		banner_version_code = 10
-		banner_version_name = '1.1.0'
+		banner_version_code = 11
+		banner_version_name = '1.1.1'
 		framework_package_name = 'Framework'
 		framework_artifact_id = 'framework'
 		framework_version_code = 37
