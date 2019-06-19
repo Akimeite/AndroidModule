@@ -1,1 +1,1 @@
-include ':app', ':arcsoft2x', ':banner', ':framework', ':player', ':uvccamera'
+include ':app', ':arcsoft2x', ':baidu-tts', ':banner', ':framework', ':player', ':uvccamera'
