@@ -84,7 +84,7 @@ dependencies {
 	//https://github.com/LitePalFramework/LitePal
 	api 'org.litepal.android:java:3.0.0'
 	//https://github.com/Tencent/MMKV
-	api 'com.tencent:mmkv-static:1.0.19'
+	api 'com.tencent:mmkv-static:1.0.22'
 	//https://github.com/ybq/Android-SpinKit
 	api 'com.github.ybq:Android-SpinKit:1.2.0'
 }
