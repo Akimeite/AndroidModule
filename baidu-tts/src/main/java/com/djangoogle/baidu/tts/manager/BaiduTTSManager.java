@@ -122,7 +122,7 @@ public class BaiduTTSManager {
 		// MIX_MODE_HIGH_SPEED_NETWORK ， 3G 4G wifi状态下使用在线，其它状态离线。在线状态下，请求超时1.2s自动转离线
 		// MIX_MODE_HIGH_SPEED_SYNTHESIZE, 2G 3G 4G wifi状态下使用在线，其它状态离线。在线状态下，请求超时1.2s自动转离线
 
-		mSpeechSynthesizer.setAudioStreamType(AudioManager.MODE_IN_CALL);
+		mSpeechSynthesizer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
 		// x. 额外 ： 自动so文件是否复制正确及上面设置的参数
 		Map<String, String> params = new HashMap<>();
