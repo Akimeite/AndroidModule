@@ -14,7 +14,6 @@ import com.baidu.tts.client.TtsMode;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ResourceUtils;
 import com.djangoogle.baidu.tts.config.BaiduInitConfig;
-import com.djangoogle.baidu.tts.constants.Constants;
 import com.djangoogle.baidu.tts.impl.MessageListener;
 import com.djangoogle.baidu.tts.util.AutoCheck;
 
@@ -59,7 +58,7 @@ public class BaiduTTSManager {
 	 * 实际集成中，该方法一定在新线程中调用，并且该线程不能结束。具体可以参考NonBlockSyntherizer的写法
 	 */
 	@SuppressLint("HandlerLeak")
-	public void initialize(Context context) {
+	public void initialize(Context context, String appId, String appKey, String secretKey) {
 		LoggerProxy.printable(true); // 日志打印在logcat中
 		boolean isMix = ttsMode.equals(TtsMode.MIX);
 		boolean isSuccess;
@@ -84,9 +83,9 @@ public class BaiduTTSManager {
 		mSpeechSynthesizer.setSpeechSynthesizerListener(listener);
 
 		// 3. 设置appId，appKey.secretKey
-		int result = mSpeechSynthesizer.setAppId(Constants.BAIDU_TTS_APP_ID);
+		int result = mSpeechSynthesizer.setAppId(appId);
 		checkResult(result, "setAppId");
-		result = mSpeechSynthesizer.setApiKey(Constants.BAIDU_TTS_APP_KEY, Constants.BAIDU_TTS_SECRET_KEY);
+		result = mSpeechSynthesizer.setApiKey(appKey, secretKey);
 		checkResult(result, "setApiKey");
 
 		// 4. 支持离线的话，需要设置离线模型
@@ -133,8 +132,7 @@ public class BaiduTTSManager {
 			params.put(SpeechSynthesizer.PARAM_TTS_TEXT_MODEL_FILE, TEXT_FILENAME);
 			params.put(SpeechSynthesizer.PARAM_TTS_SPEECH_MODEL_FILE, MODEL_FILENAME);
 		}
-		BaiduInitConfig initConfig = new BaiduInitConfig(Constants.BAIDU_TTS_APP_ID, Constants.BAIDU_TTS_APP_KEY,
-				Constants.BAIDU_TTS_SECRET_KEY, ttsMode, params, listener);
+		BaiduInitConfig initConfig = new BaiduInitConfig(appId, appKey, secretKey, ttsMode, params, listener);
 		AutoCheck.getInstance(context).check(initConfig, new Handler() {
 			@Override
 			/**
