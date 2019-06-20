@@ -126,74 +126,60 @@ object ArcSoft2XEngine {
 	}
 
 	/**
-	 * 处理BGR24图片数据
+	 * 处理图片数据
 	 *
-	 * @param faceEngine 算法引擎
-	 * @param data       流数据
-	 * @param width      宽度
-	 * @param height     高度
+	 * @param imageEngine 算法引擎
+	 * @param data        图片数据
+	 * @param width       宽度
+	 * @param height      高度
 	 * @return 人脸信息
 	 */
-	fun processBGR24Image(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int): FaceInfoResult {
+	fun processImage(imageEngine: FaceEngine, data: ByteArray, width: Int, height: Int, fotmat: Int): FaceInfoResult {
 		val faceInfoList = ArrayList<FaceInfo>()
-		val code = faceEngine.detectFaces(data, width, height, FaceEngine.CP_PAF_BGR24, faceInfoList)
+		val code = imageEngine.detectFaces(data, width, height, fotmat, faceInfoList)
 		//检测人脸
 		return if (ErrorInfo.MOK != code || faceInfoList.isEmpty()) {
-			FaceInfoResult(code, "未检测到人脸", false, null)
+			FaceInfoResult(code, "未检测到人脸", false, null, null)
 		} else {
-			FaceInfoResult(code, "检测到人脸", false, faceInfoList[0])
-		}
-	}
-
-	/**
-	 * 处理NV21图片数据
-	 *
-	 * @param faceEngine 算法引擎
-	 * @param data       流数据
-	 * @param width      宽度
-	 * @param height     高度
-	 * @return 人脸信息
-	 */
-	fun processNV21Image(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int): FaceInfoResult {
-		val faceInfoList = ArrayList<FaceInfo>()
-		val code = faceEngine.detectFaces(data, width, height, FaceEngine.CP_PAF_NV21, faceInfoList)
-		//检测人脸
-		return if (ErrorInfo.MOK != code || faceInfoList.isEmpty()) {
-			FaceInfoResult(code, "未检测到人脸", false, null)
-		} else {
-			FaceInfoResult(code, "检测到人脸", false, faceInfoList[0])
+			FaceInfoResult(code, "检测到人脸", false, faceInfoList[0], null)
 		}
 	}
 
 	/**
 	 * 处理视频数据
 	 *
-	 * @param faceEngine 算法引擎
-	 * @param data       流数据
-	 * @param width      宽度
-	 * @param height     高度
-	 * @param liveness   是否检测活体
+	 * @param videoEngine 视频引擎
+	 * @param nv21        视频数据
+	 * @param width       宽度
+	 * @param height      高度
+	 * @param liveness    是否检测活体
 	 * @return 人脸信息
 	 */
-	fun processVideo(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int, liveness: Boolean): FaceInfoResult {
+	fun processVideo(videoEngine: FaceEngine, nv21: ByteArray, width: Int, height: Int, liveness: Boolean): FaceInfoResult {
 		val faceInfoList = ArrayList<FaceInfo>()
-		var code = faceEngine.detectFaces(data, width, height, FaceEngine.CP_PAF_NV21, faceInfoList)
+		var code = videoEngine.detectFaces(nv21, width, height, FaceEngine.CP_PAF_NV21, faceInfoList)
 		//检测人脸
 		return when {
-			ErrorInfo.MOK != code || faceInfoList.isEmpty() -> FaceInfoResult(code, "未检测到人脸", false, null)
+			ErrorInfo.MOK != code || faceInfoList.isEmpty() -> FaceInfoResult(code, "未检测到人脸", false, null, nv21)
 			//不检测活体
-			!liveness -> FaceInfoResult(code, "检测到人脸", false, faceInfoList[0])
+			!liveness -> FaceInfoResult(code, "检测到人脸", false, faceInfoList[0], nv21)
 			//活体检测
 			else -> {
-				code = faceEngine.process(data, width, height, FaceEngine.CP_PAF_NV21, faceInfoList, FaceEngine.ASF_LIVENESS)
+				code = videoEngine.process(nv21, width, height, FaceEngine.CP_PAF_NV21, faceInfoList, FaceEngine.ASF_LIVENESS)
 				when {
-					ErrorInfo.MOK != code || faceInfoList.isEmpty() -> FaceInfoResult(code, "未检测到活体人脸", false, null)
+					ErrorInfo.MOK != code || faceInfoList.isEmpty() -> FaceInfoResult(code, "未检测到活体人脸", false, null, nv21)
 					else -> {
 						val livenessInfoList = ArrayList<LivenessInfo>()
-						code = faceEngine.getLiveness(livenessInfoList)
+						code = videoEngine.getLiveness(livenessInfoList)
 						when {
-							ErrorInfo.MOK != code || livenessInfoList.isEmpty() -> FaceInfoResult(code, "未检测到活体信息", false, null)
-							else -> FaceInfoResult(code, "活体检测成功", LivenessInfo.ALIVE == livenessInfoList[0].liveness, faceInfoList[0])
+							ErrorInfo.MOK != code || livenessInfoList.isEmpty() -> FaceInfoResult(code, "未检测到活体信息", false, null, nv21)
+							else -> FaceInfoResult(
+								code,
+								"活体检测成功",
+								LivenessInfo.ALIVE == livenessInfoList[0].liveness,
+								faceInfoList[0],
+								nv21
+							)
 						}
 					}
 				}
@@ -202,48 +188,33 @@ object ArcSoft2XEngine {
 	}
 
 	/**
-	 * 抽取BGR24特征数组
+	 * 抽取特征数组
 	 *
-	 * @param faceEngine 算法引擎
-	 * @param data       帧数据
-	 * @param width      宽度
-	 * @param height     高度
-	 * @param faceInfo   人脸信息
+	 * @param imageEngine 图片引擎
+	 * @param data        帧数据
+	 * @param width       宽度
+	 * @param height      高度
+	 * @param faceInfo    人脸信息
+	 * @param format      数据格式
 	 * @return 特征数组
 	 */
-	fun extractBGR24Feature(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int, faceInfo: FaceInfo): ByteArray? {
+	fun extractFeature(imageEngine: FaceEngine, data: ByteArray?, width: Int, height: Int, faceInfo: FaceInfo?, format: Int): ByteArray? {
 		val faceFeature = FaceFeature()
-		val extractFaceFeatureCode = faceEngine.extractFaceFeature(data, width, height, FaceEngine.CP_PAF_BGR24, faceInfo, faceFeature)
-		return if (ErrorInfo.MOK != extractFaceFeatureCode) null else faceFeature.featureData
-	}
-
-	/**
-	 * 抽取NV21特征数组
-	 *
-	 * @param faceEngine 算法引擎
-	 * @param data       帧数据
-	 * @param width      宽度
-	 * @param height     高度
-	 * @param faceInfo   人脸信息
-	 * @return 特征数组
-	 */
-	fun extractNV21Feature(faceEngine: FaceEngine, data: ByteArray, width: Int, height: Int, faceInfo: FaceInfo): ByteArray? {
-		val faceFeature = FaceFeature()
-		val extractFaceFeatureCode = faceEngine.extractFaceFeature(data, width, height, FaceEngine.CP_PAF_NV21, faceInfo, faceFeature)
+		val extractFaceFeatureCode = imageEngine.extractFaceFeature(data, width, height, format, faceInfo, faceFeature)
 		return if (ErrorInfo.MOK != extractFaceFeatureCode) null else faceFeature.featureData
 	}
 
 	/**
 	 * 根据特征数组比对人脸
 	 *
-	 * @param faceEngine   算法引擎
+	 * @param imageEngine  图片引擎
 	 * @param faceFeature1 特征数组1
 	 * @param faceFeature2 特征数组2
 	 * @return 比对分值
 	 */
-	fun compareFaceFeature(faceEngine: FaceEngine, faceFeature1: ByteArray, faceFeature2: ByteArray): Float {
+	fun compareFaceFeature(imageEngine: FaceEngine, faceFeature1: ByteArray, faceFeature2: ByteArray): Float {
 		val faceSimilar = FaceSimilar()
-		faceEngine.compareFaceFeature(FaceFeature(faceFeature1), FaceFeature(faceFeature2), faceSimilar)
+		imageEngine.compareFaceFeature(FaceFeature(faceFeature1), FaceFeature(faceFeature2), faceSimilar)
 		return faceSimilar.score
 	}
 }

@@ -4,9 +4,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
+import com.djangoogle.arcsoft2x.model.FaceInfoResult;
 import com.djangoogle.arcsoft2x.widget.FaceRectView;
-
-import java.util.List;
 
 /**
  * 绘制人脸框帮助类，用于在{@link FaceRectView}上绘制矩形
@@ -46,19 +45,21 @@ public class DrawHelper {
 		canvas.drawRect(rect, paint);
 	}
 
-	public void draw(FaceRectView faceRectView, List<Rect> rectList) {
+	public void draw(FaceRectView faceRectView, FaceInfoResult faceInfoResult) {
 		if (null == faceRectView) {
 			return;
 		}
 		faceRectView.clearFaceInfo();
-		if (null == rectList || rectList.isEmpty()) {
+		if (null == faceInfoResult || null == faceInfoResult.getFaceInfo() || null == faceInfoResult.getFaceInfo().getRect()) {
 			return;
 		}
-		for (int i = 0; i < rectList.size(); i++) {
-			rectList.set(i, RectUtil.adjustRect(rectList.get(i), previewWidth, previewHeight, canvasWidth, canvasHeight,
-					cameraDisplayOrientation, cameraId, isMirror, false, false));
+		Rect rect = RectUtil.adjustRect(faceInfoResult.getFaceInfo().getRect(), previewWidth, previewHeight, canvasWidth, canvasHeight,
+				cameraDisplayOrientation, cameraId, isMirror, false, false);
+		if (null == rect) {
+			return;
 		}
-		faceRectView.addFaceInfo(rectList);
+		faceInfoResult.setRect(rect);
+		faceRectView.addFaceInfo(rect);
 	}
 
 	public void setPreviewWidth(int previewWidth) {
