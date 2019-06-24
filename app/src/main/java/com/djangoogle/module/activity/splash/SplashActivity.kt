@@ -43,18 +43,19 @@ class SplashActivity : BaseActivity() {
 	 * 申请权限
 	 */
 	private fun requestPermissions() {
-		PermissionUtils.permission(PermissionConstants.STORAGE, PermissionConstants.CAMERA).callback(object : PermissionUtils.FullCallback {
-			override fun onGranted(permissionsGranted: MutableList<String>?) {
-				//初始化
-				init()
-			}
+		PermissionUtils.permission(PermissionConstants.STORAGE, PermissionConstants.CAMERA, PermissionConstants.PHONE)
+			.callback(object : PermissionUtils.FullCallback {
+				override fun onGranted(permissionsGranted: MutableList<String>?) {
+					//初始化
+					init()
+				}
 
-			override fun onDenied(permissionsDeniedForever: MutableList<String>?, permissionsDenied: MutableList<String>?) {
-				val deniedForeverArray = permissionsDeniedForever?.toTypedArray()
-				val deniedArray = permissionsDenied?.toTypedArray()
-				ToastUtils.showShort("权限" + Arrays.toString(deniedForeverArray) + "被永久拒绝\n权限" + Arrays.toString(deniedArray) + "被拒绝")
-			}
-		}).request()
+				override fun onDenied(permissionsDeniedForever: MutableList<String>?, permissionsDenied: MutableList<String>?) {
+					val deniedForeverArray = permissionsDeniedForever?.toTypedArray()
+					val deniedArray = permissionsDenied?.toTypedArray()
+					ToastUtils.showShort("权限" + Arrays.toString(deniedForeverArray) + "被永久拒绝\n权限" + Arrays.toString(deniedArray) + "被拒绝")
+				}
+			}).request()
 	}
 
 	/**

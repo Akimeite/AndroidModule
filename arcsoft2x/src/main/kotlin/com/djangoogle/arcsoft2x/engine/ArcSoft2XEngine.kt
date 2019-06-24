@@ -2,6 +2,7 @@ package com.djangoogle.arcsoft2x.engine
 
 import android.content.Context
 import android.util.Log
+import androidx.annotation.FloatRange
 import com.arcsoft.face.*
 import com.djangoogle.arcsoft2x.model.FaceInfoResult
 import java.util.*
@@ -29,6 +30,9 @@ object ArcSoft2XEngine {
 
 	//视频引擎初始化属性
 	private const val VIDEO_ENGINE_MASK = FaceEngine.ASF_FACE_DETECT or FaceEngine.ASF_FACE_RECOGNITION or FaceEngine.ASF_LIVENESS
+
+	//
+//	private const val Liveness_Param_RANGE:closed
 
 	/**
 	 * 激活虹软2.X算法引擎
@@ -61,8 +65,8 @@ object ArcSoft2XEngine {
 	 * @return 图片引擎
 	 */
 	fun getImageEngine(context: Context, detectFaceOrientPriority: Int): FaceEngine? {
-		val faceEngine = FaceEngine()
-		val faceEngineCode = faceEngine.init(
+		val imageEngine = FaceEngine()
+		val code = imageEngine.init(
 			context,
 			FaceEngine.ASF_DETECT_MODE_IMAGE,
 			detectFaceOrientPriority,
@@ -70,13 +74,13 @@ object ArcSoft2XEngine {
 			DETECT_FACE_MAX_NUM,
 			IMAGE_ENGINE_MASK
 		)
-		return if (ErrorInfo.MOK == faceEngineCode) {
+		return if (ErrorInfo.MOK == code) {
 			val versionInfo = VersionInfo()
-			faceEngine.getVersion(versionInfo)
+			imageEngine.getVersion(versionInfo)
 			Log.i(TAG, "虹软2.X算法引擎初始化成功, 版本号: $versionInfo")
-			faceEngine
+			imageEngine
 		} else {
-			Log.i(TAG, "虹软2.X算法引擎初始化失败, 返回码: $faceEngineCode")
+			Log.i(TAG, "虹软2.X算法引擎初始化失败, 返回码: $code")
 			null
 		}
 	}
@@ -89,8 +93,8 @@ object ArcSoft2XEngine {
 	 * @return 图片引擎
 	 */
 	fun getVideoEngine(context: Context, detectFaceOrientPriority: Int): FaceEngine? {
-		val faceEngine = FaceEngine()
-		val faceEngineCode = faceEngine.init(
+		val videoEngine = FaceEngine()
+		val code = videoEngine.init(
 			context,
 			FaceEngine.ASF_DETECT_MODE_VIDEO,
 			detectFaceOrientPriority,
@@ -98,15 +102,27 @@ object ArcSoft2XEngine {
 			DETECT_FACE_MAX_NUM,
 			VIDEO_ENGINE_MASK
 		)
-		return if (ErrorInfo.MOK == faceEngineCode) {
+		return if (ErrorInfo.MOK == code) {
 			val versionInfo = VersionInfo()
-			faceEngine.getVersion(versionInfo)
+			videoEngine.getVersion(versionInfo)
 			Log.i(TAG, "虹软2.X算法引擎初始化成功, 版本号: $versionInfo")
-			faceEngine
+			videoEngine
 		} else {
-			Log.i(TAG, "虹软2.X算法引擎初始化失败, 返回码: $faceEngineCode")
+			Log.i(TAG, "虹软2.X算法引擎初始化失败, 返回码: $code")
 			null
 		}
+	}
+
+	/**
+	 * 设置活体阈值参数
+	 */
+	fun setLivenessParam(
+		videoEngine: FaceEngine, @FloatRange(from = 0.0, to = 1.0) rgbThreshold: Float, @FloatRange(
+			from = 0.0,
+			to = 1.0
+		) irThreshold: Float
+	): Boolean? {
+		return ErrorInfo.MOK == videoEngine.setLivenessParam(LivenessParam(rgbThreshold, irThreshold))
 	}
 
 	/**
