@@ -80,6 +80,8 @@ open class DjangoApp : Application() {
 		sbDebugInfo.append("设备厂商: ").append(DeviceUtils.getManufacturer()).append("\n")
 		sbDebugInfo.append("设备型号: ").append(DeviceUtils.getModel()).append("\n")
 		sbDebugInfo.append("设备ABIs: ").append(DeviceUtils.getABIs()?.contentToString()).append("\n")
+		sbDebugInfo.append("设备是否是平板: ").append(if (DeviceUtils.isTablet()) "是" else "否").append("\n")
+		sbDebugInfo.append("设备是否是模拟器: ").append(if (DeviceUtils.isEmulator()) "是" else "否").append("\n")
 		sbDebugInfo.append("设备屏幕宽度: ").append(ScreenUtils.getScreenWidth()).append("px").append("\n")
 		sbDebugInfo.append("设备屏幕高度: ").append(ScreenUtils.getScreenHeight()).append("px").append("\n")
 		sbDebugInfo.append("设备状态栏高度: ").append(BarUtils.getStatusBarHeight()).append("px").append("\n")
