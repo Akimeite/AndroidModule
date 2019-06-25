@@ -38,8 +38,8 @@ buildscript {
 		//version
 		arcsoft2x_package_name = 'ArcSoft2X'
 		arcsoft2x_artifact_id = 'arcsoft2x'
-		arcsoft2x_version_code = 32
-		arcsoft2x_version_name = '1.0.6-beta04'
+		arcsoft2x_version_code = 33
+		arcsoft2x_version_name = '1.0.6'
 		baidu_tts_package_name = 'BaiduTTS'
 		baidu_tts_artifact_id = 'baidu-tts'
 		baidu_tts_version_code = 4
