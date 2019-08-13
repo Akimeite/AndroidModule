@@ -19,7 +19,7 @@ buildscript {
 		//https://github.com/greenrobot/EventBus
 		event_bus_version = '3.1.1'
 		//https://github.com/Blankj/AndroidUtilCode/blob/master/lib/utilcode/README-CN.md
-		util_codex_version = '1.25.5'
+		util_codex_version = '1.25.7'
 		//https://github.com/ReactiveX/RxAndroid
 		rx_android_version = '2.1.1'
 		//https://github.com/trello/RxLifecycle
@@ -52,8 +52,8 @@ buildscript {
 		banner_version_name = '1.1.1'
 		framework_package_name = 'Framework'
 		framework_artifact_id = 'framework'
-		framework_version_code = 40
-		framework_version_name = '1.0.3'
+		framework_version_code = 41
+		framework_version_name = '1.0.4'
 		player_package_name = 'Player'
 		player_artifact_id = 'player'
 		player_version_code = 10
