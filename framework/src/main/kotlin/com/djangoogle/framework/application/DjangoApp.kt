@@ -23,7 +23,7 @@ open class DjangoApp : Application() {
 		//初始化日志管理器
 		initLogUtils()
 		//初始化设备信息
-		initDeviceInfo()
+//		initDeviceInfo()
 		//初始化MMKV
 		MMKV.initialize(this)
 		//初始化数据库管理工具
