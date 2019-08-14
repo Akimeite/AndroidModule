@@ -3,9 +3,11 @@ package com.djangoogle.banner.adapter;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.media.MediaMetadataRetriever;
-import android.view.SurfaceView;
+import android.media.MediaPlayer;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.MediaController;
+import android.widget.VideoView;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ScreenUtils;
@@ -20,14 +22,14 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.djangoogle.banner.R;
 import com.djangoogle.banner.event.PlayNextAdEvent;
 import com.djangoogle.banner.model.AdResourceModel;
-import com.djangoogle.player.impl.OnPlayListener;
-import com.djangoogle.player.manager.VLCManager;
+import com.djangoogle.banner.widget.FullScreenVideoView;
 
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -48,6 +50,7 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 	private int mLastVisibleItemPosition = -1, mLastVisibleItemPositionCount = 0;
 	private Disposable mAdPlayDisposable = null;
 	private int currentType = -1;
+	private VideoView mVideoView = null;
 
 	public BannerAdapter() {
 		super(R.layout.banner);
@@ -90,7 +93,7 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 	@Override
 	protected void convert(BaseViewHolder helper, AdResourceModel item) {
 		ConstraintLayout clBannerRoot = helper.getView(R.id.clBannerRoot);
-		SurfaceView svBannerVideo = helper.getView(R.id.svBannerVideo);
+		FullScreenVideoView fullScreenVideoView = helper.getView(R.id.fsvvBannerVideo);
 		AppCompatImageView acivBannerImage = helper.getView(R.id.acivBannerImage);
 		AppCompatImageView acivBannerVideo = helper.getView(R.id.acivBannerVideo);
 		switch (item.type) {
@@ -116,7 +119,7 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 								ConstraintLayout.LayoutParams.MATCH_PARENT);
 				acivBannerVideo.setLayoutParams(singleVideoParams);
 				acivBannerVideo.setScaleType(ImageView.ScaleType.FIT_XY);
-				svBannerVideo.setLayoutParams(singleVideoParams);
+				fullScreenVideoView.setLayoutParams(singleVideoParams);
 				acivBannerVideo.setVisibility(View.VISIBLE);
 				acivBannerImage.setVisibility(View.INVISIBLE);
 				//加载视频广告缩略图
@@ -127,7 +130,7 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 			case AdResourceModel.TYPE_MIX:
 				int imageId = acivBannerImage.getId();
 				int thumbnailId = acivBannerVideo.getId();
-				int videoId = svBannerVideo.getId();
+				int videoId = fullScreenVideoView.getId();
 				int videoHeight = ScreenUtils.getScreenWidth() * 9 / 16;
 				int imageHeight = ScreenUtils.getScreenHeight() - videoHeight;
 				//设置图片宽高
@@ -140,7 +143,7 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 						new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, videoHeight);
 				acivBannerVideo.setLayoutParams(mixVideoParams);
 				acivBannerVideo.setScaleType(ImageView.ScaleType.FIT_XY);
-				svBannerVideo.setLayoutParams(mixVideoParams);
+				fullScreenVideoView.setLayoutParams(mixVideoParams);
 				switch (item.mixType) {
 					//图片在上
 					case AdResourceModel.MIX_TYPE_IMAGE_UP:
@@ -195,7 +198,10 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 	@Override
 	public void setNewData(@Nullable List<AdResourceModel> data) {
 		//停止播放
-		VLCManager.getInstance().stop();
+		if (null != mVideoView) {
+			mVideoView.stopPlayback();
+			mVideoView = null;
+		}
 		super.setNewData(data);
 	}
 
@@ -306,9 +312,9 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 		LogUtils.iTag("videoPath", "视频地址: " + videoPath);
 		Observable.create((ObservableOnSubscribe<Bitmap>) emitter -> {
 			try {
-				MediaMetadataRetriever mmr = new MediaMetadataRetriever();
-				mmr.setDataSource(videoPath);
-				emitter.onNext(mmr.getFrameAtTime(0L));
+				MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
+				mediaMetadataRetriever.setDataSource(videoPath);
+				emitter.onNext(mediaMetadataRetriever.getFrameAtTime(0L));
 			} catch (Exception e) {
 				emitter.onError(e);
 			}
@@ -346,32 +352,44 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 	 */
 	private void loadVideoAd(int position, BaseViewHolder baseViewHolder, int width, int height) {
 		String videoPath = mData.get(position).videoPath;
-		VLCManager.getInstance().stop();
-		VLCManager.getInstance().setView(baseViewHolder.getView(R.id.svBannerVideo));
-		VLCManager.getInstance().setLocalPath(videoPath);
-		VLCManager.getInstance().setSize(width, height);
-		VLCManager.getInstance().addOnPlayListener(new OnPlayListener() {
-			@Override
-			public void onPlaying() {
-				if (View.VISIBLE == baseViewHolder.getView(R.id.acivBannerVideo).getVisibility()) {
-					baseViewHolder.setVisible(R.id.acivBannerVideo, false);
-				}
+		if (null != mVideoView) {
+			mVideoView.stopPlayback();
+			mVideoView = null;
+		}
+		mVideoView = baseViewHolder.getView(R.id.fsvvBannerVideo);
+		MediaController mediaController = new MediaController(mContext);
+		mediaController.setVisibility(View.INVISIBLE);
+		mVideoView.setMediaController(mediaController);
+		mVideoView.setOnPreparedListener(mediaPlayer -> mediaPlayer.setOnInfoListener((mediaPlayer1, i, i1) -> {
+			if (MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START == i && View.VISIBLE == baseViewHolder.getView(R.id.acivBannerVideo)
+			                                                                                       .getVisibility()) {
+				baseViewHolder.setVisible(R.id.acivBannerVideo, false);
+				return true;
 			}
-
-			@Override
-			public void onEnded() {
-				if (mData.size() > 1) {
-					//播放下一条广告
-					EventBus.getDefault().post(new PlayNextAdEvent(getNextIndex(position)));
-					return;
-				}
-				if (AdResourceModel.TYPE_VIDEO == mData.get(0).type || AdResourceModel.TYPE_MIX == mData.get(0).type) {
-					//仅一条广告且包含视频时循环播放
-					loadVideoAd(position, baseViewHolder, width, height);
-				}
+			return false;
+		}));
+		mVideoView.setOnCompletionListener(mediaPlayer -> {
+			if (mData.size() > 1) {
+				//播放下一条广告
+				EventBus.getDefault().post(new PlayNextAdEvent(getNextIndex(position)));
+				return;
+			}
+			if (AdResourceModel.TYPE_VIDEO == mData.get(0).type || AdResourceModel.TYPE_MIX == mData.get(0).type) {
+				//仅一条广告且包含视频时循环播放
+				loadVideoAd(position, baseViewHolder, width, height);
 			}
 		});
-		VLCManager.getInstance().play();
+		mVideoView.setVideoPath(videoPath);
+		mVideoView.start();
+	}
+
+	/**
+	 * 设置音量
+	 *
+	 * @param volume 音量
+	 */
+	public void setVolume(@IntRange(from = 0, to = 15) int volume) {
+		//暂未实现
 	}
 
 	/**
@@ -389,7 +407,9 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 
 			case AdResourceModel.TYPE_VIDEO:
 			case AdResourceModel.TYPE_MIX:
-				VLCManager.getInstance().resume();
+				if (null != mVideoView) {
+					mVideoView.resume();
+				}
 				break;
 
 			default:
@@ -410,7 +430,9 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 
 			case AdResourceModel.TYPE_VIDEO:
 			case AdResourceModel.TYPE_MIX:
-				VLCManager.getInstance().pause();
+				if (null != mVideoView) {
+					mVideoView.pause();
+				}
 				break;
 
 			default:
@@ -425,6 +447,9 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 		if (null != mAdPlayDisposable && !mAdPlayDisposable.isDisposed()) {
 			mAdPlayDisposable.dispose();
 		}
-		VLCManager.getInstance().destroy();
+		if (null != mVideoView) {
+			mVideoView.stopPlayback();
+			mVideoView = null;
+		}
 	}
 }

@@ -6,8 +6,8 @@
 	android:background="@android:color/white"
 	android:keepScreenOn="true">
 
-	<SurfaceView
-		android:id="@+id/svBannerVideo"
+	<com.djangoogle.banner.widget.FullScreenVideoView
+		android:id="@+id/fsvvBannerVideo"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent" />
 
