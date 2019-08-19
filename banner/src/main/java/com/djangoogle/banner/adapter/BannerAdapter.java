@@ -2,7 +2,6 @@ package com.djangoogle.banner.adapter;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.view.View;
 import android.widget.ImageView;
@@ -41,6 +40,7 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import wseemann.media.FFmpegMediaMetadataRetriever;
 
 /**
  * Created by Djangoogle on 2019/03/29 21:51 with Android Studio.
@@ -311,12 +311,16 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 		String videoPath = mData.get(position).videoPath;
 		LogUtils.iTag("videoPath", "视频地址: " + videoPath);
 		Observable.create((ObservableOnSubscribe<Bitmap>) emitter -> {
+			FFmpegMediaMetadataRetriever retriever = new FFmpegMediaMetadataRetriever();
 			try {
-				MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-				mediaMetadataRetriever.setDataSource(videoPath);
-				emitter.onNext(mediaMetadataRetriever.getFrameAtTime(0L));
+				retriever.setDataSource(videoPath);
+				Bitmap bitmap = retriever.getFrameAtTime(100000L, FFmpegMediaMetadataRetriever.OPTION_CLOSEST_SYNC);
+				emitter.onNext(bitmap);
 			} catch (Exception e) {
+				LogUtils.e(e);
 				emitter.onError(e);
+			} finally {
+				retriever.release();
 			}
 		}).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<Bitmap>() {
 			@Override

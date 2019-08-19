@@ -7,7 +7,7 @@ plugins {
 
 publish {
 	bintrayUser = rootProject.ext.publish_user_org
-	bintrayKey = System.getenv("BINTRAY_KEY")
+	bintrayKey = rootProject.ext.publish_bintray_key
 	uploadName = rootProject.ext.uvccamera_package_name
 	userOrg = rootProject.ext.publish_user_org
 	groupId = rootProject.ext.publish_group_id
