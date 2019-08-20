@@ -123,7 +123,7 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 				acivBannerVideo.setVisibility(View.VISIBLE);
 				acivBannerImage.setVisibility(View.INVISIBLE);
 				//加载视频广告缩略图
-				loadVideoAdThumbnail(helper.getAdapterPosition(), helper.getView(R.id.acivBannerVideo));
+//				loadVideoAdThumbnail(helper.getAdapterPosition(), helper.getView(R.id.acivBannerVideo));
 				break;
 
 			//图片视频混合（此处按照16:9来计算）
@@ -187,7 +187,7 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 				//加载图片广告
 				loadImageAd(helper.getAdapterPosition(), acivBannerImage);
 				//加载视频广告缩略图
-				loadVideoAdThumbnail(helper.getAdapterPosition(), helper.getView(R.id.acivBannerVideo));
+//				loadVideoAdThumbnail(helper.getAdapterPosition(), helper.getView(R.id.acivBannerVideo));
 				break;
 
 			default:
@@ -365,8 +365,7 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 		mediaController.setVisibility(View.INVISIBLE);
 		mVideoView.setMediaController(mediaController);
 		mVideoView.setOnPreparedListener(mediaPlayer -> mediaPlayer.setOnInfoListener((mediaPlayer1, i, i1) -> {
-			if (MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START == i && View.VISIBLE == baseViewHolder.getView(R.id.acivBannerVideo)
-			                                                                                       .getVisibility()) {
+			if (MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START == i && View.VISIBLE == baseViewHolder.getView(R.id.acivBannerVideo).getVisibility()) {
 				baseViewHolder.setVisible(R.id.acivBannerVideo, false);
 				return true;
 			}
