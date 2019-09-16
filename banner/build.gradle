@@ -8,7 +8,7 @@ plugins {
 
 publish {
 	bintrayUser = rootProject.ext.publish_user_org
-	bintrayKey = System.getenv("BINTRAY_KEY")
+	bintrayKey = rootProject.ext.publish_bintray_key
 	uploadName = rootProject.ext.banner_package_name
 	userOrg = rootProject.ext.publish_user_org
 	groupId = rootProject.ext.publish_group_id
@@ -41,9 +41,6 @@ dependencies {
 	//https://www.kotlincn.net/docs/reference/using-gradle.html
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 	implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-	//https://github.com/Djangoogle/Module
-	api "com.djangoogle.support:player:$player_version_name"
-//	api project(':player')
 	//https://maven.google.com
 	compileOnly "com.google.android.material:material:$androidx_material_version"
 	compileOnly "androidx.constraintlayout:constraintlayout:$androidx_constraintlayout_version"
@@ -59,4 +56,6 @@ dependencies {
 	compileOnly "com.blankj:utilcodex:$util_codex_version"
 	//https://github.com/CymChad/BaseRecyclerViewAdapterHelper
 	api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$base_recyclerview_adapter_helper_version"
+	//https://github.com/wseemann/FFmpegMediaMetadataRetriever
+	implementation 'com.github.wseemann:FFmpegMediaMetadataRetriever:1.0.14'
 }

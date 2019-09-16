@@ -7,7 +7,7 @@ plugins {
 
 publish {
 	bintrayUser = rootProject.ext.publish_user_org
-	bintrayKey = System.getenv("BINTRAY_KEY")
+	bintrayKey = rootProject.ext.publish_bintray_key
 	uploadName = rootProject.ext.arcsoft2x_package_name
 	userOrg = rootProject.ext.publish_user_org
 	groupId = rootProject.ext.publish_group_id
@@ -39,4 +39,6 @@ dependencies {
 	//https://www.kotlincn.net/docs/reference/using-gradle.html
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 	implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+	//https://maven.google.com
+	compileOnly "androidx.annotation:annotation:$androidx_annotation_version"
 }

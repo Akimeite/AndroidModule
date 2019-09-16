@@ -3,21 +3,25 @@ buildscript {
 		google()
 		jcenter()
 	}
+	Properties properties = new Properties()
+	properties.load(project.rootProject.file('local.properties').newDataInputStream())
 	ext {
 		compile_sdk_version = 29
 		min_sdk_version = 19
 		java_version = JavaVersion.VERSION_1_8
 		//https://www.kotlincn.net/docs/reference/using-gradle.html
-		kotlin_version = '1.3.40'
+		kotlin_version = '1.3.41'
 		//https://maven.google.com
 		androidx_material_version = '1.0.0'
 		androidx_constraintlayout_version = '1.1.3'
+		androidx_annotation_version = '1.1.0'
+		androidx_multidex_version = '2.0.1'
 		//https://github.com/bumptech/glide
 		glide_version = '4.9.0'
 		//https://github.com/greenrobot/EventBus
 		event_bus_version = '3.1.1'
-		//https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/README-CN.md
-		util_codex_version = '1.24.2'
+		//https://github.com/Blankj/AndroidUtilCode/blob/master/lib/utilcode/README-CN.md
+		util_codex_version = '1.25.8'
 		//https://github.com/ReactiveX/RxAndroid
 		rx_android_version = '2.1.1'
 		//https://github.com/trello/RxLifecycle
@@ -26,32 +30,33 @@ buildscript {
 		okhttp_version = '3.12.3'
 		//https://square.github.io/retrofit
 		//https://github.com/square/retrofit
-		retrofit2_version = '2.6.0'
+		retrofit2_version = '2.6.1'
 		//https://github.com/CarGuo/GSYVideoPlayer
-		gsy_video_player_version = '7.0.1'
+		gsy_video_player_version = '7.0.2'
 		//https://github.com/CymChad/BaseRecyclerViewAdapterHelper
-		base_recyclerview_adapter_helper_version = '2.9.46'
+		base_recyclerview_adapter_helper_version = '2.9.49-androidx'
 		//bintray
 		publish_user_org = 'djangoogle'
+		publish_bintray_key = properties.getProperty("publish.bintrayKey")
 		publish_group_id = 'com.djangoogle.support'
 		website = 'https://github.com/Djangoogle/Module/tree/master/'
 		//version
 		arcsoft2x_package_name = 'ArcSoft2X'
 		arcsoft2x_artifact_id = 'arcsoft2x'
-		arcsoft2x_version_code = 29
-		arcsoft2x_version_name = '1.0.5'
+		arcsoft2x_version_code = 36
+		arcsoft2x_version_name = '1.0.9'
 		baidu_tts_package_name = 'BaiduTTS'
 		baidu_tts_artifact_id = 'baidu-tts'
 		baidu_tts_version_code = 4
 		baidu_tts_version_name = '1.0.3'
 		banner_package_name = 'Banner'
 		banner_artifact_id = 'banner'
-		banner_version_code = 11
-		banner_version_name = '1.1.1'
+		banner_version_code = 14
+		banner_version_name = '1.1.4'
 		framework_package_name = 'Framework'
 		framework_artifact_id = 'framework'
-		framework_version_code = 38
-		framework_version_name = '1.0.1'
+		framework_version_code = 46
+		framework_version_name = '1.0.5'
 		player_package_name = 'Player'
 		player_artifact_id = 'player'
 		player_version_code = 10
@@ -62,7 +67,7 @@ buildscript {
 		uvccamera_version_name = '1.0.0'
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:3.5.0'
+		classpath 'com.android.tools.build:gradle:3.4.2'
 		//https://www.kotlincn.net/docs/reference/using-gradle.html
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 		//https://github.com/novoda/bintray-release

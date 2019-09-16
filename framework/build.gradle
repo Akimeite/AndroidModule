@@ -8,7 +8,7 @@ plugins {
 
 publish {
 	bintrayUser = rootProject.ext.publish_user_org
-	bintrayKey = System.getenv("BINTRAY_KEY")
+	bintrayKey = rootProject.ext.publish_bintray_key
 	uploadName = rootProject.ext.framework_package_name
 	userOrg = rootProject.ext.publish_user_org
 	groupId = rootProject.ext.publish_group_id
@@ -70,7 +70,7 @@ dependencies {
 	api "com.trello.rxlifecycle3:rxlifecycle-components:$rx_lifecycle_version"
 	api "com.trello.rxlifecycle3:rxlifecycle-kotlin:$rx_lifecycle_version"
 	//https://github.com/JakeWharton/RxBinding
-	api 'com.jakewharton.rxbinding3:rxbinding:3.0.0-alpha2'
+	api 'com.jakewharton.rxbinding3:rxbinding:3.0.0'
 	//https://github.com/ihsanbal/LoggingInterceptor
 	api('com.github.ihsanbal:LoggingInterceptor:3.0.0') {
 		exclude group: 'org.json', module: 'json'
@@ -86,5 +86,5 @@ dependencies {
 	//https://github.com/Tencent/MMKV
 	api 'com.tencent:mmkv-static:1.0.22'
 	//https://github.com/ybq/Android-SpinKit
-	api 'com.github.ybq:Android-SpinKit:1.2.0'
+	api 'com.github.ybq:Android-SpinKit:1.4.0'
 }

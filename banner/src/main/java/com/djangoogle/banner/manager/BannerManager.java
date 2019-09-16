@@ -5,7 +5,6 @@ import android.content.Context;
 import com.djangoogle.banner.adapter.BannerAdapter;
 import com.djangoogle.banner.event.PlayNextAdEvent;
 import com.djangoogle.banner.model.AdResourceModel;
-import com.djangoogle.player.manager.VLCManager;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -52,8 +51,6 @@ public class BannerManager {
 		if (!EventBus.getDefault().isRegistered(this)) {
 			EventBus.getDefault().register(this);
 		}
-		//初始化VLC播放器
-		VLCManager.getInstance().initialize(context);
 		//禁止滚动
 		mLinearLayoutManager = new LinearLayoutManager(context) {
 			@Override
@@ -95,7 +92,7 @@ public class BannerManager {
 	 * @param volume 音量
 	 */
 	public void setVolume(@IntRange(from = 0, to = 15) int volume) {
-		VLCManager.getInstance().setVolume(volume);
+		mBannerAdapter.setVolume(volume);
 	}
 
 	/**
