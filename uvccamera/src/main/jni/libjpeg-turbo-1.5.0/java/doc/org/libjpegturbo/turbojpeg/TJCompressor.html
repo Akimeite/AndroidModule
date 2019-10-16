@@ -1,4 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
 <!-- NewPage -->
 <html lang="en">
 <head>
@@ -11,6 +12,8 @@
         parent.document.title="TJCompressor";
     }
 //-->
+
+
 
 
 
@@ -35,13 +38,17 @@
 </div>
 <div class="subNav">
 	<ul class="navList">
-		<li><a href="../../../org/libjpegturbo/turbojpeg/TJ.html" title="class in org.libjpegturbo.turbojpeg"><span class="strong">Prev Class</span></a>
+        <li><a href="../../../org/libjpegturbo/turbojpeg/TJ.html"
+               title="class in org.libjpegturbo.turbojpeg"><span
+                class="strong">Prev Class</span></a>
 		</li>
-		<li><a href="../../../org/libjpegturbo/turbojpeg/TJCustomFilter.html" title="interface in org.libjpegturbo.turbojpeg"><span
+        <li><a href="../../../org/libjpegturbo/turbojpeg/TJCustomFilter.html"
+               title="interface in org.libjpegturbo.turbojpeg"><span
 				class="strong">Next Class</span></a></li>
 	</ul>
 	<ul class="navList">
-		<li><a href="../../../index.html?org/libjpegturbo/turbojpeg/TJCompressor.html" target="_top">Frames</a></li>
+        <li><a href="../../../index.html?org/libjpegturbo/turbojpeg/TJCompressor.html"
+               target="_top">Frames</a></li>
 		<li><a href="TJCompressor.html" target="_top">No Frames</a></li>
 	</ul>
 	<ul class="navList" id="allclasses_navbar_top">
@@ -57,6 +64,8 @@
     allClassesLink.style.display = "none";
   }
   //-->
+
+
 
 
 
@@ -122,7 +131,8 @@ implements java.io.Closeable</pre>
 						<h3>Constructor Summary</h3>
 						<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0"
 						       summary="Constructor Summary table, listing constructors, and an explanation">
-							<caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+                            <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span>
+                            </caption>
 							<tr>
 								<th class="colOne" scope="col">Constructor and Description</th>
 							</tr>
@@ -139,8 +149,10 @@ implements java.io.Closeable</pre>
 									int&nbsp;y,
 									int&nbsp;width,
 									int&nbsp;height)</code>
-									<div class="block">Create a TurboJPEG compressor instance and associate the uncompressed
-										source image stored in <code>srcImage</code> with the newly created
+                                    <div class="block">Create a TurboJPEG compressor instance and
+                                        associate the uncompressed
+                                        source image stored in <code>srcImage</code> with the newly
+                                        created
 										instance.
 									</div>
 								</td>
@@ -155,7 +167,8 @@ implements java.io.Closeable</pre>
 									<div class="block"><strong>Deprecated.</strong>&nbsp;
 										<div class="block"><i>Use
 											<a href="../../../org/libjpegturbo/turbojpeg/TJCompressor.html#TJCompressor(byte[],%20int,%20int,%20int,%20int,%20int,%20int)"><code>TJCompressor(byte[],
-												int, int, int, int, int, int)</code></a> instead.</i></div>
+                                                int, int, int, int, int, int)</code></a>
+                                            instead.</i></div>
 									</div>
 								</td>
 							</tr>
@@ -168,8 +181,10 @@ implements java.io.Closeable</pre>
 									int&nbsp;pitch,
 									int&nbsp;height,
 									int&nbsp;pixelFormat)</code>
-									<div class="block">Create a TurboJPEG compressor instance and associate the uncompressed
-										source image stored in <code>srcImage</code> with the newly created
+                                    <div class="block">Create a TurboJPEG compressor instance and
+                                        associate the uncompressed
+                                        source image stored in <code>srcImage</code> with the newly
+                                        created
 										instance.
 									</div>
 								</td>
@@ -185,15 +200,19 @@ implements java.io.Closeable</pre>
 						<h3>Method Summary</h3>
 						<table class="overviewSummary" border="0" cellpadding="3" cellspacing="0"
 						       summary="Method Summary table, listing methods, and an explanation">
-							<caption><span>Methods</span><span class="tabEnd">&nbsp;</span></caption>
+                            <caption><span>Methods</span><span class="tabEnd">&nbsp;</span>
+                            </caption>
 							<tr>
 								<th class="colFirst" scope="col">Modifier and Type</th>
 								<th class="colLast" scope="col">Method and Description</th>
 							</tr>
 							<tr class="altColor">
 								<td class="colFirst"><code>void</code></td>
-								<td class="colLast"><code><strong><a href="../../../org/libjpegturbo/turbojpeg/TJCompressor.html#close()">close</a></strong>()</code>
-									<div class="block">Free the native structures associated with this compressor instance.</div>
+                                <td class="colLast"><code><strong><a
+                                        href="../../../org/libjpegturbo/turbojpeg/TJCompressor.html#close()">close</a></strong>()</code>
+                                    <div class="block">Free the native structures associated with
+                                        this compressor instance.
+                                    </div>
 								</td>
 							</tr>
 							<tr class="rowColor">
@@ -230,8 +249,10 @@ implements java.io.Closeable</pre>
 								<td class="colLast"><code><strong><a
 										href="../../../org/libjpegturbo/turbojpeg/TJCompressor.html#compress(byte[],%20int)">compress</a></strong>(byte[]&nbsp;dstBuf,
 									int&nbsp;flags)</code>
-									<div class="block">Compress the uncompressed source image associated with this compressor
-										instance and output a JPEG image to the given destination buffer.
+                                    <div class="block">Compress the uncompressed source image
+                                        associated with this compressor
+                                        instance and output a JPEG image to the given destination
+                                        buffer.
 									</div>
 								</td>
 							</tr>
@@ -239,7 +260,8 @@ implements java.io.Closeable</pre>
 								<td class="colFirst"><code>byte[]</code></td>
 								<td class="colLast"><code><strong><a
 										href="../../../org/libjpegturbo/turbojpeg/TJCompressor.html#compress(int)">compress</a></strong>(int&nbsp;flags)</code>
-									<div class="block">Compress the uncompressed source image associated with this compressor
+                                    <div class="block">Compress the uncompressed source image
+                                        associated with this compressor
 										instance and return a buffer containing a JPEG image.
 									</div>
 								</td>
@@ -297,24 +319,32 @@ implements java.io.Closeable</pre>
 								</td>
 							</tr>
 							<tr class="rowColor">
-								<td class="colFirst"><code><a href="../../../org/libjpegturbo/turbojpeg/YUVImage.html"
-								                              title="class in org.libjpegturbo.turbojpeg">YUVImage</a></code></td>
+                                <td class="colFirst"><code><a
+                                        href="../../../org/libjpegturbo/turbojpeg/YUVImage.html"
+                                        title="class in org.libjpegturbo.turbojpeg">YUVImage</a></code>
+                                </td>
 								<td class="colLast"><code><strong><a
 										href="../../../org/libjpegturbo/turbojpeg/TJCompressor.html#encodeYUV(int[],%20int)">encodeYUV</a></strong>(int[]&nbsp;strides,
 									int&nbsp;flags)</code>
-									<div class="block">Encode the uncompressed source image associated with this compressor
-										instance into separate Y, U (Cb), and V (Cr) image planes and return a
-										<code>YUVImage</code> instance containing the encoded image planes.
+                                    <div class="block">Encode the uncompressed source image
+                                        associated with this compressor
+                                        instance into separate Y, U (Cb), and V (Cr) image planes
+                                        and return a
+                                        <code>YUVImage</code> instance containing the encoded image
+                                        planes.
 									</div>
 								</td>
 							</tr>
 							<tr class="altColor">
-								<td class="colFirst"><code><a href="../../../org/libjpegturbo/turbojpeg/YUVImage.html"
-								                              title="class in org.libjpegturbo.turbojpeg">YUVImage</a></code></td>
+                                <td class="colFirst"><code><a
+                                        href="../../../org/libjpegturbo/turbojpeg/YUVImage.html"
+                                        title="class in org.libjpegturbo.turbojpeg">YUVImage</a></code>
+                                </td>
 								<td class="colLast"><code><strong><a
 										href="../../../org/libjpegturbo/turbojpeg/TJCompressor.html#encodeYUV(int,%20int)">encodeYUV</a></strong>(int&nbsp;pad,
 									int&nbsp;flags)</code>
-									<div class="block">Encode the uncompressed source image associated with this compressor
+                                    <div class="block">Encode the uncompressed source image
+                                        associated with this compressor
 										instance into a unified YUV planar image buffer and return a
 										<code>YUVImage</code> instance containing the encoded image.
 									</div>
@@ -327,7 +357,8 @@ implements java.io.Closeable</pre>
 										href="../../../org/libjpegturbo/turbojpeg/YUVImage.html"
 										title="class in org.libjpegturbo.turbojpeg">YUVImage</a>&nbsp;dstImage,
 									int&nbsp;flags)</code>
-									<div class="block">Encode the uncompressed source image associated with this compressor
+                                    <div class="block">Encode the uncompressed source image
+                                        associated with this compressor
 										instance into a YUV planar image and store it in the given
 										<code>YUVImage</code> instance.
 									</div>
@@ -343,7 +374,8 @@ implements java.io.Closeable</pre>
 								<td class="colFirst"><code>int</code></td>
 								<td class="colLast"><code><strong><a
 										href="../../../org/libjpegturbo/turbojpeg/TJCompressor.html#getCompressedSize()">getCompressedSize</a></strong>()</code>
-									<div class="block">Returns the size of the image (in bytes) generated by the most recent
+                                    <div class="block">Returns the size of the image (in bytes)
+                                        generated by the most recent
 										compress operation.
 									</div>
 								</td>
@@ -352,7 +384,9 @@ implements java.io.Closeable</pre>
 								<td class="colFirst"><code>void</code></td>
 								<td class="colLast"><code><strong><a
 										href="../../../org/libjpegturbo/turbojpeg/TJCompressor.html#setJPEGQuality(int)">setJPEGQuality</a></strong>(int&nbsp;quality)</code>
-									<div class="block">Set the JPEG image quality level for subsequent compress operations.</div>
+                                    <div class="block">Set the JPEG image quality level for
+                                        subsequent compress operations.
+                                    </div>
 								</td>
 							</tr>
 							<tr class="rowColor">
@@ -363,7 +397,8 @@ implements java.io.Closeable</pre>
 									int&nbsp;y,
 									int&nbsp;width,
 									int&nbsp;height)</code>
-									<div class="block">Associate an uncompressed RGB or grayscale source image with this
+                                    <div class="block">Associate an uncompressed RGB or grayscale
+                                        source image with this
 										compressor instance.
 									</div>
 								</td>
@@ -379,7 +414,8 @@ implements java.io.Closeable</pre>
 									<div class="block"><strong>Deprecated.</strong>&nbsp;
 										<div class="block"><i>Use
 											<a href="../../../org/libjpegturbo/turbojpeg/TJCompressor.html#setSourceImage(byte[],%20int,%20int,%20int,%20int,%20int,%20int)"><code>setSourceImage(byte[],
-												int, int, int, int, int, int)</code></a> instead.</i></div>
+                                                int, int, int, int, int, int)</code></a>
+                                            instead.</i></div>
 									</div>
 								</td>
 							</tr>
@@ -393,7 +429,8 @@ implements java.io.Closeable</pre>
 									int&nbsp;pitch,
 									int&nbsp;height,
 									int&nbsp;pixelFormat)</code>
-									<div class="block">Associate an uncompressed RGB, grayscale, or CMYK source image with this
+                                    <div class="block">Associate an uncompressed RGB, grayscale, or
+                                        CMYK source image with this
 										compressor instance.
 									</div>
 								</td>
@@ -404,7 +441,8 @@ implements java.io.Closeable</pre>
 										href="../../../org/libjpegturbo/turbojpeg/TJCompressor.html#setSourceImage(org.libjpegturbo.turbojpeg.YUVImage)">setSourceImage</a></strong>(<a
 										href="../../../org/libjpegturbo/turbojpeg/YUVImage.html"
 										title="class in org.libjpegturbo.turbojpeg">YUVImage</a>&nbsp;srcImage)</code>
-									<div class="block">Associate an uncompressed YUV planar source image with this compressor
+                                    <div class="block">Associate an uncompressed YUV planar source
+                                        image with this compressor
 										instance.
 									</div>
 								</td>
@@ -413,18 +451,21 @@ implements java.io.Closeable</pre>
 								<td class="colFirst"><code>void</code></td>
 								<td class="colLast"><code><strong><a
 										href="../../../org/libjpegturbo/turbojpeg/TJCompressor.html#setSubsamp(int)">setSubsamp</a></strong>(int&nbsp;newSubsamp)</code>
-									<div class="block">Set the level of chrominance subsampling for subsequent compress/encode
+                                    <div class="block">Set the level of chrominance subsampling for
+                                        subsequent compress/encode
 										operations.
 									</div>
 								</td>
 							</tr>
 						</table>
 						<ul class="blockList">
-							<li class="blockList"><a name="methods_inherited_from_class_java.lang.Object">
+                            <li class="blockList"><a
+                                    name="methods_inherited_from_class_java.lang.Object">
 								<!--   -->
 							</a>
 								<h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-								<code>clone, equals, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+                                <code>clone, equals, getClass, hashCode, notify, notifyAll,
+                                    toString, wait, wait, wait</code></li>
 						</ul>
 					</li>
 				</ul>
@@ -452,8 +493,10 @@ implements java.io.Closeable</pre>
 								<div class="block">Create a TurboJPEG compressor instance.</div>
 								<dl>
 									<dt><span class="strong">Throws:</span></dt>
-									<dd><code><a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
-									             title="class in org.libjpegturbo.turbojpeg">TJException</a></code></dd>
+                                    <dd><code><a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                                            title="class in org.libjpegturbo.turbojpeg">TJException</a></code>
+                                    </dd>
 								</dl>
 							</li>
 						</ul>
@@ -472,8 +515,10 @@ implements java.io.Closeable</pre>
             int&nbsp;pixelFormat)
              throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
                        title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
-								<div class="block">Create a TurboJPEG compressor instance and associate the uncompressed
-									source image stored in <code>srcImage</code> with the newly created
+                                <div class="block">Create a TurboJPEG compressor instance and
+                                    associate the uncompressed
+                                    source image stored in <code>srcImage</code> with the newly
+                                    created
 									instance.
 								</div>
 								<dl>
@@ -502,12 +547,15 @@ implements java.io.Closeable</pre>
 											href="../../../org/libjpegturbo/turbojpeg/TJCompressor.html#setSourceImage(byte[],%20int,%20int,%20int,%20int,%20int,%20int)"><code>setSourceImage(byte[],
 										int, int, int, int, int, int)</code></a> for description
 									</dd>
-									<dd><code>pixelFormat</code> - pixel format of the source image (one of
+                                    <dd><code>pixelFormat</code> - pixel format of the source image
+                                        (one of
 										<a href="../../../org/libjpegturbo/turbojpeg/TJ.html#PF_RGB"><code>TJ.PF_*</code></a>)
 									</dd>
 									<dt><span class="strong">Throws:</span></dt>
-									<dd><code><a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
-									             title="class in org.libjpegturbo.turbojpeg">TJException</a></code></dd>
+                                    <dd><code><a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                                            title="class in org.libjpegturbo.turbojpeg">TJException</a></code>
+                                    </dd>
 								</dl>
 							</li>
 						</ul>
@@ -530,8 +578,10 @@ public&nbsp;TJCompressor(byte[]&nbsp;srcImage,
 										int, int, int, int, int, int)</code></a> instead.</i></div>
 								<dl>
 									<dt><span class="strong">Throws:</span></dt>
-									<dd><code><a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
-									             title="class in org.libjpegturbo.turbojpeg">TJException</a></code></dd>
+                                    <dd><code><a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                                            title="class in org.libjpegturbo.turbojpeg">TJException</a></code>
+                                    </dd>
 								</dl>
 							</li>
 						</ul>
@@ -548,8 +598,10 @@ public&nbsp;TJCompressor(byte[]&nbsp;srcImage,
             int&nbsp;height)
              throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
                        title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
-								<div class="block">Create a TurboJPEG compressor instance and associate the uncompressed
-									source image stored in <code>srcImage</code> with the newly created
+                                <div class="block">Create a TurboJPEG compressor instance and
+                                    associate the uncompressed
+                                    source image stored in <code>srcImage</code> with the newly
+                                    created
 									instance.
 								</div>
 								<dl>
@@ -575,8 +627,10 @@ public&nbsp;TJCompressor(byte[]&nbsp;srcImage,
 											int, int, int, int)</code></a> for description
 									</dd>
 									<dt><span class="strong">Throws:</span></dt>
-									<dd><code><a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
-									             title="class in org.libjpegturbo.turbojpeg">TJException</a></code></dd>
+                                    <dd><code><a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                                            title="class in org.libjpegturbo.turbojpeg">TJException</a></code>
+                                    </dd>
 								</dl>
 							</li>
 						</ul>
@@ -601,42 +655,59 @@ public&nbsp;TJCompressor(byte[]&nbsp;srcImage,
                   int&nbsp;pitch,
                   int&nbsp;height,
                   int&nbsp;pixelFormat)
-                    throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html" title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
-								<div class="block">Associate an uncompressed RGB, grayscale, or CMYK source image with this
+                    throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                              title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
+                                <div class="block">Associate an uncompressed RGB, grayscale, or CMYK
+                                    source image with this
 									compressor instance.
 								</div>
 								<dl>
 									<dt><span class="strong">Parameters:</span></dt>
-									<dd><code>srcImage</code> - image buffer containing RGB, grayscale, or CMYK pixels to
+                                    <dd><code>srcImage</code> - image buffer containing RGB,
+                                        grayscale, or CMYK pixels to
 										be compressed or encoded. This buffer is not modified.
 									</dd>
-									<dd><code>x</code> - x offset (in pixels) of the region in the source image from which
+                                    <dd><code>x</code> - x offset (in pixels) of the region in the
+                                        source image from which
 										the JPEG or YUV image should be compressed/encoded
 									</dd>
-									<dd><code>y</code> - y offset (in pixels) of the region in the source image from which
+                                    <dd><code>y</code> - y offset (in pixels) of the region in the
+                                        source image from which
 										the JPEG or YUV image should be compressed/encoded
 									</dd>
-									<dd><code>width</code> - width (in pixels) of the region in the source image from
+                                    <dd><code>width</code> - width (in pixels) of the region in the
+                                        source image from
 										which the JPEG or YUV image should be compressed/encoded
 									</dd>
-									<dd><code>pitch</code> - bytes per line of the source image. Normally, this should be
-										<code>width * TJ.pixelSize(pixelFormat)</code> if the source image is
-										unpadded, but you can use this parameter to, for instance, specify that
-										the scanlines in the source image are padded to a 4-byte boundary or to
-										compress/encode a JPEG or YUV image from a region of a larger source
-										image. You can also be clever and use this parameter to skip lines, etc.
-										Setting this parameter to 0 is the equivalent of setting it to
+                                    <dd><code>pitch</code> - bytes per line of the source image.
+                                        Normally, this should be
+                                        <code>width * TJ.pixelSize(pixelFormat)</code> if the source
+                                        image is
+                                        unpadded, but you can use this parameter to, for instance,
+                                        specify that
+                                        the scanlines in the source image are padded to a 4-byte
+                                        boundary or to
+                                        compress/encode a JPEG or YUV image from a region of a
+                                        larger source
+                                        image. You can also be clever and use this parameter to skip
+                                        lines, etc.
+                                        Setting this parameter to 0 is the equivalent of setting it
+                                        to
 										<code>width * TJ.pixelSize(pixelFormat)</code>.
 									</dd>
-									<dd><code>height</code> - height (in pixels) of the region in the source image from
+                                    <dd><code>height</code> - height (in pixels) of the region in
+                                        the source image from
 										which the JPEG or YUV image should be compressed/encoded
 									</dd>
-									<dd><code>pixelFormat</code> - pixel format of the source image (one of
+                                    <dd><code>pixelFormat</code> - pixel format of the source image
+                                        (one of
 										<a href="../../../org/libjpegturbo/turbojpeg/TJ.html#PF_RGB"><code>TJ.PF_*</code></a>)
 									</dd>
 									<dt><span class="strong">Throws:</span></dt>
-									<dd><code><a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
-									             title="class in org.libjpegturbo.turbojpeg">TJException</a></code></dd>
+                                    <dd><code><a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                                            title="class in org.libjpegturbo.turbojpeg">TJException</a></code>
+                                    </dd>
 								</dl>
 							</li>
 						</ul>
@@ -652,14 +723,17 @@ public&nbsp;void&nbsp;setSourceImage(byte[]&nbsp;srcImage,
                              int&nbsp;pitch,
                              int&nbsp;height,
                              int&nbsp;pixelFormat)
-                    throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html" title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
+                    throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                              title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
 								<div class="block"><span class="strong">Deprecated.</span>&nbsp;<i>Use
 									<a href="../../../org/libjpegturbo/turbojpeg/TJCompressor.html#setSourceImage(byte[],%20int,%20int,%20int,%20int,%20int,%20int)"><code>setSourceImage(byte[],
 										int, int, int, int, int, int)</code></a> instead.</i></div>
 								<dl>
 									<dt><span class="strong">Throws:</span></dt>
-									<dd><code><a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
-									             title="class in org.libjpegturbo.turbojpeg">TJException</a></code></dd>
+                                    <dd><code><a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                                            title="class in org.libjpegturbo.turbojpeg">TJException</a></code>
+                                    </dd>
 								</dl>
 							</li>
 						</ul>
@@ -674,32 +748,44 @@ public&nbsp;void&nbsp;setSourceImage(byte[]&nbsp;srcImage,
                   int&nbsp;y,
                   int&nbsp;width,
                   int&nbsp;height)
-                    throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html" title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
-								<div class="block">Associate an uncompressed RGB or grayscale source image with this
+                    throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                              title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
+                                <div class="block">Associate an uncompressed RGB or grayscale source
+                                    image with this
 									compressor instance.
 								</div>
 								<dl>
 									<dt><span class="strong">Parameters:</span></dt>
-									<dd><code>srcImage</code> - a <code>BufferedImage</code> instance containing RGB or
-										grayscale pixels to be compressed or encoded. This image is not modified.
+                                    <dd><code>srcImage</code> - a <code>BufferedImage</code>
+                                        instance containing RGB or
+                                        grayscale pixels to be compressed or encoded. This image is
+                                        not modified.
 									</dd>
-									<dd><code>x</code> - x offset (in pixels) of the region in the source image from which
+                                    <dd><code>x</code> - x offset (in pixels) of the region in the
+                                        source image from which
 										the JPEG or YUV image should be compressed/encoded
 									</dd>
-									<dd><code>y</code> - y offset (in pixels) of the region in the source image from which
+                                    <dd><code>y</code> - y offset (in pixels) of the region in the
+                                        source image from which
 										the JPEG or YUV image should be compressed/encoded
 									</dd>
-									<dd><code>width</code> - width (in pixels) of the region in the source image from
-										which the JPEG or YUV image should be compressed/encoded (0 = use the
+                                    <dd><code>width</code> - width (in pixels) of the region in the
+                                        source image from
+                                        which the JPEG or YUV image should be compressed/encoded (0
+                                        = use the
 										width of the source image)
 									</dd>
-									<dd><code>height</code> - height (in pixels) of the region in the source image from
-										which the JPEG or YUV image should be compressed/encoded (0 = use the
+                                    <dd><code>height</code> - height (in pixels) of the region in
+                                        the source image from
+                                        which the JPEG or YUV image should be compressed/encoded (0
+                                        = use the
 										height of the source image)
 									</dd>
 									<dt><span class="strong">Throws:</span></dt>
-									<dd><code><a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
-									             title="class in org.libjpegturbo.turbojpeg">TJException</a></code></dd>
+                                    <dd><code><a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                                            title="class in org.libjpegturbo.turbojpeg">TJException</a></code>
+                                    </dd>
 								</dl>
 							</li>
 						</ul>
@@ -709,20 +795,26 @@ public&nbsp;void&nbsp;setSourceImage(byte[]&nbsp;srcImage,
 						<ul class="blockList">
 							<li class="blockList">
 								<h4>setSourceImage</h4>
-								<pre>public&nbsp;void&nbsp;setSourceImage(<a href="../../../org/libjpegturbo/turbojpeg/YUVImage.html"
-								                                             title="class in org.libjpegturbo.turbojpeg">YUVImage</a>&nbsp;srcImage)
-                    throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html" title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
-								<div class="block">Associate an uncompressed YUV planar source image with this compressor
+                                <pre>public&nbsp;void&nbsp;setSourceImage(<a
+                                        href="../../../org/libjpegturbo/turbojpeg/YUVImage.html"
+                                        title="class in org.libjpegturbo.turbojpeg">YUVImage</a>&nbsp;srcImage)
+                    throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                              title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
+                                <div class="block">Associate an uncompressed YUV planar source image
+                                    with this compressor
 									instance.
 								</div>
 								<dl>
 									<dt><span class="strong">Parameters:</span></dt>
-									<dd><code>srcImage</code> - YUV planar image to be compressed. This image is not
+                                    <dd><code>srcImage</code> - YUV planar image to be compressed.
+                                        This image is not
 										modified.
 									</dd>
 									<dt><span class="strong">Throws:</span></dt>
-									<dd><code><a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
-									             title="class in org.libjpegturbo.turbojpeg">TJException</a></code></dd>
+                                    <dd><code><a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                                            title="class in org.libjpegturbo.turbojpeg">TJException</a></code>
+                                    </dd>
 								</dl>
 							</li>
 						</ul>
@@ -733,28 +825,41 @@ public&nbsp;void&nbsp;setSourceImage(byte[]&nbsp;srcImage,
 							<li class="blockList">
 								<h4>setSubsamp</h4>
 								<pre>public&nbsp;void&nbsp;setSubsamp(int&nbsp;newSubsamp)</pre>
-								<div class="block">Set the level of chrominance subsampling for subsequent compress/encode
+                                <div class="block">Set the level of chrominance subsampling for
+                                    subsequent compress/encode
 									operations. When pixels are converted from RGB to YCbCr (see
-									<a href="../../../org/libjpegturbo/turbojpeg/TJ.html#CS_YCbCr"><code>TJ.CS_YCbCr</code></a>) or from
-									CMYK to YCCK (see <a href="../../../org/libjpegturbo/turbojpeg/TJ.html#CS_YCCK"><code>TJ.CS_YCCK</code></a>)
+                                    <a href="../../../org/libjpegturbo/turbojpeg/TJ.html#CS_YCbCr"><code>TJ.CS_YCbCr</code></a>)
+                                    or from
+                                    CMYK to YCCK (see <a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJ.html#CS_YCCK"><code>TJ.CS_YCCK</code></a>)
 									as part
-									of the JPEG compression process, some of the Cb and Cr (chrominance)
-									components can be discarded or averaged together to produce a smaller
-									image with little perceptible loss of image clarity (the human eye is more
-									sensitive to small changes in brightness than to small changes in color.)
+                                    of the JPEG compression process, some of the Cb and Cr
+                                    (chrominance)
+                                    components can be discarded or averaged together to produce a
+                                    smaller
+                                    image with little perceptible loss of image clarity (the human
+                                    eye is more
+                                    sensitive to small changes in brightness than to small changes
+                                    in color.)
 									This is called "chrominance subsampling".
 									<p>
-										NOTE: This method has no effect when compressing a JPEG image from a YUV
-										planar source. In that case, the level of chrominance subsampling in
-										the JPEG image is determined by the source. Further, this method has no
-										effect when encoding to a pre-allocated <a href="../../../org/libjpegturbo/turbojpeg/YUVImage.html"
-										                                           title="class in org.libjpegturbo.turbojpeg"><code>YUVImage</code></a>
+                                        NOTE: This method has no effect when compressing a JPEG
+                                        image from a YUV
+                                        planar source. In that case, the level of chrominance
+                                        subsampling in
+                                        the JPEG image is determined by the source. Further, this
+                                        method has no
+                                        effect when encoding to a pre-allocated <a
+                                            href="../../../org/libjpegturbo/turbojpeg/YUVImage.html"
+                                            title="class in org.libjpegturbo.turbojpeg"><code>YUVImage</code></a>
 										instance. In
-										that case, the level of chrominance subsampling is determined by the
+                                        that case, the level of chrominance subsampling is
+                                        determined by the
 										destination.</div>
 								<dl>
 									<dt><span class="strong">Parameters:</span></dt>
-									<dd><code>newSubsamp</code> - the level of chrominance subsampling to use in
+                                    <dd><code>newSubsamp</code> - the level of chrominance
+                                        subsampling to use in
 										subsequent compress/encode oeprations (one of
 										<a href="../../../org/libjpegturbo/turbojpeg/TJ.html#SAMP_444"><code>TJ.SAMP_*</code></a>)
 									</dd>
@@ -768,10 +873,13 @@ public&nbsp;void&nbsp;setSourceImage(byte[]&nbsp;srcImage,
 							<li class="blockList">
 								<h4>setJPEGQuality</h4>
 								<pre>public&nbsp;void&nbsp;setJPEGQuality(int&nbsp;quality)</pre>
-								<div class="block">Set the JPEG image quality level for subsequent compress operations.</div>
+                                <div class="block">Set the JPEG image quality level for subsequent
+                                    compress operations.
+                                </div>
 								<dl>
 									<dt><span class="strong">Parameters:</span></dt>
-									<dd><code>quality</code> - the new JPEG image quality level (1 to 100, 1 = worst,
+                                    <dd><code>quality</code> - the new JPEG image quality level (1
+                                        to 100, 1 = worst,
 										100 = best)
 									</dd>
 								</dl>
@@ -787,22 +895,30 @@ public&nbsp;void&nbsp;setSourceImage(byte[]&nbsp;srcImage,
             int&nbsp;flags)
               throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
                         title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
-								<div class="block">Compress the uncompressed source image associated with this compressor
-									instance and output a JPEG image to the given destination buffer.
+                                <div class="block">Compress the uncompressed source image associated
+                                    with this compressor
+                                    instance and output a JPEG image to the given destination
+                                    buffer.
 								</div>
 								<dl>
 									<dt><span class="strong">Parameters:</span></dt>
-									<dd><code>dstBuf</code> - buffer that will receive the JPEG image. Use
+                                    <dd><code>dstBuf</code> - buffer that will receive the JPEG
+                                        image. Use
 										<a href="../../../org/libjpegturbo/turbojpeg/TJ.html#bufSize(int,%20int,%20int)"><code>TJ.bufSize(int,
-											int, int)</code></a> to determine the maximum size for this buffer based on
-										the source image's width and height and the desired level of chrominance
+                                            int, int)</code></a> to determine the maximum size for
+                                        this buffer based on
+                                        the source image's width and height and the desired level of
+                                        chrominance
 										subsampling.
 									</dd>
 									<dd><code>flags</code> - the bitwise OR of one or more of
-										<a href="../../../org/libjpegturbo/turbojpeg/TJ.html#FLAG_BOTTOMUP"><code>TJ.FLAG_*</code></a></dd>
+                                        <a href="../../../org/libjpegturbo/turbojpeg/TJ.html#FLAG_BOTTOMUP"><code>TJ.FLAG_*</code></a>
+                                    </dd>
 									<dt><span class="strong">Throws:</span></dt>
-									<dd><code><a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
-									             title="class in org.libjpegturbo.turbojpeg">TJException</a></code></dd>
+                                    <dd><code><a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                                            title="class in org.libjpegturbo.turbojpeg">TJException</a></code>
+                                    </dd>
 								</dl>
 							</li>
 						</ul>
@@ -813,23 +929,29 @@ public&nbsp;void&nbsp;setSourceImage(byte[]&nbsp;srcImage,
 							<li class="blockList">
 								<h4>compress</h4>
 								<pre>public&nbsp;byte[]&nbsp;compress(int&nbsp;flags)
-                throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html" title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
-								<div class="block">Compress the uncompressed source image associated with this compressor
+                throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                          title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
+                                <div class="block">Compress the uncompressed source image associated
+                                    with this compressor
 									instance and return a buffer containing a JPEG image.
 								</div>
 								<dl>
 									<dt><span class="strong">Parameters:</span></dt>
 									<dd><code>flags</code> - the bitwise OR of one or more of
-										<a href="../../../org/libjpegturbo/turbojpeg/TJ.html#FLAG_BOTTOMUP"><code>TJ.FLAG_*</code></a></dd>
+                                        <a href="../../../org/libjpegturbo/turbojpeg/TJ.html#FLAG_BOTTOMUP"><code>TJ.FLAG_*</code></a>
+                                    </dd>
 									<dt><span class="strong">Returns:</span></dt>
-									<dd>a buffer containing a JPEG image. The length of this buffer will
+                                    <dd>a buffer containing a JPEG image. The length of this buffer
+                                        will
 										not be equal to the size of the JPEG image. Use <a
 												href="../../../org/libjpegturbo/turbojpeg/TJCompressor.html#getCompressedSize()"><code>getCompressedSize()</code></a>
 										to obtain the size of the JPEG image.
 									</dd>
 									<dt><span class="strong">Throws:</span></dt>
-									<dd><code><a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
-									             title="class in org.libjpegturbo.turbojpeg">TJException</a></code></dd>
+                                    <dd><code><a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                                            title="class in org.libjpegturbo.turbojpeg">TJException</a></code>
+                                    </dd>
 								</dl>
 							</li>
 						</ul>
@@ -852,8 +974,10 @@ public&nbsp;void&nbsp;compress(java.awt.image.BufferedImage&nbsp;srcImage,
 										int)</code></a> instead.</i></div>
 								<dl>
 									<dt><span class="strong">Throws:</span></dt>
-									<dd><code><a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
-									             title="class in org.libjpegturbo.turbojpeg">TJException</a></code></dd>
+                                    <dd><code><a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                                            title="class in org.libjpegturbo.turbojpeg">TJException</a></code>
+                                    </dd>
 								</dl>
 							</li>
 						</ul>
@@ -866,7 +990,8 @@ public&nbsp;void&nbsp;compress(java.awt.image.BufferedImage&nbsp;srcImage,
 								<pre>@Deprecated
 public&nbsp;byte[]&nbsp;compress(java.awt.image.BufferedImage&nbsp;srcImage,
                          int&nbsp;flags)
-                throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html" title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
+                throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                          title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
 								<div class="block"><span class="strong">Deprecated.</span>&nbsp;<i>Use
 									<a href="../../../org/libjpegturbo/turbojpeg/TJCompressor.html#setSourceImage(java.awt.image.BufferedImage,%20int,%20int,%20int,%20int)"><code>setSourceImage(BufferedImage,
 										int, int, int, int)</code></a> and
@@ -874,8 +999,10 @@ public&nbsp;byte[]&nbsp;compress(java.awt.image.BufferedImage&nbsp;srcImage,
 									instead.</i></div>
 								<dl>
 									<dt><span class="strong">Throws:</span></dt>
-									<dd><code><a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
-									             title="class in org.libjpegturbo.turbojpeg">TJException</a></code></dd>
+                                    <dd><code><a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                                            title="class in org.libjpegturbo.turbojpeg">TJException</a></code>
+                                    </dd>
 								</dl>
 							</li>
 						</ul>
@@ -885,30 +1012,38 @@ public&nbsp;byte[]&nbsp;compress(java.awt.image.BufferedImage&nbsp;srcImage,
 						<ul class="blockList">
 							<li class="blockList">
 								<h4>encodeYUV</h4>
-								<pre>public&nbsp;void&nbsp;encodeYUV(<a href="../../../org/libjpegturbo/turbojpeg/YUVImage.html"
-								                                        title="class in org.libjpegturbo.turbojpeg">YUVImage</a>&nbsp;dstImage,
+                                <pre>public&nbsp;void&nbsp;encodeYUV(<a
+                                        href="../../../org/libjpegturbo/turbojpeg/YUVImage.html"
+                                        title="class in org.libjpegturbo.turbojpeg">YUVImage</a>&nbsp;dstImage,
              int&nbsp;flags)
                throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
                          title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
-								<div class="block">Encode the uncompressed source image associated with this compressor
+                                <div class="block">Encode the uncompressed source image associated
+                                    with this compressor
 									instance into a YUV planar image and store it in the given
-									<code>YUVImage</code> instance. This method uses the accelerated color
-									conversion routines in TurboJPEG's underlying codec but does not execute
+                                    <code>YUVImage</code> instance. This method uses the accelerated
+                                    color
+                                    conversion routines in TurboJPEG's underlying codec but does not
+                                    execute
 									any of the other steps in the JPEG compression process. Encoding
 									CMYK source images to YUV is not supported.
 								</div>
 								<dl>
 									<dt><span class="strong">Parameters:</span></dt>
-									<dd><code>dstImage</code> - <a href="../../../org/libjpegturbo/turbojpeg/YUVImage.html"
-									                               title="class in org.libjpegturbo.turbojpeg"><code>YUVImage</code></a>
+                                    <dd><code>dstImage</code> - <a
+                                            href="../../../org/libjpegturbo/turbojpeg/YUVImage.html"
+                                            title="class in org.libjpegturbo.turbojpeg"><code>YUVImage</code></a>
 										instance that will receive the YUV planar
 										image
 									</dd>
 									<dd><code>flags</code> - the bitwise OR of one or more of
-										<a href="../../../org/libjpegturbo/turbojpeg/TJ.html#FLAG_BOTTOMUP"><code>TJ.FLAG_*</code></a></dd>
+                                        <a href="../../../org/libjpegturbo/turbojpeg/TJ.html#FLAG_BOTTOMUP"><code>TJ.FLAG_*</code></a>
+                                    </dd>
 									<dt><span class="strong">Throws:</span></dt>
-									<dd><code><a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
-									             title="class in org.libjpegturbo.turbojpeg">TJException</a></code></dd>
+                                    <dd><code><a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                                            title="class in org.libjpegturbo.turbojpeg">TJException</a></code>
+                                    </dd>
 								</dl>
 							</li>
 						</ul>
@@ -923,13 +1058,16 @@ public&nbsp;void&nbsp;encodeYUV(byte[]&nbsp;dstBuf,
                         int&nbsp;flags)
                throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
                          title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
-								<div class="block"><span class="strong">Deprecated.</span>&nbsp;<i>Use <a
-										href="../../../org/libjpegturbo/turbojpeg/TJCompressor.html#encodeYUV(org.libjpegturbo.turbojpeg.YUVImage,%20int)"><code>encodeYUV(YUVImage,
-									int)</code></a> instead.</i></div>
+                                <div class="block"><span class="strong">Deprecated.</span>&nbsp;<i>Use
+                                    <a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJCompressor.html#encodeYUV(org.libjpegturbo.turbojpeg.YUVImage,%20int)"><code>encodeYUV(YUVImage,
+                                        int)</code></a> instead.</i></div>
 								<dl>
 									<dt><span class="strong">Throws:</span></dt>
-									<dd><code><a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
-									             title="class in org.libjpegturbo.turbojpeg">TJException</a></code></dd>
+                                    <dd><code><a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                                            title="class in org.libjpegturbo.turbojpeg">TJException</a></code>
+                                    </dd>
 								</dl>
 							</li>
 						</ul>
@@ -939,30 +1077,41 @@ public&nbsp;void&nbsp;encodeYUV(byte[]&nbsp;dstBuf,
 						<ul class="blockList">
 							<li class="blockList">
 								<h4>encodeYUV</h4>
-								<pre>public&nbsp;<a href="../../../org/libjpegturbo/turbojpeg/YUVImage.html"
-								                    title="class in org.libjpegturbo.turbojpeg">YUVImage</a>&nbsp;encodeYUV(int&nbsp;pad,
+                                <pre>public&nbsp;<a
+                                        href="../../../org/libjpegturbo/turbojpeg/YUVImage.html"
+                                        title="class in org.libjpegturbo.turbojpeg">YUVImage</a>&nbsp;encodeYUV(int&nbsp;pad,
                  int&nbsp;flags)
-                   throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html" title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
-								<div class="block">Encode the uncompressed source image associated with this compressor
+                   throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                             title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
+                                <div class="block">Encode the uncompressed source image associated
+                                    with this compressor
 									instance into a unified YUV planar image buffer and return a
-									<code>YUVImage</code> instance containing the encoded image. This method
-									uses the accelerated color conversion routines in TurboJPEG's underlying
-									codec but does not execute any of the other steps in the JPEG compression
+                                    <code>YUVImage</code> instance containing the encoded image.
+                                    This method
+                                    uses the accelerated color conversion routines in TurboJPEG's
+                                    underlying
+                                    codec but does not execute any of the other steps in the JPEG
+                                    compression
 									process. Encoding CMYK source images to YUV is not supported.
 								</div>
 								<dl>
 									<dt><span class="strong">Parameters:</span></dt>
-									<dd><code>pad</code> - the width of each line in each plane of the YUV image will be
-										padded to the nearest multiple of this number of bytes (must be a power of
+                                    <dd><code>pad</code> - the width of each line in each plane of
+                                        the YUV image will be
+                                        padded to the nearest multiple of this number of bytes (must
+                                        be a power of
 										2.)
 									</dd>
 									<dd><code>flags</code> - the bitwise OR of one or more of
-										<a href="../../../org/libjpegturbo/turbojpeg/TJ.html#FLAG_BOTTOMUP"><code>TJ.FLAG_*</code></a></dd>
+                                        <a href="../../../org/libjpegturbo/turbojpeg/TJ.html#FLAG_BOTTOMUP"><code>TJ.FLAG_*</code></a>
+                                    </dd>
 									<dt><span class="strong">Returns:</span></dt>
 									<dd>a YUV planar image.</dd>
 									<dt><span class="strong">Throws:</span></dt>
-									<dd><code><a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
-									             title="class in org.libjpegturbo.turbojpeg">TJException</a></code></dd>
+                                    <dd><code><a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                                            title="class in org.libjpegturbo.turbojpeg">TJException</a></code>
+                                    </dd>
 								</dl>
 							</li>
 						</ul>
@@ -972,34 +1121,51 @@ public&nbsp;void&nbsp;encodeYUV(byte[]&nbsp;dstBuf,
 						<ul class="blockList">
 							<li class="blockList">
 								<h4>encodeYUV</h4>
-								<pre>public&nbsp;<a href="../../../org/libjpegturbo/turbojpeg/YUVImage.html"
-								                    title="class in org.libjpegturbo.turbojpeg">YUVImage</a>&nbsp;encodeYUV(int[]&nbsp;strides,
+                                <pre>public&nbsp;<a
+                                        href="../../../org/libjpegturbo/turbojpeg/YUVImage.html"
+                                        title="class in org.libjpegturbo.turbojpeg">YUVImage</a>&nbsp;encodeYUV(int[]&nbsp;strides,
                  int&nbsp;flags)
-                   throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html" title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
-								<div class="block">Encode the uncompressed source image associated with this compressor
-									instance into separate Y, U (Cb), and V (Cr) image planes and return a
-									<code>YUVImage</code> instance containing the encoded image planes. This
-									method uses the accelerated color conversion routines in TurboJPEG's
-									underlying codec but does not execute any of the other steps in the JPEG
-									compression process. Encoding CMYK source images to YUV is not supported.
+                   throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                             title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
+                                <div class="block">Encode the uncompressed source image associated
+                                    with this compressor
+                                    instance into separate Y, U (Cb), and V (Cr) image planes and
+                                    return a
+                                    <code>YUVImage</code> instance containing the encoded image
+                                    planes. This
+                                    method uses the accelerated color conversion routines in
+                                    TurboJPEG's
+                                    underlying codec but does not execute any of the other steps in
+                                    the JPEG
+                                    compression process. Encoding CMYK source images to YUV is not
+                                    supported.
 								</div>
 								<dl>
 									<dt><span class="strong">Parameters:</span></dt>
-									<dd><code>strides</code> - an array of integers, each specifying the number of bytes
-										per line in the corresponding plane of the output image. Setting the
-										stride for any plane to 0 is the same as setting it to the component width
-										of the plane. If <code>strides</code> is null, then the strides for all
-										planes will be set to their respective component widths. You can adjust
-										the strides in order to add an arbitrary amount of line padding to each
+                                    <dd><code>strides</code> - an array of integers, each specifying
+                                        the number of bytes
+                                        per line in the corresponding plane of the output image.
+                                        Setting the
+                                        stride for any plane to 0 is the same as setting it to the
+                                        component width
+                                        of the plane. If <code>strides</code> is null, then the
+                                        strides for all
+                                        planes will be set to their respective component widths. You
+                                        can adjust
+                                        the strides in order to add an arbitrary amount of line
+                                        padding to each
 										plane.
 									</dd>
 									<dd><code>flags</code> - the bitwise OR of one or more of
-										<a href="../../../org/libjpegturbo/turbojpeg/TJ.html#FLAG_BOTTOMUP"><code>TJ.FLAG_*</code></a></dd>
+                                        <a href="../../../org/libjpegturbo/turbojpeg/TJ.html#FLAG_BOTTOMUP"><code>TJ.FLAG_*</code></a>
+                                    </dd>
 									<dt><span class="strong">Returns:</span></dt>
 									<dd>a YUV planar image.</dd>
 									<dt><span class="strong">Throws:</span></dt>
-									<dd><code><a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
-									             title="class in org.libjpegturbo.turbojpeg">TJException</a></code></dd>
+                                    <dd><code><a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                                            title="class in org.libjpegturbo.turbojpeg">TJException</a></code>
+                                    </dd>
 								</dl>
 							</li>
 						</ul>
@@ -1011,14 +1177,18 @@ public&nbsp;void&nbsp;encodeYUV(byte[]&nbsp;dstBuf,
 								<h4>encodeYUV</h4>
 								<pre>@Deprecated
 public&nbsp;byte[]&nbsp;encodeYUV(int&nbsp;flags)
-                 throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html" title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
-								<div class="block"><span class="strong">Deprecated.</span>&nbsp;<i>Use <a
-										href="../../../org/libjpegturbo/turbojpeg/TJCompressor.html#encodeYUV(int,%20int)"><code>encodeYUV(int,
-									int)</code></a> instead.</i></div>
+                 throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                           title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
+                                <div class="block"><span class="strong">Deprecated.</span>&nbsp;<i>Use
+                                    <a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJCompressor.html#encodeYUV(int,%20int)"><code>encodeYUV(int,
+                                        int)</code></a> instead.</i></div>
 								<dl>
 									<dt><span class="strong">Throws:</span></dt>
-									<dd><code><a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
-									             title="class in org.libjpegturbo.turbojpeg">TJException</a></code></dd>
+                                    <dd><code><a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                                            title="class in org.libjpegturbo.turbojpeg">TJException</a></code>
+                                    </dd>
 								</dl>
 							</li>
 						</ul>
@@ -1041,8 +1211,10 @@ public&nbsp;void&nbsp;encodeYUV(java.awt.image.BufferedImage&nbsp;srcImage,
 										int)</code></a> instead.</i></div>
 								<dl>
 									<dt><span class="strong">Throws:</span></dt>
-									<dd><code><a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
-									             title="class in org.libjpegturbo.turbojpeg">TJException</a></code></dd>
+                                    <dd><code><a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                                            title="class in org.libjpegturbo.turbojpeg">TJException</a></code>
+                                    </dd>
 								</dl>
 							</li>
 						</ul>
@@ -1055,7 +1227,8 @@ public&nbsp;void&nbsp;encodeYUV(java.awt.image.BufferedImage&nbsp;srcImage,
 								<pre>@Deprecated
 public&nbsp;byte[]&nbsp;encodeYUV(java.awt.image.BufferedImage&nbsp;srcImage,
                           int&nbsp;flags)
-                 throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html" title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
+                 throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                           title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
 								<div class="block"><span class="strong">Deprecated.</span>&nbsp;<i>Use
 									<a href="../../../org/libjpegturbo/turbojpeg/TJCompressor.html#setSourceImage(java.awt.image.BufferedImage,%20int,%20int,%20int,%20int)"><code>setSourceImage(BufferedImage,
 										int, int, int, int)</code></a> and
@@ -1063,8 +1236,10 @@ public&nbsp;byte[]&nbsp;encodeYUV(java.awt.image.BufferedImage&nbsp;srcImage,
 										int)</code></a> instead.</i></div>
 								<dl>
 									<dt><span class="strong">Throws:</span></dt>
-									<dd><code><a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
-									             title="class in org.libjpegturbo.turbojpeg">TJException</a></code></dd>
+                                    <dd><code><a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                                            title="class in org.libjpegturbo.turbojpeg">TJException</a></code>
+                                    </dd>
 								</dl>
 							</li>
 						</ul>
@@ -1075,12 +1250,14 @@ public&nbsp;byte[]&nbsp;encodeYUV(java.awt.image.BufferedImage&nbsp;srcImage,
 							<li class="blockList">
 								<h4>getCompressedSize</h4>
 								<pre>public&nbsp;int&nbsp;getCompressedSize()</pre>
-								<div class="block">Returns the size of the image (in bytes) generated by the most recent
+                                <div class="block">Returns the size of the image (in bytes)
+                                    generated by the most recent
 									compress operation.
 								</div>
 								<dl>
 									<dt><span class="strong">Returns:</span></dt>
-									<dd>the size of the image (in bytes) generated by the most recent
+                                    <dd>the size of the image (in bytes) generated by the most
+                                        recent
 										compress operation.
 									</dd>
 								</dl>
@@ -1093,16 +1270,23 @@ public&nbsp;byte[]&nbsp;encodeYUV(java.awt.image.BufferedImage&nbsp;srcImage,
 							<li class="blockList">
 								<h4>close</h4>
 								<pre>public&nbsp;void&nbsp;close()
-           throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html" title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
-								<div class="block">Free the native structures associated with this compressor instance.</div>
+           throws <a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                     title="class in org.libjpegturbo.turbojpeg">TJException</a></pre>
+                                <div class="block">Free the native structures associated with this
+                                    compressor instance.
+                                </div>
 								<dl>
 									<dt><strong>Specified by:</strong></dt>
-									<dd><code>close</code>&nbsp;in interface&nbsp;<code>java.io.Closeable</code></dd>
+                                    <dd><code>close</code>&nbsp;in interface&nbsp;<code>java.io.Closeable</code>
+                                    </dd>
 									<dt><strong>Specified by:</strong></dt>
-									<dd><code>close</code>&nbsp;in interface&nbsp;<code>java.lang.AutoCloseable</code></dd>
+                                    <dd><code>close</code>&nbsp;in interface&nbsp;<code>java.lang.AutoCloseable</code>
+                                    </dd>
 									<dt><span class="strong">Throws:</span></dt>
-									<dd><code><a href="../../../org/libjpegturbo/turbojpeg/TJException.html"
-									             title="class in org.libjpegturbo.turbojpeg">TJException</a></code></dd>
+                                    <dd><code><a
+                                            href="../../../org/libjpegturbo/turbojpeg/TJException.html"
+                                            title="class in org.libjpegturbo.turbojpeg">TJException</a></code>
+                                    </dd>
 								</dl>
 							</li>
 						</ul>
@@ -1116,7 +1300,8 @@ public&nbsp;byte[]&nbsp;encodeYUV(java.awt.image.BufferedImage&nbsp;srcImage,
                  throws java.lang.Throwable</pre>
 								<dl>
 									<dt><strong>Overrides:</strong></dt>
-									<dd><code>finalize</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+                                    <dd><code>finalize</code>&nbsp;in class&nbsp;<code>java.lang.Object</code>
+                                    </dd>
 									<dt><span class="strong">Throws:</span></dt>
 									<dd><code>java.lang.Throwable</code></dd>
 								</dl>
@@ -1132,7 +1317,8 @@ public&nbsp;byte[]&nbsp;encodeYUV(java.awt.image.BufferedImage&nbsp;srcImage,
 <!-- ======= START OF BOTTOM NAVBAR ====== -->
 <div class="bottomNav"><a name="navbar_bottom">
 	<!--   -->
-</a><a href="#skip-navbar_bottom" title="Skip navigation links"></a><a name="navbar_bottom_firstrow">
+</a><a href="#skip-navbar_bottom" title="Skip navigation links"></a><a
+        name="navbar_bottom_firstrow">
 	<!--   -->
 </a>
 	<ul class="navList" title="Navigation">
@@ -1146,13 +1332,17 @@ public&nbsp;byte[]&nbsp;encodeYUV(java.awt.image.BufferedImage&nbsp;srcImage,
 </div>
 <div class="subNav">
 	<ul class="navList">
-		<li><a href="../../../org/libjpegturbo/turbojpeg/TJ.html" title="class in org.libjpegturbo.turbojpeg"><span class="strong">Prev Class</span></a>
+        <li><a href="../../../org/libjpegturbo/turbojpeg/TJ.html"
+               title="class in org.libjpegturbo.turbojpeg"><span
+                class="strong">Prev Class</span></a>
 		</li>
-		<li><a href="../../../org/libjpegturbo/turbojpeg/TJCustomFilter.html" title="interface in org.libjpegturbo.turbojpeg"><span
+        <li><a href="../../../org/libjpegturbo/turbojpeg/TJCustomFilter.html"
+               title="interface in org.libjpegturbo.turbojpeg"><span
 				class="strong">Next Class</span></a></li>
 	</ul>
 	<ul class="navList">
-		<li><a href="../../../index.html?org/libjpegturbo/turbojpeg/TJCompressor.html" target="_top">Frames</a></li>
+        <li><a href="../../../index.html?org/libjpegturbo/turbojpeg/TJCompressor.html"
+               target="_top">Frames</a></li>
 		<li><a href="TJCompressor.html" target="_top">No Frames</a></li>
 	</ul>
 	<ul class="navList" id="allclasses_navbar_bottom">
@@ -1168,6 +1358,8 @@ public&nbsp;byte[]&nbsp;encodeYUV(java.awt.image.BufferedImage&nbsp;srcImage,
     allClassesLink.style.display = "none";
   }
   //-->
+
+
 
 
 

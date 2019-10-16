@@ -20,7 +20,6 @@
  *  Files in the libjpeg-turbo, libusb, libuvc, rapidjson folder
  *  may have a different license, see the respective files.
  */
-
 package com.serenegiant.base;
 
 import android.Manifest;
@@ -44,8 +43,7 @@ import androidx.appcompat.app.AppCompatActivity;
 /**
  * Created by saki on 2016/11/18.
  */
-public class BaseActivity extends AppCompatActivity
-		implements MessageDialogFragmentV4.MessageDialogListener {
+public class BaseActivity extends AppCompatActivity implements MessageDialogFragmentV4.MessageDialogListener {
 
 	// 動的パーミッション要求時の要求コード
 	protected static final int REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE = 0x12345;
@@ -107,7 +105,9 @@ public class BaseActivity extends AppCompatActivity
 	 * @param duration
 	 */
 	public final void runOnUiThread(final Runnable task, final long duration) {
-		if (task == null) { return; }
+		if (task == null) {
+			return;
+		}
 		mUIHandler.removeCallbacks(task);
 		if ((duration > 0) || Thread.currentThread() != mUiThread) {
 			mUIHandler.postDelayed(task, duration);
@@ -126,7 +126,9 @@ public class BaseActivity extends AppCompatActivity
 	 * @param task
 	 */
 	public final void removeFromUiThread(final Runnable task) {
-		if (task == null) { return; }
+		if (task == null) {
+			return;
+		}
 		mUIHandler.removeCallbacks(task);
 	}
 
@@ -138,7 +140,9 @@ public class BaseActivity extends AppCompatActivity
 	 * @param delayMillis
 	 */
 	protected final synchronized void queueEvent(final Runnable task, final long delayMillis) {
-		if ((task == null) || (mWorkerHandler == null)) { return; }
+		if ((task == null) || (mWorkerHandler == null)) {
+			return;
+		}
 		try {
 			mWorkerHandler.removeCallbacks(task);
 			if (delayMillis > 0) {
@@ -161,7 +165,9 @@ public class BaseActivity extends AppCompatActivity
 	 * @param task
 	 */
 	protected final synchronized void removeEvent(final Runnable task) {
-		if (task == null) { return; }
+		if (task == null) {
+			return;
+		}
 		try {
 			mWorkerHandler.removeCallbacks(task);
 		} catch (final Exception e) {
@@ -206,8 +212,7 @@ public class BaseActivity extends AppCompatActivity
 	 */
 	@SuppressLint("NewApi")
 	@Override
-	public void onMessageDialogResult(final MessageDialogFragmentV4 dialog, final int requestCode, final String[] permissions,
-	                                  final boolean result) {
+	public void onMessageDialogResult(final MessageDialogFragmentV4 dialog, final int requestCode, final String[] permissions, final boolean result) {
 		if (result) {
 			// メッセージダイアログでOKを押された時はパーミッション要求する
 			if (BuildCheck.isMarshmallow()) {
@@ -268,9 +273,11 @@ public class BaseActivity extends AppCompatActivity
 	 */
 	protected boolean checkPermissionWriteExternalStorage() {
 		if (!PermissionCheck.hasWriteExternalStorage(this)) {
-			MessageDialogFragmentV4.showDialog(this, REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE,
-					com.serenegiant.common.R.string.permission_title, com.serenegiant.common.R.string.permission_ext_storage_request,
-					new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE});
+			MessageDialogFragmentV4.showDialog(this,
+			                                   REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE,
+			                                   com.serenegiant.common.R.string.permission_title,
+			                                   com.serenegiant.common.R.string.permission_ext_storage_request,
+			                                   new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE});
 			return false;
 		}
 		return true;
@@ -284,9 +291,11 @@ public class BaseActivity extends AppCompatActivity
 	 */
 	protected boolean checkPermissionAudio() {
 		if (!PermissionCheck.hasAudio(this)) {
-			MessageDialogFragmentV4.showDialog(this, REQUEST_PERMISSION_AUDIO_RECORDING,
-					com.serenegiant.common.R.string.permission_title, com.serenegiant.common.R.string.permission_audio_recording_request,
-					new String[]{Manifest.permission.RECORD_AUDIO});
+			MessageDialogFragmentV4.showDialog(this,
+			                                   REQUEST_PERMISSION_AUDIO_RECORDING,
+			                                   com.serenegiant.common.R.string.permission_title,
+			                                   com.serenegiant.common.R.string.permission_audio_recording_request,
+			                                   new String[]{Manifest.permission.RECORD_AUDIO});
 			return false;
 		}
 		return true;
@@ -300,9 +309,11 @@ public class BaseActivity extends AppCompatActivity
 	 */
 	protected boolean checkPermissionNetwork() {
 		if (!PermissionCheck.hasNetwork(this)) {
-			MessageDialogFragmentV4.showDialog(this, REQUEST_PERMISSION_NETWORK,
-					com.serenegiant.common.R.string.permission_title, com.serenegiant.common.R.string.permission_network_request,
-					new String[]{Manifest.permission.INTERNET});
+			MessageDialogFragmentV4.showDialog(this,
+			                                   REQUEST_PERMISSION_NETWORK,
+			                                   com.serenegiant.common.R.string.permission_title,
+			                                   com.serenegiant.common.R.string.permission_network_request,
+			                                   new String[]{Manifest.permission.INTERNET});
 			return false;
 		}
 		return true;
@@ -316,9 +327,11 @@ public class BaseActivity extends AppCompatActivity
 	 */
 	protected boolean checkPermissionCamera() {
 		if (!PermissionCheck.hasCamera(this)) {
-			MessageDialogFragmentV4.showDialog(this, REQUEST_PERMISSION_CAMERA,
-					com.serenegiant.common.R.string.permission_title, com.serenegiant.common.R.string.permission_camera_request,
-					new String[]{Manifest.permission.CAMERA});
+			MessageDialogFragmentV4.showDialog(this,
+			                                   REQUEST_PERMISSION_CAMERA,
+			                                   com.serenegiant.common.R.string.permission_title,
+			                                   com.serenegiant.common.R.string.permission_camera_request,
+			                                   new String[]{Manifest.permission.CAMERA});
 			return false;
 		}
 		return true;
@@ -348,5 +361,4 @@ public class BaseActivity extends AppCompatActivity
 			}
 		}
 	}
-
 }

@@ -15,8 +15,7 @@ public class DrawHelper {
 	private int previewWidth, previewHeight, canvasWidth, canvasHeight, cameraDisplayOrientation, cameraId;
 	private boolean isMirror;
 
-	public DrawHelper(int previewWidth, int previewHeight, int canvasWidth, int canvasHeight, int cameraDisplayOrientation, int cameraId,
-	                  boolean isMirror) {
+    public DrawHelper(int previewWidth, int previewHeight, int canvasWidth, int canvasHeight, int cameraDisplayOrientation, int cameraId, boolean isMirror) {
 		this.previewWidth = previewWidth;
 		this.previewHeight = previewHeight;
 		this.canvasWidth = canvasWidth;
@@ -53,8 +52,16 @@ public class DrawHelper {
 		if (null == faceInfoResult || null == faceInfoResult.getFaceInfo() || null == faceInfoResult.getFaceInfo().getRect()) {
 			return;
 		}
-		Rect rect = RectUtil.adjustRect(faceInfoResult.getFaceInfo().getRect(), previewWidth, previewHeight, canvasWidth, canvasHeight,
-				cameraDisplayOrientation, cameraId, isMirror, false, false);
+        Rect rect = RectUtil.adjustRect(faceInfoResult.getFaceInfo().getRect(),
+                previewWidth,
+                previewHeight,
+                canvasWidth,
+                canvasHeight,
+                cameraDisplayOrientation,
+                cameraId,
+                isMirror,
+                false,
+                false);
 		if (null == rect) {
 			return;
 		}

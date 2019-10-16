@@ -1,4 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
@@ -12,6 +13,8 @@
 	<script type="text/javascript" src="search/search.js"></script>
 	<script type="text/javascript">
   $(document).ready(function() { searchBox.OnSelectItem(0); });
+
+
 
 
 
@@ -43,6 +46,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 
+
+
 	</script>
 	<div id="navrow1" class="tabs">
 		<ul class="tablist">
@@ -61,8 +66,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
                  onblur="searchBox.OnSearchFieldFocus(false)"
                  onkeyup="searchBox.OnSearchFieldChange(event)"/>
           </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0"
-                                                                                       src="search/close.png" alt=""/></a>
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img
+                    id="MSearchCloseImg" border="0"
+                    src="search/close.png" alt=""/></a>
           </span>
 				</div>
 			</li>
@@ -74,15 +80,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-	<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a
-		class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data
-	Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span
-		class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span
-		class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span
-		class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)"
-	                                                      onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a
-		class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a
-		class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Groups</a>
+    <a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span
+            class="SelectionMark">&#160;</span>All</a><a
+        class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span
+        class="SelectionMark">&#160;</span>Data
+    Structures</a><a class="SelectItem" href="javascript:void(0)"
+                     onclick="searchBox.OnSelectItem(2)"><span
+        class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem"
+                                                           href="javascript:void(0)"
+                                                           onclick="searchBox.OnSelectItem(3)"><span
+        class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem"
+                                                           href="javascript:void(0)"
+                                                           onclick="searchBox.OnSelectItem(4)"><span
+        class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem"
+                                                          href="javascript:void(0)"
+                                                          onclick="searchBox.OnSelectItem(5)"><span
+        class="SelectionMark">&#160;</span>Enumerations</a><a
+        class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span
+        class="SelectionMark">&#160;</span>Enumerator</a><a
+        class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span
+        class="SelectionMark">&#160;</span>Groups</a>
 </div>
 
 <!-- iframe showing the search results (closed by default) -->

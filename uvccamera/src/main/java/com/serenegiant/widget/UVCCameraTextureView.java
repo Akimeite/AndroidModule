@@ -20,7 +20,6 @@
  *  Files in the libjpeg-turbo, libusb, libuvc, rapidjson folder
  *  may have a different license, see the respective files.
  */
-
 package com.serenegiant.widget;
 
 import android.content.Context;
@@ -50,10 +49,12 @@ public class UVCCameraTextureView extends TextureView implements AspectRatioView
 	}
 
 	@Override
-	public void onResume() {}
+    public void onResume() {
+    }
 
 	@Override
-	public void onPause() {}
+    public void onPause() {
+    }
 
 	@Override
 	public void setAspectRatio(final double aspectRatio) {

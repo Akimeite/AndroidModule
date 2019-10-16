@@ -26,7 +26,6 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-
 package org.libjpegturbo.turbojpeg;
 
 /**
@@ -44,7 +43,9 @@ public class TJScalingFactor {
 	private int denom = 1;
 
 	public TJScalingFactor(int num, int denom) {
-		if (num < 1 || denom < 1) { throw new IllegalArgumentException("Numerator and denominator must be >= 1"); }
+		if (num < 1 || denom < 1) {
+			throw new IllegalArgumentException("Numerator and denominator must be >= 1");
+		}
 		this.num = num;
 		this.denom = denom;
 	}

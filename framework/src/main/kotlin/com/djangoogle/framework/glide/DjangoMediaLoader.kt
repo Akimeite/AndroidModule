@@ -15,6 +15,7 @@ class DjangoMediaLoader : AlbumLoader {
 	}
 
 	override fun load(imageView: ImageView, url: String) {
-		GlideApp.with(imageView.context).load(url).transition(DrawableTransitionOptions.withCrossFade()).into(imageView)
+		GlideApp.with(imageView.context).load(url)
+				.transition(DrawableTransitionOptions.withCrossFade()).into(imageView)
 	}
 }

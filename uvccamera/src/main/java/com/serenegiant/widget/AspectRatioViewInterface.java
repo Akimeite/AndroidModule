@@ -20,7 +20,6 @@
  *  Files in the libjpeg-turbo, libusb, libuvc, rapidjson folder
  *  may have a different license, see the respective files.
  */
-
 package com.serenegiant.widget;
 
 public interface AspectRatioViewInterface {

@@ -25,7 +25,6 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-
 package org.libjpegturbo.turbojpeg;
 
 import java.io.IOException;
@@ -49,5 +48,4 @@ public class TJException extends IOException {
 	public TJException(Throwable cause) {
 		super(cause);
 	}
-
 }

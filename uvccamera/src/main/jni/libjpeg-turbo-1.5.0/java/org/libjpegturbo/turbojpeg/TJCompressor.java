@@ -26,7 +26,6 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-
 package org.libjpegturbo.turbojpeg;
 
 /**
@@ -34,8 +33,7 @@ package org.libjpegturbo.turbojpeg;
  */
 public class TJCompressor implements Closeable {
 
-	private static final String NO_ASSOC_ERROR =
-			"No source image is associated with this instance";
+	private static final String NO_ASSOC_ERROR = "No source image is associated with this instance";
 
 	static {
 		TJLoader.load();
@@ -79,8 +77,7 @@ public class TJCompressor implements Closeable {
 	 * @param pixelFormat pixel format of the source image (one of
 	 *                    {@link TJ#PF_RGB TJ.PF_*})
 	 */
-	public TJCompressor(byte[] srcImage, int x, int y, int width, int pitch,
-	                    int height, int pixelFormat) throws TJException {
+	public TJCompressor(byte[] srcImage, int x, int y, int width, int pitch, int height, int pixelFormat) throws TJException {
 		setSourceImage(srcImage, x, y, width, pitch, height, pixelFormat);
 	}
 
@@ -89,8 +86,7 @@ public class TJCompressor implements Closeable {
 	 * {@link #TJCompressor(byte[], int, int, int, int, int, int)} instead.
 	 */
 	@Deprecated
-	public TJCompressor(byte[] srcImage, int width, int pitch, int height,
-	                    int pixelFormat) throws TJException {
+	public TJCompressor(byte[] srcImage, int width, int pitch, int height, int pixelFormat) throws TJException {
 		setSourceImage(srcImage, width, pitch, height, pixelFormat);
 	}
 
@@ -110,8 +106,7 @@ public class TJCompressor implements Closeable {
 	 * @param height   see
 	 *                 {@link #setSourceImage(BufferedImage, int, int, int, int)} for description
 	 */
-	public TJCompressor(BufferedImage srcImage, int x, int y, int width,
-	                    int height) throws TJException {
+	public TJCompressor(BufferedImage srcImage, int x, int y, int width, int height) throws TJException {
 		setSourceImage(srcImage, x, y, width, height);
 	}
 
@@ -140,17 +135,20 @@ public class TJCompressor implements Closeable {
 	 * @param pixelFormat pixel format of the source image (one of
 	 *                    {@link TJ#PF_RGB TJ.PF_*})
 	 */
-	public void setSourceImage(byte[] srcImage, int x, int y, int width,
-	                           int pitch, int height, int pixelFormat)
-			throws TJException {
-		if (handle == 0) { init(); }
-		if (srcImage == null || x < 0 || y < 0 || width < 1 || height < 1 ||
-				pitch < 0 || pixelFormat < 0 || pixelFormat >= TJ.NUMPF) {
+	public void setSourceImage(byte[] srcImage, int x, int y, int width, int pitch, int height, int pixelFormat) throws TJException {
+		if (handle == 0) {
+			init();
+		}
+		if (srcImage == null || x < 0 || y < 0 || width < 1 || height < 1 || pitch < 0 || pixelFormat < 0 || pixelFormat >= TJ.NUMPF) {
 			throw new IllegalArgumentException("Invalid argument in setSourceImage()");
 		}
 		srcBuf = srcImage;
 		srcWidth = width;
-		if (pitch == 0) { srcPitch = width * TJ.getPixelSize(pixelFormat); } else { srcPitch = pitch; }
+		if (pitch == 0) {
+			srcPitch = width * TJ.getPixelSize(pixelFormat);
+		} else {
+			srcPitch = pitch;
+		}
 		srcHeight = height;
 		srcPixelFormat = pixelFormat;
 		srcX = x;
@@ -164,8 +162,7 @@ public class TJCompressor implements Closeable {
 	 * {@link #setSourceImage(byte[], int, int, int, int, int, int)} instead.
 	 */
 	@Deprecated
-	public void setSourceImage(byte[] srcImage, int width, int pitch,
-	                           int height, int pixelFormat) throws TJException {
+	public void setSourceImage(byte[] srcImage, int width, int pitch, int height, int pixelFormat) throws TJException {
 		setSourceImage(srcImage, 0, 0, width, pitch, height, pixelFormat);
 		srcX = srcY = -1;
 	}
@@ -187,9 +184,10 @@ public class TJCompressor implements Closeable {
 	 *                 which the JPEG or YUV image should be compressed/encoded (0 = use the
 	 *                 height of the source image)
 	 */
-	public void setSourceImage(BufferedImage srcImage, int x, int y, int width,
-	                           int height) throws TJException {
-		if (handle == 0) { init(); }
+	public void setSourceImage(BufferedImage srcImage, int x, int y, int width, int height) throws TJException {
+		if (handle == 0) {
+			init();
+		}
 		if (srcImage == null || x < 0 || y < 0 || width < 0 || height < 0) {
 			throw new IllegalArgumentException("Invalid argument in setSourceImage()");
 		}
@@ -203,7 +201,9 @@ public class TJCompressor implements Closeable {
 
 		int pixelFormat;
 		boolean intPixels = false;
-		if (byteOrder == null) { byteOrder = ByteOrder.nativeOrder(); }
+		if (byteOrder == null) {
+			byteOrder = ByteOrder.nativeOrder();
+		}
 		switch (srcImage.getType()) {
 			case BufferedImage.TYPE_3BYTE_BGR:
 				pixelFormat = TJ.PF_BGR;
@@ -216,13 +216,21 @@ public class TJCompressor implements Closeable {
 				pixelFormat = TJ.PF_GRAY;
 				break;
 			case BufferedImage.TYPE_INT_BGR:
-				if (byteOrder == ByteOrder.BIG_ENDIAN) { pixelFormat = TJ.PF_XBGR; } else { pixelFormat = TJ.PF_RGBX; }
+				if (byteOrder == ByteOrder.BIG_ENDIAN) {
+					pixelFormat = TJ.PF_XBGR;
+				} else {
+					pixelFormat = TJ.PF_RGBX;
+				}
 				intPixels = true;
 				break;
 			case BufferedImage.TYPE_INT_RGB:
 			case BufferedImage.TYPE_INT_ARGB:
 			case BufferedImage.TYPE_INT_ARGB_PRE:
-				if (byteOrder == ByteOrder.BIG_ENDIAN) { pixelFormat = TJ.PF_XRGB; } else { pixelFormat = TJ.PF_BGRX; }
+				if (byteOrder == ByteOrder.BIG_ENDIAN) {
+					pixelFormat = TJ.PF_XRGB;
+				} else {
+					pixelFormat = TJ.PF_BGRX;
+				}
 				intPixels = true;
 				break;
 			default:
@@ -232,15 +240,13 @@ public class TJCompressor implements Closeable {
 
 		WritableRaster wr = srcImage.getRaster();
 		if (intPixels) {
-			SinglePixelPackedSampleModel sm =
-					(SinglePixelPackedSampleModel) srcImage.getSampleModel();
+			SinglePixelPackedSampleModel sm = (SinglePixelPackedSampleModel) srcImage.getSampleModel();
 			srcStride = sm.getScanlineStride();
 			DataBufferInt db = (DataBufferInt) wr.getDataBuffer();
 			srcBufInt = db.getData();
 			srcBuf = null;
 		} else {
-			ComponentSampleModel sm =
-					(ComponentSampleModel) srcImage.getSampleModel();
+			ComponentSampleModel sm = (ComponentSampleModel) srcImage.getSampleModel();
 			int pixelSize = sm.getPixelStride();
 			if (pixelSize != TJ.getPixelSize(pixelFormat)) {
 				throw new IllegalArgumentException("Inconsistency between pixel format and pixel size in BufferedImage");
@@ -263,8 +269,12 @@ public class TJCompressor implements Closeable {
 	 *                 modified.
 	 */
 	public void setSourceImage(YUVImage srcImage) throws TJException {
-		if (handle == 0) { init(); }
-		if (srcImage == null) { throw new IllegalArgumentException("Invalid argument in setSourceImage()"); }
+		if (handle == 0) {
+			init();
+		}
+		if (srcImage == null) {
+			throw new IllegalArgumentException("Invalid argument in setSourceImage()");
+		}
 		srcYUVImage = srcImage;
 		srcBuf = null;
 		srcBufInt = null;
@@ -292,7 +302,9 @@ public class TJCompressor implements Closeable {
 	 *                   {@link TJ#SAMP_444 TJ.SAMP_*})
 	 */
 	public void setSubsamp(int newSubsamp) {
-		if (newSubsamp < 0 || newSubsamp >= TJ.NUMSAMP) { throw new IllegalArgumentException("Invalid argument in setSubsamp()"); }
+		if (newSubsamp < 0 || newSubsamp >= TJ.NUMSAMP) {
+			throw new IllegalArgumentException("Invalid argument in setSubsamp()");
+		}
 		subsamp = newSubsamp;
 	}
 
@@ -303,7 +315,9 @@ public class TJCompressor implements Closeable {
 	 *                100 = best)
 	 */
 	public void setJPEGQuality(int quality) {
-		if (quality < 1 || quality > 100) { throw new IllegalArgumentException("Invalid argument in setJPEGQuality()"); }
+		if (quality < 1 || quality > 100) {
+			throw new IllegalArgumentException("Invalid argument in setJPEGQuality()");
+		}
 		jpegQuality = quality;
 	}
 
@@ -319,38 +333,40 @@ public class TJCompressor implements Closeable {
 	 *               {@link TJ#FLAG_BOTTOMUP TJ.FLAG_*}
 	 */
 	public void compress(byte[] dstBuf, int flags) throws TJException {
-		if (dstBuf == null || flags < 0) { throw new IllegalArgumentException("Invalid argument in compress()"); }
-		if (srcBuf == null && srcBufInt == null && srcYUVImage == null) { throw new IllegalStateException(NO_ASSOC_ERROR); }
-		if (jpegQuality < 0) { throw new IllegalStateException("JPEG Quality not set"); }
-		if (subsamp < 0 && srcYUVImage == null) { throw new IllegalStateException("Subsampling level not set"); }
+		if (dstBuf == null || flags < 0) {
+			throw new IllegalArgumentException("Invalid argument in compress()");
+		}
+		if (srcBuf == null && srcBufInt == null && srcYUVImage == null) {
+			throw new IllegalStateException(NO_ASSOC_ERROR);
+		}
+		if (jpegQuality < 0) {
+			throw new IllegalStateException("JPEG Quality not set");
+		}
+		if (subsamp < 0 && srcYUVImage == null) {
+			throw new IllegalStateException("Subsampling level not set");
+		}
 
 		if (srcYUVImage != null) {
 			compressedSize = compressFromYUV(srcYUVImage.getPlanes(),
-					srcYUVImage.getOffsets(),
-					srcYUVImage.getWidth(),
-					srcYUVImage.getStrides(),
-					srcYUVImage.getHeight(),
-					srcYUVImage.getSubsamp(),
-					dstBuf, jpegQuality, flags);
+			                                 srcYUVImage.getOffsets(),
+			                                 srcYUVImage.getWidth(),
+			                                 srcYUVImage.getStrides(),
+			                                 srcYUVImage.getHeight(),
+			                                 srcYUVImage.getSubsamp(),
+			                                 dstBuf,
+			                                 jpegQuality,
+			                                 flags);
 		} else if (srcBuf != null) {
 			if (srcX >= 0 && srcY >= 0) {
-				compressedSize = compress(srcBuf, srcX, srcY, srcWidth, srcPitch,
-						srcHeight, srcPixelFormat, dstBuf, subsamp,
-						jpegQuality, flags);
+				compressedSize = compress(srcBuf, srcX, srcY, srcWidth, srcPitch, srcHeight, srcPixelFormat, dstBuf, subsamp, jpegQuality, flags);
 			} else {
-				compressedSize = compress(srcBuf, srcWidth, srcPitch, srcHeight,
-						srcPixelFormat, dstBuf, subsamp, jpegQuality,
-						flags);
+				compressedSize = compress(srcBuf, srcWidth, srcPitch, srcHeight, srcPixelFormat, dstBuf, subsamp, jpegQuality, flags);
 			}
 		} else if (srcBufInt != null) {
 			if (srcX >= 0 && srcY >= 0) {
-				compressedSize = compress(srcBufInt, srcX, srcY, srcWidth, srcStride,
-						srcHeight, srcPixelFormat, dstBuf, subsamp,
-						jpegQuality, flags);
+				compressedSize = compress(srcBufInt, srcX, srcY, srcWidth, srcStride, srcHeight, srcPixelFormat, dstBuf, subsamp, jpegQuality, flags);
 			} else {
-				compressedSize = compress(srcBufInt, srcWidth, srcStride, srcHeight,
-						srcPixelFormat, dstBuf, subsamp, jpegQuality,
-						flags);
+				compressedSize = compress(srcBufInt, srcWidth, srcStride, srcHeight, srcPixelFormat, dstBuf, subsamp, jpegQuality, flags);
 			}
 		}
 	}
@@ -378,8 +394,7 @@ public class TJCompressor implements Closeable {
 	 * {@link #compress(byte[], int)} instead.
 	 */
 	@Deprecated
-	public void compress(BufferedImage srcImage, byte[] dstBuf, int flags)
-			throws TJException {
+	public void compress(BufferedImage srcImage, byte[] dstBuf, int flags) throws TJException {
 		setSourceImage(srcImage, 0, 0, 0, 0);
 		compress(dstBuf, flags);
 	}
@@ -390,8 +405,7 @@ public class TJCompressor implements Closeable {
 	 * {@link #compress(int)} instead.
 	 */
 	@Deprecated
-	public byte[] compress(BufferedImage srcImage, int flags)
-			throws TJException {
+	public byte[] compress(BufferedImage srcImage, int flags) throws TJException {
 		setSourceImage(srcImage, 0, 0, 0, 0);
 		return compress(flags);
 	}
@@ -410,22 +424,46 @@ public class TJCompressor implements Closeable {
 	 *                 {@link TJ#FLAG_BOTTOMUP TJ.FLAG_*}
 	 */
 	public void encodeYUV(YUVImage dstImage, int flags) throws TJException {
-		if (dstImage == null || flags < 0) { throw new IllegalArgumentException("Invalid argument in encodeYUV()"); }
-		if (srcBuf == null && srcBufInt == null) { throw new IllegalStateException(NO_ASSOC_ERROR); }
-		if (srcYUVImage != null) { throw new IllegalStateException("Source image is not correct type"); }
+		if (dstImage == null || flags < 0) {
+			throw new IllegalArgumentException("Invalid argument in encodeYUV()");
+		}
+		if (srcBuf == null && srcBufInt == null) {
+			throw new IllegalStateException(NO_ASSOC_ERROR);
+		}
+		if (srcYUVImage != null) {
+			throw new IllegalStateException("Source image is not correct type");
+		}
 		checkSubsampling();
 		if (srcWidth != dstImage.getWidth() || srcHeight != dstImage.getHeight()) {
 			throw new IllegalStateException("Destination image is the wrong size");
 		}
 
 		if (srcBufInt != null) {
-			encodeYUV(srcBufInt, srcX, srcY, srcWidth, srcStride, srcHeight,
-					srcPixelFormat, dstImage.getPlanes(), dstImage.getOffsets(),
-					dstImage.getStrides(), dstImage.getSubsamp(), flags);
+			encodeYUV(srcBufInt,
+			          srcX,
+			          srcY,
+			          srcWidth,
+			          srcStride,
+			          srcHeight,
+			          srcPixelFormat,
+			          dstImage.getPlanes(),
+			          dstImage.getOffsets(),
+			          dstImage.getStrides(),
+			          dstImage.getSubsamp(),
+			          flags);
 		} else {
-			encodeYUV(srcBuf, srcX, srcY, srcWidth, srcPitch, srcHeight,
-					srcPixelFormat, dstImage.getPlanes(), dstImage.getOffsets(),
-					dstImage.getStrides(), dstImage.getSubsamp(), flags);
+			encodeYUV(srcBuf,
+			          srcX,
+			          srcY,
+			          srcWidth,
+			          srcPitch,
+			          srcHeight,
+			          srcPixelFormat,
+			          dstImage.getPlanes(),
+			          dstImage.getOffsets(),
+			          dstImage.getStrides(),
+			          dstImage.getSubsamp(),
+			          flags);
 		}
 		compressedSize = 0;
 	}
@@ -435,7 +473,9 @@ public class TJCompressor implements Closeable {
 	 */
 	@Deprecated
 	public void encodeYUV(byte[] dstBuf, int flags) throws TJException {
-		if (dstBuf == null) { throw new IllegalArgumentException("Invalid argument in encodeYUV()"); }
+		if (dstBuf == null) {
+			throw new IllegalArgumentException("Invalid argument in encodeYUV()");
+		}
 		checkSourceImage();
 		checkSubsampling();
 		YUVImage yuvImage = new YUVImage(dstBuf, srcWidth, 4, srcHeight, subsamp);
@@ -460,7 +500,9 @@ public class TJCompressor implements Closeable {
 	public YUVImage encodeYUV(int pad, int flags) throws TJException {
 		checkSourceImage();
 		checkSubsampling();
-		if (pad < 1 || ((pad & (pad - 1)) != 0)) { throw new IllegalStateException("Invalid argument in encodeYUV()"); }
+		if (pad < 1 || ((pad & (pad - 1)) != 0)) {
+			throw new IllegalStateException("Invalid argument in encodeYUV()");
+		}
 		YUVImage yuvImage = new YUVImage(srcWidth, pad, srcHeight, subsamp);
 		encodeYUV(yuvImage, flags);
 		return yuvImage;
@@ -511,8 +553,7 @@ public class TJCompressor implements Closeable {
 	 * {@link #encodeYUV(byte[], int)} instead.
 	 */
 	@Deprecated
-	public void encodeYUV(BufferedImage srcImage, byte[] dstBuf, int flags)
-			throws TJException {
+	public void encodeYUV(BufferedImage srcImage, byte[] dstBuf, int flags) throws TJException {
 		setSourceImage(srcImage, 0, 0, 0, 0);
 		encodeYUV(dstBuf, flags);
 	}
@@ -523,8 +564,7 @@ public class TJCompressor implements Closeable {
 	 * {@link #encodeYUV(int, int)} instead.
 	 */
 	@Deprecated
-	public byte[] encodeYUV(BufferedImage srcImage, int flags)
-			throws TJException {
+	public byte[] encodeYUV(BufferedImage srcImage, int flags) throws TJException {
 		setSourceImage(srcImage, 0, 0, 0, 0);
 		return encodeYUV(flags);
 	}
@@ -545,7 +585,9 @@ public class TJCompressor implements Closeable {
 	 */
 	@Override
 	public void close() throws TJException {
-		if (handle != 0) { destroy(); }
+		if (handle != 0) {
+			destroy();
+		}
 	}
 
 	@Override
@@ -564,53 +606,36 @@ public class TJCompressor implements Closeable {
 
 	// JPEG size in bytes is returned
 	@Deprecated
-	private native int compress(byte[] srcBuf, int width, int pitch,
-	                            int height, int pixelFormat, byte[] dstBuf, int jpegSubsamp, int jpegQual,
-	                            int flags) throws TJException;
+	private native int compress(byte[] srcBuf, int width, int pitch, int height, int pixelFormat, byte[] dstBuf, int jpegSubsamp, int jpegQual, int flags) throws TJException;
 
-	private native int compress(byte[] srcBuf, int x, int y, int width,
-	                            int pitch, int height, int pixelFormat, byte[] dstBuf, int jpegSubsamp,
-	                            int jpegQual, int flags) throws TJException;
+	private native int compress(byte[] srcBuf, int x, int y, int width, int pitch, int height, int pixelFormat, byte[] dstBuf, int jpegSubsamp, int jpegQual, int flags) throws TJException;
 
 	@Deprecated
-	private native int compress(int[] srcBuf, int width, int stride,
-	                            int height, int pixelFormat, byte[] dstBuf, int jpegSubsamp, int jpegQual,
-	                            int flags) throws TJException;
+	private native int compress(int[] srcBuf, int width, int stride, int height, int pixelFormat, byte[] dstBuf, int jpegSubsamp, int jpegQual, int flags) throws TJException;
 
-	private native int compress(int[] srcBuf, int x, int y, int width,
-	                            int stride, int height, int pixelFormat, byte[] dstBuf, int jpegSubsamp,
-	                            int jpegQual, int flags) throws TJException;
+	private native int compress(int[] srcBuf, int x, int y, int width, int stride, int height, int pixelFormat, byte[] dstBuf, int jpegSubsamp, int jpegQual, int flags) throws TJException;
 
-	private native int compressFromYUV(byte[][] srcPlanes, int[] srcOffsets,
-	                                   int width, int[] srcStrides, int height, int subsamp, byte[] dstBuf,
-	                                   int jpegQual, int flags)
-			throws TJException;
+	private native int compressFromYUV(byte[][] srcPlanes, int[] srcOffsets, int width, int[] srcStrides, int height, int subsamp, byte[] dstBuf, int jpegQual, int flags) throws TJException;
 
 	@Deprecated
-	private native void encodeYUV(byte[] srcBuf, int width, int pitch,
-	                              int height, int pixelFormat, byte[] dstBuf, int subsamp, int flags)
-			throws TJException;
+	private native void encodeYUV(byte[] srcBuf, int width, int pitch, int height, int pixelFormat, byte[] dstBuf, int subsamp, int flags) throws TJException;
 
-	private native void encodeYUV(byte[] srcBuf, int x, int y, int width,
-	                              int pitch, int height, int pixelFormat, byte[][] dstPlanes,
-	                              int[] dstOffsets, int[] dstStrides, int subsamp, int flags)
-			throws TJException;
+	private native void encodeYUV(byte[] srcBuf, int x, int y, int width, int pitch, int height, int pixelFormat, byte[][] dstPlanes, int[] dstOffsets, int[] dstStrides, int subsamp, int flags) throws TJException;
 
 	@Deprecated
-	private native void encodeYUV(int[] srcBuf, int width, int stride,
-	                              int height, int pixelFormat, byte[] dstBuf, int subsamp, int flags)
-			throws TJException;
+	private native void encodeYUV(int[] srcBuf, int width, int stride, int height, int pixelFormat, byte[] dstBuf, int subsamp, int flags) throws TJException;
 
-	private native void encodeYUV(int[] srcBuf, int x, int y, int width,
-	                              int srcStride, int height, int pixelFormat, byte[][] dstPlanes,
-	                              int[] dstOffsets, int[] dstStrides, int subsamp, int flags)
-			throws TJException;
+	private native void encodeYUV(int[] srcBuf, int x, int y, int width, int srcStride, int height, int pixelFormat, byte[][] dstPlanes, int[] dstOffsets, int[] dstStrides, int subsamp, int flags) throws TJException;
 
 	private void checkSourceImage() {
-		if (srcWidth < 1 || srcHeight < 1) { throw new IllegalStateException(NO_ASSOC_ERROR); }
+		if (srcWidth < 1 || srcHeight < 1) {
+			throw new IllegalStateException(NO_ASSOC_ERROR);
+		}
 	}
 
 	private void checkSubsampling() {
-		if (subsamp < 0) { throw new IllegalStateException("Subsampling level not set"); }
+		if (subsamp < 0) {
+			throw new IllegalStateException("Subsampling level not set");
+		}
 	}
 }

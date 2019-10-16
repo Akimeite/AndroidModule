@@ -26,7 +26,6 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-
 package org.libjpegturbo.turbojpeg;
 
 /**
@@ -222,14 +221,10 @@ public final class TJ {
 	 * OpenGL) order, not top-down (X11) order.
 	 */
 	public static final int FLAG_BOTTOMUP = 2;
-	@Deprecated
-	public static final int FLAG_FORCEMMX = 8;
-	@Deprecated
-	public static final int FLAG_FORCESSE = 16;
-	@Deprecated
-	public static final int FLAG_FORCESSE2 = 32;
-	@Deprecated
-	public static final int FLAG_FORCESSE3 = 128;
+	@Deprecated public static final int FLAG_FORCEMMX = 8;
+	@Deprecated public static final int FLAG_FORCESSE = 16;
+	@Deprecated public static final int FLAG_FORCESSE2 = 32;
+	@Deprecated public static final int FLAG_FORCESSE3 = 128;
 	/**
 	 * When decompressing an image that was compressed using chrominance
 	 * subsampling, use the fastest chrominance upsampling algorithm available in
@@ -257,24 +252,12 @@ public final class TJ {
 	 * been shown to have a larger effect.
 	 */
 	public static final int FLAG_ACCURATEDCT = 4096;
-	private static final int[] mcuWidth = {
-			8, 16, 16, 8, 8, 32
-	};
-	private static final int[] mcuHeight = {
-			8, 8, 16, 8, 16, 8
-	};
-	private static final int[] pixelSize = {
-			3, 3, 4, 4, 4, 4, 1, 4, 4, 4, 4, 4
-	};
-	private static final int[] redOffset = {
-			0, 2, 0, 2, 3, 1, 0, 0, 2, 3, 1, -1
-	};
-	private static final int[] greenOffset = {
-			1, 1, 1, 1, 2, 2, 0, 1, 1, 2, 2, -1
-	};
-	private static final int[] blueOffset = {
-			2, 0, 2, 0, 1, 3, 0, 2, 0, 1, 3, -1
-	};
+	private static final int[] mcuWidth = {8, 16, 16, 8, 8, 32};
+	private static final int[] mcuHeight = {8, 8, 16, 8, 16, 8};
+	private static final int[] pixelSize = {3, 3, 4, 4, 4, 4, 1, 4, 4, 4, 4, 4};
+	private static final int[] redOffset = {0, 2, 0, 2, 3, 1, 0, 0, 2, 3, 1, -1};
+	private static final int[] greenOffset = {1, 1, 1, 1, 2, 2, 0, 1, 1, 2, 2, -1};
+	private static final int[] blueOffset = {2, 0, 2, 0, 1, 3, 0, 2, 0, 1, 3, -1};
 
 	static {
 		TJLoader.load();
@@ -390,8 +373,7 @@ public final class TJ {
 	 * @return the size of the buffer (in bytes) required to hold a YUV planar
 	 * image with the given width, height, and level of chrominance subsampling.
 	 */
-	public static native int bufSizeYUV(int width, int pad, int height,
-	                                    int subsamp);
+	public static native int bufSizeYUV(int width, int pad, int height, int subsamp);
 
 	/**
 	 * @deprecated Use {@link #bufSizeYUV(int, int, int, int)} instead.
@@ -415,8 +397,7 @@ public final class TJ {
 	 * @return the size of the buffer (in bytes) required to hold a YUV planar
 	 * image with the given parameters.
 	 */
-	public static native int planeSizeYUV(int componentID, int width, int stride,
-	                                      int height, int subsamp);
+	public static native int planeSizeYUV(int componentID, int width, int stride, int height, int subsamp);
 
 	/**
 	 * Returns the plane width of a YUV image plane with the given parameters.
@@ -442,8 +423,7 @@ public final class TJ {
 	 *                    (one of {@link TJ TJ.SAMP_*})
 	 * @return the plane height of a YUV image plane with the given parameters.
 	 */
-	public static native int planeHeight(int componentID, int height,
-	                                     int subsamp);
+	public static native int planeHeight(int componentID, int height, int subsamp);
 
 	/**
 	 * Returns a list of fractional scaling factors that the JPEG decompressor in
@@ -455,11 +435,14 @@ public final class TJ {
 	public static native TJScalingFactor[] getScalingFactors();
 
 	private static void checkPixelFormat(int pixelFormat) {
-		if (pixelFormat < 0 || pixelFormat >= NUMPF) { throw new IllegalArgumentException("Invalid pixel format"); }
+		if (pixelFormat < 0 || pixelFormat >= NUMPF) {
+			throw new IllegalArgumentException("Invalid pixel format");
+		}
 	}
 
 	private static void checkSubsampling(int subsamp) {
-		if (subsamp < 0 || subsamp >= NUMSAMP) { throw new IllegalArgumentException("Invalid subsampling type"); }
+		if (subsamp < 0 || subsamp >= NUMSAMP) {
+			throw new IllegalArgumentException("Invalid subsampling type");
+		}
 	}
-
 }

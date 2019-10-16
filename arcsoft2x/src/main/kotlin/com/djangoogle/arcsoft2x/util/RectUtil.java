@@ -23,9 +23,7 @@ public class RectUtil {
 	 * @param mirrorVertical           为兼容部分设备使用，垂直再次镜像
 	 * @return 调整后的需要被绘制到View上的rect
 	 */
-	public static Rect adjustRect(Rect ftRect, int previewWidth, int previewHeight, int canvasWidth, int canvasHeight,
-	                              int cameraDisplayOrientation, int cameraId, boolean isMirror, boolean mirrorHorizontal,
-	                              boolean mirrorVertical) {
+    public static Rect adjustRect(Rect ftRect, int previewWidth, int previewHeight, int canvasWidth, int canvasHeight, int cameraDisplayOrientation, int cameraId, boolean isMirror, boolean mirrorHorizontal, boolean mirrorVertical) {
 
 		if (null == ftRect) {
 			return null;

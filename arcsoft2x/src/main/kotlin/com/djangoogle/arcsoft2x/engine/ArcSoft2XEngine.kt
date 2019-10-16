@@ -26,10 +26,12 @@ object ArcSoft2XEngine {
 	private const val DETECT_FACE_MAX_NUM = 1
 
 	//图片引擎初始化属性
-	private const val IMAGE_ENGINE_MASK = FaceEngine.ASF_FACE_DETECT or FaceEngine.ASF_FACE_RECOGNITION or FaceEngine.ASF_NONE
+	private const val IMAGE_ENGINE_MASK =
+			FaceEngine.ASF_FACE_DETECT or FaceEngine.ASF_FACE_RECOGNITION or FaceEngine.ASF_NONE
 
 	//视频引擎初始化属性
-	private const val VIDEO_ENGINE_MASK = FaceEngine.ASF_FACE_DETECT or FaceEngine.ASF_FACE_RECOGNITION or FaceEngine.ASF_LIVENESS
+	private const val VIDEO_ENGINE_MASK =
+			FaceEngine.ASF_FACE_DETECT or FaceEngine.ASF_FACE_RECOGNITION or FaceEngine.ASF_LIVENESS
 
 	//
 //	private const val Liveness_Param_RANGE:closed
@@ -67,12 +69,12 @@ object ArcSoft2XEngine {
 	fun getImageEngine(context: Context, detectFaceOrientPriority: Int): FaceEngine? {
 		val imageEngine = FaceEngine()
 		val code = imageEngine.init(
-			context,
-			FaceEngine.ASF_DETECT_MODE_IMAGE,
-			detectFaceOrientPriority,
-			IMAGE_DETECT_FACE_SCALE_VAL,
-			DETECT_FACE_MAX_NUM,
-			IMAGE_ENGINE_MASK
+				context,
+				FaceEngine.ASF_DETECT_MODE_IMAGE,
+				detectFaceOrientPriority,
+				IMAGE_DETECT_FACE_SCALE_VAL,
+				DETECT_FACE_MAX_NUM,
+				IMAGE_ENGINE_MASK
 		)
 		return if (ErrorInfo.MOK == code) {
 			val versionInfo = VersionInfo()
@@ -95,12 +97,12 @@ object ArcSoft2XEngine {
 	fun getVideoEngine(context: Context, detectFaceOrientPriority: Int): FaceEngine? {
 		val videoEngine = FaceEngine()
 		val code = videoEngine.init(
-			context,
-			FaceEngine.ASF_DETECT_MODE_VIDEO,
-			detectFaceOrientPriority,
-			VIDEO_DETECT_FACE_SCALE_VAL,
-			DETECT_FACE_MAX_NUM,
-			VIDEO_ENGINE_MASK
+				context,
+				FaceEngine.ASF_DETECT_MODE_VIDEO,
+				detectFaceOrientPriority,
+				VIDEO_DETECT_FACE_SCALE_VAL,
+				DETECT_FACE_MAX_NUM,
+				VIDEO_ENGINE_MASK
 		)
 		return if (ErrorInfo.MOK == code) {
 			val versionInfo = VersionInfo()
@@ -117,12 +119,17 @@ object ArcSoft2XEngine {
 	 * 设置活体阈值参数
 	 */
 	fun setLivenessParam(
-		videoEngine: FaceEngine, @FloatRange(from = 0.0, to = 1.0) rgbThreshold: Float, @FloatRange(
-			from = 0.0,
-			to = 1.0
-		) irThreshold: Float
+			videoEngine: FaceEngine, @FloatRange(from = 0.0, to = 1.0) rgbThreshold: Float, @FloatRange(
+					from = 0.0,
+					to = 1.0
+			) irThreshold: Float
 	): Boolean? {
-		return ErrorInfo.MOK == videoEngine.setLivenessParam(LivenessParam(rgbThreshold, irThreshold))
+		return ErrorInfo.MOK == videoEngine.setLivenessParam(
+				LivenessParam(
+						rgbThreshold,
+						irThreshold
+				)
+		)
 	}
 
 	/**
@@ -150,7 +157,13 @@ object ArcSoft2XEngine {
 	 * @param height      高度
 	 * @return 人脸信息
 	 */
-	fun processImage(imageEngine: FaceEngine, data: ByteArray, width: Int, height: Int, fotmat: Int): FaceInfoResult {
+	fun processImage(
+			imageEngine: FaceEngine,
+			data: ByteArray,
+			width: Int,
+			height: Int,
+			fotmat: Int
+	): FaceInfoResult {
 		val faceInfoList = ArrayList<FaceInfo>()
 		val code = imageEngine.detectFaces(data, width, height, fotmat, faceInfoList)
 		//检测人脸
@@ -171,30 +184,62 @@ object ArcSoft2XEngine {
 	 * @param liveness    是否检测活体
 	 * @return 人脸信息
 	 */
-	fun processVideo(videoEngine: FaceEngine, nv21: ByteArray, width: Int, height: Int, liveness: Boolean): FaceInfoResult {
+	fun processVideo(
+			videoEngine: FaceEngine,
+			nv21: ByteArray,
+			width: Int,
+			height: Int,
+			liveness: Boolean
+	): FaceInfoResult {
 		val faceInfoList = ArrayList<FaceInfo>()
-		var code = videoEngine.detectFaces(nv21, width, height, FaceEngine.CP_PAF_NV21, faceInfoList)
+		var code =
+				videoEngine.detectFaces(nv21, width, height, FaceEngine.CP_PAF_NV21, faceInfoList)
 		//检测人脸
 		return when {
-			ErrorInfo.MOK != code || faceInfoList.isEmpty() -> FaceInfoResult(code, "未检测到人脸", false, null, nv21)
+			ErrorInfo.MOK != code || faceInfoList.isEmpty() -> FaceInfoResult(
+					code,
+					"未检测到人脸",
+					false,
+					null,
+					nv21
+			)
 			//不检测活体
 			!liveness -> FaceInfoResult(code, "检测到人脸", false, faceInfoList[0], nv21)
 			//活体检测
 			else -> {
-				code = videoEngine.process(nv21, width, height, FaceEngine.CP_PAF_NV21, faceInfoList, FaceEngine.ASF_LIVENESS)
+				code = videoEngine.process(
+						nv21,
+						width,
+						height,
+						FaceEngine.CP_PAF_NV21,
+						faceInfoList,
+						FaceEngine.ASF_LIVENESS
+				)
 				when {
-					ErrorInfo.MOK != code || faceInfoList.isEmpty() -> FaceInfoResult(code, "未检测到活体人脸", false, null, nv21)
+					ErrorInfo.MOK != code || faceInfoList.isEmpty() -> FaceInfoResult(
+							code,
+							"未检测到活体人脸",
+							false,
+							null,
+							nv21
+					)
 					else -> {
 						val livenessInfoList = ArrayList<LivenessInfo>()
 						code = videoEngine.getLiveness(livenessInfoList)
 						when {
-							ErrorInfo.MOK != code || livenessInfoList.isEmpty() -> FaceInfoResult(code, "未检测到活体信息", false, null, nv21)
+							ErrorInfo.MOK != code || livenessInfoList.isEmpty() -> FaceInfoResult(
+									code,
+									"未检测到活体信息",
+									false,
+									null,
+									nv21
+							)
 							else -> FaceInfoResult(
-								code,
-								"活体检测成功",
-								LivenessInfo.ALIVE == livenessInfoList[0].liveness,
-								faceInfoList[0],
-								nv21
+									code,
+									"活体检测成功",
+									LivenessInfo.ALIVE == livenessInfoList[0].liveness,
+									faceInfoList[0],
+									nv21
 							)
 						}
 					}
@@ -214,9 +259,17 @@ object ArcSoft2XEngine {
 	 * @param format      数据格式
 	 * @return 特征数组
 	 */
-	fun extractFeature(imageEngine: FaceEngine, data: ByteArray?, width: Int, height: Int, faceInfo: FaceInfo?, format: Int): ByteArray? {
+	fun extractFeature(
+			imageEngine: FaceEngine,
+			data: ByteArray?,
+			width: Int,
+			height: Int,
+			faceInfo: FaceInfo?,
+			format: Int
+	): ByteArray? {
 		val faceFeature = FaceFeature()
-		val extractFaceFeatureCode = imageEngine.extractFaceFeature(data, width, height, format, faceInfo, faceFeature)
+		val extractFaceFeatureCode =
+				imageEngine.extractFaceFeature(data, width, height, format, faceInfo, faceFeature)
 		return if (ErrorInfo.MOK != extractFaceFeatureCode) null else faceFeature.featureData
 	}
 
@@ -228,9 +281,17 @@ object ArcSoft2XEngine {
 	 * @param faceFeature2 特征数组2
 	 * @return 比对分值
 	 */
-	fun compareFaceFeature(imageEngine: FaceEngine, faceFeature1: ByteArray, faceFeature2: ByteArray): Float {
+	fun compareFaceFeature(
+			imageEngine: FaceEngine,
+			faceFeature1: ByteArray,
+			faceFeature2: ByteArray
+	): Float {
 		val faceSimilar = FaceSimilar()
-		imageEngine.compareFaceFeature(FaceFeature(faceFeature1), FaceFeature(faceFeature2), faceSimilar)
+		imageEngine.compareFaceFeature(
+				FaceFeature(faceFeature1),
+				FaceFeature(faceFeature2),
+				faceSimilar
+		)
 		return faceSimilar.score
 	}
 }

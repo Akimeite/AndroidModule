@@ -1,29 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"
-	xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-	xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" height="60.831055"
-	id="svg2" version="1.1" width="217.15039" xmlns="http://www.w3.org/2000/svg" inkscape:version="0.48.4 r9939"
-	sodipodi:docname="rapidjson.svg">
+    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    xmlns:xlink="http://www.w3.org/1999/xlink" height="60.831055" id="svg2" version="1.1"
+    width="217.15039" xmlns="http://www.w3.org/2000/svg" inkscape:version="0.48.4 r9939"
+    sodipodi:docname="rapidjson.svg">
 	<defs id="defs4">
 		<linearGradient id="linearGradient3801">
 			<stop style="stop-color:#000000;stop-opacity:1;" id="stop3803" offset="0" />
 			<stop style="stop-color:#000000;stop-opacity:0;" id="stop3805" offset="1" />
 		</linearGradient>
-		<linearGradient gradientTransform="matrix(1.2378503,0,0,1.1662045,-226.99279,64.427324)" gradientUnits="userSpaceOnUse"
-			id="linearGradient3807" x1="81.25" x2="122.25" y1="52.737183" y2="52.737183" inkscape:collect="always"
-			xlink:href="#linearGradient3801" />
-		<linearGradient gradientTransform="matrix(-1.4768835,0,0,2.2904698,246.48785,81.630301)" gradientUnits="userSpaceOnUse"
-			id="linearGradient3935" x1="81.25" x2="115.96579" y1="52.737183" y2="48.439766" inkscape:collect="always"
-			xlink:href="#linearGradient3801" />
-		<linearGradient gradientTransform="matrix(1.2378503,0,0,1.1662045,-226.99279,-10.072676)" gradientUnits="userSpaceOnUse"
-			id="linearGradient3947" x1="81.25" x2="122.25" y1="52.737183" y2="52.737183" inkscape:collect="always"
-			xlink:href="#linearGradient3801" />
+        <linearGradient gradientTransform="matrix(1.2378503,0,0,1.1662045,-226.99279,64.427324)"
+            gradientUnits="userSpaceOnUse" id="linearGradient3807" x1="81.25" x2="122.25"
+            y1="52.737183" y2="52.737183" inkscape:collect="always"
+            xlink:href="#linearGradient3801" />
+        <linearGradient gradientTransform="matrix(-1.4768835,0,0,2.2904698,246.48785,81.630301)"
+            gradientUnits="userSpaceOnUse" id="linearGradient3935" x1="81.25" x2="115.96579"
+            y1="52.737183" y2="48.439766" inkscape:collect="always"
+            xlink:href="#linearGradient3801" />
+        <linearGradient gradientTransform="matrix(1.2378503,0,0,1.1662045,-226.99279,-10.072676)"
+            gradientUnits="userSpaceOnUse" id="linearGradient3947" x1="81.25" x2="122.25"
+            y1="52.737183" y2="52.737183" inkscape:collect="always"
+            xlink:href="#linearGradient3801" />
 	</defs>
-	<sodipodi:namedview bordercolor="#666666" borderopacity="1.0" fit-margin-bottom="10" fit-margin-left="10" fit-margin-right="10"
-		fit-margin-top="10" id="base" pagecolor="#ffffff" showgrid="false" inkscape:current-layer="layer1" inkscape:cx="207.8959"
-		inkscape:cy="-3.2283687" inkscape:document-units="px" inkscape:pageopacity="0.0" inkscape:pageshadow="2"
-		inkscape:window-height="1137" inkscape:window-maximized="1" inkscape:window-width="1920" inkscape:window-x="-8"
+    <sodipodi:namedview bordercolor="#666666" borderopacity="1.0" fit-margin-bottom="10"
+        fit-margin-left="10" fit-margin-right="10" fit-margin-top="10" id="base" pagecolor="#ffffff"
+        showgrid="false" inkscape:current-layer="layer1" inkscape:cx="207.8959"
+        inkscape:cy="-3.2283687" inkscape:document-units="px" inkscape:pageopacity="0.0"
+        inkscape:pageshadow="2" inkscape:window-height="1137" inkscape:window-maximized="1"
+        inkscape:window-width="1920" inkscape:window-x="-8"
 		inkscape:window-y="-8" inkscape:zoom="2" />
 	<metadata id="metadata7">
 		<rdf:RDF>
@@ -44,7 +51,7 @@
          y="79.862183"
          sodipodi:role="line"><tspan
            style="font-size:42px;font-style:oblique;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;writing-mode:lr-tb;text-anchor:middle;font-family:Segoe UI;-inkscape-font-specification:Segoe UI Oblique"
-           id="tspan3943">Rapid</tspan><tspan style="font-weight:bold;-inkscape-font-specification:Inconsolata Bold"
-			id="tspan3945">JSON</tspan></tspan></text>
+           id="tspan3943">Rapid</tspan><tspan
+            style="font-weight:bold;-inkscape-font-specification:Inconsolata Bold" id="tspan3945">JSON</tspan></tspan></text>
 	</g>
 </svg>

@@ -20,7 +20,6 @@
  *  Files in the libjpeg-turbo, libusb, libuvc, rapidjson folder
  *  may have a different license, see the respective files.
  */
-
 package com.serenegiant.usb;
 
 import android.app.Activity;
@@ -125,13 +124,17 @@ public class CameraDialog extends DialogFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if (savedInstanceState == null) { savedInstanceState = getArguments(); }
+        if (savedInstanceState == null) {
+            savedInstanceState = getArguments();
+        }
 	}
 
 	@Override
 	public void onSaveInstanceState(final Bundle saveInstanceState) {
 		final Bundle args = getArguments();
-		if (args != null) { saveInstanceState.putAll(args); }
+        if (args != null) {
+            saveInstanceState.putAll(args);
+        }
 		super.onSaveInstanceState(saveInstanceState);
 	}
 
@@ -208,7 +211,11 @@ public class CameraDialog extends DialogFragment {
 
 		@Override
 		public UsbDevice getItem(final int position) {
-			if ((position >= 0) && (position < mList.size())) { return mList.get(position); } else { return null; }
+            if ((position >= 0) && (position < mList.size())) {
+                return mList.get(position);
+            } else {
+                return null;
+            }
 		}
 
 		@Override
@@ -223,8 +230,7 @@ public class CameraDialog extends DialogFragment {
 			}
 			if (convertView instanceof CheckedTextView) {
 				final UsbDevice device = getItem(position);
-				((CheckedTextView) convertView).setText(
-						String.format("UVC Camera:(%x:%x:%s)", device.getVendorId(), device.getProductId(), device.getDeviceName()));
+                ((CheckedTextView) convertView).setText(String.format("UVC Camera:(%x:%x:%s)", device.getVendorId(), device.getProductId(), device.getDeviceName()));
 			}
 			return convertView;
 		}

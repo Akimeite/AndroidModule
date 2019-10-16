@@ -20,7 +20,11 @@ class DjangoLoading : DjangoDialogFragment() {
 		setStyle(STYLE_NO_TITLE, R.style.django_loading)
 	}
 
-	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+	override fun onCreateView(
+			inflater: LayoutInflater,
+			container: ViewGroup?,
+			savedInstanceState: Bundle?
+	): View? {
 		return inflater.inflate(R.layout.dialog_loading_django, container, false)
 	}
 

@@ -108,7 +108,10 @@ abstract class DjangoActivity : RxAppCompatActivity() {
 			//按下时隐藏键盘
 			if (isShouldHideKeyboard(currentFocus, ev)) {
 				val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-				imm.hideSoftInputFromWindow(currentFocus?.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+				imm.hideSoftInputFromWindow(
+						currentFocus?.windowToken,
+						InputMethodManager.HIDE_NOT_ALWAYS
+				)
 			}
 		}
 		return super.dispatchTouchEvent(ev)

@@ -19,16 +19,16 @@ object DialogUtils {
 	 * @param negativeListener
 	 */
 	fun showSimpleDialog(
-		context: Context,
-		msg: String,
-		positiveListener: DialogInterface.OnClickListener,
-		negativeListener: DialogInterface.OnClickListener?
+        context: Context,
+        msg: String,
+        positiveListener: DialogInterface.OnClickListener,
+        negativeListener: DialogInterface.OnClickListener?
 	) {
 		AlertDialog.Builder(context).setMessage(msg)
-			.setPositiveButton("确认", positiveListener)
-			.setNegativeButton("取消", negativeListener)
-			.create()
-			.show()
+            .setPositiveButton("确认", positiveListener)
+            .setNegativeButton("取消", negativeListener)
+            .create()
+            .show()
 	}
 
 	/**

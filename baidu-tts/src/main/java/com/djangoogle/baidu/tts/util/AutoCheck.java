@@ -6,6 +6,8 @@ import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Message;
 
+import androidx.core.content.ContextCompat;
+
 import com.baidu.tts.client.SpeechSynthesizer;
 import com.baidu.tts.client.TtsMode;
 import com.djangoogle.baidu.tts.config.BaiduInitConfig;
@@ -24,8 +26,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.TreeSet;
-
-import androidx.core.content.ContextCompat;
 
 /**
  * Created by fujiayi on 2017/12/28.
@@ -98,25 +98,21 @@ public class AutoCheck {
 			}
 		});
 		t.start();
-
 	}
 
 	private AutoCheck innerCheck(BaiduInitConfig config) {
 		checks.put("检查申请的Android权限", new PermissionCheck(context));
 		checks.put("检查4个so文件是否存在", new JniCheck(context));
-		checks.put("检查AppId AppKey SecretKey",
-				new AppInfoCheck(config.getAppId(), config.getAppKey(), config.getSecretKey()));
+        checks.put("检查AppId AppKey SecretKey", new AppInfoCheck(config.getAppId(), config.getAppKey(), config.getSecretKey()));
 		checks.put("检查包名", new ApplicationIdCheck(context, config.getAppId()));
 
 		if (TtsMode.MIX.equals(config.getTtsMode())) {
 			Map<String, String> params = config.getParams();
 			String fileKey = SpeechSynthesizer.PARAM_TTS_TEXT_MODEL_FILE;
-			checks.put("检查离线资TEXT文件参数", new ParamKeyExistCheck(params, fileKey,
-					"SpeechSynthesizer.PARAM_TTS_TEXT_MODEL_FILE未设置 ，"));
+            checks.put("检查离线资TEXT文件参数", new ParamKeyExistCheck(params, fileKey, "SpeechSynthesizer.PARAM_TTS_TEXT_MODEL_FILE未设置 ，"));
 			checks.put("检查离线资源TEXT文件", new OfflineResourceFileCheck(params.get(fileKey)));
 			fileKey = SpeechSynthesizer.PARAM_TTS_SPEECH_MODEL_FILE;
-			checks.put("检查离线资Speech文件参数", new ParamKeyExistCheck(params, fileKey,
-					"SpeechSynthesizer.PARAM_TTS_SPEECH_MODEL_FILE未设置 ，"));
+            checks.put("检查离线资Speech文件参数", new ParamKeyExistCheck(params, fileKey, "SpeechSynthesizer.PARAM_TTS_SPEECH_MODEL_FILE未设置 ，"));
 			checks.put("检查离线资源Speech文件", new OfflineResourceFileCheck(params.get(fileKey)));
 		}
 
@@ -199,14 +195,10 @@ public class AutoCheck {
 
 		@Override
 		public void check() {
-			String[] permissions = {
-					Manifest.permission.INTERNET,
-					Manifest.permission.ACCESS_NETWORK_STATE,
-					Manifest.permission.MODIFY_AUDIO_SETTINGS,
+            String[] permissions = {Manifest.permission.INTERNET, Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.MODIFY_AUDIO_SETTINGS,
 					// Manifest.permission.WRITE_EXTERNAL_STORAGE,
 					// Manifest.permission.WRITE_SETTINGS,
-					Manifest.permission.READ_PHONE_STATE,
-					Manifest.permission.ACCESS_WIFI_STATE,
+                    Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_WIFI_STATE,
 					// Manifest.permission.CHANGE_WIFI_STATE
 			};
 
@@ -252,8 +244,7 @@ public class AutoCheck {
 			for (String name : soNames) {
 				if (!set.contains(name)) {
 					errorMessage = "Jni目录" + path + " 缺少可读的so文件：" + name + "， 该目录文件列表: " + set.toString();
-					fixMessage = "如果您的app内没有其它so文件，请复制demo里的src/main/jniLibs至同名目录。"
-							+ " 如果app内有so文件，请合并目录放一起(注意目录取交集，多余的目录删除)。";
+                    fixMessage = "如果您的app内没有其它so文件，请复制demo里的src/main/jniLibs至同名目录。" + " 如果app内有so文件，请合并目录放一起(注意目录取交集，多余的目录删除)。";
 					break;
 				}
 			}
@@ -319,9 +310,7 @@ public class AutoCheck {
 
 		@Override
 		public void check() {
-			infoMessage = "如果您集成过程中遇见离线合成初始化问题，请检查网页上appId：" + appId
-					+ " 应用是否开通了合成服务，并且网页上的应用填写了Android包名："
-					+ getApplicationId();
+            infoMessage = "如果您集成过程中遇见离线合成初始化问题，请检查网页上appId：" + appId + " 应用是否开通了合成服务，并且网页上的应用填写了Android包名：" + getApplicationId();
 		}
 
 		private String getApplicationId() {
@@ -358,7 +347,6 @@ public class AutoCheck {
 					fixMessage = "secretKey";
 					break;
 				}
-
 			} while (false);
 			try {
 				checkOnline();
@@ -371,8 +359,7 @@ public class AutoCheck {
 		}
 
 		public void checkOnline() throws Exception {
-			String urlpath = "http://openapi.baidu.com/oauth/2.0/token?grant_type=client_credentials&client_id="
-					+ appKey + "&client_secret=" + secretKey;
+            String urlpath = "http://openapi.baidu.com/oauth/2.0/token?grant_type=client_credentials&client_id=" + appKey + "&client_secret=" + secretKey;
 			URL url = new URL(urlpath);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
@@ -399,7 +386,6 @@ public class AutoCheck {
 				throw new Exception("appId 与 appkey及 appSecret 不一致。appId = " + appId + " ,token = " + token);
 			}
 		}
-
 	}
 
 	private abstract static class Check {
@@ -452,6 +438,5 @@ public class AutoCheck {
 		public String getLogMessage() {
 			return logMessage.toString();
 		}
-
 	}
 }

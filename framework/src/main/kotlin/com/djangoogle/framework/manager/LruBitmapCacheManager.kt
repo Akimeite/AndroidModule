@@ -29,7 +29,13 @@ class LruBitmapCacheManager private constructor() {
 					return bitmap.rowBytes * bitmap.height / 1024
 				}
 
-				override fun entryRemoved(evicted: Boolean, key: String, oldValue: Bitmap, newValue: Bitmap?) {}
+                override fun entryRemoved(
+                    evicted: Boolean,
+                    key: String,
+                    oldValue: Bitmap,
+                    newValue: Bitmap?
+                ) {
+                }
 			}
 		}
 	}
@@ -65,7 +71,12 @@ class LruBitmapCacheManager private constructor() {
 		}
 		if (null != bitmap) {
 			mMemoryCache?.put(key, bitmap)
-			LogUtils.dTag("addBitmapToMemoryCache", "资源已添加", "key: $key", "value: ${bitmap.width} * ${bitmap.height}")
+            LogUtils.dTag(
+                "addBitmapToMemoryCache",
+                "资源已添加",
+                "key: $key",
+                "value: ${bitmap.width} * ${bitmap.height}"
+            )
 		}
 	}
 

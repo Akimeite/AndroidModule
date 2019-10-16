@@ -25,7 +25,6 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-
 package org.libjpegturbo.turbojpeg;
 
 /**
@@ -166,8 +165,7 @@ public class TJTransform extends Rectangle {
 	 * @param cf      an instance of an object that implements the {@link
 	 *                TJCustomFilter} interface, or null if no custom filter is needed
 	 */
-	public TJTransform(int x, int y, int w, int h, int op, int options,
-	                   TJCustomFilter cf) {
+	public TJTransform(int x, int y, int w, int h, int op, int options, TJCustomFilter cf) {
 		super(x, y, w, h);
 		this.op = op;
 		this.options = options;
@@ -187,8 +185,7 @@ public class TJTransform extends Rectangle {
 	 * @param cf      an instance of an object that implements the {@link
 	 *                TJCustomFilter} interface, or null if no custom filter is needed
 	 */
-	public TJTransform(Rectangle r, int op, int options,
-	                   TJCustomFilter cf) {
+	public TJTransform(Rectangle r, int op, int options, TJCustomFilter cf) {
 		super(r);
 		this.op = op;
 		this.options = options;

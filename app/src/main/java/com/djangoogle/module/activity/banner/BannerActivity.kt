@@ -120,35 +120,35 @@ class BannerActivity : BaseActivity() {
 	 */
 	private fun updateAd() {
 		Album.album(this)//Image and video mix options.
-			.multipleChoice()//Multi-Mode, Single-Mode: singleChoice().
-			.columnCount(3)//The number of columns in the page list.
-			.selectCount(9)//Choose up to a few images.
-			.camera(true)//Whether the camera appears in the Item.
-			.cameraVideoQuality(1)//Video quality, [0, 1].
-			.cameraVideoLimitDuration(java.lang.Long.MAX_VALUE)//The longest duration of the video is in milliseconds.
-			.cameraVideoLimitBytes(500 * 1024L * 1024L)//Maximum size of the video, in bytes.
-			.onResult { result ->
-				if (result.isNotEmpty()) {
-					val adResourceList = ArrayList<AdResourceModel>()
-					albumFile@ for (albumFile in result) {
-						val ad = AdResourceModel()
-						when (albumFile.mediaType) {
-							//图片资源
-							AlbumFile.TYPE_IMAGE -> ad.type = AdResourceModel.TYPE_IMAGE
-							//视频资源
-							AlbumFile.TYPE_VIDEO -> ad.type = AdResourceModel.TYPE_VIDEO
-							//未知资源
-							else -> continue@albumFile
+				.multipleChoice()//Multi-Mode, Single-Mode: singleChoice().
+				.columnCount(3)//The number of columns in the page list.
+				.selectCount(9)//Choose up to a few images.
+				.camera(true)//Whether the camera appears in the Item.
+				.cameraVideoQuality(1)//Video quality, [0, 1].
+				.cameraVideoLimitDuration(java.lang.Long.MAX_VALUE)//The longest duration of the video is in milliseconds.
+				.cameraVideoLimitBytes(500 * 1024L * 1024L)//Maximum size of the video, in bytes.
+				.onResult { result ->
+					if (result.isNotEmpty()) {
+						val adResourceList = ArrayList<AdResourceModel>()
+						albumFile@ for (albumFile in result) {
+							val ad = AdResourceModel()
+							when (albumFile.mediaType) {
+								//图片资源
+								AlbumFile.TYPE_IMAGE -> ad.type = AdResourceModel.TYPE_IMAGE
+								//视频资源
+								AlbumFile.TYPE_VIDEO -> ad.type = AdResourceModel.TYPE_VIDEO
+								//未知资源
+								else -> continue@albumFile
+							}
+							ad.imagePath = albumFile.path
+							ad.imageSwitchInterval = IMAGE_CHANGE_INTERVAL
+							adResourceList.add(ad)
 						}
-						ad.imagePath = albumFile.path
-						ad.imageSwitchInterval = IMAGE_CHANGE_INTERVAL
-						adResourceList.add(ad)
+						//设置广告
+						BannerManager.getInstance().setUp(adResourceList)
 					}
-					//设置广告
-					BannerManager.getInstance().setUp(adResourceList)
 				}
-			}
-			.onCancel { ToastUtils.showShort("取消广告更新") }
-			.start()
+				.onCancel { ToastUtils.showShort("取消广告更新") }
+				.start()
 	}
 }

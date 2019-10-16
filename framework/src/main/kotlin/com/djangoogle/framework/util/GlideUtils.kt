@@ -21,7 +21,8 @@ object GlideUtils {
 	 * @param image         图片控件
 	 */
 	fun load(context: Context, url: Any, placeholderId: Int, image: ImageView) {
-		GlideApp.with(context).load(url).placeholder(placeholderId).transition(DrawableTransitionOptions.withCrossFade()).into(image)
+		GlideApp.with(context).load(url).placeholder(placeholderId)
+				.transition(DrawableTransitionOptions.withCrossFade()).into(image)
 	}
 
 	/**
@@ -32,7 +33,8 @@ object GlideUtils {
 	 * @param image   图片控件
 	 */
 	fun load(context: Context, url: Any, image: ImageView) {
-		GlideApp.with(context).load(url).transition(DrawableTransitionOptions.withCrossFade()).into(image)
+		GlideApp.with(context).load(url).transition(DrawableTransitionOptions.withCrossFade())
+				.into(image)
 	}
 
 	/**
@@ -43,7 +45,8 @@ object GlideUtils {
 	 * @param image   图片控件
 	 */
 	fun load(context: Context, resId: Int, image: ImageView) {
-		GlideApp.with(context).load(resId).centerCrop().transition(DrawableTransitionOptions.withCrossFade()).into(image)
+		GlideApp.with(context).load(resId).centerCrop()
+				.transition(DrawableTransitionOptions.withCrossFade()).into(image)
 	}
 
 	/**
@@ -56,11 +59,11 @@ object GlideUtils {
 	 */
 	fun loadCircle(context: Context, url: Any, placeholderId: Int, image: ImageView) {
 		GlideApp.with(context)
-			.load(url)
-			.placeholder(placeholderId)
-			.circleCrop()
-			.transition(DrawableTransitionOptions.withCrossFade())
-			.into(image)
+				.load(url)
+				.placeholder(placeholderId)
+				.circleCrop()
+				.transition(DrawableTransitionOptions.withCrossFade())
+				.into(image)
 	}
 
 	/**
@@ -71,7 +74,8 @@ object GlideUtils {
 	 * @param image   图片控件
 	 */
 	fun loadCircle(context: Context, resId: Int, image: ImageView) {
-		GlideApp.with(context).load(resId).circleCrop().transition(DrawableTransitionOptions.withCrossFade()).into(image)
+		GlideApp.with(context).load(resId).circleCrop()
+				.transition(DrawableTransitionOptions.withCrossFade()).into(image)
 	}
 
 	/**
@@ -82,7 +86,8 @@ object GlideUtils {
 	 * @param image   图片控件
 	 */
 	fun loadCircle(context: Context, url: Any, image: ImageView) {
-		GlideApp.with(context).load(url).circleCrop().transition(DrawableTransitionOptions.withCrossFade()).into(image)
+		GlideApp.with(context).load(url).circleCrop()
+				.transition(DrawableTransitionOptions.withCrossFade()).into(image)
 	}
 
 	/**
@@ -93,6 +98,7 @@ object GlideUtils {
 	 * @param image   图片控件
 	 */
 	fun getFirstFrame(context: Context, url: Any, image: ImageView) {
-		GlideApp.with(context).load(url).error(R.color.black).placeholder(R.color.black).frame(1000000L).into(image)
+		GlideApp.with(context).load(url).error(R.color.black).placeholder(R.color.black)
+				.frame(1000000L).into(image)
 	}
 }

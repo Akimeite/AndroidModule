@@ -20,7 +20,6 @@
  *  Files in the libjpeg-turbo, libusb, libuvc, rapidjson folder
  *  may have a different license, see the respective files.
  */
-
 package com.serenegiant.base;
 
 import android.Manifest;
@@ -33,19 +32,18 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
+
 import com.serenegiant.dialog.MessageDialogFragment;
 import com.serenegiant.utils.BuildCheck;
 import com.serenegiant.utils.HandlerThreadHandler;
 import com.serenegiant.utils.PermissionCheck;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
-
 /**
  * Created by saki on 2016/11/19.
  */
-public class BaseFragment extends Fragment
-		implements MessageDialogFragment.MessageDialogListener {
+public class BaseFragment extends Fragment implements MessageDialogFragment.MessageDialogListener {
 
 	// 動的パーミッション要求時の要求コード
 	protected static final int REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE = 0x12345;
@@ -111,7 +109,9 @@ public class BaseFragment extends Fragment
 	 * @param duration
 	 */
 	public final void runOnUiThread(final Runnable task, final long duration) {
-		if (task == null) { return; }
+        if (task == null) {
+            return;
+        }
 		mUIHandler.removeCallbacks(task);
 		if ((duration > 0) || Thread.currentThread() != mUiThread) {
 			mUIHandler.postDelayed(task, duration);
@@ -130,7 +130,9 @@ public class BaseFragment extends Fragment
 	 * @param task
 	 */
 	public final void removeFromUiThread(final Runnable task) {
-		if (task == null) { return; }
+        if (task == null) {
+            return;
+        }
 		mUIHandler.removeCallbacks(task);
 	}
 
@@ -142,7 +144,9 @@ public class BaseFragment extends Fragment
 	 * @param delayMillis
 	 */
 	protected final synchronized void queueEvent(final Runnable task, final long delayMillis) {
-		if ((task == null) || (mWorkerHandler == null)) { return; }
+        if ((task == null) || (mWorkerHandler == null)) {
+            return;
+        }
 		try {
 			mWorkerHandler.removeCallbacks(task);
 			if (delayMillis > 0) {
@@ -165,7 +169,9 @@ public class BaseFragment extends Fragment
 	 * @param task
 	 */
 	protected final synchronized void removeEvent(final Runnable task) {
-		if (task == null) { return; }
+        if (task == null) {
+            return;
+        }
 		try {
 			mWorkerHandler.removeCallbacks(task);
 		} catch (final Exception e) {
@@ -210,8 +216,7 @@ public class BaseFragment extends Fragment
 	 */
 	@SuppressLint("NewApi")
 	@Override
-	public void onMessageDialogResult(final MessageDialogFragment dialog, final int requestCode, final String[] permissions,
-	                                  final boolean result) {
+    public void onMessageDialogResult(final MessageDialogFragment dialog, final int requestCode, final String[] permissions, final boolean result) {
 		if (result) {
 			// メッセージダイアログでOKを押された時はパーミッション要求する
 			if (BuildCheck.isMarshmallow()) {
@@ -272,9 +277,11 @@ public class BaseFragment extends Fragment
 	 */
 	protected boolean checkPermissionWriteExternalStorage() {
 		if (!PermissionCheck.hasWriteExternalStorage(getActivity())) {
-			MessageDialogFragment.showDialog(this, REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE,
-					com.serenegiant.common.R.string.permission_title, com.serenegiant.common.R.string.permission_ext_storage_request,
-					new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE});
+            MessageDialogFragment.showDialog(this,
+                    REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE,
+                    com.serenegiant.common.R.string.permission_title,
+                    com.serenegiant.common.R.string.permission_ext_storage_request,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE});
 			return false;
 		}
 		return true;
@@ -288,9 +295,11 @@ public class BaseFragment extends Fragment
 	 */
 	protected boolean checkPermissionAudio() {
 		if (!PermissionCheck.hasAudio(getActivity())) {
-			MessageDialogFragment.showDialog(this, REQUEST_PERMISSION_AUDIO_RECORDING,
-					com.serenegiant.common.R.string.permission_title, com.serenegiant.common.R.string.permission_audio_recording_request,
-					new String[]{Manifest.permission.RECORD_AUDIO});
+            MessageDialogFragment.showDialog(this,
+                    REQUEST_PERMISSION_AUDIO_RECORDING,
+                    com.serenegiant.common.R.string.permission_title,
+                    com.serenegiant.common.R.string.permission_audio_recording_request,
+                    new String[]{Manifest.permission.RECORD_AUDIO});
 			return false;
 		}
 		return true;
@@ -304,9 +313,11 @@ public class BaseFragment extends Fragment
 	 */
 	protected boolean checkPermissionNetwork() {
 		if (!PermissionCheck.hasNetwork(getActivity())) {
-			MessageDialogFragment.showDialog(this, REQUEST_PERMISSION_NETWORK,
-					com.serenegiant.common.R.string.permission_title, com.serenegiant.common.R.string.permission_network_request,
-					new String[]{Manifest.permission.INTERNET});
+            MessageDialogFragment.showDialog(this,
+                    REQUEST_PERMISSION_NETWORK,
+                    com.serenegiant.common.R.string.permission_title,
+                    com.serenegiant.common.R.string.permission_network_request,
+                    new String[]{Manifest.permission.INTERNET});
 			return false;
 		}
 		return true;
@@ -320,9 +331,11 @@ public class BaseFragment extends Fragment
 	 */
 	protected boolean checkPermissionCamera() {
 		if (!PermissionCheck.hasCamera(getActivity())) {
-			MessageDialogFragment.showDialog(this, REQUEST_PERMISSION_CAMERA,
-					com.serenegiant.common.R.string.permission_title, com.serenegiant.common.R.string.permission_camera_request,
-					new String[]{Manifest.permission.CAMERA});
+            MessageDialogFragment.showDialog(this,
+                    REQUEST_PERMISSION_CAMERA,
+                    com.serenegiant.common.R.string.permission_title,
+                    com.serenegiant.common.R.string.permission_camera_request,
+                    new String[]{Manifest.permission.CAMERA});
 			return false;
 		}
 		return true;

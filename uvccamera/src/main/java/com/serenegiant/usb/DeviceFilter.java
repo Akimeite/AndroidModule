@@ -20,7 +20,6 @@
  *  Files in the libjpeg-turbo, libusb, libuvc, rapidjson folder
  *  may have a different license, see the respective files.
  */
-
 package com.serenegiant.usb;
 
 import android.content.Context;
@@ -61,14 +60,11 @@ public final class DeviceFilter {
 	// set true if specific device(s) should exclude
 	public final boolean isExclude;
 
-	public DeviceFilter(final int vid, final int pid, final int clasz, final int subclass,
-	                    final int protocol, final String manufacturer, final String product, final String serialNum) {
+    public DeviceFilter(final int vid, final int pid, final int clasz, final int subclass, final int protocol, final String manufacturer, final String product, final String serialNum) {
 		this(vid, pid, clasz, subclass, protocol, manufacturer, product, serialNum, false);
 	}
 
-	public DeviceFilter(final int vid, final int pid, final int clasz, final int subclass,
-	                    final int protocol, final String manufacturer, final String product, final String serialNum,
-	                    final boolean isExclude) {
+    public DeviceFilter(final int vid, final int pid, final int clasz, final int subclass, final int protocol, final String manufacturer, final String product, final String serialNum, final boolean isExclude) {
 		mVendorId = vid;
 		mProductId = pid;
 		mClass = clasz;
@@ -140,8 +136,7 @@ public final class DeviceFilter {
 	 * @param defaultValue
 	 * @return
 	 */
-	private static final int getAttributeInteger(final Context context, final XmlPullParser parser, final String namespace,
-	                                             final String name, final int defaultValue) {
+    private static final int getAttributeInteger(final Context context, final XmlPullParser parser, final String namespace, final String name, final int defaultValue) {
 		int result = defaultValue;
 		try {
 			String v = parser.getAttributeValue(namespace, name);
@@ -153,8 +148,7 @@ public final class DeviceFilter {
 				}
 			} else {
 				int radix = 10;
-				if (v != null && v.length() > 2 && v.charAt(0) == '0' &&
-						(v.charAt(1) == 'x' || v.charAt(1) == 'X')) {
+                if (v != null && v.length() > 2 && v.charAt(0) == '0' && (v.charAt(1) == 'x' || v.charAt(1) == 'X')) {
 					// allow hex values starting with 0x or 0X
 					radix = 16;
 					v = v.substring(2);
@@ -183,8 +177,7 @@ public final class DeviceFilter {
 	 * @param defaultValue
 	 * @return
 	 */
-	private static final boolean getAttributeBoolean(final Context context, final XmlPullParser parser, final String namespace,
-	                                                 final String name, final boolean defaultValue) {
+    private static final boolean getAttributeBoolean(final Context context, final XmlPullParser parser, final String namespace, final String name, final boolean defaultValue) {
 		boolean result = defaultValue;
 		try {
 			String v = parser.getAttributeValue(namespace, name);
@@ -200,8 +193,7 @@ public final class DeviceFilter {
 				}
 			} else {
 				int radix = 10;
-				if (v != null && v.length() > 2 && v.charAt(0) == '0' &&
-						(v.charAt(1) == 'x' || v.charAt(1) == 'X')) {
+                if (v != null && v.length() > 2 && v.charAt(0) == '0' && (v.charAt(1) == 'x' || v.charAt(1) == 'X')) {
 					// allow hex values starting with 0x or 0X
 					radix = 16;
 					v = v.substring(2);
@@ -229,16 +221,19 @@ public final class DeviceFilter {
 	 * @param defaultValue
 	 * @return
 	 */
-	private static final String getAttributeString(final Context context, final XmlPullParser parser, final String namespace,
-	                                               final String name, final String defaultValue) {
+    private static final String getAttributeString(final Context context, final XmlPullParser parser, final String namespace, final String name, final String defaultValue) {
 		String result = defaultValue;
 		try {
 			result = parser.getAttributeValue(namespace, name);
-			if (result == null) { result = defaultValue; }
+            if (result == null) {
+                result = defaultValue;
+            }
 			if (!TextUtils.isEmpty(result) && result.startsWith("@")) {
 				final String r = result.substring(1);
 				final int resId = context.getResources().getIdentifier(r, null, context.getPackageName());
-				if (resId > 0) { result = context.getResources().getString(resId); }
+                if (resId > 0) {
+                    result = context.getResources().getString(resId);
+                }
 			}
 		} catch (final NotFoundException e) {
 			result = defaultValue;
@@ -250,8 +245,7 @@ public final class DeviceFilter {
 		return result;
 	}
 
-	public static DeviceFilter readEntryOne(final Context context, final XmlPullParser parser)
-			throws XmlPullParserException, IOException {
+    public static DeviceFilter readEntryOne(final Context context, final XmlPullParser parser) throws XmlPullParserException, IOException {
 		int vendorId = -1;
 		int productId = -1;
 		int deviceClass = -1;
@@ -273,10 +267,14 @@ public final class DeviceFilter {
 					vendorId = getAttributeInteger(context, parser, null, "vendor-id", -1);
 					if (vendorId == -1) {
 						vendorId = getAttributeInteger(context, parser, null, "vendorId", -1);
-						if (vendorId == -1) { vendorId = getAttributeInteger(context, parser, null, "venderId", -1); }
+                        if (vendorId == -1) {
+                            vendorId = getAttributeInteger(context, parser, null, "venderId", -1);
+                        }
 					}
 					productId = getAttributeInteger(context, parser, null, "product-id", -1);
-					if (productId == -1) { productId = getAttributeInteger(context, parser, null, "productId", -1); }
+                    if (productId == -1) {
+                        productId = getAttributeInteger(context, parser, null, "productId", -1);
+                    }
 					deviceClass = getAttributeInteger(context, parser, null, "class", -1);
 					deviceSubclass = getAttributeInteger(context, parser, null, "subclass", -1);
 					deviceProtocol = getAttributeInteger(context, parser, null, "protocol", -1);
@@ -285,15 +283,17 @@ public final class DeviceFilter {
 						manufacturerName = getAttributeString(context, parser, null, "manufacture", null);
 					}
 					productName = getAttributeString(context, parser, null, "product-name", null);
-					if (TextUtils.isEmpty(productName)) { productName = getAttributeString(context, parser, null, "product", null); }
+                    if (TextUtils.isEmpty(productName)) {
+                        productName = getAttributeString(context, parser, null, "product", null);
+                    }
 					serialNumber = getAttributeString(context, parser, null, "serial-number", null);
-					if (TextUtils.isEmpty(serialNumber)) { serialNumber = getAttributeString(context, parser, null, "serial", null); }
+                    if (TextUtils.isEmpty(serialNumber)) {
+                        serialNumber = getAttributeString(context, parser, null, "serial", null);
+                    }
 					exclude = getAttributeBoolean(context, parser, null, "exclude", false);
 				} else if (eventType == XmlPullParser.END_TAG) {
 					if (hasValue) {
-						return new DeviceFilter(vendorId, productId, deviceClass,
-								deviceSubclass, deviceProtocol, manufacturerName, productName,
-								serialNumber, exclude);
+                        return new DeviceFilter(vendorId, productId, deviceClass, deviceSubclass, deviceProtocol, manufacturerName, productName, serialNumber, exclude);
 					}
 				}
 			}
@@ -344,8 +344,7 @@ public final class DeviceFilter {
 	 * @return
 	 */
 	private boolean matches(final int clasz, final int subclass, final int protocol) {
-		return ((mClass == -1 || clasz == mClass)
-				&& (mSubclass == -1 || subclass == mSubclass) && (mProtocol == -1 || protocol == mProtocol));
+        return ((mClass == -1 || clasz == mClass) && (mSubclass == -1 || subclass == mSubclass) && (mProtocol == -1 || protocol == mProtocol));
 	}
 
 	/**
@@ -430,16 +429,13 @@ public final class DeviceFilter {
 		if (f.mSerialNumber != null && mSerialNumber == null) {
 			return false;
 		}
-		if (mManufacturerName != null && f.mManufacturerName != null
-				&& !mManufacturerName.equals(f.mManufacturerName)) {
+        if (mManufacturerName != null && f.mManufacturerName != null && !mManufacturerName.equals(f.mManufacturerName)) {
 			return false;
 		}
-		if (mProductName != null && f.mProductName != null
-				&& !mProductName.equals(f.mProductName)) {
+        if (mProductName != null && f.mProductName != null && !mProductName.equals(f.mProductName)) {
 			return false;
 		}
-		if (mSerialNumber != null && f.mSerialNumber != null
-				&& !mSerialNumber.equals(f.mSerialNumber)) {
+        if (mSerialNumber != null && f.mSerialNumber != null && !mSerialNumber.equals(f.mSerialNumber)) {
 			return false;
 		}
 
@@ -450,45 +446,28 @@ public final class DeviceFilter {
 	@Override
 	public boolean equals(final Object obj) {
 		// can't compare if we have wildcard strings
-		if (mVendorId == -1 || mProductId == -1 || mClass == -1
-				|| mSubclass == -1 || mProtocol == -1) {
+        if (mVendorId == -1 || mProductId == -1 || mClass == -1 || mSubclass == -1 || mProtocol == -1) {
 			return false;
 		}
 		if (obj instanceof DeviceFilter) {
 			final DeviceFilter filter = (DeviceFilter) obj;
 
-			if (filter.mVendorId != mVendorId
-					|| filter.mProductId != mProductId
-					|| filter.mClass != mClass || filter.mSubclass != mSubclass
-					|| filter.mProtocol != mProtocol) {
+            if (filter.mVendorId != mVendorId || filter.mProductId != mProductId || filter.mClass != mClass || filter.mSubclass != mSubclass || filter.mProtocol != mProtocol) {
 				return false;
 			}
-			if ((filter.mManufacturerName != null && mManufacturerName == null)
-					|| (filter.mManufacturerName == null && mManufacturerName != null)
-					|| (filter.mProductName != null && mProductName == null)
-					|| (filter.mProductName == null && mProductName != null)
-					|| (filter.mSerialNumber != null && mSerialNumber == null)
-					|| (filter.mSerialNumber == null && mSerialNumber != null)) {
+            if ((filter.mManufacturerName != null && mManufacturerName == null) || (filter.mManufacturerName == null && mManufacturerName != null) || (filter.mProductName != null && mProductName == null) || (filter.mProductName == null && mProductName != null) || (filter.mSerialNumber != null && mSerialNumber == null) || (filter.mSerialNumber == null && mSerialNumber != null)) {
 				return false;
 			}
-			if ((filter.mManufacturerName != null && mManufacturerName != null && !mManufacturerName
-					.equals(filter.mManufacturerName))
-					|| (filter.mProductName != null && mProductName != null && !mProductName
-					.equals(filter.mProductName))
-					|| (filter.mSerialNumber != null && mSerialNumber != null && !mSerialNumber
-					.equals(filter.mSerialNumber))) {
+            if ((filter.mManufacturerName != null && mManufacturerName != null && !mManufacturerName.equals(filter.mManufacturerName)) || (filter.mProductName != null && mProductName != null && !mProductName
+                    .equals(filter.mProductName)) || (filter.mSerialNumber != null && mSerialNumber != null && !mSerialNumber.equals(filter.mSerialNumber))) {
 				return false;
 			}
 			return (filter.isExclude != isExclude);
 		}
 		if (obj instanceof UsbDevice) {
 			final UsbDevice device = (UsbDevice) obj;
-			return !isExclude
-					&& (device.getVendorId() == mVendorId)
-					&& (device.getProductId() == mProductId)
-					&& (device.getDeviceClass() == mClass)
-					&& (device.getDeviceSubclass() == mSubclass)
-					&& (device.getDeviceProtocol() == mProtocol);/*			if ((mManufacturerName != null && device.getManufacturerName()
+            return !isExclude && (device.getVendorId() == mVendorId) && (device.getProductId() == mProductId) && (device.getDeviceClass() == mClass) && (device.getDeviceSubclass() == mSubclass) && (device
+                    .getDeviceProtocol() == mProtocol);/*			if ((mManufacturerName != null && device.getManufacturerName()
 					 == null)
 					|| (mManufacturerName == null && device
 							.getManufacturerName() != null)
@@ -512,20 +491,11 @@ public final class DeviceFilter {
 
 	@Override
 	public int hashCode() {
-		return (((mVendorId << 16) | mProductId) ^ ((mClass << 16)
-				| (mSubclass << 8) | mProtocol));
+        return (((mVendorId << 16) | mProductId) ^ ((mClass << 16) | (mSubclass << 8) | mProtocol));
 	}
 
 	@Override
 	public String toString() {
-		return "DeviceFilter[mVendorId=" + mVendorId + ",mProductId="
-				+ mProductId + ",mClass=" + mClass + ",mSubclass=" + mSubclass
-				+ ",mProtocol=" + mProtocol
-				+ ",mManufacturerName=" + mManufacturerName
-				+ ",mProductName=" + mProductName
-				+ ",mSerialNumber=" + mSerialNumber
-				+ ",isExclude=" + isExclude
-				+ "]";
+        return "DeviceFilter[mVendorId=" + mVendorId + ",mProductId=" + mProductId + ",mClass=" + mClass + ",mSubclass=" + mSubclass + ",mProtocol=" + mProtocol + ",mManufacturerName=" + mManufacturerName + ",mProductName=" + mProductName + ",mSerialNumber=" + mSerialNumber + ",isExclude=" + isExclude + "]";
 	}
-
 }

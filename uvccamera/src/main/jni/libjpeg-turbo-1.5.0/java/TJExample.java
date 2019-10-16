@@ -36,9 +36,7 @@ import org.libjpegturbo.turbojpeg.*;
 public class TJExample implements TJCustomFilter {
 
 	public static final String classname = new TJExample().getClass().getName();
-	private static final String[] sampName = {
-			"4:4:4", "4:2:2", "4:2:0", "Grayscale", "4:4:0"
-	};
+	private static final String[] sampName = {"4:4:4", "4:2:2", "4:2:0", "Grayscale", "4:4:0"};
 	static TJScalingFactor[] sf = null;
 
 	private static void usage() throws Exception {
@@ -51,9 +49,15 @@ public class TJExample implements TJCustomFilter {
 		System.out.print("             output image by a factor of M/N (M/N = ");
 		for (int i = 0; i < sf.length; i++) {
 			System.out.print(sf[i].getNum() + "/" + sf[i].getDenom());
-			if (sf.length == 2 && i != sf.length - 1) { System.out.print(" or "); } else if (sf.length > 2) {
-				if (i != sf.length - 1) { System.out.print(", "); }
-				if (i == sf.length - 2) { System.out.print("or "); }
+			if (sf.length == 2 && i != sf.length - 1) {
+				System.out.print(" or ");
+			} else if (sf.length > 2) {
+				if (i != sf.length - 1) {
+					System.out.print(", ");
+				}
+				if (i == sf.length - 2) {
+					System.out.print("or ");
+				}
 			}
 		}
 		System.out.println(")\n");
@@ -109,16 +113,15 @@ public class TJExample implements TJCustomFilter {
 
 			if (argv.length > 1) {
 				for (int i = 1; i < argv.length; i++) {
-					if (argv[i].length() < 2) { continue; }
-					if (argv[i].length() > 2 &&
-							argv[i].substring(0, 3).equalsIgnoreCase("-sc")) {
+					if (argv[i].length() < 2) {
+						continue;
+					}
+					if (argv[i].length() > 2 && argv[i].substring(0, 3).equalsIgnoreCase("-sc")) {
 						int match = 0;
 						if (i < argv.length - 1) {
 							String[] scaleArg = argv[++i].split("/");
 							if (scaleArg.length == 2) {
-								TJScalingFactor tempsf =
-										new TJScalingFactor(Integer.parseInt(scaleArg[0]),
-												Integer.parseInt(scaleArg[1]));
+								TJScalingFactor tempsf = new TJScalingFactor(Integer.parseInt(scaleArg[0]), Integer.parseInt(scaleArg[1]));
 								for (int j = 0; j < sf.length; j++) {
 									if (tempsf.equals(sf[j])) {
 										scaleFactor = sf[j];
@@ -128,55 +131,97 @@ public class TJExample implements TJCustomFilter {
 								}
 							}
 						}
-						if (match != 1) { usage(); }
+						if (match != 1) {
+							usage();
+						}
 					}
-					if (argv[i].equalsIgnoreCase("-h") || argv[i].equalsIgnoreCase("-?")) { usage(); }
-					if (argv[i].length() > 2 &&
-							argv[i].substring(0, 3).equalsIgnoreCase("-sa")) {
+					if (argv[i].equalsIgnoreCase("-h") || argv[i].equalsIgnoreCase("-?")) {
+						usage();
+					}
+					if (argv[i].length() > 2 && argv[i].substring(0, 3).equalsIgnoreCase("-sa")) {
 						if (i < argv.length - 1) {
 							i++;
 							if (argv[i].substring(0, 1).equalsIgnoreCase("g")) {
 								outSubsamp = TJ.SAMP_GRAY;
-							} else if (argv[i].equals("444")) { outSubsamp = TJ.SAMP_444; } else if (argv[i].equals("422")) {
+							} else if (argv[i].equals("444")) {
+								outSubsamp = TJ.SAMP_444;
+							} else if (argv[i].equals("422")) {
 								outSubsamp = TJ.SAMP_422;
 							} else if (argv[i].equals("420")) {
 								outSubsamp = TJ.SAMP_420;
-							} else { usage(); }
-						} else { usage(); }
+							} else {
+								usage();
+							}
+						} else {
+							usage();
+						}
 					}
 					if (argv[i].substring(0, 2).equalsIgnoreCase("-q")) {
 						if (i < argv.length - 1) {
 							int qual = Integer.parseInt(argv[++i]);
-							if (qual >= 1 && qual <= 100) { outQual = qual; } else { usage(); }
-						} else { usage(); }
+							if (qual >= 1 && qual <= 100) {
+								outQual = qual;
+							} else {
+								usage();
+							}
+						} else {
+							usage();
+						}
 					}
-					if (argv[i].substring(0, 2).equalsIgnoreCase("-g")) { xform.options |= TJTransform.OPT_GRAY; }
-					if (argv[i].equalsIgnoreCase("-hflip")) { xform.op = TJTransform.OP_HFLIP; }
-					if (argv[i].equalsIgnoreCase("-vflip")) { xform.op = TJTransform.OP_VFLIP; }
-					if (argv[i].equalsIgnoreCase("-transpose")) { xform.op = TJTransform.OP_TRANSPOSE; }
-					if (argv[i].equalsIgnoreCase("-transverse")) { xform.op = TJTransform.OP_TRANSVERSE; }
-					if (argv[i].equalsIgnoreCase("-rot90")) { xform.op = TJTransform.OP_ROT90; }
-					if (argv[i].equalsIgnoreCase("-rot180")) { xform.op = TJTransform.OP_ROT180; }
-					if (argv[i].equalsIgnoreCase("-rot270")) { xform.op = TJTransform.OP_ROT270; }
-					if (argv[i].equalsIgnoreCase("-custom")) { xform.cf = new TJExample(); } else if (argv[i].length() > 2 &&
-							argv[i].substring(0, 2).equalsIgnoreCase("-c")) {
-						if (i >= argv.length - 1) { usage(); }
+					if (argv[i].substring(0, 2).equalsIgnoreCase("-g")) {
+						xform.options |= TJTransform.OPT_GRAY;
+					}
+					if (argv[i].equalsIgnoreCase("-hflip")) {
+						xform.op = TJTransform.OP_HFLIP;
+					}
+					if (argv[i].equalsIgnoreCase("-vflip")) {
+						xform.op = TJTransform.OP_VFLIP;
+					}
+					if (argv[i].equalsIgnoreCase("-transpose")) {
+						xform.op = TJTransform.OP_TRANSPOSE;
+					}
+					if (argv[i].equalsIgnoreCase("-transverse")) {
+						xform.op = TJTransform.OP_TRANSVERSE;
+					}
+					if (argv[i].equalsIgnoreCase("-rot90")) {
+						xform.op = TJTransform.OP_ROT90;
+					}
+					if (argv[i].equalsIgnoreCase("-rot180")) {
+						xform.op = TJTransform.OP_ROT180;
+					}
+					if (argv[i].equalsIgnoreCase("-rot270")) {
+						xform.op = TJTransform.OP_ROT270;
+					}
+					if (argv[i].equalsIgnoreCase("-custom")) {
+						xform.cf = new TJExample();
+					} else if (argv[i].length() > 2 && argv[i].substring(0, 2).equalsIgnoreCase("-c")) {
+						if (i >= argv.length - 1) {
+							usage();
+						}
 						String[] cropArg = argv[++i].split(",");
-						if (cropArg.length != 3) { usage(); }
+						if (cropArg.length != 3) {
+							usage();
+						}
 						String[] dimArg = cropArg[2].split("[xX]");
-						if (dimArg.length != 2) { usage(); }
+						if (dimArg.length != 2) {
+							usage();
+						}
 						int tempx = Integer.parseInt(cropArg[0]);
 						int tempy = Integer.parseInt(cropArg[1]);
 						int tempw = Integer.parseInt(dimArg[0]);
 						int temph = Integer.parseInt(dimArg[1]);
-						if (tempx < 0 || tempy < 0 || tempw < 0 || temph < 0) { usage(); }
+						if (tempx < 0 || tempy < 0 || tempw < 0 || temph < 0) {
+							usage();
+						}
 						xform.x = tempx;
 						xform.y = tempy;
 						xform.width = tempw;
 						xform.height = temph;
 						xform.options |= TJTransform.OPT_CROP;
 					}
-					if (argv[i].substring(0, 2).equalsIgnoreCase("-d")) { display = true; }
+					if (argv[i].substring(0, 2).equalsIgnoreCase("-d")) {
+						display = true;
+					}
 					if (argv[i].equalsIgnoreCase("-fastupsample")) {
 						System.out.println("Using fast upsampling code");
 						flags |= TJ.FLAG_FASTUPSAMPLE;
@@ -192,11 +237,17 @@ public class TJExample implements TJCustomFilter {
 				}
 			}
 			String[] inFileTokens = argv[0].split("\\.");
-			if (inFileTokens.length > 1) { inFormat = inFileTokens[inFileTokens.length - 1]; }
+			if (inFileTokens.length > 1) {
+				inFormat = inFileTokens[inFileTokens.length - 1];
+			}
 			String[] outFileTokens;
-			if (display) { outFormat = "bmp"; } else {
+			if (display) {
+				outFormat = "bmp";
+			} else {
 				outFileTokens = argv[1].split("\\.");
-				if (outFileTokens.length > 1) { outFormat = outFileTokens[outFileTokens.length - 1]; }
+				if (outFileTokens.length > 1) {
+					outFormat = outFileTokens[outFileTokens.length - 1];
+				}
 			}
 
 			File file = new File(argv[0]);
@@ -214,26 +265,26 @@ public class TJExample implements TJCustomFilter {
 				fis.close();
 
 				TJDecompressor tjd;
-				if (xform.op != TJTransform.OP_NONE || xform.options != 0 ||
-						xform.cf != null) {
+				if (xform.op != TJTransform.OP_NONE || xform.options != 0 || xform.cf != null) {
 					TJTransformer tjt = new TJTransformer(inputBuf);
 					TJTransform[] t = new TJTransform[1];
 					t[0] = xform;
 					t[0].options |= TJTransform.OPT_TRIM;
 					TJDecompressor[] tjdx = tjt.transform(t, 0);
 					tjd = tjdx[0];
-				} else { tjd = new TJDecompressor(inputBuf); }
+				} else {
+					tjd = new TJDecompressor(inputBuf);
+				}
 
 				width = tjd.getWidth();
 				height = tjd.getHeight();
 				int inSubsamp = tjd.getSubsamp();
-				System.out.println("Source Image: " + width + " x " + height +
-						" pixels, " + sampName[inSubsamp] + " subsampling");
-				if (outSubsamp < 0) { outSubsamp = inSubsamp; }
+				System.out.println("Source Image: " + width + " x " + height + " pixels, " + sampName[inSubsamp] + " subsampling");
+				if (outSubsamp < 0) {
+					outSubsamp = inSubsamp;
+				}
 
-				if (outFormat.equalsIgnoreCase("jpg") &&
-						(xform.op != TJTransform.OP_NONE || xform.options != 0) &&
-						scaleFactor.isOne()) {
+				if (outFormat.equalsIgnoreCase("jpg") && (xform.op != TJTransform.OP_NONE || xform.options != 0) && scaleFactor.isOne()) {
 					file = new File(argv[1]);
 					FileOutputStream fos = new FileOutputStream(file);
 					fos.write(tjd.getJPEGBuf(), 0, tjd.getJPEGSize());
@@ -245,40 +296,46 @@ public class TJExample implements TJCustomFilter {
 				height = scaleFactor.getScaled(height);
 
 				if (!outFormat.equalsIgnoreCase("jpg")) {
-					img = tjd.decompress(width, height, BufferedImage.TYPE_INT_RGB,
-							flags);
-				} else { bmpBuf = tjd.decompress(width, 0, height, TJ.PF_BGRX, flags); }
+					img = tjd.decompress(width, height, BufferedImage.TYPE_INT_RGB, flags);
+				} else {
+					bmpBuf = tjd.decompress(width, 0, height, TJ.PF_BGRX, flags);
+				}
 				tjd.close();
 			} else {
 				img = ImageIO.read(file);
-				if (img == null) { throw new Exception("Input image type not supported."); }
+				if (img == null) {
+					throw new Exception("Input image type not supported.");
+				}
 				width = img.getWidth();
 				height = img.getHeight();
 				if (outSubsamp < 0) {
-					if (img.getType() == BufferedImage.TYPE_BYTE_GRAY) { outSubsamp = TJ.SAMP_GRAY; } else { outSubsamp = TJ.SAMP_444; }
+					if (img.getType() == BufferedImage.TYPE_BYTE_GRAY) {
+						outSubsamp = TJ.SAMP_GRAY;
+					} else {
+						outSubsamp = TJ.SAMP_444;
+					}
 				}
 			}
 			System.gc();
 			if (!display) {
-				System.out.print("Dest. Image (" + outFormat + "):  " + width + " x " +
-						height + " pixels");
+				System.out.print("Dest. Image (" + outFormat + "):  " + width + " x " + height + " pixels");
 			}
 
 			if (display) {
 				ImageIcon icon = new ImageIcon(img);
 				JLabel label = new JLabel(icon, JLabel.CENTER);
-				JOptionPane.showMessageDialog(null, label, "Output Image",
-						JOptionPane.PLAIN_MESSAGE);
+				JOptionPane.showMessageDialog(null, label, "Output Image", JOptionPane.PLAIN_MESSAGE);
 			} else if (outFormat.equalsIgnoreCase("jpg")) {
-				System.out.println(", " + sampName[outSubsamp] +
-						" subsampling, quality = " + outQual);
+				System.out.println(", " + sampName[outSubsamp] + " subsampling, quality = " + outQual);
 				TJCompressor tjc = new TJCompressor();
 				int jpegSize;
 				byte[] jpegBuf;
 
 				tjc.setSubsamp(outSubsamp);
 				tjc.setJPEGQuality(outQual);
-				if (img != null) { tjc.setSourceImage(img, 0, 0, 0, 0); } else {
+				if (img != null) {
+					tjc.setSourceImage(img, 0, 0, 0, 0);
+				} else {
 					tjc.setSourceImage(bmpBuf, 0, 0, width, 0, height, TJ.PF_BGRX);
 				}
 				jpegBuf = tjc.compress(flags);
@@ -294,17 +351,13 @@ public class TJExample implements TJCustomFilter {
 				file = new File(argv[1]);
 				ImageIO.write(img, outFormat, file);
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.exit(-1);
 		}
 	}
 
-	public void customFilter(ShortBuffer coeffBuffer, Rectangle bufferRegion,
-	                         Rectangle planeRegion, int componentIndex,
-	                         int transformIndex, TJTransform transform)
-			throws TJException {
+	public void customFilter(ShortBuffer coeffBuffer, Rectangle bufferRegion, Rectangle planeRegion, int componentIndex, int transformIndex, TJTransform transform) throws TJException {
 		for (int i = 0; i < bufferRegion.width * bufferRegion.height; i++) {
 			coeffBuffer.put(i, (short) (-coeffBuffer.get(i)));
 		}

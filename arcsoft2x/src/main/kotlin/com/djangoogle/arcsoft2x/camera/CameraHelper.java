@@ -336,7 +336,8 @@ public class CameraHelper implements Camera.PreviewCallback {
 		 */
 		private int additionalRotation;
 
-		public Builder() {}
+		public Builder() {
+		}
 
 		public Builder previewOn(Object val) {
 			if (val instanceof SurfaceTexture || val instanceof TextureView || val instanceof SurfaceView) {

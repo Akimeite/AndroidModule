@@ -17,7 +17,7 @@ buildscript {
 		androidx_annotation_version = '1.1.0'
 		androidx_multidex_version = '2.0.1'
 		//https://github.com/bumptech/glide
-		glide_version = '4.9.0'
+		glide_version = '4.10.0'
 		//https://github.com/greenrobot/EventBus
 		event_bus_version = '3.1.1'
 		//https://github.com/Blankj/AndroidUtilCode/blob/master/lib/utilcode/README-CN.md
@@ -25,14 +25,14 @@ buildscript {
 		//https://github.com/ReactiveX/RxAndroid
 		rx_android_version = '2.1.1'
 		//https://github.com/trello/RxLifecycle
-		rx_lifecycle_version = '3.0.0'
+		rx_lifecycle_version = '3.1.0'
 		//https://github.com/square/okhttp
-		okhttp_version = '3.12.5'
+		okhttp_version = '3.12.6'
 		//https://square.github.io/retrofit
 		//https://github.com/square/retrofit
 		retrofit2_version = '2.6.1'
 		//https://github.com/CarGuo/GSYVideoPlayer
-		gsy_video_player_version = '7.1.0'
+		gsy_video_player_version = '7.1.1'
 		//https://github.com/CymChad/BaseRecyclerViewAdapterHelper
 		base_recyclerview_adapter_helper_version = '2.9.50'
 		//bintray
@@ -67,7 +67,7 @@ buildscript {
 		uvccamera_version_name = '1.0.0'
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:3.5.0'
+		classpath 'com.android.tools.build:gradle:3.5.1'
 		//https://www.kotlincn.net/docs/reference/using-gradle.html
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 		//https://github.com/novoda/bintray-release

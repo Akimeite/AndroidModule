@@ -20,7 +20,9 @@ class MainActivity : BaseActivity() {
 	override fun initGUI() {}
 
 	override fun initAction() {
-		singleClicks(acbMainBanner, Consumer { startActivity(Intent(this, BannerActivity::class.java)) })
+		singleClicks(
+				acbMainBanner,
+				Consumer { startActivity(Intent(this, BannerActivity::class.java)) })
 		singleClicks(acbMainRetrofit, Consumer { })
 	}
 

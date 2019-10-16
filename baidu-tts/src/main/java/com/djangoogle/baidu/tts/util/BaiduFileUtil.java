@@ -42,8 +42,7 @@ public class BaiduFileUtil {
 		}
 	}
 
-	public static void copyFromAssets(AssetManager assets, String source, String dest, boolean isCover)
-			throws IOException {
+    public static void copyFromAssets(AssetManager assets, String source, String dest, boolean isCover) throws IOException {
 		File file = new File(dest);
 		if (isCover || (!isCover && !file.exists())) {
 			InputStream is = null;

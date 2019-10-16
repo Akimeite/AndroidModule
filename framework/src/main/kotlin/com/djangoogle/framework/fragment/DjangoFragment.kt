@@ -42,7 +42,11 @@ abstract class DjangoFragment : RxFragment() {
 		mActivity = activity as FragmentActivity
 	}
 
-	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+	override fun onCreateView(
+			inflater: LayoutInflater,
+			container: ViewGroup?,
+			savedInstanceState: Bundle?
+	): View? {
 		val view: View = LayoutInflater.from(mActivity).inflate(initLayout(), null)
 		//初始化ButterKnife
 		initButterKnife(view)
