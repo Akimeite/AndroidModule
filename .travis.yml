@@ -29,7 +29,7 @@ install:
   - sdkmanager --uninstall "emulator"
   - sdkmanager --uninstall "platforms;android-25"
   - echo yes | sdkmanager "platforms;android-29"
-  - echo yes | sdkmanager "build-tools;28.0.3"
+  - echo yes | sdkmanager "build-tools;29.0.2"
   - echo yes | sdkmanager "extras;google;google_play_services"
   - echo yes | sdkmanager "extras;google;m2repository"
   - echo yes | sdkmanager "tools"
