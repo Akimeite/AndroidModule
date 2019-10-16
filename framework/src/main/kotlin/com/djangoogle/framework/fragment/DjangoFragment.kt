@@ -37,7 +37,7 @@ abstract class DjangoFragment : RxFragment() {
 	//Fragment是否首次不可见
 	private var isFirstInvisible = true
 
-	override fun onAttach(context: Context?) {
+	override fun onAttach(context: Context) {
 		super.onAttach(context)
 		mActivity = activity as FragmentActivity
 	}

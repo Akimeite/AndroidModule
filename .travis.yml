@@ -24,6 +24,10 @@ before_install:
 
 install:
   - sdkmanager --list || true
+  - sdkmanager --uninstall "build-tools;25.0.2"
+  - sdkmanager --uninstall "build-tools;28.0.3"
+  - sdkmanager --uninstall "emulator"
+  - sdkmanager --uninstall "platforms;android-25"
   - echo yes | sdkmanager "platforms;android-29"
   - echo yes | sdkmanager "build-tools;28.0.3"
   - echo yes | sdkmanager "extras;google;google_play_services"

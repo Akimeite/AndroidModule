@@ -22,7 +22,7 @@ open class DjangoDialogFragment : RxDialogFragment() {
 	//通用Activity
 	protected lateinit var mActivity: Activity
 
-	override fun onAttach(context: Context?) {
+	override fun onAttach(context: Context) {
 		super.onAttach(context)
 		LogUtils.dTag(TAG, "onAttach")
 		mActivity = activity as FragmentActivity
@@ -33,7 +33,7 @@ open class DjangoDialogFragment : RxDialogFragment() {
 		return super.onCreateDialog(savedInstanceState)
 	}
 
-	override fun show(manager: FragmentManager?, tag: String?) {
+	override fun show(manager: FragmentManager, tag: String?) {
 		super.show(manager, tag)
 		LogUtils.dTag(TAG, "show")
 	}
