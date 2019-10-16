@@ -18,48 +18,18 @@ android:
     - platform-tools
     - tools
 
-env:
-  global:
-    - DIR=Module
-    - API=29
-    - TAG=google_apis
-    - ABI=armeabi-v7a
-    - QEMU_AUDIO_DRV=none
-    - GRADLE_USER_HOME="${TRAVIS_BUILD_DIR}/gradle"
-    - ANDROID_HOME=/usr/local/android-sdk
-    - TOOLS=${ANDROID_HOME}/tools
-    - PATH=${ANDROID_HOME}:${TOOLS}:${TOOLS}/bin:${ANDROID_HOME}/platform-tools:${PATH}
-    - ADB_INSTALL_TIMEOUT=20
-
 before_install:
   - echo 'count=0' > /home/travis/.android/repositories.cfg
   - echo 'count=0' > /home/travis/build/Djangoogle/Module/local.properties
 
 install:
   - sdkmanager --list || true
-  #  - sdkmanager --uninstall "system-images;android-15;default;armeabi-v7a"
-  #  - sdkmanager --uninstall "system-images;android-16;default;armeabi-v7a"
-  #  - sdkmanager --uninstall "system-images;android-17;default;armeabi-v7a"
-  #  - sdkmanager --uninstall "system-images;android-18;default;armeabi-v7a"
-  #  - sdkmanager --uninstall "system-images;android-19;default;armeabi-v7a"
-  #  - sdkmanager --uninstall "system-images;android-21;default;armeabi-v7a"
-  #  - sdkmanager --uninstall "extras;google;google_play_services"
-  #  - sdkmanager --uninstall "extras;android;support"
-  #  - sdkmanager --uninstall "platforms;android-10"
-  #  - sdkmanager --uninstall "platforms;android-15"
-  #  - sdkmanager --uninstall "platforms;android-16"
-  #  - sdkmanager --uninstall "platforms;android-17"
-  #  - sdkmanager --uninstall "platforms;android-18"
-  #  - sdkmanager --uninstall "platforms;android-19"
-  #  - sdkmanager --uninstall "platforms;android-20"
-  #  - sdkmanager --uninstall "platforms;android-21"
-  #  - sdkmanager --uninstall "build-tools;21.1.2"
-  #  - echo yes | sdkmanager "tools"
-  #  - echo yes | sdkmanager "platforms;android-${API}"
-  #  - echo yes | sdkmanager "build-tools;29.0.2"
-  #  - echo yes | sdkmanager "extras;android;m2repository"
-  #  - echo yes | sdkmanager "extras;google;m2repository"
-#  - sdkmanager --list || true
+  - echo yes | sdkmanager "platforms;android-29"
+  - echo yes | sdkmanager "build-tools;28.0.3"
+  - echo yes | sdkmanager "extras;google;google_play_services"
+  - echo yes | sdkmanager "extras;google;m2repository"
+  - echo yes | sdkmanager "tools"
+  - sdkmanager --list || true
 
 script:
-  - ./gradlew clean assembleDebug
+  - ./gradlew clean build
