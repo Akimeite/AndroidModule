@@ -37,28 +37,29 @@ before_install:
 
 install:
   - sdkmanager --list || true
-#  - sdkmanager --uninstall "system-images;android-15;default;armeabi-v7a"
-#  - sdkmanager --uninstall "system-images;android-16;default;armeabi-v7a"
-#  - sdkmanager --uninstall "system-images;android-17;default;armeabi-v7a"
-#  - sdkmanager --uninstall "system-images;android-18;default;armeabi-v7a"
-#  - sdkmanager --uninstall "system-images;android-19;default;armeabi-v7a"
-#  - sdkmanager --uninstall "system-images;android-21;default;armeabi-v7a"
-#  - sdkmanager --uninstall "extras;google;google_play_services"
-#  - sdkmanager --uninstall "extras;android;support"
-#  - sdkmanager --uninstall "platforms;android-10"
-#  - sdkmanager --uninstall "platforms;android-15"
-#  - sdkmanager --uninstall "platforms;android-16"
-#  - sdkmanager --uninstall "platforms;android-17"
-#  - sdkmanager --uninstall "platforms;android-18"
-#  - sdkmanager --uninstall "platforms;android-19"
-#  - sdkmanager --uninstall "platforms;android-20"
-#  - sdkmanager --uninstall "platforms;android-21"
-#  - sdkmanager --uninstall "build-tools;21.1.2"
+  #  - sdkmanager --uninstall "system-images;android-15;default;armeabi-v7a"
+  #  - sdkmanager --uninstall "system-images;android-16;default;armeabi-v7a"
+  #  - sdkmanager --uninstall "system-images;android-17;default;armeabi-v7a"
+  #  - sdkmanager --uninstall "system-images;android-18;default;armeabi-v7a"
+  #  - sdkmanager --uninstall "system-images;android-19;default;armeabi-v7a"
+  #  - sdkmanager --uninstall "system-images;android-21;default;armeabi-v7a"
+  #  - sdkmanager --uninstall "extras;google;google_play_services"
+  #  - sdkmanager --uninstall "extras;android;support"
+  #  - sdkmanager --uninstall "platforms;android-10"
+  #  - sdkmanager --uninstall "platforms;android-15"
+  #  - sdkmanager --uninstall "platforms;android-16"
+  #  - sdkmanager --uninstall "platforms;android-17"
+  #  - sdkmanager --uninstall "platforms;android-18"
+  #  - sdkmanager --uninstall "platforms;android-19"
+  #  - sdkmanager --uninstall "platforms;android-20"
+  #  - sdkmanager --uninstall "platforms;android-21"
+  #  - sdkmanager --uninstall "build-tools;21.1.2"
   #  - echo yes | sdkmanager "tools"
   #  - echo yes | sdkmanager "platforms;android-${API}"
   #  - echo yes | sdkmanager "build-tools;29.0.2"
   #  - echo yes | sdkmanager "extras;android;m2repository"
   #  - echo yes | sdkmanager "extras;google;m2repository"
-  - cd ${TRAVIS_BUILD_DIR}/${DIR} && ./gradlew --version
-  - cd ${TRAVIS_BUILD_DIR}/${DIR} && ./gradlew clean assembleDebug
 #  - sdkmanager --list || true
+
+script:
+  - ./gradlew clean assembleDebug
