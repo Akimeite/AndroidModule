@@ -12,6 +12,7 @@ android:
     - 'google-gdk-license-.+'
 
 before_script:
+  - touch /home/travis/.android/repositories.cfg
   - touch local.properties
 
 script:
