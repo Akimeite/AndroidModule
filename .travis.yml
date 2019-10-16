@@ -11,9 +11,6 @@ cache:
     - ${TRAVIS_BUILD_DIR}/gradle/caches/
     - ${TRAVIS_BUILD_DIR}/gradle/wrapper/dists/
 
-notifications:
-  email: false
-
 android:
   components:
     - tools
@@ -23,7 +20,7 @@ android:
 
 env:
   global:
-    - DIR=constraint-layout-start
+    - DIR=Module
     - API=29
     - TAG=google_apis
     - ABI=armeabi-v7a
@@ -36,6 +33,7 @@ env:
 
 before_install:
   - echo 'count=0' > /home/travis/.android/repositories.cfg
+  - echo 'count=0' > /home/travis/build/Djangoogle/Module/local.properties
 
 install:
   - sdkmanager --list || true
@@ -56,11 +54,11 @@ install:
 #  - sdkmanager --uninstall "platforms;android-20"
 #  - sdkmanager --uninstall "platforms;android-21"
 #  - sdkmanager --uninstall "build-tools;21.1.2"
-#  - echo yes | sdkmanager "tools"
-#  - echo yes | sdkmanager "platforms;android-29"
-#  - echo yes | sdkmanager "platforms;android-${API}"
-#  - echo yes | sdkmanager "extras;android;m2repository"
-#  - echo yes | sdkmanager "extras;google;m2repository"
-#  - cd ${TRAVIS_BUILD_DIR}/${DIR} && ./gradlew --version
-#  - cd ${TRAVIS_BUILD_DIR}/${DIR} && ./gradlew clean assembleDebug
+  - echo yes | sdkmanager "tools"
+  - echo yes | sdkmanager "platforms;android-${API}"
+  - echo yes | sdkmanager "build-tools;29.0.2"
+  - echo yes | sdkmanager "extras;android;m2repository"
+  - echo yes | sdkmanager "extras;google;m2repository"
+  - cd ${TRAVIS_BUILD_DIR}/${DIR} && ./gradlew --version
+  - cd ${TRAVIS_BUILD_DIR}/${DIR} && ./gradlew clean assembleDebug
 #  - sdkmanager --list || true
