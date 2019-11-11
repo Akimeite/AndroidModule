@@ -38,7 +38,7 @@ buildscript {
 		//bintray
 		publish_user_org = 'djangoogle'
 //		publish_bintray_key = properties.getProperty("publish.bintrayKey")
-		publish_bintray_key = '$System.env.BINTRAY_KEY'
+		publish_bintray_key = System.getenv('BINTRAY_KEY')
 		publish_group_id = 'com.djangoogle.support'
 		website = 'https://github.com/Djangoogle/Module/tree/master/'
 		//version
