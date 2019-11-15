@@ -38,15 +38,14 @@ buildscript {
 		base_recyclerview_adapter_helper_version = '2.9.50'
 		//bintray
 		publish_user_org = 'djangoogle'
-//		publish_bintray_key = properties.getProperty("publish.bintrayKey")
 		publish_bintray_key = System.getenv('BINTRAY_KEY')
 		publish_group_id = 'com.djangoogle.support'
 		website = 'https://github.com/Djangoogle/Module/tree/master/'
 		//version
 		arcsoft2x_package_name = 'ArcSoft2X'
 		arcsoft2x_artifact_id = 'arcsoft2x'
-		arcsoft2x_version_code = 37
-		arcsoft2x_version_name = '1.1.0'
+		arcsoft2x_version_code = 38
+		arcsoft2x_version_name = '1.1.1-alpha01'
 		baidu_tts_package_name = 'BaiduTTS'
 		baidu_tts_artifact_id = 'baidu-tts'
 		baidu_tts_version_code = 4

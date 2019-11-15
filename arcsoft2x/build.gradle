@@ -35,7 +35,7 @@ android {
 }
 
 dependencies {
-	api fileTree(dir: 'libs', include: ['*.jar'])
+	compileOnly fileTree(dir: 'libs', include: ['*.jar'])
 	//https://www.kotlincn.net/docs/reference/using-gradle.html
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 	implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
