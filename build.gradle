@@ -2,7 +2,6 @@ buildscript {
 	repositories {
 		google()
 		jcenter()
-		maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
 	}
 	Properties properties = new Properties()
 	properties.load(project.rootProject.file('local.properties').newDataInputStream())
@@ -11,7 +10,7 @@ buildscript {
 		min_sdk_version = 19
 		java_version = JavaVersion.VERSION_1_8
 		//https://www.kotlincn.net/docs/reference/using-gradle.html
-		kotlin_version = '1.3.60-eap-25'
+		kotlin_version = '1.3.50'
 		//https://maven.google.com
 		androidx_material_version = '1.0.0'
 		androidx_constraintlayout_version = '1.1.3'
@@ -68,7 +67,7 @@ buildscript {
 		uvccamera_version_name = '1.0.0'
 	}
 	dependencies {
-		classpath 'com.android.tools.build:gradle:4.0.0-alpha02'
+		classpath 'com.android.tools.build:gradle:3.5.2'
 		//https://www.kotlincn.net/docs/reference/using-gradle.html
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 		//https://github.com/novoda/bintray-release
@@ -80,7 +79,6 @@ allprojects {
 	repositories {
 		google()
 		jcenter()
-		maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
 		maven { url "https://jitpack.io" }
 		maven { url 'https://raw.github.com/saki4510t/libcommon/master/repository' }
 	}
