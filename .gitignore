@@ -2,7 +2,10 @@
 .idea
 build
 captures
+gradle
 .externalNativeBuild
+gradlew
+gradlew.bat
 local.properties
 *.iml
 *.DS_Store
