@@ -137,7 +137,7 @@ public class BaiduTTSManager {
 			@Override
 			/**
 			 * 开新线程检查，成功后回调
-             */ public void handleMessage(Message msg) {
+			 */ public void handleMessage(Message msg) {
 				if (msg.what == 100) {
 					AutoCheck autoCheck = (AutoCheck) msg.obj;
 					synchronized (autoCheck) {

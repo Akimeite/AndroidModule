@@ -49,12 +49,12 @@ public class UVCCameraTextureView extends TextureView implements AspectRatioView
 	}
 
 	@Override
-    public void onResume() {
-    }
+	public void onResume() {
+	}
 
 	@Override
-    public void onPause() {
-    }
+	public void onPause() {
+	}
 
 	@Override
 	public void setAspectRatio(final double aspectRatio) {

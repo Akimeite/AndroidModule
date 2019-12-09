@@ -92,7 +92,7 @@ public class Size implements Parcelable {
 	 * @param _min_intervals
 	 * @param _max_intervals
 	 */
-    public Size(final int _type, final int _frame_type, final int _index, final int _width, final int _height, final int _min_intervals, final int _max_intervals, final int _step) {
+	public Size(final int _type, final int _frame_type, final int _index, final int _width, final int _height, final int _min_intervals, final int _max_intervals, final int _step) {
 		type = _type;
 		frame_type = _frame_type;
 		index = _index;
@@ -256,9 +256,9 @@ public class Size implements Parcelable {
 				final int step = intervals[2];
 				if (step > 0) {
 					int m = 0;
-                    for (int i = min; i <= max; i += step) {
-                        m++;
-                    }
+					for (int i = min; i <= max; i += step) {
+						m++;
+					}
 					fps = new float[m];
 					m = 0;
 					for (int i = min; i <= max; i += step) {
@@ -267,9 +267,9 @@ public class Size implements Parcelable {
 				} else {
 					final float max_fps = 10000000.0f / min;
 					int m = 0;
-                    for (float fps = 10000000.0f / min; fps <= max_fps; fps += 1.0f) {
-                        m++;
-                    }
+					for (float fps = 10000000.0f / min; fps <= max_fps; fps += 1.0f) {
+						m++;
+					}
 					fps = new float[m];
 					m = 0;
 					for (float fps = 10000000.0f / min; fps <= max_fps; fps += 1.0f) {
@@ -304,6 +304,6 @@ public class Size implements Parcelable {
 			frame_rate = getCurrentFrameRate();
 		} catch (final Exception e) {
 		}
-        return String.format(Locale.US, "Size(%dx%d@%4.1f,type:%d,frame:%d,index:%d,%s)", width, height, frame_rate, type, frame_type, index, frameRates);
+		return String.format(Locale.US, "Size(%dx%d@%4.1f,type:%d,frame:%d,index:%d,%s)", width, height, frame_rate, type, frame_type, index, frameRates);
 	}
 }

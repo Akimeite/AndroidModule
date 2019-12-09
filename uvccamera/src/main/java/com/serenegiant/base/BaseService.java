@@ -76,9 +76,9 @@ public abstract class BaseService extends Service {
 	 * @param duration
 	 */
 	public final void runOnUiThread(final Runnable task, final long duration) {
-        if (task == null) {
-            return;
-        }
+		if (task == null) {
+			return;
+		}
 		mUIHandler.removeCallbacks(task);
 		if ((duration > 0) || Thread.currentThread() != mUiThread) {
 			mUIHandler.postDelayed(task, duration);
@@ -97,9 +97,9 @@ public abstract class BaseService extends Service {
 	 * @param task
 	 */
 	public final void removeFromUiThread(final Runnable task) {
-        if (task == null) {
-            return;
-        }
+		if (task == null) {
+			return;
+		}
 		mUIHandler.removeCallbacks(task);
 	}
 
@@ -111,9 +111,9 @@ public abstract class BaseService extends Service {
 	 * @param delayMillis
 	 */
 	protected final synchronized void queueEvent(final Runnable task, final long delayMillis) {
-        if ((task == null) || (mWorkerHandler == null)) {
-            return;
-        }
+		if ((task == null) || (mWorkerHandler == null)) {
+			return;
+		}
 		try {
 			mWorkerHandler.removeCallbacks(task);
 			if (delayMillis > 0) {
@@ -134,9 +134,9 @@ public abstract class BaseService extends Service {
 	 * @param task
 	 */
 	protected final synchronized void removeEvent(final Runnable task) {
-        if (task == null) {
-            return;
-        }
+		if (task == null) {
+			return;
+		}
 		try {
 			mWorkerHandler.removeCallbacks(task);
 		} catch (final Exception e) {

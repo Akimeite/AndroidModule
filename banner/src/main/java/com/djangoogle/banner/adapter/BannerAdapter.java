@@ -8,13 +8,6 @@ import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
-import androidx.annotation.IntRange;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
-
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.bumptech.glide.Glide;
@@ -35,6 +28,12 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
@@ -101,8 +100,8 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 			//图片
 			case AdResourceModel.TYPE_IMAGE:
 				//设置图片属性
-                ConstraintLayout.LayoutParams singleImageParams = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,
-                        ConstraintLayout.LayoutParams.MATCH_PARENT);
+				ConstraintLayout.LayoutParams singleImageParams = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,
+				                                                                                    ConstraintLayout.LayoutParams.MATCH_PARENT);
 				acivBannerImage.setLayoutParams(singleImageParams);
 				acivBannerImage.setScaleType(ImageView.ScaleType.FIT_XY);
 				acivBannerImage.setVisibility(View.VISIBLE);
@@ -114,8 +113,8 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 			//视频
 			case AdResourceModel.TYPE_VIDEO:
 				//设置缩略图和视频属性
-                ConstraintLayout.LayoutParams singleVideoParams = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,
-                        ConstraintLayout.LayoutParams.MATCH_PARENT);
+				ConstraintLayout.LayoutParams singleVideoParams = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT,
+				                                                                                    ConstraintLayout.LayoutParams.MATCH_PARENT);
 				acivBannerVideo.setLayoutParams(singleVideoParams);
 				acivBannerVideo.setScaleType(ImageView.ScaleType.FIT_XY);
 				fullScreenVideoView.setLayoutParams(singleVideoParams);
@@ -133,11 +132,11 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 				int videoHeight = ScreenUtils.getScreenWidth() * 9 / 16;
 				int imageHeight = ScreenUtils.getScreenHeight() - videoHeight;
 				//设置图片宽高
-                ConstraintLayout.LayoutParams mixImageParams = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, imageHeight);
+				ConstraintLayout.LayoutParams mixImageParams = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, imageHeight);
 				acivBannerImage.setLayoutParams(mixImageParams);
 				acivBannerImage.setScaleType(ImageView.ScaleType.FIT_XY);
 				//设置缩略图和视频宽高
-                ConstraintLayout.LayoutParams mixVideoParams = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, videoHeight);
+				ConstraintLayout.LayoutParams mixVideoParams = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.MATCH_PARENT, videoHeight);
 				acivBannerVideo.setLayoutParams(mixVideoParams);
 				acivBannerVideo.setScaleType(ImageView.ScaleType.FIT_XY);
 				fullScreenVideoView.setLayoutParams(mixVideoParams);
@@ -151,7 +150,7 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 						//设置缩略图和视频属性
 						ConstraintSet mixVideoDownConstraintSet = new ConstraintSet();
 						mixVideoDownConstraintSet.clone(clBannerRoot);
-                        mixVideoDownConstraintSet.connect(thumbnailId, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM);
+						mixVideoDownConstraintSet.connect(thumbnailId, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM);
 						mixVideoDownConstraintSet.connect(videoId, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM);
 						//应用设置
 						mixImageUpConstraintSet.applyTo(clBannerRoot);
@@ -242,28 +241,28 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 	 * 开始图片广告计时任务
 	 */
 	private void startImageAdTimerTask() {
-        Observable.timer(mData.get(mLastVisibleItemPosition).imageSwitchInterval, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread()).subscribe(new Observer<Long>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-                mAdPlayDisposable = d;
-            }
+		Observable.timer(mData.get(mLastVisibleItemPosition).imageSwitchInterval, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread()).subscribe(new Observer<Long>() {
+			@Override
+			public void onSubscribe(Disposable d) {
+				mAdPlayDisposable = d;
+			}
 
-            @Override
-            public void onNext(Long aLong) {
-                //播放下一条广告
-                EventBus.getDefault().post(new PlayNextAdEvent(getNextIndex(mLastVisibleItemPosition)));
-            }
+			@Override
+			public void onNext(Long aLong) {
+				//播放下一条广告
+				EventBus.getDefault().post(new PlayNextAdEvent(getNextIndex(mLastVisibleItemPosition)));
+			}
 
-            @Override
-            public void onError(Throwable e) {
-                //播放下一条广告
-                EventBus.getDefault().post(new PlayNextAdEvent(getNextIndex(mLastVisibleItemPosition)));
-            }
+			@Override
+			public void onError(Throwable e) {
+				//播放下一条广告
+				EventBus.getDefault().post(new PlayNextAdEvent(getNextIndex(mLastVisibleItemPosition)));
+			}
 
-            @Override
-            public void onComplete() {
-            }
-        });
+			@Override
+			public void onComplete() {
+			}
+		});
 	}
 
 	/**
@@ -275,20 +274,20 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 	private void loadImageAd(int position, AppCompatImageView appCompatImageView) {
 		String imagePath = mData.get(position).imagePath;
 		LogUtils.iTag("imagePath", "图片地址: " + imagePath);
-        Glide.with(mContext).load(imagePath).listener(new RequestListener<Drawable>() {
-            //图片加载失败
-            @Override
-            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                //播放下一条广告
-                EventBus.getDefault().post(new PlayNextAdEvent(getNextIndex(position)));
-                return false;
-            }
+		Glide.with(mContext).load(imagePath).listener(new RequestListener<Drawable>() {
+			//图片加载失败
+			@Override
+			public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+				//播放下一条广告
+				EventBus.getDefault().post(new PlayNextAdEvent(getNextIndex(position)));
+				return false;
+			}
 
-            @Override
-            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                return false;
-            }
-        }).diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate().into(appCompatImageView);
+			@Override
+			public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+				return false;
+			}
+		}).diskCacheStrategy(DiskCacheStrategy.DATA).dontAnimate().into(appCompatImageView);
 	}
 
 	/**
@@ -314,12 +313,12 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 			}
 		}).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<Bitmap>() {
 			@Override
-            public void onSubscribe(Disposable d) {
-            }
+			public void onSubscribe(Disposable d) {
+			}
 
 			@Override
 			public void onNext(Bitmap bitmap) {
-                Glide.with(mContext).load(bitmap).placeholder(android.R.color.black).diskCacheStrategy(DiskCacheStrategy.DATA)//使用原图缓存
+				Glide.with(mContext).load(bitmap).placeholder(android.R.color.black).diskCacheStrategy(DiskCacheStrategy.DATA)//使用原图缓存
 				     .dontAnimate()//取消动画
 				     .into(appCompatImageView);
 			}
@@ -330,8 +329,8 @@ public class BannerAdapter extends BaseQuickAdapter<AdResourceModel, BaseViewHol
 			}
 
 			@Override
-            public void onComplete() {
-            }
+			public void onComplete() {
+			}
 		});
 	}
 

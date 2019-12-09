@@ -37,10 +37,10 @@ public class BaiduInitConfig {
 	 */
 	private SpeechSynthesizerListener listener;
 
-    private BaiduInitConfig() {
-    }
+	private BaiduInitConfig() {
+	}
 
-    public BaiduInitConfig(String appId, String appKey, String secretKey, TtsMode ttsMode, Map<String, String> params, SpeechSynthesizerListener listener) {
+	public BaiduInitConfig(String appId, String appKey, String secretKey, TtsMode ttsMode, Map<String, String> params, SpeechSynthesizerListener listener) {
 		this.appId = appId;
 		this.appKey = appKey;
 		this.secretKey = secretKey;

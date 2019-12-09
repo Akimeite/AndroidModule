@@ -21,8 +21,8 @@ class App : DjangoApp() {
 		super.onCreate()
 		//初始化EventBus索引
 		EventBus.builder()
-            .addIndex(BannerEventBusIndex())
-            .addIndex(FrameworkEventBusIndex())
-            .installDefaultEventBus()
+				.addIndex(BannerEventBusIndex())
+				.addIndex(FrameworkEventBusIndex())
+				.installDefaultEventBus()
 	}
 }

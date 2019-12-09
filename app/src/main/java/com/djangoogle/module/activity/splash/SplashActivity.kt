@@ -43,53 +43,53 @@ class SplashActivity : BaseActivity() {
 	 * 申请权限
 	 */
 	private fun requestPermissions() {
-        PermissionUtils.permission(
-            PermissionConstants.STORAGE,
-            PermissionConstants.CAMERA,
-            PermissionConstants.PHONE
-        )
-            .callback(object : PermissionUtils.FullCallback {
-                override fun onGranted(permissionsGranted: MutableList<String>?) {
-                    //初始化
-                    init()
-                }
+		PermissionUtils.permission(
+				PermissionConstants.STORAGE,
+				PermissionConstants.CAMERA,
+				PermissionConstants.PHONE
+		)
+				.callback(object : PermissionUtils.FullCallback {
+					override fun onGranted(permissionsGranted: MutableList<String>?) {
+						//初始化
+						init()
+					}
 
-                override fun onDenied(
-                    permissionsDeniedForever: MutableList<String>?,
-                    permissionsDenied: MutableList<String>?
-                ) {
-                    val deniedForeverArray = permissionsDeniedForever?.toTypedArray()
-                    val deniedArray = permissionsDenied?.toTypedArray()
-                    ToastUtils.showShort(
-                        "权限" + Arrays.toString(deniedForeverArray) + "被永久拒绝\n权限" + Arrays.toString(
-                            deniedArray
-                        ) + "被拒绝"
-                    )
-                }
-            }).request()
+					override fun onDenied(
+							permissionsDeniedForever: MutableList<String>?,
+							permissionsDenied: MutableList<String>?
+					) {
+						val deniedForeverArray = permissionsDeniedForever?.toTypedArray()
+						val deniedArray = permissionsDenied?.toTypedArray()
+						ToastUtils.showShort(
+								"权限" + Arrays.toString(deniedForeverArray) + "被永久拒绝\n权限" + Arrays.toString(
+										deniedArray
+								) + "被拒绝"
+						)
+					}
+				}).request()
 	}
 
 	/**
 	 * 初始化
 	 */
 	private fun init() {
-        Observable.timer(1L, TimeUnit.SECONDS, AndroidSchedulers.mainThread()).bindToLifecycle(this)
-            .subscribe(object : Observer<Long> {
-                override fun onSubscribe(d: Disposable) {}
+		Observable.timer(1L, TimeUnit.SECONDS, AndroidSchedulers.mainThread()).bindToLifecycle(this)
+				.subscribe(object : Observer<Long> {
+					override fun onSubscribe(d: Disposable) {}
 
-                override fun onNext(aLong: Long) {
-                    //延迟打开轮播页
-                    startActivity(Intent(mActivity, MainActivity::class.java))
-                    finish()
-                }
+					override fun onNext(aLong: Long) {
+						//延迟打开轮播页
+						startActivity(Intent(mActivity, MainActivity::class.java))
+						finish()
+					}
 
-                override fun onError(e: Throwable) {
-                    //延迟打开轮播页
-                    startActivity(Intent(mActivity, MainActivity::class.java))
-                    finish()
-                }
+					override fun onError(e: Throwable) {
+						//延迟打开轮播页
+						startActivity(Intent(mActivity, MainActivity::class.java))
+						finish()
+					}
 
-                override fun onComplete() {}
-            })
+					override fun onComplete() {}
+				})
 	}
 }
