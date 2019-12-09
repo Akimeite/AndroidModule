@@ -1,4 +1,4 @@
-# Module: Android通用模块封装
+# Android通用模块封装
 
 [![Build Status](https://img.shields.io/travis/Djangoogle/Module/master.svg?style=flat-square)](https://travis-ci.org/Djangoogle/Module)
 [![Platform](https://img.shields.io/badge/platform-android-ff9800.svg?style=flat-square)](https://github.com/Djangoogle/Module/blob/master/LICENSE)
